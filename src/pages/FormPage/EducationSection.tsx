@@ -1,4 +1,11 @@
-import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Divider,
+  Grid,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 
@@ -61,30 +68,12 @@ export default function Education({
   // TODO: ADD DELETE ICON AND FUNCTIONALITY BESIDE EACH EDUCATION
   return (
     <>
-      <div
-        style={{
-          border: "1px solid #999",
-          paddingTop: 24,
-          paddingBottom: 24,
-          paddingLeft: 36,
-          paddingRight: 36,
-          borderRadius: 10,
-        }}
-      >
-        <Typography style={{ fontSize: 24 }}>Education: </Typography>
+      <div style={{ marginBottom: 24 }}>
+        <Typography align="center" style={{ fontSize: 24 }}>
+          Education:{" "}
+        </Typography>
         {educations.map((singleCourse, index) => (
-          <div
-            key={index}
-            style={{
-              border: "1px solid #999",
-              paddingTop: 24,
-              paddingBottom: 24,
-              paddingLeft: 36,
-              paddingRight: 36,
-              borderRadius: 10,
-              marginBottom: 24,
-            }}
-          >
+          <div key={index}>
             <Grid container>
               <Grid item xs={11}>
                 <Grid container>
@@ -152,9 +141,16 @@ export default function Education({
             </Grid>
           </div>
         ))}
-        <Button variant="contained" onClick={handleAddFields}>
-          Add Another
-        </Button>
+        <Typography align="center">
+          <Button
+            color="secondary"
+            variant="outlined"
+            onClick={handleAddFields}
+            style={{ marginTop: 8 }}
+          >
+            Add Another
+          </Button>
+        </Typography>
       </div>
     </>
   );

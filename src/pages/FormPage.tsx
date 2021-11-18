@@ -14,14 +14,17 @@ import { orange } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React, { useRef, useState } from "react";
-import "./FormPage.css";
 import Education from "./FormPage/EducationSection";
 import { Course } from "../interfaces/Course";
 import Skills from "./FormPage/Skills";
 import AboutSection from "./FormPage/AboutSection";
 import { About } from "../interfaces/About";
 import { Project } from "../interfaces/Project";
+import WorkSection from "./FormPage/WorkSection";
 import ProjectsSection from "./FormPage/ProjectsSection";
+import OthersSection from "./FormPage/OthersSection";
+import { useNavigate } from "react-router-dom";
+import { Work } from "../interfaces/Work";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -44,9 +47,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormPage() {
+export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
   const classes = useStyles();
+  const navigate = useNavigate();
 
+  // Setting Stuff up
   const [about, setAbout] = useState<About>({
     name: "",
     address: "",
@@ -63,6 +68,13 @@ export default function FormPage() {
     },
   ]);
   const [skills, setSkills] = useState<string[]>([]);
+  const [works, setWorks] = useState<Work[]>([
+    {
+      id: `work${new Date().toString()}`,
+      organizationName: "",
+      workDetails: "",
+    },
+  ]);
   const [projects, setProjetcs] = useState<Project[]>([
     {
       id: `project${new Date().toString()}`,
@@ -70,21 +82,29 @@ export default function FormPage() {
       projectDetails: "",
     },
   ]);
+  const [others, setOthers] = useState<string[]>([]);
 
+  // Handling Post, getting data from user and sending it to the server
   const handlePost = async (
-    e: React.FormEvent<HTMLFormElement>
+    e:
+      | React.FormEvent<HTMLFormElement>
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): Promise<void> => {
     e.preventDefault();
     const details = {
       about: {},
       educations: [{}],
       skills: [""],
+      works: [{}],
       projects: [{}],
+      others: [""],
     };
     details.about = about;
     details.educations = [...educations];
     details.skills = skills;
-    details.projects = projects;
+    details.works = [...works];
+    details.projects = [...projects];
+    details.others = others;
 
     console.log(`details before`, details);
     await fetch("http://localhost:5000/post", {
@@ -101,15 +121,35 @@ export default function FormPage() {
   return (
     <>
       <div>
-        <Container component="main" maxWidth="md">
+        <Typography
+          align="center"
+          component="h1"
+          variant="h5"
+          style={{ margin: 24 }}
+        >
+          Fill Up to Get Your Resume
+        </Typography>
+        <Container
+          component="main"
+          maxWidth="md"
+          style={{ border: "1px solid #999", borderRadius: 10, padding: 20 }}
+        >
           <CssBaseline />
-          {/* {currentUser && JSON.stringify(currentUser)} */}
+
           <div className={classes.paper}>
             {/* <Avatar className={classes.avatar}>G</Avatar> */}
-            <Typography component="h1" variant="h5">
-              Fill Up to Get Your Resume
-            </Typography>
-            <form className={classes.form} noValidate onSubmit={handlePost}>
+
+            {/* Actual Form */}
+            <form
+              className={classes.form}
+              noValidate
+              onSubmit={(e) => {
+                handlePost(e);
+                setTimeout(() => {
+                  navigate("/submit");
+                }, 1000);
+              }}
+            >
               <AboutSection about={about} setAbout={setAbout} />
 
               <Education
@@ -119,7 +159,11 @@ export default function FormPage() {
 
               <Skills skills={skills} setSkills={setSkills} />
 
+              <WorkSection works={works} setWorks={setWorks} />
+
               <ProjectsSection projects={projects} setProjects={setProjetcs} />
+
+              <OthersSection setOthers={setOthers} />
 
               <Button
                 type="submit"
@@ -133,8 +177,8 @@ export default function FormPage() {
               </Button>
             </form>
           </div>
-          <div style={{ marginTop: 400 }}>&nbsp;</div>
         </Container>
+        <div style={{ marginTop: 400 }}>&nbsp;</div>
       </div>
     </>
   );

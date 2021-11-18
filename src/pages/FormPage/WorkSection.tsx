@@ -9,28 +9,14 @@ import {
 import React, { useEffect, useState } from "react";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 
-import { Project } from "../../interfaces/Project";
-import { makeStyles } from "@mui/styles";
-import { Box } from "@mui/system";
+import { Work } from "../../interfaces/Work";
 
-const useStyles = makeStyles({
-  textInput: {
-    height: 20,
-  },
-});
+interface WorkSectionProps {
+  works: Work[];
+  setWorks: React.Dispatch<React.SetStateAction<Work[]>>;
+}
 
-export default function ProjectsSection({
-  projects,
-  setProjects,
-}: {
-  projects: Project[];
-  setProjects: React.Dispatch<React.SetStateAction<Project[]>>;
-}) {
-  const classes = useStyles();
-  // useEffect(() => {
-  //   console.log(`educations`, educations);
-  // }, [educations]);
-
+const WorkSection: React.FC<WorkSectionProps> = ({ works, setWorks }) => {
   function handleChange(
     index: number,
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
@@ -43,37 +29,36 @@ export default function ProjectsSection({
     // I set "i:any" cause im a dumbass who dont know why
     // `Element implicitly has an 'any' type because expression of type 'string' can't be used to index`
     // plz help TwT UwU
-    const values = projects.map((singleProject: Project) => {
-      if (id === singleProject.id) {
-        singleProject[event.target.name] = event.target.value;
+    const values = works.map((singleWork: Work) => {
+      if (id === singleWork.id) {
+        singleWork[event.target.name] = event.target.value;
       }
-      return singleProject;
+      return singleWork;
     });
-
-    setProjects(values);
+    console.log(values);
+    setWorks(values);
   }
 
   const handleAddFields = () => {
-    setProjects([
-      ...projects,
+    setWorks([
+      ...works,
       {
-        id: `project${new Date().toString()}`,
-        projectName: "",
-        projectDetails: "",
+        id: `work${new Date().toString()}`,
+        organizationName: "",
+        workDetails: "",
       },
     ]);
   };
 
   const handleRemoveFields = (id: string) => {
-    const values = [...projects];
+    const values = [...works];
     values.splice(
       values.findIndex((value) => value.id === id),
       1
     );
-    setProjects(values);
+    setWorks(values);
   };
 
-  // TODO: ADD DELETE ICON AND FUNCTIONALITY BESIDE EACH Project
   return (
     <>
       <div
@@ -83,9 +68,9 @@ export default function ProjectsSection({
         }}
       >
         <Typography align="center" style={{ fontSize: 24 }}>
-          Projects:
+          Work:
         </Typography>
-        {projects.map((singleProject, index) => (
+        {works.map((singleWork, index) => (
           <div key={index}>
             <Grid container>
               <Grid item xs={11}>
@@ -97,10 +82,10 @@ export default function ProjectsSection({
                       margin="dense"
                       // required
                       fullWidth
-                      label="Project Name"
-                      name="projectName"
-                      value={singleProject.projectName}
-                      onChange={(e) => handleChange(index, e, singleProject.id)}
+                      label="Organization Name"
+                      name="organizationName"
+                      value={singleWork.organizationName}
+                      onChange={(e) => handleChange(index, e, singleWork.id)}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -112,10 +97,10 @@ export default function ProjectsSection({
                       rows={3}
                       // required
                       fullWidth
-                      label="Project Details eg. Used this software to accomplish that"
-                      name="projectDetails"
-                      value={singleProject.projectDetails}
-                      onChange={(e) => handleChange(index, e, singleProject.id)}
+                      label="Work Details eg. Used this software to accomplish that"
+                      name="workDetails"
+                      value={singleWork.workDetails}
+                      onChange={(e) => handleChange(index, e, singleWork.id)}
                       autoFocus
                     />
                   </Grid>
@@ -131,13 +116,21 @@ export default function ProjectsSection({
               >
                 <IconButton
                   onClick={() => {
-                    handleRemoveFields(singleProject.id);
+                    handleRemoveFields(singleWork.id);
                   }}
                 >
                   <RemoveCircleOutlineRoundedIcon fontSize="large" />
                 </IconButton>
               </Grid>
             </Grid>
+            <Typography
+              align="left"
+              color="#ef6c00"
+              style={{ fontSize: 14, marginTop: 0, marginLeft: 2 }}
+            >
+              press enter after entering key job details to make different
+              bullet points*
+            </Typography>
           </div>
         ))}
         <Typography align="center">
@@ -153,4 +146,6 @@ export default function ProjectsSection({
       </div>
     </>
   );
-}
+};
+
+export default WorkSection;

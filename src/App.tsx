@@ -5,6 +5,8 @@ import "./App.css";
 import FormPage from "./pages/FormPage";
 import { Button, createTheme } from "@mui/material";
 import { orange } from "@mui/material/colors";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SubmitPage from "./pages/SubmitPage";
 
 // async function makePDF() {
 //   // var s = '<div id="myDiv"></div>';
@@ -46,35 +48,11 @@ declare module "@mui/material/styles" {
     status: {
       danger: string;
     };
-    overrides: {
-      MuiFormControl: {
-        root: {
-          height: string;
-        };
-      };
-      MuiInputBase: {
-        root: {
-          height: string;
-        };
-      };
-    };
   }
   // allow configuration using `createTheme`
   interface ThemeOptions {
     status?: {
       danger?: string;
-    };
-    overrides: {
-      MuiFormControl: {
-        root: {
-          height: string;
-        };
-      };
-      MuiInputBase: {
-        root: {
-          height: string;
-        };
-      };
     };
   }
 }
@@ -83,32 +61,19 @@ const theme = createTheme({
   status: {
     danger: orange[500],
   },
-  overrides: {
-    MuiFormControl: {
-      root: {
-        height: "24px",
-      },
-    },
-    MuiInputBase: {
-      root: {
-        height: "24px",
-      },
-    },
-  },
 });
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <Button
-        color="inherit"
-        style={{ backgroundColor: "green" }}
-        onClick={downloadPDF}
-      >
-        Download
-      </Button>
-      <FormPage />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<FormPage downloadPDF={downloadPDF} />} />
+        <Route
+          path="submit"
+          element={<SubmitPage downloadPDF={downloadPDF} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

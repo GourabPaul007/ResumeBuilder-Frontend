@@ -1,4 +1,4 @@
-import { Autocomplete, Chip, TextField, Typography } from "@mui/material";
+import { Autocomplete, Chip, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
 
 export default function Skills({
@@ -15,40 +15,50 @@ export default function Skills({
 
   return (
     <>
-      <div
-        style={{
-          border: "1px solid #999",
-          // paddingTop: 12,
-          paddingBottom: 24,
-          paddingLeft: 36,
-          paddingRight: 36,
-          borderRadius: 10,marginTop: 24 
-        }}
-      >
-        <Typography style={{ fontSize: 24,margin:8 }}>Skills: </Typography>
-        <Autocomplete
-          multiple
-          onChange={(e, value) => {
-            handleChips(value);
-          }}
-          id="tags-filled"
-          options={[]}
-          freeSolo
-          renderTags={(value, getTagProps) =>
-            value.map((option, index) => (
-              <Chip variant="outlined" label={option} {...getTagProps({ index })} />
-            ))
-          }
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              variant="outlined"
-              label="Skills"
-              placeholder="Eg. ReactJS AngularJS"
+      <Grid container>
+        <Grid item xs={12}>
+          <div style={{ marginTop: 24 }}>
+            <Typography align="center" style={{ fontSize: 24, margin: 8 }}>
+              Skills:
+            </Typography>
+            <Autocomplete
+              multiple
+              onChange={(e, value) => {
+                handleChips(value);
+              }}
+              id="tags-filled"
+              options={[]}
+              freeSolo
+              renderTags={(value, getTagProps) =>
+                value.map((option, index) => (
+                  <Chip
+                    variant="outlined"
+                    label={option}
+                    {...getTagProps({ index })}
+                  />
+                ))
+              }
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  // multiline
+                  // rows="3"
+                  label="Skills"
+                  placeholder="Eg. ReactJS AngularJS"
+                />
+              )}
             />
-          )}
-        />
-      </div>
+            <Typography
+              align="left"
+              color="#ef6c00"
+              style={{ fontSize: 14, marginTop: 2, marginLeft: 2 }}
+            >
+              press enter after typing to input your skills*
+            </Typography>
+          </div>
+        </Grid>
+      </Grid>
     </>
   );
 }
