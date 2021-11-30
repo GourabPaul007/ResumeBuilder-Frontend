@@ -1,0 +1,14 @@
+/* Start Footer */
+.footer {
+  background: aliceblue;
+  padding: 15px 0;
+  text-transform: capitalize;
+  text-align: center;
+  color: var(--main-color);
+  font-size: 17px;
+}
+.footer a {
+  font-weight: 500;
+  color: var(--second-color);
+}
+/* End Footer */

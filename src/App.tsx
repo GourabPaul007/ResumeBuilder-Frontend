@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 // import { jsPDF } from "jspdf";
 import FormPage from "./pages/FormPage";
@@ -7,6 +6,7 @@ import { Button, createTheme } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SubmitPage from "./pages/SubmitPage";
+import LandingPage from "./pages/LandingPage";
 
 // async function makePDF() {
 //   // var s = '<div id="myDiv"></div>';
@@ -30,12 +30,12 @@ import SubmitPage from "./pages/SubmitPage";
 // }
 
 async function downloadPDF() {
-  await fetch("http://localhost:5000/", { method: "GET" })
+  await fetch("http://localhost:5000/api/resume/get-pdf", { method: "GET" })
     .then((response) => response.blob())
     .then((blob) => {
       let link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
-      link.download = "myFileName.pdf";
+      link.download = "resume.pdf";
       link.click();
     })
     .catch(() => {
@@ -67,7 +67,8 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<FormPage downloadPDF={downloadPDF} />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/form" element={<FormPage downloadPDF={downloadPDF} />} />
         <Route
           path="submit"
           element={<SubmitPage downloadPDF={downloadPDF} />}

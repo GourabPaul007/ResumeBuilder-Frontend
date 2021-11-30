@@ -116,7 +116,6 @@ export default function ProjectsSection({
                       name="projectDetails"
                       value={singleProject.projectDetails}
                       onChange={(e) => handleChange(index, e, singleProject.id)}
-                      autoFocus
                     />
                   </Grid>
                 </Grid>
@@ -142,10 +141,9 @@ export default function ProjectsSection({
         ))}
         <Typography align="center">
           <Button
-            color="secondary"
-            variant="outlined"
+            variant="contained"
             onClick={handleAddFields}
-            style={{ marginTop: 8 }}
+            style={{ marginTop: 8, backgroundColor: "#00ccc9" }}
           >
             Add Another
           </Button>

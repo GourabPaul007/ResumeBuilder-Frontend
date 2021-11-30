@@ -50,7 +50,7 @@ export default function Education({
       {
         id: `education${new Date().toString()}`,
         courseName: "",
-        nameOfOrganization: "",
+        organizationName: "",
         courseResults: "",
       },
     ]);
@@ -103,7 +103,6 @@ export default function Education({
                       name="nameOfOrganization"
                       value={singleCourse.nameOfOrganization}
                       onChange={(e) => handleChange(index, e, singleCourse.id)}
-                      autoFocus
                     />
                   </Grid>
                   <Grid item xs={3}>
@@ -143,10 +142,9 @@ export default function Education({
         ))}
         <Typography align="center">
           <Button
-            color="secondary"
-            variant="outlined"
+            variant="contained"
             onClick={handleAddFields}
-            style={{ marginTop: 8 }}
+            style={{ marginTop: 8, backgroundColor: "#00ccc9" }}
           >
             Add Another
           </Button>

@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
-import { Box } from "@mui/system";
 import React, { useRef, useState } from "react";
 import Education from "./FormPage/EducationSection";
 import { Course } from "../interfaces/Course";
@@ -25,6 +24,12 @@ import ProjectsSection from "./FormPage/ProjectsSection";
 import OthersSection from "./FormPage/OthersSection";
 import { useNavigate } from "react-router-dom";
 import { Work } from "../interfaces/Work";
+import AppBarHeader from "../Components/AppBarHeader";
+import Footer from "../Components/Footer";
+import ColorPicker from "./FormPage/ColorPicker";
+import { DirectionsRailwaySharp } from "@mui/icons-material";
+import PickTemplate from "./FormPage/PickTemplate";
+import { RootStateOrAny, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -41,9 +46,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100%", // Fix IE 11 issue.
     marginTop: 5,
   },
-  submit: {
-    marginTop: 12,
-    marginBottom: 12,
+  getReusmeButton: {
+    marginTop: 24,
+    marginBottom: 24,
+    backgroundColor: "#00ccc9",
+    padding: 12,
   },
 }));
 
@@ -52,18 +59,20 @@ export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
   const navigate = useNavigate();
 
   // Setting Stuff up
+  const [template, setTemplate] = useState<string>("1");
   const [about, setAbout] = useState<About>({
     name: "",
     address: "",
     cityZip: "",
     phNo: "",
-    email: "",
+    emails: [""],
+    about: "",
   });
   const [educations, setEducations] = useState<Course[]>([
     {
       id: `education${new Date().toString()}`,
       courseName: "",
-      nameOfOrganization: "",
+      organizationName: "",
       courseResults: "",
     },
   ]);
@@ -83,6 +92,14 @@ export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
     },
   ]);
   const [others, setOthers] = useState<string[]>([]);
+  const randomColor = "";
+  const [accentColor, setAccentColor] = useState<string>(
+    "#000000".replace(/0/g, function () {
+      return (~~(Math.random() * 16)).toString(16);
+    })
+  );
+
+  const about1 = useSelector((state: RootStateOrAny) => state.about1);
 
   // Handling Post, getting data from user and sending it to the server
   const handlePost = async (
@@ -92,22 +109,27 @@ export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
   ): Promise<void> => {
     e.preventDefault();
     const details = {
+      template: "1",
       about: {},
       educations: [{}],
       skills: [""],
       works: [{}],
       projects: [{}],
       others: [""],
+      accentColor: "",
     };
-    details.about = about;
+
+    details.template = template;
+    details.about = about1;
     details.educations = [...educations];
     details.skills = skills;
     details.works = [...works];
     details.projects = [...projects];
     details.others = others;
+    details.accentColor = accentColor;
 
     console.log(`details before`, details);
-    await fetch("http://localhost:5000/post", {
+    await fetch("http://localhost:5000/api/resume/post-data", {
       method: "POST",
       headers: {
         "Content-Type": "application/json", //This is required
@@ -120,6 +142,7 @@ export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
 
   return (
     <>
+      <AppBarHeader />
       <div>
         <Typography
           align="center"
@@ -150,6 +173,8 @@ export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
                 }, 1000);
               }}
             >
+              <PickTemplate template={template} setTemplate={setTemplate} />
+
               <AboutSection about={about} setAbout={setAbout} />
 
               <Education
@@ -165,20 +190,37 @@ export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
 
               <OthersSection setOthers={setOthers} />
 
+              <ColorPicker
+                accentColor={accentColor}
+                setAccentColor={setAccentColor}
+              />
+
               <Button
+                className={classes.getReusmeButton}
                 type="submit"
                 // disabled={loading}
                 fullWidth
                 variant="contained"
-                color="primary"
-                className={classes.submit}
+                style={{
+                  marginTop: 24,
+                  marginBottom: 24,
+                  backgroundColor: "#00ccc9",
+                  padding: 12,
+                  fontSize: 18,
+                  borderRadius: 8,
+                  fontWeight: 500,
+                  textTransform: "none",
+                }}
               >
                 Get Resume
               </Button>
             </form>
           </div>
         </Container>
-        <div style={{ marginTop: 400 }}>&nbsp;</div>
+        <div style={{ marginTop: 100 }}>&nbsp;</div>
+
+        {/* Footer Section */}
+        <Footer />
       </div>
     </>
   );

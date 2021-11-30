@@ -3,5 +3,6 @@ export interface About {
   address: string;
   cityZip: string;
   phNo: string;
-  email: string;
+  emails: string[];
+  about: string;
 }

@@ -101,7 +101,6 @@ const WorkSection: React.FC<WorkSectionProps> = ({ works, setWorks }) => {
                       name="workDetails"
                       value={singleWork.workDetails}
                       onChange={(e) => handleChange(index, e, singleWork.id)}
-                      autoFocus
                     />
                   </Grid>
                 </Grid>
@@ -135,10 +134,9 @@ const WorkSection: React.FC<WorkSectionProps> = ({ works, setWorks }) => {
         ))}
         <Typography align="center">
           <Button
-            color="secondary"
-            variant="outlined"
+            variant="contained"
             onClick={handleAddFields}
-            style={{ marginTop: 8 }}
+            style={{ marginTop: 8, backgroundColor: "#00ccc9" }}
           >
             Add Another
           </Button>
