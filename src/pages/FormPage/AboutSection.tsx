@@ -63,7 +63,7 @@ export default function AboutSection({
   // }, [userImage]);
 
   const dispatch = useDispatch();
-  const about1 = useSelector((state: RootStateOrAny) => state.about1);
+  // const about1 = useSelector((state: RootStateOrAny) => state.about1);
 
   const setName = (data: string) => {
     dispatch(addName(data));
@@ -80,8 +80,8 @@ export default function AboutSection({
   const setAboutYourself = (data: string) => {
     dispatch(addAboutYourself(data));
   };
-  const handleEmails = (values: string[]) => {
-    dispatch(addEmails(values));
+  const setEmails = (data: string) => {
+    dispatch(addEmails(data));
   };
 
   return (
@@ -149,7 +149,7 @@ export default function AboutSection({
               }}
             />
 
-            <Autocomplete
+            {/* <Autocomplete
               style={{ marginTop: 8, marginBottom: 4 }}
               multiple
               onChange={(e, value) => {
@@ -175,10 +175,33 @@ export default function AboutSection({
                   // multiline
                   // rows="3"
                   label="Emails"
-                  placeholder="Eg. john@gmail.com doe@github.com"
+                  placeholder="Eg. john@gmail.com(mailto:john@gmail.com) github.com/johnDoe(https://github.com/johnDoe)"
                 />
               )}
+            /> */}
+            <TextField
+              variant="outlined"
+              size="small"
+              margin="dense"
+              fullWidth
+              required
+              label="Emails"
+              placeholder="john@gmail.com(mailto:john@gmail.com) github.com/johnDoe(https://github.com/johnDoe)"
+              value={about.emails}
+              onChange={(e) => {
+                setEmails(e.target.value);
+                setAbout({ ...about, emails: e.target.value });
+              }}
             />
+            <Typography
+              align="left"
+              color="#ef6c00"
+              style={{ fontSize: 14, marginTop: 0, marginLeft: 2 }}
+            >
+              To Add Hyperlinks, type like- text(Link) Eg.
+              Google(https://google.com). Remember to seperate each email by
+              space
+            </Typography>
 
             <TextField
               variant="outlined"

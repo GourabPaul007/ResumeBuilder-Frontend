@@ -32,7 +32,7 @@ export const addPhno = (phNo: string) => {
     payload: phNo,
   };
 };
-export const addEmails = (emails: string[]) => {
+export const addEmails = (emails: string) => {
   return {
     type: ADD_EMAILS,
     payload: emails,

@@ -101,7 +101,7 @@ export default function Education({
                       fullWidth
                       label="Organization Name eg. Massachusetts Institute of Technology"
                       name="nameOfOrganization"
-                      value={singleCourse.nameOfOrganization}
+                      value={singleCourse.organizationName}
                       onChange={(e) => handleChange(index, e, singleCourse.id)}
                     />
                   </Grid>

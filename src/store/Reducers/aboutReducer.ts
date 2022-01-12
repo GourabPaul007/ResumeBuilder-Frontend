@@ -12,7 +12,7 @@ const initialAbout = {
   address: "",
   cityZip: "",
   phNo: "",
-  emails: [""],
+  emails: "",
   about: "",
 };
 

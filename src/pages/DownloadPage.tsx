@@ -2,6 +2,7 @@ import { Button, Card, CircularProgress, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import AppBarHeader from "../Components/AppBarHeader";
 import Footer from "../Components/Footer";
 
@@ -13,13 +14,33 @@ const useStyles = makeStyles({
   },
 });
 
-interface SubmitPageProps {
-  downloadPDF: () => void;
-}
+interface SubmitPageProps {}
 
-const SubmitPage: React.FC<SubmitPageProps> = ({ downloadPDF }) => {
+const DownloadPage: React.FC<SubmitPageProps> = () => {
+  const { id } = useParams();
+
   const [disabled, setDisabled] = useState(true);
   const [progress, setProgress] = useState(5);
+
+  // Download PDF
+  async function downloadPDF() {
+    await fetch(`http://localhost:5000/api/resume/get-pdf/${id}`, {
+      method: "GET",
+    })
+      .then((response) => response.blob())
+      .then((blob) => {
+        let link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = "resume.pdf";
+        link.click();
+      })
+      .then(() => {
+        setDisabled(true);
+      })
+      .catch(() => {
+        console.log("Something went worng, please Try again");
+      });
+  }
 
   const randomColor = () => {
     const colorArray = ["tomato", "violet", "#ff6f00", "#ad1457"];
@@ -120,4 +141,4 @@ const SubmitPage: React.FC<SubmitPageProps> = ({ downloadPDF }) => {
   );
 };
 
-export default SubmitPage;
+export default DownloadPage;

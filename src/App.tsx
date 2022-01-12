@@ -5,7 +5,7 @@ import FormPage from "./pages/FormPage";
 import { Button, createTheme } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SubmitPage from "./pages/SubmitPage";
+import DownloadPage from "./pages/DownloadPage";
 import LandingPage from "./pages/LandingPage";
 
 // async function makePDF() {
@@ -28,20 +28,6 @@ import LandingPage from "./pages/LandingPage";
 //     autoPaging: true,
 //   });
 // }
-
-async function downloadPDF() {
-  await fetch("http://localhost:5000/api/resume/get-pdf", { method: "GET" })
-    .then((response) => response.blob())
-    .then((blob) => {
-      let link = document.createElement("a");
-      link.href = window.URL.createObjectURL(blob);
-      link.download = "resume.pdf";
-      link.click();
-    })
-    .catch(() => {
-      console.log("Something went worng, please Try again");
-    });
-}
 
 declare module "@mui/material/styles" {
   interface Theme {
@@ -68,11 +54,8 @@ const App: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/form" element={<FormPage downloadPDF={downloadPDF} />} />
-        <Route
-          path="submit"
-          element={<SubmitPage downloadPDF={downloadPDF} />}
-        />
+        <Route path="/form" element={<FormPage />} />
+        <Route path="/download/:id" element={<DownloadPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,18 +1,7 @@
-import {
-  Avatar,
-  Button,
-  Checkbox,
-  Container,
-  CssBaseline,
-  FormControlLabel,
-  Grid,
-  Link,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Container, CssBaseline, Typography } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Education from "./FormPage/EducationSection";
 import { Course } from "../interfaces/Course";
 import Skills from "./FormPage/Skills";
@@ -27,9 +16,9 @@ import { Work } from "../interfaces/Work";
 import AppBarHeader from "../Components/AppBarHeader";
 import Footer from "../Components/Footer";
 import ColorPicker from "./FormPage/ColorPicker";
-import { DirectionsRailwaySharp } from "@mui/icons-material";
 import PickTemplate from "./FormPage/PickTemplate";
 import { RootStateOrAny, useSelector } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -54,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
+export default function FormPage() {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -65,7 +54,7 @@ export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
     address: "",
     cityZip: "",
     phNo: "",
-    emails: [""],
+    emails: "",
     about: "",
   });
   const [educations, setEducations] = useState<Course[]>([
@@ -101,6 +90,10 @@ export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
 
   const about1 = useSelector((state: RootStateOrAny) => state.about1);
 
+  // TO IDENTIFY RESUMES ON BACKEND.
+  // THIS REQUIRES TO BE SENT TO DOWNLOAD PAGE TO SEARCH FOR EXACT RESUME BY ID IN BACKEND
+  let id: string;
+
   // Handling Post, getting data from user and sending it to the server
   const handlePost = async (
     e:
@@ -108,7 +101,11 @@ export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
       | React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): Promise<void> => {
     e.preventDefault();
+
+    id = uuidv4();
+
     const details = {
+      resumeId: "",
       template: "1",
       about: {},
       educations: [{}],
@@ -119,6 +116,7 @@ export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
       accentColor: "",
     };
 
+    details.resumeId = id;
     details.template = template;
     details.about = about1;
     details.educations = [...educations];
@@ -128,7 +126,8 @@ export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
     details.others = others;
     details.accentColor = accentColor;
 
-    console.log(`details before`, details);
+    console.log(details);
+
     await fetch("http://localhost:5000/api/resume/post-data", {
       method: "POST",
       headers: {
@@ -169,7 +168,7 @@ export default function FormPage({ downloadPDF }: { downloadPDF: () => void }) {
               onSubmit={(e) => {
                 handlePost(e);
                 setTimeout(() => {
-                  navigate("/submit");
+                  navigate(`/download/${id}`);
                 }, 1000);
               }}
             >
