@@ -8,7 +8,7 @@
   padding: 15px 0;
   background: #fff;
   z-index: 99;
-  border-bottom: 1px solid aliceblue;
+  border-bottom: 1px solid rgb(228, 243, 255);
 }
 .navbar .container {
   display: flex;
@@ -16,7 +16,7 @@
   align-items: center;
 }
 .navbar .logo {
-  color: var(--main-color);
+  color: #6b5be6;
   font-size: 20px;
   font-weight: bold;
   text-transform: none;
@@ -55,7 +55,7 @@
   display: inline-block;
   text-transform: capitalize;
   margin-right: 25px;
-  color: var(--second-color);
+  color: var(--primary-color);
   font-weight: 500;
   font-size: 16px;
 }
@@ -76,7 +76,7 @@
   height: 40px;
   text-align: center;
   line-height: 40px;
-  color: var(--second-color);
+  color: var(--primary-color);
   font-size: 22px;
   cursor: pointer;
   display: none;

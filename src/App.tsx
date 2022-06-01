@@ -1,12 +1,13 @@
 import React from "react";
 import "./App.css";
 // import { jsPDF } from "jspdf";
-import FormPage from "./pages/FormPage";
 import { Button, createTheme } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DownloadPage from "./pages/DownloadPage";
 import LandingPage from "./pages/LandingPage";
+import FormPage from "./pages/FormPage";
+import CreatePage from "./pages/CreatePage";
 
 // async function makePDF() {
 //   // var s = '<div id="myDiv"></div>';
@@ -55,6 +56,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/form" element={<FormPage />} />
+        <Route path="/create" element={<CreatePage />} />
         <Route path="/download/:id" element={<DownloadPage />} />
       </Routes>
     </BrowserRouter>

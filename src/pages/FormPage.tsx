@@ -1,7 +1,9 @@
+import * as React from "react";
+
 import { Button, Container, CssBaseline, Typography } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
-import React, { useState } from "react";
+import { useState } from "react";
 import Education from "./FormPage/EducationSection";
 import { Course } from "../interfaces/Course";
 import Skills from "./FormPage/Skills";
@@ -40,6 +42,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 24,
     backgroundColor: "#00ccc9",
     padding: 12,
+    // marginTop: 24,
+    // marginBottom: 24,
+    // backgroundColor: "#00ccc9",
+    // padding: 12,
+    fontSize: 18,
+    borderRadius: 8,
+    fontWeight: 500,
+    textTransform: "none",
   },
 }));
 
@@ -83,7 +93,7 @@ export default function FormPage() {
   const [others, setOthers] = useState<string[]>([]);
   const randomColor = "";
   const [accentColor, setAccentColor] = useState<string>(
-    "#000000".replace(/0/g, function () {
+    "#000000".replace(/0/g, function() {
       return (~~(Math.random() * 16)).toString(16);
     })
   );
@@ -96,9 +106,7 @@ export default function FormPage() {
 
   // Handling Post, getting data from user and sending it to the server
   const handlePost = async (
-    e:
-      | React.FormEvent<HTMLFormElement>
-      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): Promise<void> => {
     e.preventDefault();
 
@@ -143,19 +151,10 @@ export default function FormPage() {
     <>
       <AppBarHeader />
       <div>
-        <Typography
-          align="center"
-          component="h1"
-          variant="h5"
-          style={{ margin: 24 }}
-        >
+        <Typography align="center" component="h1" variant="h5" style={{ margin: 24 }}>
           Fill Up to Get Your Resume
         </Typography>
-        <Container
-          component="main"
-          maxWidth="md"
-          style={{ border: "1px solid #999", borderRadius: 10, padding: 20 }}
-        >
+        <Container component="main" maxWidth="md" style={{ border: "1px solid #999", borderRadius: 10, padding: 20 }}>
           <CssBaseline />
 
           <div className={classes.paper}>
@@ -176,10 +175,7 @@ export default function FormPage() {
 
               <AboutSection about={about} setAbout={setAbout} />
 
-              <Education
-                educations={educations}
-                setEducations={setEducations}
-              />
+              <Education educations={educations} setEducations={setEducations} />
 
               <Skills skills={skills} setSkills={setSkills} />
 
@@ -189,10 +185,7 @@ export default function FormPage() {
 
               <OthersSection setOthers={setOthers} />
 
-              <ColorPicker
-                accentColor={accentColor}
-                setAccentColor={setAccentColor}
-              />
+              <ColorPicker accentColor={accentColor} setAccentColor={setAccentColor} />
 
               <Button
                 className={classes.getReusmeButton}
@@ -200,16 +193,6 @@ export default function FormPage() {
                 // disabled={loading}
                 fullWidth
                 variant="contained"
-                style={{
-                  marginTop: 24,
-                  marginBottom: 24,
-                  backgroundColor: "#00ccc9",
-                  padding: 12,
-                  fontSize: 18,
-                  borderRadius: 8,
-                  fontWeight: 500,
-                  textTransform: "none",
-                }}
               >
                 Get Resume
               </Button>

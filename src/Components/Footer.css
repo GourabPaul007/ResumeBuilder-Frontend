@@ -4,11 +4,11 @@
   padding: 15px 0;
   text-transform: capitalize;
   text-align: center;
-  color: var(--main-color);
+  color: var(--primary-color);
   font-size: 17px;
 }
 .footer a {
   font-weight: 500;
-  color: var(--second-color);
+  color: var(--secondary-color);
 }
 /* End Footer */

@@ -1,3 +1,4 @@
+import * as React from "react";
 import AppBarHeader from "../Components/AppBarHeader";
 import Footer from "../Components/Footer";
 import "./LandingPage.css";
@@ -14,9 +15,9 @@ const LandingPage: React.FC<LandingPageProps> = () => {
     ".navbar .toggle-menu"
   ) as NodeListOf<Element>;
   const navLinks = document.querySelector(".nav-links") as Element;
-  const links = document.querySelectorAll(
-    ".nav-links a"
-  ) as NodeListOf<Element>;
+  const links = document.querySelectorAll(".nav-links a") as NodeListOf<
+    Element
+  >;
 
   /*
     Main Function

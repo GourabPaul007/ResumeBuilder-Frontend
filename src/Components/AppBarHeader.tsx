@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import { Button, Drawer, List } from "@mui/material";
 import { useState } from "react";
 import "./AppBarHeader.css";
@@ -32,6 +34,9 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
             </a>
             <a style={{ fontWeight: 700 }} href="/form" className="fill">
               Form
+            </a>
+            <a style={{ fontWeight: 700 }} href="/create" className="fill">
+              create
             </a>
             <a style={{ fontWeight: 700 }} href="/#contact" className="fill">
               contact

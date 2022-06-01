@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import { Autocomplete, Chip, TextField, Typography } from "@mui/material";
 import { FC, FunctionComponent } from "react";
 
@@ -6,9 +8,7 @@ interface OthersSectionProps {
   setOthers: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const OthersSection: FunctionComponent<OthersSectionProps> = ({
-  setOthers,
-}) => {
+const OthersSection: FunctionComponent<OthersSectionProps> = ({ setOthers }) => {
   const handleChips = (value: string[]) => {
     setOthers(value);
   };
@@ -39,12 +39,7 @@ const OthersSection: FunctionComponent<OthersSectionProps> = ({
           freeSolo
           renderTags={(value, getTagProps) =>
             value.map((option, index) => (
-              <Chip
-                color="secondary"
-                variant="outlined"
-                label={option}
-                {...getTagProps({ index })}
-              />
+              <Chip color="secondary" variant="outlined" label={option} {...getTagProps({ index })} />
             ))
           }
           renderInput={(params) => (
@@ -59,11 +54,7 @@ const OthersSection: FunctionComponent<OthersSectionProps> = ({
           )}
         />
         {/* Telling Users how to input their data */}
-        <Typography
-          align="left"
-          color="#ef6c00"
-          style={{ fontSize: 14, marginTop: 2, marginLeft: 2 }}
-        >
+        <Typography align="left" color="#ef6c00" style={{ fontSize: 14, marginTop: 2, marginLeft: 2 }}>
           press enter after typing to input your other activities and skills*
         </Typography>
       </div>

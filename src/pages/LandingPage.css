@@ -19,12 +19,13 @@
   --s-transition: 0.5s; /* Slow Transition */
   --header-height: 60px;
   --sections-padding: 60px;
-  --main-color: hsl(206, 92%, 46%);
-  --second-color: hsl(247, 74%, 63%);
-  --third-color: hsl(179, 100%, 40%);
-  --light-main-color: hsl(206, 92%, 50%);
-  --light-second-color: hsl(247, 74%, 67%);
-  --light-third-color: hsl(179, 100%, 44%);
+  /* --main-color: hsl(206, 92%, 46%); */
+  --primary-color: hsl(247, 74%, 63%);
+  --secondary-color: hsl(179, 100%, 40%);
+  /* --third-color: hsl(179, 100%, 40%); */
+  /* --light-main-color: hsl(206, 92%, 50%); */
+  --light-primary-color: hsl(247, 74%, 67%);
+  --light-secondary-color: hsl(179, 100%, 44%);
 }
 html {
   scroll-behavior: smooth;
@@ -89,7 +90,7 @@ img {
   transition: var(--main-transition), background-color var(--f-transition);
 }
 .btn-primary {
-  background: var(--third-color);
+  background: var(--secondary-color);
   color: #fff;
 }
 .btn-primary:hover {
@@ -106,7 +107,7 @@ img {
   bottom: -6px;
   width: 0;
   height: 3px;
-  background: var(--second-color);
+  background: var(--secondary-color);
   transition: var(--main-transition);
 }
 .fill:hover::after {
@@ -121,7 +122,7 @@ img {
   text-transform: capitalize;
   font-weight: bold;
   font-size: 35px;
-  color: var(--main-color);
+  color: var(--primary-color);
   cursor: pointer;
 }
 @media (max-width: 767px) {
@@ -162,7 +163,7 @@ img {
   text-transform: capitalize;
   font-weight: 700;
   letter-spacing: 1px;
-  color: var(--main-color);
+  color: var(--primary-color);
 }
 @media (max-width: 1200px) {
   .landing .text h1 {
@@ -177,7 +178,7 @@ img {
 .landing .text span {
   font-size: 18px;
   text-transform: capitalize;
-  color: var(--second-color);
+  color: var(--secondary-color);
   font-weight: 500;
 }
 @media (max-width: 992px) {
@@ -245,7 +246,7 @@ img {
 .project .project-tile {
   text-transform: capitalize;
   margin-bottom: 8px;
-  color: var(--main-color);
+  color: var(--primary-color);
   font-size: 22px;
   font-weight: 600;
 }
@@ -268,7 +269,7 @@ img {
   margin: 80px auto 0;
 }
 .projects .more-projects .btn-primary {
-  background: var(--second-color);
+  background: var(--secondary-color);
 }
 .projects .more-projects .btn-primary:hover {
   background: var(--light-second-color);

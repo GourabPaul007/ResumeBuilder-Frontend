@@ -1,0 +1,23 @@
+.blocks {
+  background-color: rgb(197, 197, 197);
+  color: rgb(0, 0, 0);
+}
+
+.createPageWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.leftMenu {
+  width: 12%;
+  z-index: 1;
+}
+
+.middleGrid {
+  width: 43%;
+}
+
+.rightForm {
+  width: 43%;
+  z-index: 1;
+}
