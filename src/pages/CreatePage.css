@@ -9,15 +9,16 @@
 }
 
 .leftMenu {
-  width: 12%;
+  width: 10%;
+  min-width: 160px;
   z-index: 1;
 }
 
 .middleGrid {
-  width: 43%;
+  width: 45%;
 }
 
 .rightForm {
-  width: 43%;
+  width: 45%;
   z-index: 1;
 }

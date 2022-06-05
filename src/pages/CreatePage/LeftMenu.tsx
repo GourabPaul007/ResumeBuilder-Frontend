@@ -1,7 +1,7 @@
 import { orange } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
 import * as React from "react";
-import { About1, About2 } from "./icons/about";
+import { AboutIcon1, AboutIcon2 } from "./icons/aboutIcons";
 
 const useStyles = makeStyles((theme) => ({
   eachIcon: {
@@ -33,19 +33,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface LeftMenuProps {
-  addBlock: (arg0: number, arg1: number) => void;
+  addBlock: (width: number, height: number, name: string) => void;
 }
 
-const LeftMenu: React.FC<LeftMenuProps> = ({ addBlock }) => {
+const LeftMenu: React.FC<LeftMenuProps> = (props) => {
   const styles = useStyles();
   return (
     <>
-      <div style={{ padding: 10, backgroundColor: "#ebf4ff", boxShadow: "4px 0px 4px 0px rgba(0, 0, 0, 0.05)" }}>
-        <div className={styles.eachIcon} onClick={() => addBlock(6, 4)}>
-          <About1 />
+      <div
+        style={{
+          paddingTop: 10,
+          paddingBottom: 10,
+          paddingLeft: 5,
+          paddingRight: 5,
+          backgroundColor: "#ebf4ff",
+          boxShadow: "4px 0px 4px 0px rgba(0, 0, 0, 0.05)",
+        }}
+      >
+        <div className={styles.eachIcon} onClick={() => props.addBlock(10, 6, "about1")}>
+          <AboutIcon1 />
         </div>
-        <div className={styles.eachIcon} onClick={() => addBlock(2, 2)}>
-          <About2 />
+        <div className={styles.eachIcon} onClick={() => props.addBlock(2, 2, "about2")}>
+          <AboutIcon2 />
         </div>
       </div>
     </>
