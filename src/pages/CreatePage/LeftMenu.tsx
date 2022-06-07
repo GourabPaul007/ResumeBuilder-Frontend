@@ -2,6 +2,7 @@ import { orange } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
 import * as React from "react";
 import { AboutIcon1, AboutIcon2 } from "./icons/aboutIcons";
+import { SkillsIcon1 } from "./icons/skillsIcons";
 
 const useStyles = makeStyles((theme) => ({
   eachIcon: {
@@ -50,11 +51,16 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
           boxShadow: "4px 0px 4px 0px rgba(0, 0, 0, 0.05)",
         }}
       >
+        <div style={{ marginLeft: 12, color: "#777" }}>About</div>
         <div className={styles.eachIcon} onClick={() => props.addBlock(10, 6, "about1")}>
           <AboutIcon1 />
         </div>
         <div className={styles.eachIcon} onClick={() => props.addBlock(2, 2, "about2")}>
           <AboutIcon2 />
+        </div>
+        <div style={{ marginLeft: 12, color: "#777" }}>Skills</div>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 20, "skills1")}>
+          <SkillsIcon1 />
         </div>
       </div>
     </>

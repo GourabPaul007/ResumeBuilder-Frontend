@@ -7,17 +7,17 @@ export const AboutBlueprint1: React.FC = () => {
     <svg fill="none" viewBox="0 0 600 150">
       {/* <path fill="none" d="M0 0h266v150H0z" /> */}
       {/* the name */}
-      <rect x={20} y={20} width={120} height={15} rx={2.5} fill="#434343" />
+      <rect x={15} y={15} width={120} height={10} rx={2.5} fill="#434343" />
       {/* the title */}
-      <rect x={145} y={25} width={80} height={10} rx={2.5} fill="#434343" />
+      <rect x={140} y={18} width={80} height={7} rx={2.5} fill="#434343" />
       {/* body rows */}
-      <rect x={20} y={50} width={400} height={10} rx={2.5} fill="#545454" />
-      <rect x={20} y={70} width={400} height={10} rx={2.5} fill="#545454" />
-      <rect x={20} y={90} width={300} height={10} rx={2.5} fill="#545454" />
+      <rect x={15} y={35} width={400} height={5} rx={2.5} fill="#545454" />
+      <rect x={15} y={45} width={400} height={5} rx={2.5} fill="#545454" />
+      <rect x={15} y={55} width={300} height={5} rx={2.5} fill="#545454" />
       {/* contact info */}
-      <rect x={450} y={50} width={100} height={10} rx={2} fill="#3f51b5" />
-      <rect x={450} y={70} width={100} height={10} rx={2} fill="#3f51b5" />
-      <rect x={450} y={90} width={100} height={10} rx={2} fill="#3f51b5" />
+      <rect x={480} y={35} width={100} height={6} rx={2} fill="#3f51b5" />
+      <rect x={480} y={45} width={100} height={6} rx={2} fill="#3f51b5" />
+      <rect x={480} y={55} width={100} height={6} rx={2} fill="#3f51b5" />
     </svg>
   );
 };
