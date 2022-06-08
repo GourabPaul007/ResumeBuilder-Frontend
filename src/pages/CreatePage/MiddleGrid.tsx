@@ -7,8 +7,21 @@ import "./MiddleGrid.css";
 import { AboutBlueprint1 } from "./blueprints/aboutBlueprints";
 import { GridItem } from "../../interfaces/GridItem";
 import { SkillsBlueprint1 } from "./blueprints/skillsBlueprints";
+import { SkillsBlock1 } from "./blocks/skillsBlocks";
+import { makeStyles } from "@mui/styles";
+import { EducationBlock1 } from "./blocks/educationBlocks";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
+
+const useStyles = makeStyles((theme) => ({
+  blocks: {
+    cursor: "grab",
+    border: "1px solid #6b5be6",
+    borderRadius: 8,
+    backgroundColor: "white",
+    overflow: "hidden",
+  },
+}));
 
 interface MiddleGridProps {
   layout: any;
@@ -16,6 +29,8 @@ interface MiddleGridProps {
 }
 
 const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
+  const classes = useStyles();
+
   return (
     <>
       {/* <ReactGridLayout
@@ -54,17 +69,8 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
       >
         {props.layout.map((item: GridItem) => {
           return (
-            <div
-              className="blocks"
-              data-grid={item}
-              key={item.i + uuidv1}
-              style={{ cursor: "grab", border: "1px solid #6b5be6", borderRadius: 8, backgroundColor: "white" }}
-            >
+            <div className={classes.blocks} data-grid={item} key={item.i + uuidv1}>
               {getItemBlueprint(item.i)}
-              {/* <div>
-                <AboutBlueprint1 />
-              </div> */}
-              {/* {item.i.split(" ")[0] + " " + item.x + " " + item.y} */}
             </div>
           );
         })}
@@ -84,7 +90,10 @@ function getItemBlueprint(name: string): React.ReactNode {
       return <AboutBlueprint1 />;
 
     case "skills1":
-      return <SkillsBlueprint1 />;
+      return <SkillsBlock1 />;
+
+    case "educations1":
+      return <EducationBlock1 />;
 
     default:
       break;

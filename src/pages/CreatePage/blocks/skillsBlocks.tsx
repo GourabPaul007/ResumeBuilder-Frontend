@@ -3,7 +3,7 @@ import { v1 as uuidv1 } from "uuid";
 
 export const SkillsBlock1: React.FC = () => {
   return (
-    <div style={{ margin: 8, fontFamily: "sans-serif", overflow: "hidden" }}>
+    <div style={{ margin: 8, fontFamily: "sans-serif" }}>
       <h2 style={{ fontWeight: 600, color: "#123456" }}>Skills</h2>
       <div style={{ marginTop: 8, paddingLeft: 8 }}>
         {["HTML/CSS/JS", "TypeScript", "ReactJS", "NodeJS", "ExpressJS", "Flutter", "MySql", "MongoDB", "Sqlite"].map(
