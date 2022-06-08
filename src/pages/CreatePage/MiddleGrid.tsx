@@ -10,6 +10,8 @@ import { SkillsBlueprint1 } from "./blueprints/skillsBlueprints";
 import { SkillsBlock1 } from "./blocks/skillsBlocks";
 import { makeStyles } from "@mui/styles";
 import { EducationBlock1 } from "./blocks/educationBlocks";
+import { OthersBlock1 } from "./blocks/othersBlocks";
+import { AboutWithContactBlock1, AboutWithContactBlock2 } from "./blocks/aboutBlocks";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -58,10 +60,10 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
       </ReactGridLayout> */}
       <ResponsiveReactGridLayout
         className="layout"
-        // onLayoutChange={props.onLayoutChange}
+        onLayoutChange={props.onLayoutChange}
         // onResizeStop={props.onLayoutChange}
-        onDragStop={props.onLayoutChange}
-        onDrop={props.onLayoutChange}
+        // onDragStop={props.onLayoutChange}
+        // onDrop={props.onLayoutChange}
         autoSize={false}
         rowHeight={0.1}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
@@ -87,13 +89,19 @@ function getItemBlueprint(name: string): React.ReactNode {
 
   switch (name) {
     case "about1":
-      return <AboutBlueprint1 />;
+      return <AboutWithContactBlock1 />;
+
+    case "about2":
+      return <AboutWithContactBlock2 />;
 
     case "skills1":
       return <SkillsBlock1 />;
 
     case "educations1":
       return <EducationBlock1 />;
+
+    case "others1":
+      return <OthersBlock1 />;
 
     default:
       break;

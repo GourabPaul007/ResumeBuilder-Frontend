@@ -17,6 +17,10 @@ export const SkillsIcon1: React.FC = () => {
       {/* 4th row */}
       <rect x={30} y={100} width={70} height={15} rx={4} fill="#123456" />
       <rect x={110} y={100} width={50} height={15} rx={4} fill="#123456" />
+      {/* the size text on bottom */}
+      <text x="170" y="145" style={{ fontWeight: "bold", fontSize: 24 }} fill="#545454">
+        3 x 4
+      </text>
     </svg>
   );
 };

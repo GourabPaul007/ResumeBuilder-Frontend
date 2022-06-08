@@ -14,34 +14,35 @@ import MiddleGrid from "./CreatePage/MiddleGrid";
 
 const CreatePage: React.FC = (props) => {
   // layout is an array of objects, see the demo for more complete usage
-  const [layout, setLayout] = React.useState<GridItem[]>([
-    { name: "about1()uuid()", i: "about1()uuid()", x: 0, y: 0, w: 10, h: 22, isResizable: false },
-    // { i: "education", x: 6, y: 22, w: 4, h: 24, isResizable: true },
-    // { i: "skills", x: 6, y: 46, w: 4, h: 24, isResizable: true },
-    // { i: "skills1", x: 6, y: 70, w: 4, h: 24, isResizable: true },
-    // { i: "projects", x: 2, y: 0, w: 2, h: 2 },
-    // { i: "others", x: 2, y: 2, w: 2, h: 2 },
-    // { i: "skills", x: 2, y: 4, w: 2, h: 2 },
-  ]);
+  // const [layout, setLayout] = React.useState<GridItem[]>([
+  //   { name: "about1()uuid()", i: "about1()uuid()", x: 0, y: 0, w: 10, h: 22, isResizable: false },
+  //   // { i: "education", x: 6, y: 22, w: 4, h: 24, isResizable: true },
+  //   // { i: "skills", x: 6, y: 46, w: 4, h: 24, isResizable: true },
+  //   // { i: "skills1", x: 6, y: 70, w: 4, h: 24, isResizable: true },
+  //   // { i: "projects", x: 2, y: 0, w: 2, h: 2 },
+  //   // { i: "others", x: 2, y: 2, w: 2, h: 2 },
+  //   // { i: "skills", x: 2, y: 4, w: 2, h: 2 },
+  // ]);
 
-  const [items, setItems] = React.useState<{ name: string; x: number; y: number; w: number; h: number }[]>([
-    { name: "about1", x: 0, y: 0, w: 10, h: 22 },
+  const [layout, setLayout] = React.useState<GridItem[]>([]);
+  const [items, setItems] = React.useState<GridItem[]>([
+    { name: "about1()uuid()", i: "about1()uuid()", x: 0, y: 0, w: 10, h: 22, isResizable: false },
   ]);
 
   // TODO: MAKE A COPY OF LAYOUT FOR STUFFS
   const makeItemsArray = (layout: any) => {
-    const newItems: { name: string; x: number; y: number; w: number; h: number }[] = [];
-    layout.forEach((element: any) => {
-      newItems.push({
-        name: element.i.substring(0, element.i.indexOf(" ")),
-        x: element.x,
-        y: element.y,
-        w: element.w,
-        h: element.h,
-      });
-    });
-    console.log(items);
-    setItems(newItems);
+    // const newItems: { name: string; x: number; y: number; w: number; h: number }[] = [];
+    // layout.forEach((element: any) => {
+    //   newItems.push({
+    //     name: element.i.substring(0, element.i.indexOf(" ")),
+    //     x: element.x,
+    //     y: element.y,
+    //     w: element.w,
+    //     h: element.h,
+    //   });
+    // });
+    // console.log(items);
+    // setItems(newItems);
   };
 
   function onLayoutChange(layout: GridItem[]) {
@@ -49,11 +50,10 @@ const CreatePage: React.FC = (props) => {
     console.log(layout);
   }
 
-  function addBlock(width: number = 1, height: number = 1, itemName: string) {
-    // let itemName = `test${layout.length}`;
+  function addItem(width: number = 1, height: number = 1, itemName: string) {
     itemName = itemName + "()uuid()" + uuidv1();
-    for (let i = 0; i < layout.length; i++) {
-      const element = layout[i];
+    for (let i = 0; i < items.length; i++) {
+      const element = items[i];
       if (
         element.i.substring(0, element.i.indexOf("()uuid()")) == itemName.substring(0, itemName.indexOf("()uuid()"))
       ) {
@@ -62,8 +62,8 @@ const CreatePage: React.FC = (props) => {
         return;
       }
     }
-    setLayout(
-      layout.concat({
+    setItems(
+      items.concat({
         name: itemName,
         i: itemName,
         x: Infinity,
@@ -74,7 +74,7 @@ const CreatePage: React.FC = (props) => {
       })
     );
     // onLayoutChange(layout);
-    console.log("pushed", layout);
+    console.log("pushed", items);
   }
 
   return (
@@ -83,10 +83,10 @@ const CreatePage: React.FC = (props) => {
 
       <div className="createPageWrapper">
         <div className="leftMenu">
-          <LeftMenu addBlock={addBlock} />
+          <LeftMenu addBlock={addItem} />
         </div>
         <div className="middleGrid">
-          <MiddleGrid layout={layout} onLayoutChange={onLayoutChange} />
+          <MiddleGrid layout={items} onLayoutChange={onLayoutChange} />
         </div>
         <div className="rightForm">
           <Button
@@ -98,7 +98,7 @@ const CreatePage: React.FC = (props) => {
                 headers: {
                   "Content-Type": "application/json", //This is required
                 },
-                body: JSON.stringify(makeItemsArray(layout)),
+                body: JSON.stringify(makeItemsArray(items)),
               })
                 .then((data) => {
                   console.log(data);

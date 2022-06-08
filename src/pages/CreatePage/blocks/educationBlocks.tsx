@@ -14,44 +14,43 @@ export const EducationBlock1: React.FC = () => {
       id: "education002",
       courseName: "Higher Secondary Science Stream",
       organizationName: "Bangaon Higher Secondary School",
-      courseResults: "72%",
+      courseResults: "Result Percentage 72%",
     },
   ];
 
   return (
-    <div style={{ margin: 8, fontFamily: "sans-serif", overflow: "hidden" }}>
-      <h1 style={{ fontWeight: 600, marginBottom: 8, color: "#123456" }}>Education</h1>
-      {educations.map((course) => {
-        return (
-          <div
-            style={{ display: "flex", alignItems: "center", justifyContent: "start", marginBottom: 0, marginTop: 10 }}
-            key={course.id}
-          >
+    <div style={{ margin: 12, fontFamily: "sans-serif", overflow: "hidden" }}>
+      <h2 style={{ fontWeight: 600, marginBottom: 4, color: "#123456" }}>Education</h2>
+      <div style={{ fontSize: 14 }}>
+        {educations.map((course) => {
+          return (
             <div
-              style={{
-                color: "#757575",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginRight: 12,
-              }}
+              style={{ display: "flex", alignItems: "center", justifyContent: "start", marginBottom: 0, marginTop: 4 }}
+              key={course.id}
             >
-              <SchoolRoundedIcon />
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginRight: 12,
+                }}
+              >
+                <SchoolRoundedIcon style={{ color: "#434343" }} />
+              </div>
+              <div
+                style={{ display: "flex", flexDirection: "column", alignItems: "start", justifyContent: "center" }}
+                className="ms-3"
+              >
+                <p style={{ fontWeight: 600, color: "#434343" }}>{course.organizationName}</p>
+                <p style={{ fontWeight: 500, color: "#434343" }}>
+                  {course.courseName}, {course.courseResults}
+                </p>
+              </div>
             </div>
-            <div
-              style={{ display: "flex", flexDirection: "column", alignItems: "start", justifyContent: "center" }}
-              className="ms-3"
-            >
-              <p style={{ fontSize: 12, fontWeight: 600, color: "#757575", marginBottom: 0 }}>
-                {course.organizationName}
-              </p>
-              <p style={{ fontSize: 12, fontWeight: 500, color: "#757575", marginBottom: 0 }}>
-                {course.courseName}, {course.courseResults}
-              </p>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 };

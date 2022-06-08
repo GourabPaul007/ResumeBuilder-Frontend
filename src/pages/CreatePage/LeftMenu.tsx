@@ -3,6 +3,7 @@ import { makeStyles } from "@mui/styles";
 import * as React from "react";
 import { AboutIcon1, AboutIcon2 } from "./icons/aboutIcons";
 import { EducationIcon1 } from "./icons/educationIcons";
+import { OthersIcon1 } from "./icons/othersIcons";
 import { SkillsIcon1 } from "./icons/skillsIcons";
 
 const useStyles = makeStyles((theme) => ({
@@ -52,20 +53,28 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
           boxShadow: "4px 0px 4px 0px rgba(0, 0, 0, 0.05)",
         }}
       >
-        <div style={{ marginLeft: 12, color: "#777" }}>About</div>
+        {/* About + Contact */}
+        <div style={{ marginLeft: 12, color: "#777" }}>About + Contact</div>
         <div className={styles.eachIcon} onClick={() => props.addBlock(10, 6, "about1")}>
           <AboutIcon1 />
         </div>
         <div className={styles.eachIcon} onClick={() => props.addBlock(2, 2, "about2")}>
           <AboutIcon2 />
         </div>
+        {/* Skills */}
         <div style={{ marginLeft: 12, color: "#777" }}>Skills</div>
         <div className={styles.eachIcon} onClick={() => props.addBlock(4, 20, "skills1")}>
           <SkillsIcon1 />
         </div>
+        {/* Educations */}
         <div style={{ marginLeft: 12, color: "#777" }}>Education</div>
         <div className={styles.eachIcon} onClick={() => props.addBlock(4, 20, "educations1")}>
           <EducationIcon1 />
+        </div>
+        {/* Others */}
+        <div style={{ marginLeft: 12, color: "#777" }}>Others</div>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 20, "others1")}>
+          <OthersIcon1 />
         </div>
       </div>
     </>
