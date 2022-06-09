@@ -1,6 +1,8 @@
 import React from "react";
 import { Course } from "../../../interfaces/Course";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
+import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
+import { GridItem } from "../../../interfaces/GridItem";
 
 const educations: Course[] = [
   {
@@ -17,12 +19,16 @@ const educations: Course[] = [
   },
 ];
 
-interface EducationsBlockInterface {}
+interface EducationsBlockProps {
+  item: GridItem;
+  removeItem: (item: GridItem) => void;
+}
 
-export const EducationsBlock1: React.FC<EducationsBlockInterface> = (props) => {
+export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
   return (
     <div style={{ margin: 12, fontFamily: "sans-serif", overflow: "hidden" }}>
-      <h2 style={{ fontWeight: 600, marginBottom: 4, color: "#123456" }}>Education</h2>
+      <h2 style={{ fontWeight: 600, marginBottom: 4, color: "#123456", display: "inline-block" }}>Education</h2>
+      <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       <div
         style={{
           fontSize: 14,

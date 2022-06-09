@@ -8,6 +8,7 @@ import { Button, IconButton } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
 import { GridItem } from "../../../interfaces/GridItem";
+import { About } from "../../../interfaces/About";
 
 const checkHyperlink = (text: string) => {
   return text;
@@ -26,20 +27,21 @@ const contact = {
   cityZip: "Los Angeles CA 12345",
 };
 
-interface AboutWithContactBlock1Props {
+interface AboutWithContactBlockProps {
   item: GridItem;
   removeItem: (i: GridItem) => void;
+  about: About;
 }
-export const AboutWithContactBlock1: React.FC<AboutWithContactBlock1Props> = (props) => {
+export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (props) => {
   return (
     <div style={{ margin: 16, fontFamily: "sans-serif", color: "#111" }}>
-      <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{about.name}</h1>
-      <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{about.profession}</p>
+      <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{props.about.name}</h1>
+      <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{props.about.profession}</p>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       <div style={{ display: "flex", flexDirection: "row", fontWeight: 500, fontSize: 14, marginTop: 16 }}>
         {/* the about extra */}
         <div style={{ paddingRight: 4, paddingLeft: 4, flex: "60%" }}>
-          <p>{about.about}</p>
+          <p>{props.about.about}</p>
         </div>
         <div style={{ flex: "2%" }}></div>
 
@@ -84,10 +86,12 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlock1Props> = (pr
   );
 };
 
-export const AboutWithContactBlock2: React.FC = () => {
+export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (props) => {
   return (
-    <div style={{ margin: 8, fontFamily: "sans-serif" }}>
-      <h2 style={{ fontWeight: 600, color: "#123456" }}>Other Skills & Activities</h2>
+    <div style={{ margin: 16, fontFamily: "sans-serif" }}>
+      <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{props.about.name}</h1>
+      <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{props.about.profession}</p>
+      <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       <div style={{ marginTop: 16, paddingLeft: 8 }}>
         {[
           "Lorem ipsum dolor sit amet consectetur.",

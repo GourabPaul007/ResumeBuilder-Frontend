@@ -61,10 +61,11 @@ export default function FormPage() {
   const [template, setTemplate] = useState<string>("1");
   const [about, setAbout] = useState<About>({
     name: "",
+    profession: "",
     address: "",
     cityZip: "",
     phNo: "",
-    emails: "",
+    emails: [""],
     about: "",
   });
   const [educations, setEducations] = useState<Course[]>([

@@ -6,4 +6,5 @@ export interface GridItem {
   w: number;
   h: number;
   isResizable: boolean;
+  data?: any;
 }

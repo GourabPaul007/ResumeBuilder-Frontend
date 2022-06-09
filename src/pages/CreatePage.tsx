@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Component } from "react";
 import ReactGridLayout from "react-grid-layout";
 import AppBarHeader from "../Components/AppBarHeader";
@@ -9,6 +9,7 @@ import "./CreatePage.css";
 import { v1 as uuidv1 } from "uuid";
 import LeftMenu from "./CreatePage/LeftMenu";
 import MiddleGrid from "./CreatePage/MiddleGrid";
+import { About } from "../interfaces/About";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -23,6 +24,31 @@ const CreatePage: React.FC = (props) => {
   //   // { i: "others", x: 2, y: 2, w: 2, h: 2 },
   //   // { i: "skills", x: 2, y: 4, w: 2, h: 2 },
   // ]);
+
+  // const [name,setName] = React.useState<string>("");
+  // const [profession,setProfession] = React.useState<string>("");
+  const [about, setAbout] = useState<About>({
+    name: "",
+    profession: "",
+    address: "",
+    cityZip: "",
+    phNo: "",
+    emails: [""],
+    about: "",
+  });
+
+  useEffect(() => {
+    setAbout({
+      name: "Gourab Paul",
+      profession: "Software Engineer",
+      address: "Saktigarh, Railgate Rd.",
+      cityZip: "Bangaon WB 743235",
+      phNo: "+91 9064040525",
+      emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
+      about:
+        "Hello There, I'm a Full-Stack Software Engineer. I like to build softwares to solve existing problems & to overcome major or minor inconveniences.",
+    });
+  });
 
   const [layout, setLayout] = React.useState<GridItem[]>([]);
   const [items, setItems] = React.useState<GridItem[]>([{ i: "about1", x: 0, y: 0, w: 10, h: 7, isResizable: false }]);
@@ -67,7 +93,6 @@ const CreatePage: React.FC = (props) => {
         isResizable: isResizable ? true : false,
       })
     );
-    // onLayoutChange(layout);
     console.log("pushed", items);
   }
 
@@ -83,7 +108,6 @@ const CreatePage: React.FC = (props) => {
         );
       }
     }
-    // var filtered = someArray.filter(function(el) { return el.Name != "Kristian"; })
   }
 
   return (
@@ -95,7 +119,7 @@ const CreatePage: React.FC = (props) => {
           <LeftMenu addBlock={addItem} />
         </div>
         <div className="middleGrid">
-          <MiddleGrid items={items} onLayoutChange={onLayoutChange} removeItem={removeItem} />
+          <MiddleGrid items={items} onLayoutChange={onLayoutChange} removeItem={removeItem} about={about} />
         </div>
         <div className="rightForm">
           <Button

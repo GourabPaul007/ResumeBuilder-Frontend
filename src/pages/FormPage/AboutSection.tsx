@@ -190,17 +190,12 @@ export default function AboutSection({
               value={about.emails}
               onChange={(e) => {
                 setEmails(e.target.value);
-                setAbout({ ...about, emails: e.target.value });
+                setAbout({ ...about, emails: e.target.value.split(" ") });
               }}
             />
-            <Typography
-              align="left"
-              color="#ef6c00"
-              style={{ fontSize: 14, marginTop: 0, marginLeft: 2 }}
-            >
-              To Add Hyperlinks, type like- text(Link) Eg.
-              Google(https://google.com). Remember to seperate each email by
-              space
+            <Typography align="left" color="#ef6c00" style={{ fontSize: 14, marginTop: 0, marginLeft: 2 }}>
+              To Add Hyperlinks, type like- text(Link) Eg. Google(https://google.com). Remember to seperate each email
+              by space
             </Typography>
 
             <TextField

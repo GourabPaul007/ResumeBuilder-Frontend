@@ -1,10 +1,18 @@
 import React from "react";
 import { v1 as uuidv1 } from "uuid";
+import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
+import { GridItem } from "../../../interfaces/GridItem";
 
-export const SkillsBlock1: React.FC = () => {
+interface SkillsBlockProps {
+  item: GridItem;
+  removeItem: (item: GridItem) => void;
+}
+
+export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
   return (
     <div style={{ margin: 12, fontFamily: "sans-serif" }}>
-      <h2 style={{ fontWeight: 600, color: "#123456" }}>Skills</h2>
+      <h2 style={{ fontWeight: 600, color: "#123456", display: "inline-block" }}>Skills</h2>
+      <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       <div style={{ marginTop: 4, paddingLeft: 8 }}>
         {["HTML/CSS/JS", "TypeScript", "ReactJS", "Flutter", "NodeJS", "ExpressJS", "MySql", "MongoDB", "Sqlite"].map(
           (eachSkill: string) => {

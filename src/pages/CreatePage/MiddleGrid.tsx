@@ -11,6 +11,7 @@ import { EducationsBlock1 } from "./blocks/educationsBlocks";
 import { OthersBlock1 } from "./blocks/othersBlocks";
 import { AboutWithContactBlock1, AboutWithContactBlock2 } from "./blocks/aboutWithContactBlocks";
 import { WorksBlock1 } from "./blocks/worksBlocks";
+import { About } from "../../interfaces/About";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -28,6 +29,7 @@ interface MiddleGridProps {
   items: any;
   onLayoutChange: any;
   removeItem: (item: GridItem) => void;
+  about: About;
 }
 
 const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
@@ -46,7 +48,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
         {props.items.map((item: GridItem) => {
           return (
             <div className={classes.blocks} data-grid={item} key={item.i + uuidv1}>
-              {getItemBlueprint(item, props.removeItem)}
+              {getItemBlueprint(item, props.removeItem, props.about)}
             </div>
           );
         })}
@@ -56,29 +58,29 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
 };
 
 export default MiddleGrid;
-function getItemBlueprint(item: GridItem, removeItem: (item: GridItem) => void): React.ReactNode {
+function getItemBlueprint(item: GridItem, removeItem: (item: GridItem) => void, about: About): React.ReactNode {
   // Because react-grid-layout will put function in item.i for some reason, so ill have to check the real identifier + need to remove uuid
 
   let name = item.i;
 
   switch (name) {
     case "about1":
-      return <AboutWithContactBlock1 removeItem={removeItem} item={item} />;
+      return <AboutWithContactBlock1 removeItem={removeItem} item={item} about={about} />;
 
     case "about2":
-      return <AboutWithContactBlock2 />;
+      return <AboutWithContactBlock2 removeItem={removeItem} item={item} about={about} />;
 
     case "works1":
-      return <WorksBlock1 />;
+      return <WorksBlock1 removeItem={removeItem} item={item} />;
 
     case "skills1":
-      return <SkillsBlock1 />;
+      return <SkillsBlock1 removeItem={removeItem} item={item} />;
 
     case "educations1":
-      return <EducationsBlock1 />;
+      return <EducationsBlock1 removeItem={removeItem} item={item} />;
 
     case "others1":
-      return <OthersBlock1 />;
+      return <OthersBlock1 removeItem={removeItem} item={item} />;
 
     default:
       break;

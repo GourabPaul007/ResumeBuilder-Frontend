@@ -1,6 +1,8 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { GridItem } from "../interfaces/GridItem";
+import { IconButton } from "@mui/material";
+import { DeleteRounded } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -13,6 +15,12 @@ const useStyles = makeStyles((theme) => ({
     width: 36,
     color: "white",
     "&:hover": { backgroundColor: "#ff1744", cursor: "pointer" },
+  },
+
+  iconButton: {
+    display: "inline-block",
+    float: "right",
+    // "&:hover": { backgroundColor: "#ff1744", cursor: "pointer" },
   },
 }));
 
@@ -27,5 +35,8 @@ export const RemoveBlockButton: React.FC<RemoveBlockButtonProps> = (props) => {
     <button className={classes.button} onClick={() => props.removeItem(props.item)}>
       X
     </button>
+    // <IconButton className={classes.iconButton} size="large" onClick={() => props.removeItem(props.item)}>
+    //   <DeleteRounded color="error" />
+    // </IconButton>
   );
 };

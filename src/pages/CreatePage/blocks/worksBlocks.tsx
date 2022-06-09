@@ -5,6 +5,8 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import PhoneIcon from "@mui/icons-material/Phone";
 import { checkHyperlink } from "../../../helpers/checkHyperlink";
+import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
+import { GridItem } from "../../../interfaces/GridItem";
 
 const works = [
   {
@@ -25,10 +27,16 @@ const works = [
   // },
 ];
 
-export const WorksBlock1: React.FC = () => {
+interface WorksBlockProps {
+  item: GridItem;
+  removeItem: (item: GridItem) => void;
+}
+
+export const WorksBlock1: React.FC<WorksBlockProps> = (props) => {
   return (
     <div style={{ margin: 8, fontFamily: "sans-serif" }}>
-      <h2 style={{ fontWeight: 600, marginBottom: 0, color: "#123456" }}>Work Experience</h2>
+      <h2 style={{ fontWeight: 600, marginBottom: 0, color: "#123456", display: "inline-block" }}>Work Experience</h2>
+      <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       {works.map((eachWork) => {
         return (
           <div key={eachWork.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 14 }}>
