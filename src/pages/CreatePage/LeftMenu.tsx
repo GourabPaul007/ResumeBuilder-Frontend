@@ -5,6 +5,7 @@ import { AboutIcon1, AboutIcon2 } from "./icons/aboutIcons";
 import { EducationIcon1 } from "./icons/educationIcons";
 import { OthersIcon1 } from "./icons/othersIcons";
 import { SkillsIcon1 } from "./icons/skillsIcons";
+import { WorksIcon1 } from "./icons/worksIcons";
 
 const useStyles = makeStyles((theme) => ({
   eachIcon: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface LeftMenuProps {
-  addBlock: (width: number, height: number, name: string) => void;
+  addBlock: (width: number, height: number, name: string, isResizable?: boolean) => void;
 }
 
 const LeftMenu: React.FC<LeftMenuProps> = (props) => {
@@ -55,25 +56,30 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
       >
         {/* About + Contact */}
         <div style={{ marginLeft: 12, color: "#777" }}>About + Contact</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(10, 6, "about1")}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(10, 7, "about1")}>
           <AboutIcon1 />
         </div>
         <div className={styles.eachIcon} onClick={() => props.addBlock(2, 2, "about2")}>
           <AboutIcon2 />
         </div>
+        {/* Works */}
+        <div style={{ marginLeft: 12, color: "#777" }}>Work History</div>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(6, 6, "works1", true)}>
+          <WorksIcon1 />
+        </div>
         {/* Skills */}
         <div style={{ marginLeft: 12, color: "#777" }}>Skills</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 20, "skills1")}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 7, "skills1", true)}>
           <SkillsIcon1 />
         </div>
         {/* Educations */}
         <div style={{ marginLeft: 12, color: "#777" }}>Education</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 20, "educations1")}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 7, "educations1", true)}>
           <EducationIcon1 />
         </div>
         {/* Others */}
         <div style={{ marginLeft: 12, color: "#777" }}>Others</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 20, "others1")}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 6, "others1", true)}>
           <OthersIcon1 />
         </div>
       </div>

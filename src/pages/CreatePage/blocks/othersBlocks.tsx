@@ -5,7 +5,7 @@ export const OthersBlock1: React.FC = () => {
   return (
     <div style={{ margin: 12, fontFamily: "sans-serif" }}>
       <h2 style={{ fontWeight: 600, color: "#123456" }}>Other Skills & Activities</h2>
-      <div style={{ marginTop: 16, paddingLeft: 8, fontSize: 14 }}>
+      <div style={{ marginTop: 8, paddingLeft: 8, fontSize: 14 }}>
         {[
           "Lorem ipsum dolor sit amet consectetur.",
           " adipisicing Nulla repellat dolorum earum, accusantium exercit ationem.",

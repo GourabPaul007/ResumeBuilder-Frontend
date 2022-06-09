@@ -25,9 +25,7 @@ const CreatePage: React.FC = (props) => {
   // ]);
 
   const [layout, setLayout] = React.useState<GridItem[]>([]);
-  const [items, setItems] = React.useState<GridItem[]>([
-    { name: "about1()uuid()", i: "about1()uuid()", x: 0, y: 0, w: 10, h: 22, isResizable: false },
-  ]);
+  const [items, setItems] = React.useState<GridItem[]>([{ i: "about1", x: 0, y: 0, w: 10, h: 7, isResizable: false }]);
 
   // TODO: MAKE A COPY OF LAYOUT FOR STUFFS
   const makeItemsArray = (layout: any) => {
@@ -50,13 +48,10 @@ const CreatePage: React.FC = (props) => {
     console.log(layout);
   }
 
-  function addItem(width: number = 1, height: number = 1, itemName: string) {
-    itemName = itemName + "()uuid()" + uuidv1();
+  function addItem(width: number = 1, height: number = 1, itemName: string, isResizable?: boolean) {
     for (let i = 0; i < items.length; i++) {
       const element = items[i];
-      if (
-        element.i.substring(0, element.i.indexOf("()uuid()")) == itemName.substring(0, itemName.indexOf("()uuid()"))
-      ) {
+      if (element.i === itemName) {
         console.log(element.i, itemName, "this item already exists");
         itemName = "";
         return;
@@ -64,17 +59,31 @@ const CreatePage: React.FC = (props) => {
     }
     setItems(
       items.concat({
-        name: itemName,
         i: itemName,
         x: Infinity,
         y: Infinity,
         w: width,
         h: height,
-        isResizable: false,
+        isResizable: isResizable ? true : false,
       })
     );
     // onLayoutChange(layout);
     console.log("pushed", items);
+  }
+
+  function removeItem(item: GridItem) {
+    console.log("removing", item);
+    for (let i = 0; i < items.length; i++) {
+      const element = items[i];
+      if (element === item) {
+        setItems(
+          items.filter(function(el) {
+            return el != item;
+          })
+        );
+      }
+    }
+    // var filtered = someArray.filter(function(el) { return el.Name != "Kristian"; })
   }
 
   return (
@@ -86,7 +95,7 @@ const CreatePage: React.FC = (props) => {
           <LeftMenu addBlock={addItem} />
         </div>
         <div className="middleGrid">
-          <MiddleGrid layout={items} onLayoutChange={onLayoutChange} />
+          <MiddleGrid items={items} onLayoutChange={onLayoutChange} removeItem={removeItem} />
         </div>
         <div className="rightForm">
           <Button

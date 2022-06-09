@@ -2,26 +2,35 @@ import React from "react";
 import { Course } from "../../../interfaces/Course";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 
-export const EducationBlock1: React.FC = () => {
-  const educations: Course[] = [
-    {
-      id: "education001",
-      courseName: "Bachelor of Science in Computer Science",
-      organizationName: "Dinabandhu Mahabidyalaya",
-      courseResults: "Cumulative CGPA 9.00",
-    },
-    {
-      id: "education002",
-      courseName: "Higher Secondary Science Stream",
-      organizationName: "Bangaon Higher Secondary School",
-      courseResults: "Result Percentage 72%",
-    },
-  ];
+const educations: Course[] = [
+  {
+    id: "education001",
+    courseName: "Bachelor of Science in Computer Science",
+    organizationName: "Dinabandhu Mahabidyalaya",
+    courseResults: "Cumulative CGPA 9.00",
+  },
+  {
+    id: "education002",
+    courseName: "Higher Secondary Science Stream",
+    organizationName: "Bangaon Higher Secondary School",
+    courseResults: "Result Percentage 72%",
+  },
+];
 
+interface EducationsBlockInterface {}
+
+export const EducationsBlock1: React.FC<EducationsBlockInterface> = (props) => {
   return (
     <div style={{ margin: 12, fontFamily: "sans-serif", overflow: "hidden" }}>
       <h2 style={{ fontWeight: 600, marginBottom: 4, color: "#123456" }}>Education</h2>
-      <div style={{ fontSize: 14 }}>
+      <div
+        style={{
+          fontSize: 14,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-around",
+        }}
+      >
         {educations.map((course) => {
           return (
             <div

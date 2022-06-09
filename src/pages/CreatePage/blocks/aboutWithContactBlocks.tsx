@@ -4,6 +4,10 @@ import { v1 as uuidv1 } from "uuid";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import PhoneIcon from "@mui/icons-material/Phone";
+import { Button, IconButton } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
+import { GridItem } from "../../../interfaces/GridItem";
 
 const checkHyperlink = (text: string) => {
   return text;
@@ -22,11 +26,16 @@ const contact = {
   cityZip: "Los Angeles CA 12345",
 };
 
-export const AboutWithContactBlock1: React.FC = () => {
+interface AboutWithContactBlock1Props {
+  item: GridItem;
+  removeItem: (i: GridItem) => void;
+}
+export const AboutWithContactBlock1: React.FC<AboutWithContactBlock1Props> = (props) => {
   return (
     <div style={{ margin: 16, fontFamily: "sans-serif", color: "#111" }}>
       <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{about.name}</h1>
       <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{about.profession}</p>
+      <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       <div style={{ display: "flex", flexDirection: "row", fontWeight: 500, fontSize: 14, marginTop: 16 }}>
         {/* the about extra */}
         <div style={{ paddingRight: 4, paddingLeft: 4, flex: "60%" }}>
