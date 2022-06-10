@@ -62,9 +62,9 @@ export default function FormPage() {
   const [about, setAbout] = useState<About>({
     name: "",
     profession: "",
-    address: "",
+    address: [""],
     cityZip: "",
-    phNo: "",
+    phno: "",
     emails: [""],
     about: "",
   });

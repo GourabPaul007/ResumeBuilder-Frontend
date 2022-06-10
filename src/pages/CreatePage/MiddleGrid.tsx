@@ -30,6 +30,7 @@ interface MiddleGridProps {
   onLayoutChange: any;
   removeItem: (item: GridItem) => void;
   about: About;
+  skills: string[];
 }
 
 const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
@@ -48,7 +49,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
         {props.items.map((item: GridItem) => {
           return (
             <div className={classes.blocks} data-grid={item} key={item.i + uuidv1}>
-              {getItemBlueprint(item, props.removeItem, props.about)}
+              {getItemBlueprint(item, props.removeItem, props.about, props.skills)}
             </div>
           );
         })}
@@ -58,7 +59,12 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
 };
 
 export default MiddleGrid;
-function getItemBlueprint(item: GridItem, removeItem: (item: GridItem) => void, about: About): React.ReactNode {
+function getItemBlueprint(
+  item: GridItem,
+  removeItem: (item: GridItem) => void,
+  about: About,
+  skills: string[]
+): React.ReactNode {
   // Because react-grid-layout will put function in item.i for some reason, so ill have to check the real identifier + need to remove uuid
 
   let name = item.i;
@@ -74,7 +80,7 @@ function getItemBlueprint(item: GridItem, removeItem: (item: GridItem) => void, 
       return <WorksBlock1 removeItem={removeItem} item={item} />;
 
     case "skills1":
-      return <SkillsBlock1 removeItem={removeItem} item={item} />;
+      return <SkillsBlock1 removeItem={removeItem} item={item} skills={skills} />;
 
     case "educations1":
       return <EducationsBlock1 removeItem={removeItem} item={item} />;

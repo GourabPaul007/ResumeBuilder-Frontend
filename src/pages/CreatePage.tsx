@@ -10,6 +10,7 @@ import { v1 as uuidv1 } from "uuid";
 import LeftMenu from "./CreatePage/LeftMenu";
 import MiddleGrid from "./CreatePage/MiddleGrid";
 import { About } from "../interfaces/About";
+import { RightForm } from "./CreatePage/RightForm";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -30,28 +31,29 @@ const CreatePage: React.FC = (props) => {
   const [about, setAbout] = useState<About>({
     name: "",
     profession: "",
-    address: "",
+    address: [""],
     cityZip: "",
-    phNo: "",
+    phno: "",
     emails: [""],
     about: "",
   });
+  const [skills, setSkills] = useState<string[]>([]);
 
   useEffect(() => {
     setAbout({
       name: "Gourab Paul",
       profession: "Software Engineer",
-      address: "Saktigarh, Railgate Rd.",
+      address: ["Saktigarh, Railgate Rd.", "Bongaon WB 743235"],
       cityZip: "Bangaon WB 743235",
-      phNo: "+91 9064040525",
+      phno: "+91 9064040525",
       emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
       about:
         "Hello There, I'm a Full-Stack Software Engineer. I like to build softwares to solve existing problems & to overcome major or minor inconveniences.",
     });
-  });
+  }, []);
 
   const [layout, setLayout] = React.useState<GridItem[]>([]);
-  const [items, setItems] = React.useState<GridItem[]>([{ i: "about1", x: 0, y: 0, w: 10, h: 7, isResizable: false }]);
+  const [items, setItems] = React.useState<GridItem[]>([{ i: "about1", x: 0, y: 0, w: 10, h: 7, isResizable: true }]);
 
   // TODO: MAKE A COPY OF LAYOUT FOR STUFFS
   const makeItemsArray = (layout: any) => {
@@ -119,30 +121,23 @@ const CreatePage: React.FC = (props) => {
           <LeftMenu addBlock={addItem} />
         </div>
         <div className="middleGrid">
-          <MiddleGrid items={items} onLayoutChange={onLayoutChange} removeItem={removeItem} about={about} />
+          <MiddleGrid
+            items={items}
+            onLayoutChange={onLayoutChange}
+            removeItem={removeItem}
+            about={about}
+            skills={skills}
+          />
         </div>
         <div className="rightForm">
-          <Button
-            variant="outlined"
-            onClick={async (e) => {
-              e.preventDefault();
-              await fetch("http://localhost:5000/api/custom/custom-resume", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json", //This is required
-                },
-                body: JSON.stringify(makeItemsArray(items)),
-              })
-                .then((data) => {
-                  console.log(data);
-                })
-                .catch((e) => {
-                  console.error(e);
-                });
-            }}
-          >
-            Get Resume
-          </Button>
+          <RightForm
+            makeItemsArray={makeItemsArray}
+            items={items}
+            about={about}
+            setAbout={setAbout}
+            skills={skills}
+            setSkills={setSkills}
+          />
         </div>
       </div>
     </>

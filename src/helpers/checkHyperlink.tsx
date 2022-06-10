@@ -5,7 +5,7 @@ export const checkHyperlink = (str: string): JSX.Element => {
   let newString: string = "";
 
   const regex = new RegExp(
-    "(http|ftp|https):\\/\\/([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])"
+    "(http|ftp|https|mailto):\\/\\/([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])"
   );
 
   // splits string in arrays to check for each word

@@ -9,10 +9,8 @@ import { makeStyles } from "@mui/styles";
 import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
 import { GridItem } from "../../../interfaces/GridItem";
 import { About } from "../../../interfaces/About";
-
-const checkHyperlink = (text: string) => {
-  return text;
-};
+import { checkHyperlink } from "../../../helpers/checkHyperlink";
+import { checkNewLines } from "../../../helpers/checkNewLines";
 
 const about = {
   name: "John Doe",
@@ -57,11 +55,12 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
             flex: "38%",
           }}
         >
-          <div style={{ display: "flex", marginBottom: 8 }}>
-            <LocationOnRoundedIcon style={{ color: "#FF2071", fontSize: 16 }} />
+          <div style={{ display: "flex", marginBottom: 4 }}>
+            <LocationOnRoundedIcon style={{ color: "#FF2071", fontSize: 16, marginRight: 8 }} />
             <div>
-              <div style={{ margin: "0px 0px 4px 8px" }}>{contact.address}</div>
-              <div style={{ margin: "0px 0px 4px 8px" }}>{contact.cityZip}</div>
+              {props.about.address.map((element) => (
+                <div key={element + uuidv1}>{checkHyperlink(element)}</div>
+              ))}
             </div>
           </div>
 
@@ -69,16 +68,14 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
             <EmailRoundedIcon style={{ color: "#1565c0", fontSize: 16, marginRight: 8 }} />
             {/* emails, for flex reasons */}
             <div>
-              {contact.emails.map((element) => (
-                <div key={element + uuidv1} style={{ margin: "0px 0px 4px 0px" }}>
-                  {checkHyperlink(element)}
-                </div>
+              {props.about.emails.map((element) => (
+                <div key={element + uuidv1}>{checkHyperlink(element)}</div>
               ))}
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <PhoneIcon style={{ color: "#388e3c", fontSize: 16, marginRight: 8 }} />
-            {contact.phno}
+            {props.about.phno}
           </div>
         </div>
       </div>

@@ -116,10 +116,10 @@ export default function AboutSection({
               required
               fullWidth
               label="Address"
-              value={about.address}
+              value={about.address.join("<br>")}
               onChange={(e) => {
                 setAddress(e.target.value);
-                setAbout({ ...about, address: e.target.value });
+                setAbout({ ...about, address: e.target.value.split("<br>") });
               }}
             />
             <TextField
@@ -142,10 +142,10 @@ export default function AboutSection({
               required
               fullWidth
               label="Phone No with Country code"
-              value={about.phNo}
+              value={about.phno}
               onChange={(e) => {
                 setPhno(e.target.value);
-                setAbout({ ...about, phNo: e.target.value });
+                setAbout({ ...about, phno: e.target.value });
               }}
             />
 
