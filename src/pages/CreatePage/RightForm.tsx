@@ -2,8 +2,10 @@ import { Button, Container, CssBaseline, Grid, TextField, Typography } from "@mu
 import React, { Dispatch } from "react";
 import { useState, FC } from "react";
 import { About } from "../../interfaces/About";
+import { Course } from "../../interfaces/Course";
 import { GridItem } from "../../interfaces/GridItem";
 import { AboutWithContactForm } from "./RightForm/AboutWithContactForm";
+import { EducationForm } from "./RightForm/EducationsForm";
 import { SkillsForm } from "./RightForm/SkillsForm";
 
 interface RightFormProps {
@@ -13,39 +15,71 @@ interface RightFormProps {
   setAbout: Dispatch<React.SetStateAction<About>>;
   skills: string[];
   setSkills: Dispatch<React.SetStateAction<string[]>>;
+  educations: Course[];
+  setEducations: Dispatch<React.SetStateAction<Course[]>>;
+  forms: string[];
 }
 
 export const RightForm: FC<RightFormProps> = (props) => {
+  const hasItemInArray = (passedItem: string): boolean => {
+    if (props.forms.includes(passedItem)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <>
       <div
         style={{
-          border: "1px solid #5b5be6",
-          borderRadius: 10,
-          padding: 8,
-          marginTop: 10,
-          marginLeft: 12,
+          // borderLeft: "3px solid #5b5be6",
+          // borderRadius: 10,
+          boxShadow: "-4px 0px 4px 0px rgba(0, 0, 0, 0.05)",
+          paddingLeft: 24,
+          // paddingTop: 10,
           marginRight: 24,
+          // minHeight: "100vh",
+          backgroundColor: "Window",
         }}
       >
         {/* <CssBaseline /> */}
         <div>
           <Grid container>
-            <Grid item xs={12}>
-              <AboutWithContactForm
-                textfieldDefaultProps={textfieldDefaultProps}
-                about={props.about}
-                setAbout={props.setAbout}
-              />
-            </Grid>
+            {props.forms.map((eachForm) => {
+              return (
+                <Grid item xs={12} key={eachForm}>
+                  {(() => {
+                    switch (eachForm) {
+                      case "about":
+                        return (
+                          // <Grid item xs={12}>
+                          <AboutWithContactForm
+                            textfieldDefaultProps={textfieldDefaultProps}
+                            about={props.about}
+                            setAbout={props.setAbout}
+                          />
+                          // </Grid>
+                        );
+                      case "skills":
+                        return (
+                          <SkillsForm
+                            textfieldDefaultProps={textfieldDefaultProps}
+                            skills={props.skills}
+                            setSkills={props.setSkills}
+                          />
+                        );
 
-            <Grid item xs={12}>
-              <SkillsForm
-                textfieldDefaultProps={textfieldDefaultProps}
-                skills={props.skills}
-                setSkills={props.setSkills}
-              />
-            </Grid>
+                      case "educations":
+                        return <EducationForm educations={props.educations} setEducations={props.setEducations} />;
+
+                      default:
+                        return null;
+                    }
+                  })()}
+                </Grid>
+              );
+            })}
           </Grid>
 
           <Button
@@ -75,6 +109,20 @@ export const RightForm: FC<RightFormProps> = (props) => {
   );
 };
 
+function chooseFormToShow(
+  form: string,
+  about: About,
+  setAbout: Dispatch<React.SetStateAction<About>>
+): React.ReactNode {
+  switch (form) {
+    case "about":
+      return <AboutWithContactForm textfieldDefaultProps={textfieldDefaultProps} about={about} setAbout={setAbout} />;
+
+    default:
+      break;
+  }
+}
+
 const textfieldDefaultProps: {
   variant: "outlined" | "filled" | "standard" | any;
   size: "small" | "medium" | undefined;
@@ -82,9 +130,9 @@ const textfieldDefaultProps: {
   required: boolean;
   fullWidth: boolean;
 } = {
-  variant: "outlined",
+  variant: "filled",
   size: "small",
-  margin: "normal",
+  margin: "dense",
   required: true,
   fullWidth: true,
 };

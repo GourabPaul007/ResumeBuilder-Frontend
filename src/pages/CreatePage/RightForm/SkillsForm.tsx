@@ -16,17 +16,15 @@ interface SkillsFormProps {
 export const SkillsForm: FC<SkillsFormProps> = (props) => {
   return (
     <>
-      <div style={{ border: "1px solid #666", borderRadius: 12, padding: 12, margin: 12 }}>
-        <Typography align="left" style={{ fontSize: 24 }}>
+      <div style={{ borderRadius: 12, padding: 12, margin: 12 }}>
+        <Typography align="center" style={{ fontSize: 24 }}>
           Skills
         </Typography>
-
         <Grid container spacing={2}>
-          <Grid item xs={4}>
+          {/* <Grid item xs={4}>
             <TextField {...props.textfieldDefaultProps} />
-          </Grid>
-
-          <Grid item xs={8}>
+          </Grid> */}
+          <Grid item xs={12}>
             <TextField
               {...props.textfieldDefaultProps}
               label="Skills"

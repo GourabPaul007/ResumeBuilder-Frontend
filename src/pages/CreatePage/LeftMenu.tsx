@@ -45,14 +45,12 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
   return (
     <>
       <div
-        style={{
-          paddingTop: 10,
-          paddingBottom: 10,
-          paddingLeft: 5,
-          paddingRight: 5,
-          backgroundColor: "#ebf4ff",
-          boxShadow: "4px 0px 4px 0px rgba(0, 0, 0, 0.05)",
-        }}
+        style={
+          {
+            // boxShadow: "4px 0px 4px 0px rgba(0, 0, 0, 0.05)",
+            // height: "100%",
+          }
+        }
       >
         {/* About + Contact */}
         <div style={{ marginLeft: 12, color: "#777" }}>About + Contact</div>
@@ -64,7 +62,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         </div>
         {/* Works */}
         <div style={{ marginLeft: 12, color: "#777" }}>Work History</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(6, 6, "works1", true)}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(6, 7, "works1", true)}>
           <WorksIcon1 />
         </div>
         {/* Skills */}
@@ -76,6 +74,16 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div style={{ marginLeft: 12, color: "#777" }}>Education</div>
         <div className={styles.eachIcon} onClick={() => props.addBlock(4, 7, "educations1", true)}>
           <EducationIcon1 />
+        </div>
+        {/* Others */}
+        <div style={{ marginLeft: 12, color: "#777" }}>Others</div>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 6, "others1", true)}>
+          <OthersIcon1 />
+        </div>
+        {/* Others */}
+        <div style={{ marginLeft: 12, color: "#777" }}>Others</div>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 6, "others1", true)}>
+          <OthersIcon1 />
         </div>
         {/* Others */}
         <div style={{ marginLeft: 12, color: "#777" }}>Others</div>

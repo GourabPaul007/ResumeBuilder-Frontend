@@ -6,19 +6,42 @@
 .createPageWrapper {
   display: flex;
   flex-direction: row;
+  height: calc(100% - 72px);
+  width: calc(100% - 72px);
+  position: fixed;
 }
 
 .leftMenu {
-  width: 8%;
-  min-width: 160px;
+  width: 160px;
+  /* min-width: 160px; */
   z-index: 1;
+  padding: 10px 5px 10px 5px;
+  background-color: #ebf4ff;
+  box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  overflow-y: scroll;
+}
+.leftMenu::-webkit-scrollbar {
+  display: none;
 }
 
 .middleGrid {
-  width: 46%;
+  width: 50%;
+  background-color: #f5f5f7;
+  height: 100%;
+  overflow-y: scroll;
+}
+.middleGrid::-webkit-scrollbar {
+  display: none;
 }
 
 .rightForm {
-  width: 46%;
+  width: 42%;
   z-index: 1;
+  height: 100%;
+  overflow-y: scroll;
+  /* background-color: aliceblue; */
+}
+.rightForm::-webkit-scrollbar {
+  display: none;
 }

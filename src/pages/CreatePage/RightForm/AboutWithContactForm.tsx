@@ -1,4 +1,5 @@
-import { Grid, TextField, Typography } from "@mui/material";
+import { Grid, styled, TextField, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import React, { Dispatch, FC } from "react";
 import { About } from "../../../interfaces/About";
 
@@ -14,22 +15,37 @@ interface AboutWithContactFormProps {
   setAbout: Dispatch<React.SetStateAction<About>>;
 }
 
+const useStyles = makeStyles((theme) => ({
+  textFilled: {
+    "& .MuiFilledInput-root": {
+      background: "rgb(232, 241, 250)",
+    },
+  },
+}));
+
 export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
+  const classes = useStyles();
   return (
     <>
-      <div style={{ border: "1px solid #666", borderRadius: 12, padding: 12, margin: 12 }}>
-        <Typography align="left" style={{ fontSize: 24, margin: 8 }}>
+      <div
+        style={{
+          // border: "2px solid rgba(0,0,0,0.05)",
+          borderRadius: 8,
+          padding: 12,
+          margin: 10,
+          // backgroundColor: "#F3F4F6BF",
+          // backgroundColor: "#FFF",
+          // boxShadow: "0px 4px 4px 0px rgba(0,0,0,0.2)",
+        }}
+      >
+        <Typography align="center" style={{ fontSize: 24, margin: 8 }}>
           About & Contact
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <TextField
-              // sx={{
-              //   color: "#ff0000",
-              //   borderColor: "yellow",
-              //   "&.Mui-focused": { backgroundColor: "#0accff", borderColor: "#f0f" },
-              // }}
               {...props.textfieldDefaultProps}
+              // className={classes.textFilled}
               label="Full Name"
               value={props.about.name}
               onChange={(e) => {
@@ -40,6 +56,7 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
           <Grid item xs={6}>
             <TextField
               {...props.textfieldDefaultProps}
+              // className={classes.textFilled}
               label="Profession"
               value={props.about.profession}
               onChange={(e) => {
@@ -52,6 +69,7 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
           <Grid item xs={8}>
             <TextField
               {...props.textfieldDefaultProps}
+              // className={classes.textFilled}
               label="Emails"
               value={props.about.emails.join("<br>")}
               onChange={(e) => {
@@ -62,6 +80,7 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
           <Grid item xs={4}>
             <TextField
               {...props.textfieldDefaultProps}
+              // className={classes.textFilled}
               label="Phone Number"
               value={props.about.phno}
               onChange={(e) => {
@@ -72,6 +91,7 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
         </Grid>
         <TextField
           {...props.textfieldDefaultProps}
+          // className={classes.textFilled}
           label="Address"
           value={props.about.address.join("<br>")}
           onChange={(e) => {
@@ -80,6 +100,7 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
         />
         <TextField
           {...props.textfieldDefaultProps}
+          // className={classes.textFilled}
           multiline
           rows={3}
           // maxRows={3}

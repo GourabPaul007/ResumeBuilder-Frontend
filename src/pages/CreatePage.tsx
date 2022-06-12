@@ -11,6 +11,7 @@ import LeftMenu from "./CreatePage/LeftMenu";
 import MiddleGrid from "./CreatePage/MiddleGrid";
 import { About } from "../interfaces/About";
 import { RightForm } from "./CreatePage/RightForm";
+import { Course } from "../interfaces/Course";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -38,6 +39,9 @@ const CreatePage: React.FC = (props) => {
     about: "",
   });
   const [skills, setSkills] = useState<string[]>([]);
+  const [educations, setEducations] = useState<Course[]>([
+    { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "" },
+  ]);
 
   useEffect(() => {
     setAbout({
@@ -50,10 +54,15 @@ const CreatePage: React.FC = (props) => {
       about:
         "Hello There, I'm a Full-Stack Software Engineer. I like to build softwares to solve existing problems & to overcome major or minor inconveniences.",
     });
+
+    addItem(10, 7, "about1", true);
   }, []);
 
   const [layout, setLayout] = React.useState<GridItem[]>([]);
-  const [items, setItems] = React.useState<GridItem[]>([{ i: "about1", x: 0, y: 0, w: 10, h: 7, isResizable: true }]);
+  // The actual Items
+  const [items, setItems] = React.useState<GridItem[]>([]);
+  // The Forms corresponding to items in grid
+  const [forms, setForms] = useState<string[]>([]);
 
   // TODO: MAKE A COPY OF LAYOUT FOR STUFFS
   const makeItemsArray = (layout: any) => {
@@ -95,7 +104,11 @@ const CreatePage: React.FC = (props) => {
         isResizable: isResizable ? true : false,
       })
     );
-    console.log("pushed", items);
+    // Add to Form
+    const newFormsArray = forms;
+    newFormsArray.push(itemName.substring(0, itemName.length - 1));
+    setForms(newFormsArray);
+    console.log("pushed", items, itemName, forms);
   }
 
   function removeItem(item: GridItem) {
@@ -110,6 +123,10 @@ const CreatePage: React.FC = (props) => {
         );
       }
     }
+    // Remove item from form
+    forms.splice(forms.indexOf(item.i.substring(0, item.i.length - 1)), 1);
+    setForms(forms);
+    console.log(forms);
   }
 
   return (
@@ -117,9 +134,9 @@ const CreatePage: React.FC = (props) => {
       <AppBarHeader />
 
       <div className="createPageWrapper">
-        <div className="leftMenu">
+        <aside className="leftMenu">
           <LeftMenu addBlock={addItem} />
-        </div>
+        </aside>
         <div className="middleGrid">
           <MiddleGrid
             items={items}
@@ -127,6 +144,7 @@ const CreatePage: React.FC = (props) => {
             removeItem={removeItem}
             about={about}
             skills={skills}
+            educations={educations}
           />
         </div>
         <div className="rightForm">
@@ -137,6 +155,9 @@ const CreatePage: React.FC = (props) => {
             setAbout={setAbout}
             skills={skills}
             setSkills={setSkills}
+            educations={educations}
+            setEducations={setEducations}
+            forms={forms}
           />
         </div>
       </div>

@@ -36,12 +36,11 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
       <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{props.about.name}</h1>
       <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{props.about.profession}</p>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
-      <div style={{ display: "flex", flexDirection: "row", fontWeight: 500, fontSize: 14, marginTop: 16 }}>
+      <div style={{ display: "flex", flexDirection: "row", fontWeight: 500, fontSize: 15, marginTop: 8 }}>
         {/* the about extra */}
         <div style={{ paddingRight: 4, paddingLeft: 4, flex: "60%" }}>
           <p>{props.about.about}</p>
         </div>
-        <div style={{ flex: "2%" }}></div>
 
         {/* the contact section */}
         <div
@@ -52,7 +51,7 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
             marginBottom: 6,
             paddingLeft: 20,
             borderLeft: "3px solid #123456",
-            flex: "38%",
+            flex: "40%",
           }}
         >
           <div style={{ display: "flex", marginBottom: 4 }}>

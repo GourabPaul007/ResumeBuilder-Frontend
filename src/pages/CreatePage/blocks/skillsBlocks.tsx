@@ -20,7 +20,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
     <div style={{ margin: 12, fontFamily: "sans-serif" }}>
       <h2 style={{ fontWeight: 600, color: "#123456", display: "inline-block" }}>Skills</h2>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
-      <div style={{ marginTop: 4, paddingLeft: 8 }}>
+      <div style={{ marginTop: 4, paddingLeft: 8, fontWeight: 500 }}>
         {toBeShownSkills.map((eachSkill: string) => {
           return (
             <div
