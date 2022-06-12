@@ -33,6 +33,7 @@ interface MiddleGridProps {
   about: About;
   skills: string[];
   educations: Course[];
+  others: string[];
 }
 
 const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
@@ -52,7 +53,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
           {props.items.map((item: GridItem) => {
             return (
               <div className={classes.blocks} data-grid={item} key={item.i + uuidv1}>
-                {getItemBlueprint(item, props.removeItem, props.about, props.skills, props.educations)}
+                {getItemBlueprint(item, props.removeItem, props.about, props.skills, props.educations, props.others)}
               </div>
             );
           })}
@@ -68,7 +69,8 @@ function getItemBlueprint(
   removeItem: (item: GridItem) => void,
   about: About,
   skills: string[],
-  educations: Course[]
+  educations: Course[],
+  others: string[]
 ): React.ReactNode {
   // Because react-grid-layout will put function in item.i for some reason, so ill have to check the real identifier + need to remove uuid
 
@@ -91,7 +93,7 @@ function getItemBlueprint(
       return <EducationsBlock1 removeItem={removeItem} item={item} educations={educations} />;
 
     case "others1":
-      return <OthersBlock1 removeItem={removeItem} item={item} />;
+      return <OthersBlock1 removeItem={removeItem} item={item} others={others} />;
 
     default:
       break;

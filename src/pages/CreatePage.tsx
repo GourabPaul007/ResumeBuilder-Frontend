@@ -42,6 +42,7 @@ const CreatePage: React.FC = (props) => {
   const [educations, setEducations] = useState<Course[]>([
     { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "" },
   ]);
+  const [others, setOthers] = useState<string[]>([]);
 
   useEffect(() => {
     setAbout({
@@ -86,6 +87,7 @@ const CreatePage: React.FC = (props) => {
   }
 
   function addItem(width: number = 1, height: number = 1, itemName: string, isResizable?: boolean) {
+    // add to Items
     for (let i = 0; i < items.length; i++) {
       const element = items[i];
       if (element.i === itemName) {
@@ -106,7 +108,12 @@ const CreatePage: React.FC = (props) => {
     );
     // Add to Form
     const newFormsArray = forms;
-    newFormsArray.push(itemName.substring(0, itemName.length - 1));
+    const newFormName = itemName.substring(0, itemName.length - 1); //setting formName. (exmaple, about1 -> about)
+    if (newFormsArray.includes(newFormName)) {
+      console.log("Form Item already exists", newFormName, forms);
+      return;
+    }
+    newFormsArray.push(newFormName);
     setForms(newFormsArray);
     console.log("pushed", items, itemName, forms);
   }
@@ -145,6 +152,7 @@ const CreatePage: React.FC = (props) => {
             about={about}
             skills={skills}
             educations={educations}
+            others={others}
           />
         </div>
         <div className="rightForm">
@@ -158,6 +166,8 @@ const CreatePage: React.FC = (props) => {
             educations={educations}
             setEducations={setEducations}
             forms={forms}
+            others={others}
+            setOthers={setOthers}
           />
         </div>
       </div>

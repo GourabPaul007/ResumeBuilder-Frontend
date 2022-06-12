@@ -6,6 +6,7 @@ import { Course } from "../../interfaces/Course";
 import { GridItem } from "../../interfaces/GridItem";
 import { AboutWithContactForm } from "./RightForm/AboutWithContactForm";
 import { EducationForm } from "./RightForm/EducationsForm";
+import { OthersForm } from "./RightForm/OthersForm";
 import { SkillsForm } from "./RightForm/SkillsForm";
 
 interface RightFormProps {
@@ -17,15 +18,33 @@ interface RightFormProps {
   setSkills: Dispatch<React.SetStateAction<string[]>>;
   educations: Course[];
   setEducations: Dispatch<React.SetStateAction<Course[]>>;
+  others: string[];
+  setOthers: Dispatch<React.SetStateAction<string[]>>;
   forms: string[];
 }
 
 export const RightForm: FC<RightFormProps> = (props) => {
-  const hasItemInArray = (passedItem: string): boolean => {
-    if (props.forms.includes(passedItem)) {
-      return true;
-    } else {
-      return false;
+  // Return the specific form from passed parameter
+  const chooseFormToShow = (form: string): React.ReactNode => {
+    switch (form) {
+      case "about":
+        return (
+          <AboutWithContactForm
+            textfieldDefaultProps={textfieldDefaultProps}
+            about={props.about}
+            setAbout={props.setAbout}
+          />
+        );
+      case "skills":
+        return (
+          <SkillsForm textfieldDefaultProps={textfieldDefaultProps} skills={props.skills} setSkills={props.setSkills} />
+        );
+      case "educations":
+        return <EducationForm educations={props.educations} setEducations={props.setEducations} />;
+      case "others":
+        return <OthersForm others={props.others} setOthers={props.setOthers} />;
+      default:
+        return null;
     }
   };
 
@@ -33,13 +52,9 @@ export const RightForm: FC<RightFormProps> = (props) => {
     <>
       <div
         style={{
-          // borderLeft: "3px solid #5b5be6",
-          // borderRadius: 10,
           boxShadow: "-4px 0px 4px 0px rgba(0, 0, 0, 0.05)",
           paddingLeft: 24,
-          // paddingTop: 10,
-          marginRight: 24,
-          // minHeight: "100vh",
+          paddingRight: 24,
           backgroundColor: "Window",
         }}
       >
@@ -49,34 +64,7 @@ export const RightForm: FC<RightFormProps> = (props) => {
             {props.forms.map((eachForm) => {
               return (
                 <Grid item xs={12} key={eachForm}>
-                  {(() => {
-                    switch (eachForm) {
-                      case "about":
-                        return (
-                          // <Grid item xs={12}>
-                          <AboutWithContactForm
-                            textfieldDefaultProps={textfieldDefaultProps}
-                            about={props.about}
-                            setAbout={props.setAbout}
-                          />
-                          // </Grid>
-                        );
-                      case "skills":
-                        return (
-                          <SkillsForm
-                            textfieldDefaultProps={textfieldDefaultProps}
-                            skills={props.skills}
-                            setSkills={props.setSkills}
-                          />
-                        );
-
-                      case "educations":
-                        return <EducationForm educations={props.educations} setEducations={props.setEducations} />;
-
-                      default:
-                        return null;
-                    }
-                  })()}
+                  {chooseFormToShow(eachForm)}
                 </Grid>
               );
             })}
@@ -109,20 +97,6 @@ export const RightForm: FC<RightFormProps> = (props) => {
   );
 };
 
-function chooseFormToShow(
-  form: string,
-  about: About,
-  setAbout: Dispatch<React.SetStateAction<About>>
-): React.ReactNode {
-  switch (form) {
-    case "about":
-      return <AboutWithContactForm textfieldDefaultProps={textfieldDefaultProps} about={about} setAbout={setAbout} />;
-
-    default:
-      break;
-  }
-}
-
 const textfieldDefaultProps: {
   variant: "outlined" | "filled" | "standard" | any;
   size: "small" | "medium" | undefined;
@@ -136,3 +110,10 @@ const textfieldDefaultProps: {
   required: true,
   fullWidth: true,
 };
+
+// about: About,
+// setAbout: Dispatch<React.SetStateAction<About>>,
+// skills: string[],
+// setSkills: Dispatch<React.SetStateAction<string[]>>,
+// educations: Course[],
+// setEducations: Dispatch<React.SetStateAction<Course[]>>
