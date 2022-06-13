@@ -59,7 +59,6 @@ const CreatePage: React.FC = (props) => {
       about:
         "Hello There, I'm a Full-Stack Software Engineer. I like to build softwares to solve existing problems & to overcome major or minor inconveniences.",
     });
-
     addItem(10, 7, "about1", true);
   }, []);
 
@@ -87,7 +86,7 @@ const CreatePage: React.FC = (props) => {
 
   function onLayoutChange(layout: GridItem[]) {
     setLayout(layout);
-    console.log(layout);
+    // console.log(layout);
   }
 
   function addItem(width: number = 1, height: number = 1, itemName: string, isResizable?: boolean) {
@@ -122,23 +121,36 @@ const CreatePage: React.FC = (props) => {
     console.log("pushed", items, itemName, forms);
   }
 
-  function removeItem(item: GridItem) {
-    console.log("removing", item);
+  function removeItem(toBeRemovedItem: GridItem) {
+    console.log("removing", toBeRemovedItem);
     for (let i = 0; i < items.length; i++) {
-      const element = items[i];
-      if (element === item) {
-        setItems(
-          items.filter(function(el) {
-            return el != item;
-          })
-        );
+      if (items[i].i === toBeRemovedItem.i) {
+        const newItems = items.filter(function(el) {
+          return el != toBeRemovedItem;
+        });
+        setItems(newItems);
+        removeFromFormsArray(newItems, toBeRemovedItem.i);
       }
     }
-    // Remove item from form
-    forms.splice(forms.indexOf(item.i.substring(0, item.i.length - 1)), 1);
-    setForms(forms);
-    console.log(forms);
   }
+
+  /*
+   * check if the item name without number still exists in the items array after deletion because ['about1','about2'] -> ['about1'] -> ['about']
+   * if exists(there were 2 different instances of same items i.e. ['about1','about2']) then dont remove from forms array
+   * else remove from form array
+   */
+  const removeFromFormsArray = (newItems: GridItem[], toBeRemovedItemName: string) => {
+    const newItemsNameArrayWithoutNumber = newItems.map((item) => {
+      return item.i.substring(0, item.i.length - 1);
+    });
+    const toBeRemovedItemWithoutNumber = toBeRemovedItemName.substring(0, toBeRemovedItemName.length - 1);
+    if (newItemsNameArrayWithoutNumber.includes(toBeRemovedItemWithoutNumber)) {
+      console.log("Another item with same form exists", newItemsNameArrayWithoutNumber);
+    } else {
+      console.log("Removing Form", toBeRemovedItemWithoutNumber);
+      setForms(forms.filter((formItem) => formItem != toBeRemovedItemWithoutNumber)); // remove from form array where matches the `toBeRemovedItemName`
+    }
+  };
 
   return (
     <>
