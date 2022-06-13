@@ -7,8 +7,9 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import { checkHyperlink } from "../../../helpers/checkHyperlink";
 import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
 import { GridItem } from "../../../interfaces/GridItem";
+import { Project } from "../../../interfaces/Project";
 
-const projects = [
+const exampleProjects = [
   {
     id: "projectWed Jan 12 2022 13:38:12 GMT+0530 (India Standard Time)",
     projectName: "Resume Builder",
@@ -47,19 +48,32 @@ const projects = [
 interface ProjectsBlockProps {
   item: GridItem;
   removeItem: (item: GridItem) => void;
+  projects: Project[];
 }
 
 export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
+  const isProjectsEmpty = (projects: Project[]) => {
+    return projects.every((value) => {
+      // 1st -> checks if name is empty string, 2nd -> checks if all array members are empty strings
+      if (value.projectName === "" && value.projectDetails.join("").length === 0) {
+        return true;
+      }
+      return false;
+    });
+  };
+
+  const toBeShowedProjects = isProjectsEmpty(props.projects) ? exampleProjects : props.projects;
+
   return (
     <div style={{ margin: 8, fontFamily: "sans-serif" }}>
-      <h2 style={{ fontWeight: 600, marginBottom: 0, color: "#123456", display: "inline-block" }}>Work Experience</h2>
+      <h2 style={{ fontWeight: 600, marginBottom: 0, color: "#123456", display: "inline-block" }}>Projects</h2>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
-      {projects.map((eachProjects) => {
+      {toBeShowedProjects.map((eachProjects) => {
         return (
           <div key={eachProjects.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 14 }}>
-            {/* Work Name */}
+            {/* Project Name */}
             <h4 style={{ fontSize: 20 }}>{eachProjects.projectName}</h4>
-            {/* Work Details */}
+            {/* Project Details */}
             <div style={{ marginBottom: 4, marginLeft: 16, marginTop: 4, fontWeight: 500 }}>
               {eachProjects.projectDetails.map((detail) => {
                 return (
@@ -73,7 +87,7 @@ export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
                       // marginBottom: 4,
                     }}
                   >
-                    &bull;&nbsp;{checkHyperlink(detail)}
+                    {checkHyperlink(detail)}
                   </div>
                 );
               })}

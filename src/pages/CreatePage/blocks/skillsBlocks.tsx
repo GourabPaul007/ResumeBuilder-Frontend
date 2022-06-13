@@ -21,10 +21,10 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
       <h2 style={{ fontWeight: 600, color: "#123456", display: "inline-block" }}>Skills</h2>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       <div style={{ marginTop: 4, paddingLeft: 8, fontWeight: 500 }}>
-        {toBeShownSkills.map((eachSkill: string) => {
+        {toBeShownSkills.map((eachSkill: string, index: number) => {
           return (
             <div
-              key={eachSkill + uuidv1}
+              key={eachSkill + index}
               style={{
                 display: "inline-block",
                 padding: "4px 8px",

@@ -13,6 +13,7 @@ import { About } from "../interfaces/About";
 import { RightForm } from "./CreatePage/RightForm";
 import { Course } from "../interfaces/Course";
 import { Work } from "../interfaces/Work";
+import { Project } from "../interfaces/Project";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -45,6 +46,9 @@ const CreatePage: React.FC = (props) => {
   ]);
   const [works, setWorks] = useState<Work[]>([
     { id: `work${Date.now()}`, workOrganizationName: "", workDetails: [""] },
+  ]);
+  const [projects, setProjects] = useState<Project[]>([
+    { id: `project${Date.now()}`, projectName: "", projectDetails: [""] },
   ]);
   const [others, setOthers] = useState<string[]>([]);
 
@@ -134,10 +138,10 @@ const CreatePage: React.FC = (props) => {
     }
   }
 
-  /*
-   * check if the item name without number still exists in the items array after deletion because ['about1','about2'] -> ['about1'] -> ['about']
-   * if exists(there were 2 different instances of same items i.e. ['about1','about2']) then dont remove from forms array
-   * else remove from form array
+  /**
+   * check if the `itemName w/o number` still exists in the `items` after deletion, because ['about1','about2'] -> ['about1'] -> ['about']
+   *
+   * if exists (there were 2 different instances of same items i.e. ['about1' , 'about2']) then dont remove from forms array, else remove from form array
    */
   const removeFromFormsArray = (newItems: GridItem[], toBeRemovedItemName: string) => {
     const newItemsNameArrayWithoutNumber = newItems.map((item) => {
@@ -169,6 +173,7 @@ const CreatePage: React.FC = (props) => {
             skills={skills}
             educations={educations}
             works={works}
+            projects={projects}
             others={others}
           />
         </div>
@@ -184,6 +189,8 @@ const CreatePage: React.FC = (props) => {
             setEducations={setEducations}
             works={works}
             setWorks={setWorks}
+            projects={projects}
+            setProjects={setProjects}
             forms={forms}
             others={others}
             setOthers={setOthers}

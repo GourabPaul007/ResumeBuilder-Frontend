@@ -6,8 +6,11 @@ import { DeleteRounded } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    display: "inline-block",
-    float: "right",
+    // display: "inline-block",
+    position: "absolute",
+    top: 12,
+    right: 12,
+    // float: "right",
     backgroundColor: "#ff5252",
     border: "none",
     borderRadius: 3,

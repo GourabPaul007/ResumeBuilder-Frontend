@@ -86,9 +86,9 @@ export default function FormPage() {
   ]);
   const [projects, setProjetcs] = useState<Project[]>([
     {
-      id: `project${new Date().toString()}`,
+      id: `project${Date.now()}`,
       projectName: "",
-      projectDetails: "",
+      projectDetails: [""],
     },
   ]);
   const [others, setOthers] = useState<string[]>([]);

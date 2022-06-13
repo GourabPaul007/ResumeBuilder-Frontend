@@ -1,11 +1,4 @@
-import {
-  Button,
-  Divider,
-  Grid,
-  IconButton,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Divider, Grid, IconButton, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 
@@ -31,35 +24,30 @@ export default function ProjectsSection({
   //   console.log(`educations`, educations);
   // }, [educations]);
 
-  function handleChange(
-    index: number,
-    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
-    id: string
-  ) {
+  function handleChange(index: number, event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, id: string) {
     // console.log(`index, event: `, index, event.target.value);
     // const values: any = [...educations];
     // values[index][event.target.name] = event.target.value;
-
     // I set "i:any" cause im a dumbass who dont know why
     // `Element implicitly has an 'any' type because expression of type 'string' can't be used to index`
     // plz help TwT UwU
-    const values = projects.map((singleProject: Project) => {
-      if (id === singleProject.id) {
-        singleProject[event.target.name] = event.target.value;
-      }
-      return singleProject;
-    });
-
-    setProjects(values);
+    // const values = projects.map((singleProject: Project) => {
+    //   if (id === singleProject.id) {
+    //     singleProject[event.target.name] = event.target.value;
+    //   }
+    //   return singleProject;
+    // });
+    // setProjects(values);
+    // Same as Works, will fix later
   }
 
   const handleAddFields = () => {
     setProjects([
       ...projects,
       {
-        id: `project${new Date().toString()}`,
+        id: `project${Date.now()}`,
         projectName: "",
-        projectDetails: "",
+        projectDetails: [""],
       },
     ]);
   };
@@ -140,11 +128,7 @@ export default function ProjectsSection({
           </div>
         ))}
         <Typography align="center">
-          <Button
-            variant="contained"
-            onClick={handleAddFields}
-            style={{ marginTop: 8, backgroundColor: "#00ccc9" }}
-          >
+          <Button variant="contained" onClick={handleAddFields} style={{ marginTop: 8, backgroundColor: "#00ccc9" }}>
             Add Another
           </Button>
         </Typography>

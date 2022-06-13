@@ -14,6 +14,8 @@ import { WorksBlock1 } from "./blocks/worksBlocks";
 import { About } from "../../interfaces/About";
 import { Course } from "../../interfaces/Course";
 import { Work } from "../../interfaces/Work";
+import { ProjectsBlock1 } from "./blocks/projectsBlock";
+import { Project } from "../../interfaces/Project";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -36,10 +38,33 @@ interface MiddleGridProps {
   educations: Course[];
   others: string[];
   works: Work[];
+  projects: Project[];
 }
 
 const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
   const classes = useStyles();
+
+  function getItemBlueprint(item: GridItem): React.ReactNode {
+    let name = item.i;
+    switch (name) {
+      case "about1":
+        return <AboutWithContactBlock1 removeItem={props.removeItem} item={item} about={props.about} />;
+      case "about2":
+        return <AboutWithContactBlock2 removeItem={props.removeItem} item={item} about={props.about} />;
+      case "educations1":
+        return <EducationsBlock1 removeItem={props.removeItem} item={item} educations={props.educations} />;
+      case "skills1":
+        return <SkillsBlock1 removeItem={props.removeItem} item={item} skills={props.skills} />;
+      case "works1":
+        return <WorksBlock1 removeItem={props.removeItem} item={item} works={props.works} />;
+      case "projects1":
+        return <ProjectsBlock1 removeItem={props.removeItem} item={item} projects={props.projects} />;
+      case "others1":
+        return <OthersBlock1 removeItem={props.removeItem} item={item} others={props.others} />;
+      default:
+        break;
+    }
+  }
 
   return (
     <>
@@ -55,15 +80,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
           {props.items.map((item: GridItem) => {
             return (
               <div className={classes.blocks} data-grid={item} key={item.i + uuidv1}>
-                {getItemBlueprint(
-                  item,
-                  props.removeItem,
-                  props.about,
-                  props.skills,
-                  props.educations,
-                  props.works,
-                  props.others
-                )}
+                {getItemBlueprint(item)}
               </div>
             );
           })}
@@ -74,39 +91,3 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
 };
 
 export default MiddleGrid;
-function getItemBlueprint(
-  item: GridItem,
-  removeItem: (item: GridItem) => void,
-  about: About,
-  skills: string[],
-  educations: Course[],
-  works: Work[],
-  others: string[]
-): React.ReactNode {
-  // Because react-grid-layout will put function in item.i for some reason, so ill have to check the real identifier + need to remove uuid
-
-  let name = item.i;
-
-  switch (name) {
-    case "about1":
-      return <AboutWithContactBlock1 removeItem={removeItem} item={item} about={about} />;
-
-    case "about2":
-      return <AboutWithContactBlock2 removeItem={removeItem} item={item} about={about} />;
-
-    case "works1":
-      return <WorksBlock1 removeItem={removeItem} item={item} works={works} />;
-
-    case "skills1":
-      return <SkillsBlock1 removeItem={removeItem} item={item} skills={skills} />;
-
-    case "educations1":
-      return <EducationsBlock1 removeItem={removeItem} item={item} educations={educations} />;
-
-    case "others1":
-      return <OthersBlock1 removeItem={removeItem} item={item} others={others} />;
-
-    default:
-      break;
-  }
-}

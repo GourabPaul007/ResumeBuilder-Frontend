@@ -1,64 +1,65 @@
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
-import React, { Dispatch, FC, useEffect, useState } from "react";
+import React, { Dispatch, FC } from "react";
+import { Project } from "../../../interfaces/Project";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
-import { Work } from "../../../interfaces/Work";
 
-interface WorksFormProps {
-  works: Work[];
-  setWorks: Dispatch<React.SetStateAction<Work[]>>;
+interface ProjectsFormProps {
+  projects: Project[];
+  setProjects: Dispatch<React.SetStateAction<Project[]>>;
 }
 
-export const WorksForm: FC<WorksFormProps> = (props) => {
+export const ProjectsForm: FC<ProjectsFormProps> = (props) => {
   // ==================================================================================================================
   // Add or Remove Fields
   const handleAddFields = () => {
-    props.setWorks([
-      ...props.works,
+    props.setProjects([
+      ...props.projects,
       {
-        id: `work${Date.now()}`,
-        workOrganizationName: "",
-        workDetails: [""],
+        id: `project${Date.now()}`,
+        projectName: "",
+        projectDetails: [""],
       },
     ]);
   };
   const handleRemoveFields = (id: string) => {
-    const values = [...props.works];
+    const values = [...props.projects];
     values.splice(
       values.findIndex((value) => value.id === id),
       1
     );
-    props.setWorks(values);
+    props.setProjects(values);
   };
 
   // ==================================================================================================================
   // Handle Text Inputs
-  const handleWorkOrganizationNameInput = (organizationName: string, pos: number): void => {
-    const newWorks = props.works.map((singleWork: Work, index) => {
+  const handleProjectNameInput = (projectName: string, pos: number): void => {
+    const newProjects = props.projects.map((singleProject: Project, index) => {
       if (pos === index) {
-        singleWork.workOrganizationName = organizationName;
+        singleProject.projectName = projectName;
       }
-      return singleWork;
+      return singleProject;
     });
-    props.setWorks(newWorks);
+    props.setProjects(newProjects);
+    console.log(props.projects);
   };
-  const handleWorkDetailsInput = (workDetails: string, pos: number): void => {
-    const newWorks = props.works.map((singleWork: Work, index) => {
+  const handleProjectDetailsInput = (projectDetails: string, pos: number): void => {
+    const newProjects = props.projects.map((singleProject: Project, index) => {
       if (pos === index) {
-        singleWork.workDetails = workDetails.split("<li>");
+        singleProject.projectDetails = projectDetails.split("<li>");
       }
-      return singleWork;
+      return singleProject;
     });
-    props.setWorks(newWorks);
+    props.setProjects(newProjects);
   };
 
   return (
     <>
       <div style={{ borderRadius: 12, padding: 12, margin: 12 }}>
         <Typography align="center" style={{ fontSize: 24 }}>
-          Work History
+          Projects
         </Typography>
 
-        {props.works.map((singleWork, index) => (
+        {props.projects.map((singleProject, index) => (
           <div key={index}>
             <Grid container>
               <Grid item xs={11}>
@@ -70,10 +71,9 @@ export const WorksForm: FC<WorksFormProps> = (props) => {
                       margin="dense"
                       required
                       fullWidth
-                      label="Organization Name eg. Google Inc."
-                      name="workOrganizationName"
-                      value={singleWork.workOrganizationName}
-                      onChange={(e) => handleWorkOrganizationNameInput(e.target.value, index)}
+                      label="Project Name"
+                      value={singleProject.projectName}
+                      onChange={(e) => handleProjectNameInput(e.target.value, index)}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -83,10 +83,9 @@ export const WorksForm: FC<WorksFormProps> = (props) => {
                       margin="dense"
                       required
                       fullWidth
-                      label="Work Details eg. Worked on Stuff"
-                      name="workDetails"
-                      value={singleWork.workDetails.join("<li>")}
-                      onChange={(e) => handleWorkDetailsInput(e.target.value, index)}
+                      label="Project Details & Used Technologies"
+                      value={singleProject.projectDetails.join("<li>")}
+                      onChange={(e) => handleProjectDetailsInput(e.target.value, index)}
                     />
                   </Grid>
                 </Grid>
@@ -101,7 +100,7 @@ export const WorksForm: FC<WorksFormProps> = (props) => {
               >
                 <IconButton
                   onClick={() => {
-                    handleRemoveFields(singleWork.id);
+                    handleRemoveFields(singleProject.id);
                   }}
                 >
                   <RemoveCircleOutlineRoundedIcon fontSize="large" />
