@@ -26,13 +26,14 @@ interface EducationsBlockProps {
 }
 
 export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
-  const isEmptyObjArr = (arr: Course[]) =>
-    arr.every((value) => {
+  const isEmptyObjArr = (arr: Course[]) => {
+    return arr.every((value) => {
       if (value.courseName === "" && value.courseResults === "" && value.organizationName === "") {
         return true;
       }
       return false;
     });
+  };
 
   const toBeShownEducations = isEmptyObjArr(props.educations)
     ? [

@@ -4,10 +4,12 @@ import { useState, FC } from "react";
 import { About } from "../../interfaces/About";
 import { Course } from "../../interfaces/Course";
 import { GridItem } from "../../interfaces/GridItem";
+import { Work } from "../../interfaces/Work";
 import { AboutWithContactForm } from "./RightForm/AboutWithContactForm";
 import { EducationForm } from "./RightForm/EducationsForm";
 import { OthersForm } from "./RightForm/OthersForm";
 import { SkillsForm } from "./RightForm/SkillsForm";
+import { WorksForm } from "./RightForm/WorksForm";
 
 interface RightFormProps {
   makeItemsArray: (items: any) => void;
@@ -20,6 +22,8 @@ interface RightFormProps {
   setEducations: Dispatch<React.SetStateAction<Course[]>>;
   others: string[];
   setOthers: Dispatch<React.SetStateAction<string[]>>;
+  works: Work[];
+  setWorks: Dispatch<React.SetStateAction<Work[]>>;
   forms: string[];
 }
 
@@ -28,17 +32,11 @@ export const RightForm: FC<RightFormProps> = (props) => {
   const chooseFormToShow = (form: string): React.ReactNode => {
     switch (form) {
       case "about":
-        return (
-          <AboutWithContactForm
-            textfieldDefaultProps={textfieldDefaultProps}
-            about={props.about}
-            setAbout={props.setAbout}
-          />
-        );
+        return <AboutWithContactForm about={props.about} setAbout={props.setAbout} />;
       case "skills":
-        return (
-          <SkillsForm textfieldDefaultProps={textfieldDefaultProps} skills={props.skills} setSkills={props.setSkills} />
-        );
+        return <SkillsForm skills={props.skills} setSkills={props.setSkills} />;
+      case "works":
+        return <WorksForm works={props.works} setWorks={props.setWorks} />;
       case "educations":
         return <EducationForm educations={props.educations} setEducations={props.setEducations} />;
       case "others":

@@ -1,5 +1,5 @@
 export interface Work {
-  [id: string]: string;
-  organizationName: string;
-  workDetails: string;
+  id: string;
+  workDetails: string[];
+  workOrganizationName: string;
 }

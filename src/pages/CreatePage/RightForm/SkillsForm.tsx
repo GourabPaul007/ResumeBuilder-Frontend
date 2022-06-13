@@ -2,13 +2,6 @@ import { Autocomplete, Chip, Grid, TextField, Typography } from "@mui/material";
 import React, { Dispatch, FC } from "react";
 
 interface SkillsFormProps {
-  textfieldDefaultProps: {
-    variant: "outlined";
-    size: "small" | "medium" | undefined;
-    margin: "none" | "normal" | "dense" | undefined;
-    required: boolean;
-    fullWidth: boolean;
-  };
   skills: string[];
   setSkills: Dispatch<React.SetStateAction<string[]>>;
 }
@@ -26,7 +19,11 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
           </Grid> */}
           <Grid item xs={12}>
             <TextField
-              {...props.textfieldDefaultProps}
+              variant="filled"
+              size="small"
+              margin="dense"
+              required={true}
+              fullWidth={true}
               label="Skills"
               value={props.skills.join(",")}
               onChange={(e) => {

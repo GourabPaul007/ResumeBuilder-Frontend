@@ -4,13 +4,6 @@ import React, { Dispatch, FC } from "react";
 import { About } from "../../../interfaces/About";
 
 interface AboutWithContactFormProps {
-  textfieldDefaultProps: {
-    variant: "outlined" | "filled" | "standard" | any;
-    size: "small" | "medium" | undefined;
-    margin: "none" | "normal" | "dense" | undefined;
-    required: boolean;
-    fullWidth: boolean;
-  };
   about: About;
   setAbout: Dispatch<React.SetStateAction<About>>;
 }
@@ -44,8 +37,11 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <TextField
-              {...props.textfieldDefaultProps}
-              // className={classes.textFilled}
+              variant="filled"
+              size="small"
+              margin="dense"
+              required={true}
+              fullWidth={true}
               label="Full Name"
               value={props.about.name}
               onChange={(e) => {
@@ -55,7 +51,11 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
           </Grid>
           <Grid item xs={6}>
             <TextField
-              {...props.textfieldDefaultProps}
+              variant="filled"
+              size="small"
+              margin="dense"
+              required={true}
+              fullWidth={true}
               // className={classes.textFilled}
               label="Profession"
               value={props.about.profession}
@@ -68,7 +68,11 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
         <Grid container spacing={2}>
           <Grid item xs={8}>
             <TextField
-              {...props.textfieldDefaultProps}
+              variant="filled"
+              size="small"
+              margin="dense"
+              required={true}
+              fullWidth={true}
               // className={classes.textFilled}
               label="Emails"
               value={props.about.emails.join("<br>")}
@@ -79,7 +83,11 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
           </Grid>
           <Grid item xs={4}>
             <TextField
-              {...props.textfieldDefaultProps}
+              variant="filled"
+              size="small"
+              margin="dense"
+              required={true}
+              fullWidth={true}
               // className={classes.textFilled}
               label="Phone Number"
               value={props.about.phno}
@@ -90,7 +98,11 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
           </Grid>
         </Grid>
         <TextField
-          {...props.textfieldDefaultProps}
+          variant="filled"
+          size="small"
+          margin="dense"
+          required={true}
+          fullWidth={true}
           // className={classes.textFilled}
           label="Address"
           value={props.about.address.join("<br>")}
@@ -99,7 +111,11 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
           }}
         />
         <TextField
-          {...props.textfieldDefaultProps}
+          variant="filled"
+          size="small"
+          margin="dense"
+          required={true}
+          fullWidth={true}
           // className={classes.textFilled}
           multiline
           rows={3}

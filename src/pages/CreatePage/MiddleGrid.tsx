@@ -13,6 +13,7 @@ import { AboutWithContactBlock1, AboutWithContactBlock2 } from "./blocks/aboutWi
 import { WorksBlock1 } from "./blocks/worksBlocks";
 import { About } from "../../interfaces/About";
 import { Course } from "../../interfaces/Course";
+import { Work } from "../../interfaces/Work";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -34,6 +35,7 @@ interface MiddleGridProps {
   skills: string[];
   educations: Course[];
   others: string[];
+  works: Work[];
 }
 
 const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
@@ -53,7 +55,15 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
           {props.items.map((item: GridItem) => {
             return (
               <div className={classes.blocks} data-grid={item} key={item.i + uuidv1}>
-                {getItemBlueprint(item, props.removeItem, props.about, props.skills, props.educations, props.others)}
+                {getItemBlueprint(
+                  item,
+                  props.removeItem,
+                  props.about,
+                  props.skills,
+                  props.educations,
+                  props.works,
+                  props.others
+                )}
               </div>
             );
           })}
@@ -70,6 +80,7 @@ function getItemBlueprint(
   about: About,
   skills: string[],
   educations: Course[],
+  works: Work[],
   others: string[]
 ): React.ReactNode {
   // Because react-grid-layout will put function in item.i for some reason, so ill have to check the real identifier + need to remove uuid
@@ -84,7 +95,7 @@ function getItemBlueprint(
       return <AboutWithContactBlock2 removeItem={removeItem} item={item} about={about} />;
 
     case "works1":
-      return <WorksBlock1 removeItem={removeItem} item={item} />;
+      return <WorksBlock1 removeItem={removeItem} item={item} works={works} />;
 
     case "skills1":
       return <SkillsBlock1 removeItem={removeItem} item={item} skills={skills} />;

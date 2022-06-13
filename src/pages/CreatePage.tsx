@@ -12,6 +12,7 @@ import MiddleGrid from "./CreatePage/MiddleGrid";
 import { About } from "../interfaces/About";
 import { RightForm } from "./CreatePage/RightForm";
 import { Course } from "../interfaces/Course";
+import { Work } from "../interfaces/Work";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -41,6 +42,9 @@ const CreatePage: React.FC = (props) => {
   const [skills, setSkills] = useState<string[]>([]);
   const [educations, setEducations] = useState<Course[]>([
     { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "" },
+  ]);
+  const [works, setWorks] = useState<Work[]>([
+    { id: `work${Date.now()}`, workOrganizationName: "", workDetails: [""] },
   ]);
   const [others, setOthers] = useState<string[]>([]);
 
@@ -152,6 +156,7 @@ const CreatePage: React.FC = (props) => {
             about={about}
             skills={skills}
             educations={educations}
+            works={works}
             others={others}
           />
         </div>
@@ -165,6 +170,8 @@ const CreatePage: React.FC = (props) => {
             setSkills={setSkills}
             educations={educations}
             setEducations={setEducations}
+            works={works}
+            setWorks={setWorks}
             forms={forms}
             others={others}
             setOthers={setOthers}

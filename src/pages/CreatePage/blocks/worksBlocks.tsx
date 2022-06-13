@@ -1,44 +1,60 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import { v1 as uuidv1 } from "uuid";
 
 import { checkHyperlink } from "../../../helpers/checkHyperlink";
 import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
 import { GridItem } from "../../../interfaces/GridItem";
-
-const works = [
-  {
-    id: "work1",
-    organizationName: "Company 1",
-    workDetails: [
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
-      "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
-    ],
-  },
-  // {
-  //   id: "work2",
-  //   organizationName: "Company 2",
-  //   workDetails: [
-  //     "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
-  //     "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
-  //   ],
-  // },
-];
+import { Work } from "../../../interfaces/Work";
 
 interface WorksBlockProps {
   item: GridItem;
   removeItem: (item: GridItem) => void;
+  works: Work[];
 }
 
 export const WorksBlock1: React.FC<WorksBlockProps> = (props) => {
+  const isEmptyArray = () => {};
+
+  const isEmptyObjArr = (arr: Work[]) => {
+    return arr.every((value) => {
+      // 1st -> checks if name is empty string, 2nd -> checks if all array members are empty strings
+      if (value.workOrganizationName === "" && value.workDetails.join("").length === 0) {
+        return true;
+      }
+      return false;
+    });
+  };
+
+  const toBeDisplayedWorks = isEmptyObjArr(props.works)
+    ? [
+        {
+          id: "work1",
+          workOrganizationName: "Company 1",
+          workDetails: [
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
+            "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
+          ],
+        },
+        // {
+        //   id: "work2",
+        //   organizationName: "Company 2",
+        //   workDetails: [
+        //     "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
+        //     "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
+        //   ],
+        // },
+      ]
+    : props.works;
+
   return (
     <div style={{ margin: 12, fontFamily: "sans-serif" }}>
       <h2 style={{ fontWeight: 600, marginBottom: 0, color: "#123456", display: "inline-block" }}>Work Experience</h2>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
-      {works.map((eachWork) => {
+      {toBeDisplayedWorks.map((eachWork) => {
         return (
           <div key={eachWork.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 15 }}>
             {/* Work Name */}
-            <h4 style={{ fontSize: 20 }}>{eachWork.organizationName}</h4>
+            <h4 style={{ fontSize: 20 }}>{eachWork.workOrganizationName}</h4>
             {/* Work Details */}
             <div style={{ marginBottom: 4, marginLeft: 16, marginTop: 4, fontWeight: 500 }}>
               {eachWork.workDetails.map((detail) => {

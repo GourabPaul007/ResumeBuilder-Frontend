@@ -79,9 +79,9 @@ export default function FormPage() {
   const [skills, setSkills] = useState<string[]>([]);
   const [works, setWorks] = useState<Work[]>([
     {
-      id: `work${new Date().toString()}`,
-      organizationName: "",
-      workDetails: "",
+      id: `work${Date.now()}`,
+      workOrganizationName: "",
+      workDetails: [""],
     },
   ]);
   const [projects, setProjetcs] = useState<Project[]>([

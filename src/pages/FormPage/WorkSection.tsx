@@ -1,11 +1,4 @@
-import {
-  Button,
-  Divider,
-  Grid,
-  IconButton,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Divider, Grid, IconButton, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 
@@ -17,26 +10,24 @@ interface WorkSectionProps {
 }
 
 const WorkSection: React.FC<WorkSectionProps> = ({ works, setWorks }) => {
-  function handleChange(
-    index: number,
-    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
-    id: string
-  ) {
+  function handleChange(index: number, event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, id: string) {
     // console.log(`index, event: `, index, event.target.value);
     // const values: any = [...educations];
     // values[index][event.target.name] = event.target.value;
-
     // I set "i:any" cause im a dumbass who dont know why
     // `Element implicitly has an 'any' type because expression of type 'string' can't be used to index`
     // plz help TwT UwU
-    const values = works.map((singleWork: Work) => {
-      if (id === singleWork.id) {
-        singleWork[event.target.name] = event.target.value;
-      }
-      return singleWork;
-    });
-    console.log(values);
-    setWorks(values);
+    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    // Currently commented cause i dont want to fix it rn
+    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    // const values = works.map((singleWork: Work) => {
+    //   if (id === singleWork.id) {
+    //     singleWork[event.target.name] = event.target.value;
+    //   }
+    //   return singleWork;
+    // });
+    // console.log(values);
+    // setWorks(values);
   }
 
   const handleAddFields = () => {
@@ -44,8 +35,8 @@ const WorkSection: React.FC<WorkSectionProps> = ({ works, setWorks }) => {
       ...works,
       {
         id: `work${new Date().toString()}`,
-        organizationName: "",
-        workDetails: "",
+        workOrganizationName: "",
+        workDetails: [""],
       },
     ]);
   };
@@ -84,7 +75,7 @@ const WorkSection: React.FC<WorkSectionProps> = ({ works, setWorks }) => {
                       fullWidth
                       label="Organization Name"
                       name="organizationName"
-                      value={singleWork.organizationName}
+                      value={singleWork.workOrganizationName}
                       onChange={(e) => handleChange(index, e, singleWork.id)}
                     />
                   </Grid>
@@ -99,7 +90,7 @@ const WorkSection: React.FC<WorkSectionProps> = ({ works, setWorks }) => {
                       fullWidth
                       label="Work Details eg. Used this software to accomplish that"
                       name="workDetails"
-                      value={singleWork.workDetails}
+                      value={singleWork.workDetails.join("<li>")}
                       onChange={(e) => handleChange(index, e, singleWork.id)}
                     />
                   </Grid>
@@ -122,22 +113,13 @@ const WorkSection: React.FC<WorkSectionProps> = ({ works, setWorks }) => {
                 </IconButton>
               </Grid>
             </Grid>
-            <Typography
-              align="left"
-              color="#ef6c00"
-              style={{ fontSize: 14, marginTop: 0, marginLeft: 2 }}
-            >
-              press enter after entering key job details to make different
-              bullet points*
+            <Typography align="left" color="#ef6c00" style={{ fontSize: 14, marginTop: 0, marginLeft: 2 }}>
+              press enter after entering key job details to make different bullet points*
             </Typography>
           </div>
         ))}
         <Typography align="center">
-          <Button
-            variant="contained"
-            onClick={handleAddFields}
-            style={{ marginTop: 8, backgroundColor: "#00ccc9" }}
-          >
+          <Button variant="contained" onClick={handleAddFields} style={{ marginTop: 8, backgroundColor: "#00ccc9" }}>
             Add Another
           </Button>
         </Typography>
