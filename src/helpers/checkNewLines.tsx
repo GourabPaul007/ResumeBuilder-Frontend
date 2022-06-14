@@ -6,10 +6,10 @@ export function checkNewLines(address: string) {
     <div>
       {addressLinesArray.map((eachAddressLine) => {
         return (
-          <>
+          <React.Fragment key={eachAddressLine}>
             {eachAddressLine}
             <br />
-          </>
+          </React.Fragment>
         );
       })}
     </div>

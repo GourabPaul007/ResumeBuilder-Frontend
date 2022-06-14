@@ -14,7 +14,7 @@ import { SkillsForm } from "./RightForm/SkillsForm";
 import { WorksForm } from "./RightForm/WorksForm";
 
 interface RightFormProps {
-  makeItemsArray: (items: any) => void;
+  makeItemsArray: () => void;
   items: GridItem[];
   about: About;
   setAbout: Dispatch<React.SetStateAction<About>>;
@@ -79,15 +79,23 @@ export const RightForm: FC<RightFormProps> = (props) => {
             variant="outlined"
             onClick={async (e) => {
               e.preventDefault();
+              props.makeItemsArray();
               await fetch("http://localhost:5000/api/custom/custom-resume", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json", //This is required
                 },
-                body: JSON.stringify(props.makeItemsArray(props.items)),
+                body: JSON.stringify(props.makeItemsArray()),
               })
-                .then((data) => {
-                  console.log(data);
+                // .then((data) => {
+                //   console.log(data);
+                // })
+                .then((response) => response.blob())
+                .then((blob) => {
+                  let link = document.createElement("a");
+                  link.href = window.URL.createObjectURL(blob);
+                  link.download = "resume.pdf";
+                  link.click();
                 })
                 .catch((e) => {
                   console.error(e);

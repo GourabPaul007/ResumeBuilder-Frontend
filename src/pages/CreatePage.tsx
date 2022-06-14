@@ -63,6 +63,56 @@ const CreatePage: React.FC = (props) => {
       about:
         "Hello There, I'm a Full-Stack Software Engineer. I like to build softwares to solve existing problems & to overcome major or minor inconveniences.",
     });
+    setEducations([
+      {
+        id: "education001",
+        courseName: "Bachelor of Science in Computer Science",
+        organizationName: "Dinabandhu Mahabidyalaya",
+        courseResults: "Cumulative CGPA 9.00",
+      },
+      {
+        id: "education002",
+        courseName: "Higher Secondary Science Stream",
+        organizationName: "Bangaon Higher Secondary School",
+        courseResults: "Result Percentage 72%",
+      },
+    ]);
+    setSkills([
+      "Lorem ipsum",
+      "dolor sit amet",
+      "consectetur.",
+      "Adipisicing",
+      "Nulla",
+      "accusantium",
+      "officiis",
+      "distinctio",
+      "ipsa",
+      "officia",
+      "soluta",
+    ]);
+    setProjects([
+      {
+        id: "projectWed Jan 12 2022 13:38:12 GMT+0530 (India Standard Time)",
+        projectName: "Resume Builder",
+        projectDetails: [
+          "Built a Full-Stack Application to generate pdf files according to Dynamic User Input. Github: FrontEnd(https://github.com/GourabPaul007/ResumeBuilder-Frontend), Backend(https://github.com/GourabPaul007/ResumeBuilder-Backend).",
+          "Used Technologies: ReactJS, TS, Material UI, React-Redux, NodeJS, ExpressJS, EJS, TypeScript.",
+        ],
+      },
+      {
+        id: "projectWed Jan 12 2022 13:36:24 GMT+0530 (India Standard Time)",
+        projectName: "WhatsNote",
+        projectDetails: [
+          "A WhatsApp like look and feel note taking app built with clean architechture which helps people take detailed notes. Github: Codebase(https://github.com/GourabPaul007/Notebook).",
+          "Used Technologies: Flutter, Riverpod.",
+        ],
+      },
+    ]);
+    setOthers([
+      "Lorem ipsum dolor sit amet consectetur.",
+      "Adipisicing Nulla repellat dolorum earum, accusantium exercit ationem.",
+      "officiis distinctio ipsa officia soluta.",
+    ]);
     addItem(10, 7, "about1", true);
   }, []);
 
@@ -73,20 +123,44 @@ const CreatePage: React.FC = (props) => {
   const [forms, setForms] = useState<string[]>([]);
 
   // TODO: MAKE A COPY OF LAYOUT FOR STUFFS
-  const makeItemsArray = (layout: any) => {
-    // const newItems: { name: string; x: number; y: number; w: number; h: number }[] = [];
-    // layout.forEach((element: any) => {
-    //   newItems.push({
-    //     name: element.i.substring(0, element.i.indexOf(" ")),
-    //     x: element.x,
-    //     y: element.y,
-    //     w: element.w,
-    //     h: element.h,
-    //   });
-    // });
-    // console.log(items);
-    // setItems(newItems);
+  const makeItemsArray = () => {
+    const finalItems: { name: string; x: number; y: number; w: number; h: number; data: any }[] = [];
+    layout.forEach((element: any) => {
+      const elementName = element.i.substring(0, element.i.indexOf("function ") - 1);
+      finalItems.push({
+        name: elementName,
+        x: element.x,
+        y: element.y,
+        w: element.w,
+        h: element.h,
+        data: ((elementName: string) => {
+          console.log(elementName);
+          switch (elementName) {
+            case "about":
+              return about;
+            case "educations":
+              return educations;
+            case "skills":
+              return skills;
+            case "works":
+              return works;
+            case "projects":
+              return projects;
+            case "others":
+              return others;
+            default:
+              return "bruh";
+          }
+        })(elementName),
+      });
+    });
+    console.log(finalItems);
+    return finalItems;
   };
+
+  // const setItemsData = (elementName: string) => {
+
+  // };
 
   function onLayoutChange(layout: GridItem[]) {
     setLayout(layout);
