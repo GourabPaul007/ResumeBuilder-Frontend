@@ -41,17 +41,16 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
         <div style={{ paddingRight: 4, paddingLeft: 4, flex: "60%" }}>
           <p>{props.about.about}</p>
         </div>
-
+        <div style={{ flex: "3%" }}>&nbsp;</div>
         {/* the contact section */}
         <div
-          className="ps-3"
           style={{
             marginLeft: 10,
             marginTop: 0,
             marginBottom: 6,
-            paddingLeft: 20,
+            paddingLeft: 24,
             borderLeft: "3px solid #123456",
-            flex: "40%",
+            flex: "37%",
           }}
         >
           <div style={{ display: "flex", marginBottom: 4 }}>

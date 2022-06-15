@@ -18,19 +18,6 @@ import { Project } from "../interfaces/Project";
 // import "/node_modules/react-resizable/css/styles.css";
 
 const CreatePage: React.FC = (props) => {
-  // layout is an array of objects, see the demo for more complete usage
-  // const [layout, setLayout] = React.useState<GridItem[]>([
-  //   { name: "about1()uuid()", i: "about1()uuid()", x: 0, y: 0, w: 10, h: 22, isResizable: false },
-  //   // { i: "education", x: 6, y: 22, w: 4, h: 24, isResizable: true },
-  //   // { i: "skills", x: 6, y: 46, w: 4, h: 24, isResizable: true },
-  //   // { i: "skills1", x: 6, y: 70, w: 4, h: 24, isResizable: true },
-  //   // { i: "projects", x: 2, y: 0, w: 2, h: 2 },
-  //   // { i: "others", x: 2, y: 2, w: 2, h: 2 },
-  //   // { i: "skills", x: 2, y: 4, w: 2, h: 2 },
-  // ]);
-
-  // const [name,setName] = React.useState<string>("");
-  // const [profession,setProfession] = React.useState<string>("");
   const [about, setAbout] = useState<About>({
     name: "",
     profession: "",
@@ -89,6 +76,16 @@ const CreatePage: React.FC = (props) => {
       "ipsa",
       "officia",
       "soluta",
+    ]);
+    setWorks([
+      {
+        id: "work1",
+        workOrganizationName: "Company 1",
+        workDetails: [
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
+          "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
+        ],
+      },
     ]);
     setProjects([
       {
