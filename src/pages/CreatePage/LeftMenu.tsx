@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#fff",
     margin: 10,
     marginBottom: 20,
-    boxShadow: "0 10px 15px -3px rgba(36,69,101,0.19),0 4px 6px -2px #d0dce8;",
+    boxShadow: "0 5px 5px -3px rgba(36,69,101,0.19),0 4px 6px -2px #d0dce8;",
     borderRadius: 5,
     "&:hover": {
       transform: "scale(1.1)",
@@ -48,8 +48,8 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
       <div
         style={
           {
-            // boxShadow: "4px 0px 4px 0px rgba(0, 0, 0, 0.05)",
-            // height: "100%",
+            // paddingLeft: 4,
+            // paddingRight: 4,
           }
         }
       >

@@ -57,18 +57,30 @@ export const RightForm: FC<RightFormProps> = (props) => {
     <>
       <div
         style={{
-          boxShadow: "-4px 0px 4px 0px rgba(0, 0, 0, 0.05)",
           paddingLeft: 24,
           paddingRight: 24,
-          backgroundColor: "Window",
+          minHeight: "100vh",
+          backgroundColor: "#fafafa",
         }}
       >
         {/* <CssBaseline /> */}
         <div>
           <Grid container>
+            <div style={{ height: 10 }}>&nbsp;</div>
             {props.forms.map((eachForm) => {
               return (
-                <Grid item xs={12} key={eachForm}>
+                <Grid
+                  item
+                  xs={12}
+                  key={eachForm}
+                  style={{
+                    boxShadow: "0px 1px 2px #d5d5d7",
+                    padding: 16,
+                    marginBottom: 16,
+                    borderRadius: 8,
+                    backgroundColor: "#ffffff",
+                  }}
+                >
                   {chooseFormToShow(eachForm)}
                 </Grid>
               );
@@ -76,7 +88,8 @@ export const RightForm: FC<RightFormProps> = (props) => {
           </Grid>
 
           <Button
-            variant="outlined"
+            variant="contained"
+            fullWidth={true}
             onClick={async (e) => {
               e.preventDefault();
               props.makeItemsArray();
@@ -87,9 +100,6 @@ export const RightForm: FC<RightFormProps> = (props) => {
                 },
                 body: JSON.stringify(props.makeItemsArray()),
               })
-                // .then((data) => {
-                //   console.log(data);
-                // })
                 .then((response) => response.blob())
                 .then((blob) => {
                   let link = document.createElement("a");
@@ -102,7 +112,7 @@ export const RightForm: FC<RightFormProps> = (props) => {
                 });
             }}
           >
-            Get Resume
+            Get&nbsp;&nbsp;Resume
           </Button>
         </div>
       </div>

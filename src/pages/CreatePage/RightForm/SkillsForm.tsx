@@ -1,5 +1,6 @@
 import { Autocomplete, Chip, Grid, TextField, Typography } from "@mui/material";
 import React, { Dispatch, FC } from "react";
+import { useStyles } from "./FormsStyles";
 
 interface SkillsFormProps {
   skills: string[];
@@ -7,9 +8,10 @@ interface SkillsFormProps {
 }
 
 export const SkillsForm: FC<SkillsFormProps> = (props) => {
+  const classes = useStyles();
   return (
     <>
-      <div style={{ borderRadius: 12, padding: 12, margin: 12 }}>
+      <div>
         <Typography align="center" style={{ fontSize: 24 }}>
           Skills
         </Typography>
@@ -24,6 +26,7 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
               margin="dense"
               required={true}
               fullWidth={true}
+              InputProps={{ classes: { underline: classes.underline } }}
               label="Skills"
               value={props.skills.join(",")}
               onChange={(e) => {

@@ -1,16 +1,16 @@
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
-import React, { Dispatch, FC, useEffect, useState } from "react";
+import React, { Dispatch, FC } from "react";
 import { Course } from "../../../interfaces/Course";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
+import { useStyles } from "./FormsStyles";
 
 interface EducationFormProps {
   educations: Course[];
   setEducations: Dispatch<React.SetStateAction<Course[]>>;
 }
 
-const count = 3;
-
 export const EducationForm: FC<EducationFormProps> = (props) => {
+  const classes = useStyles();
   // ==================================================================================================================
   // Add or Remove Fields
   const handleAddFields = () => {
@@ -66,84 +66,85 @@ export const EducationForm: FC<EducationFormProps> = (props) => {
 
   return (
     <>
-      <div style={{ borderRadius: 12, padding: 12, margin: 12 }}>
-        <Typography align="center" style={{ fontSize: 24 }}>
-          Education
-        </Typography>
+      <Typography align="center" style={{ fontSize: 24 }}>
+        Education
+      </Typography>
 
-        {props.educations.map((singleCourse, index) => (
-          <div key={index}>
-            <Grid container>
-              <Grid item xs={11}>
-                <Grid container>
-                  <Grid item xs={12}>
+      {props.educations.map((singleCourse, index) => (
+        <div key={index}>
+          <Grid container>
+            <Grid item xs={11}>
+              <Grid container>
+                <Grid item xs={12}>
+                  <TextField
+                    size="small"
+                    variant="filled"
+                    margin="dense"
+                    required
+                    fullWidth
+                    InputProps={{ classes: { underline: classes.underline } }}
+                    label="Organization Name eg. Massachusetts Institute of Technology"
+                    name="nameOfOrganization"
+                    value={singleCourse.organizationName}
+                    onChange={(e) => handleOrganizationNameInput(e.target.value, index)}
+                  />
+                </Grid>
+                <Grid container spacing={2}>
+                  <Grid item xs={9}>
                     <TextField
                       size="small"
                       variant="filled"
                       margin="dense"
                       required
                       fullWidth
-                      label="Organization Name eg. Massachusetts Institute of Technology"
-                      name="nameOfOrganization"
-                      value={singleCourse.organizationName}
-                      onChange={(e) => handleOrganizationNameInput(e.target.value, index)}
+                      InputProps={{ classes: { underline: classes.underline } }}
+                      label="Course Name eg. Bachelors in Computer Science"
+                      name="courseName"
+                      value={singleCourse.courseName}
+                      onChange={(e) => handleCourseNameInput(e.target.value, index)}
                     />
                   </Grid>
-                  <Grid container spacing={2}>
-                    <Grid item xs={9}>
-                      <TextField
-                        size="small"
-                        variant="filled"
-                        margin="dense"
-                        required
-                        fullWidth
-                        label="Course Name eg. Bachelors in Computer Science"
-                        name="courseName"
-                        value={singleCourse.courseName}
-                        onChange={(e) => handleCourseNameInput(e.target.value, index)}
-                      />
-                    </Grid>
-                    <Grid item xs={3}>
-                      <TextField
-                        size="small"
-                        variant="filled"
-                        margin="dense"
-                        required
-                        fullWidth
-                        label="Result"
-                        name="courseResults"
-                        value={singleCourse.courseResults}
-                        onChange={(e) => handleCourseResultInput(e.target.value, index)}
-                      />
-                    </Grid>
+                  <Grid item xs={3}>
+                    <TextField
+                      size="small"
+                      variant="filled"
+                      margin="dense"
+                      required
+                      fullWidth
+                      InputProps={{ classes: { underline: classes.underline } }}
+                      label="Result"
+                      name="courseResults"
+                      value={singleCourse.courseResults}
+                      onChange={(e) => handleCourseResultInput(e.target.value, index)}
+                    />
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid
-                item
-                xs={1}
-                style={{
-                  display: "grid",
-                  placeItems: "center",
+            </Grid>
+            <Grid
+              item
+              xs={1}
+              style={{
+                display: "grid",
+                placeItems: "center",
+              }}
+            >
+              <IconButton
+                onClick={() => {
+                  handleRemoveFields(singleCourse.id);
                 }}
               >
-                <IconButton
-                  onClick={() => {
-                    handleRemoveFields(singleCourse.id);
-                  }}
-                >
-                  <RemoveCircleOutlineRoundedIcon fontSize="large" />
-                </IconButton>
-              </Grid>
+                <RemoveCircleOutlineRoundedIcon fontSize="large" />
+              </IconButton>
             </Grid>
-          </div>
-        ))}
-        <Typography align="center">
-          <Button variant="contained" onClick={handleAddFields} style={{ marginTop: 8, backgroundColor: "#00ccc9" }}>
-            Add Another
-          </Button>
-        </Typography>
-      </div>
+          </Grid>
+        </div>
+      ))}
+      <Typography align="center">
+        <Button variant="contained" onClick={handleAddFields} style={{ marginTop: 8, backgroundColor: "#00ccc9" }}>
+          Add Another
+        </Button>
+      </Typography>
     </>
   );
 };

@@ -32,9 +32,9 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
             <a style={{ fontWeight: 700 }} href="/" className="fill">
               Home
             </a>
-            <a style={{ fontWeight: 700 }} href="/form" className="fill">
+            {/* <a style={{ fontWeight: 700 }} href="/form" className="fill">
               Form
-            </a>
+            </a> */}
             <a style={{ fontWeight: 700 }} href="/create" className="fill">
               create
             </a>
@@ -64,9 +64,7 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
             }}
             // onClose={setOpenDrawer(false)}
           >
-            <div
-              style={{ width: 250, display: "grid", placeContent: "center" }}
-            >
+            <div style={{ width: 250, display: "grid", placeContent: "center" }}>
               <Button
                 style={{
                   paddingRight: 48,

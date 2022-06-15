@@ -2,6 +2,7 @@ import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
 import React, { Dispatch, FC, useEffect, useState } from "react";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 import { Work } from "../../../interfaces/Work";
+import { useStyles } from "./FormsStyles";
 
 interface WorksFormProps {
   works: Work[];
@@ -9,6 +10,7 @@ interface WorksFormProps {
 }
 
 export const WorksForm: FC<WorksFormProps> = (props) => {
+  const classes = useStyles();
   // ==================================================================================================================
   // Add or Remove Fields
   const handleAddFields = () => {
@@ -53,69 +55,69 @@ export const WorksForm: FC<WorksFormProps> = (props) => {
 
   return (
     <>
-      <div style={{ borderRadius: 12, padding: 12, margin: 12 }}>
-        <Typography align="center" style={{ fontSize: 24 }}>
-          Work History
-        </Typography>
+      <Typography align="center" style={{ fontSize: 24 }}>
+        Work History
+      </Typography>
 
-        {props.works.map((singleWork, index) => (
-          <div key={index}>
-            <Grid container>
-              <Grid item xs={11}>
-                <Grid container>
-                  <Grid item xs={12}>
-                    <TextField
-                      size="small"
-                      variant="filled"
-                      margin="dense"
-                      required
-                      fullWidth
-                      label="Organization Name eg. Google Inc."
-                      name="workOrganizationName"
-                      value={singleWork.workOrganizationName}
-                      onChange={(e) => handleWorkOrganizationNameInput(e.target.value, index)}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      size="small"
-                      variant="filled"
-                      margin="dense"
-                      required
-                      fullWidth
-                      label="Work Details eg. Worked on Stuff"
-                      name="workDetails"
-                      value={singleWork.workDetails.join("<li>")}
-                      onChange={(e) => handleWorkDetailsInput(e.target.value, index)}
-                    />
-                  </Grid>
+      {props.works.map((singleWork, index) => (
+        <div key={index}>
+          <Grid container>
+            <Grid item xs={11}>
+              <Grid container>
+                <Grid item xs={12}>
+                  <TextField
+                    size="small"
+                    variant="filled"
+                    margin="dense"
+                    required
+                    fullWidth
+                    InputProps={{ classes: { underline: classes.underline } }}
+                    label="Organization Name eg. Google Inc."
+                    name="workOrganizationName"
+                    value={singleWork.workOrganizationName}
+                    onChange={(e) => handleWorkOrganizationNameInput(e.target.value, index)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    size="small"
+                    variant="filled"
+                    margin="dense"
+                    required
+                    fullWidth
+                    InputProps={{ classes: { underline: classes.underline } }}
+                    label="Work Details eg. Worked on Stuff"
+                    name="workDetails"
+                    value={singleWork.workDetails.join("<li>")}
+                    onChange={(e) => handleWorkDetailsInput(e.target.value, index)}
+                  />
                 </Grid>
               </Grid>
-              <Grid
-                item
-                xs={1}
-                style={{
-                  display: "grid",
-                  placeItems: "center",
+            </Grid>
+            <Grid
+              item
+              xs={1}
+              style={{
+                display: "grid",
+                placeItems: "center",
+              }}
+            >
+              <IconButton
+                onClick={() => {
+                  handleRemoveFields(singleWork.id);
                 }}
               >
-                <IconButton
-                  onClick={() => {
-                    handleRemoveFields(singleWork.id);
-                  }}
-                >
-                  <RemoveCircleOutlineRoundedIcon fontSize="large" />
-                </IconButton>
-              </Grid>
+                <RemoveCircleOutlineRoundedIcon fontSize="large" />
+              </IconButton>
             </Grid>
-          </div>
-        ))}
-        <Typography align="center">
-          <Button variant="contained" onClick={handleAddFields} style={{ marginTop: 8, backgroundColor: "#00ccc9" }}>
-            Add Another
-          </Button>
-        </Typography>
-      </div>
+          </Grid>
+        </div>
+      ))}
+      <Typography align="center">
+        <Button variant="contained" onClick={handleAddFields} style={{ marginTop: 8, backgroundColor: "#00ccc9" }}>
+          Add Another
+        </Button>
+      </Typography>
     </>
   );
 };

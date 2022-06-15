@@ -1,12 +1,11 @@
 import React from "react";
 import "./App.css";
 // import { jsPDF } from "jspdf";
-import { Button, createTheme } from "@mui/material";
+import { Button, createTheme, ThemeProvider } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DownloadPage from "./pages/DownloadPage";
 import LandingPage from "./pages/LandingPage";
-import FormPage from "./pages/FormPage";
 import CreatePage from "./pages/CreatePage";
 
 // async function makePDF() {
@@ -48,18 +47,28 @@ const theme = createTheme({
   status: {
     danger: orange[500],
   },
+  palette: {
+    primary: {
+      main: "#6b5be6",
+    },
+    secondary: {
+      main: "#edf2ff",
+    },
+  },
 });
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/form" element={<FormPage />} />
-        <Route path="/create" element={<CreatePage />} />
-        <Route path="/download/:id" element={<DownloadPage />} />
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          {/* <Route path="/form" element={<FormPage />} /> */}
+          <Route path="/create" element={<CreatePage />} />
+          <Route path="/download/:id" element={<DownloadPage />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 
