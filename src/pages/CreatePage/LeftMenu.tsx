@@ -57,7 +57,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         {/* Works */}
         {/* Educations */}
         <div style={{ marginLeft: 12, color: "#777" }}>Education</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 7, "educations1", true)}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 8, "educations1", true)}>
           <EducationIcon1 />
         </div>
         {/* Skills */}
