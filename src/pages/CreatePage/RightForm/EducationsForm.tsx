@@ -90,7 +90,7 @@ export const EducationForm: FC<EducationFormProps> = (props) => {
                   />
                 </Grid>
                 <Grid container spacing={2}>
-                  <Grid item xs={9}>
+                  <Grid item xs={7}>
                     <TextField
                       size="small"
                       variant="filled"
@@ -104,7 +104,7 @@ export const EducationForm: FC<EducationFormProps> = (props) => {
                       onChange={(e) => handleCourseNameInput(e.target.value, index)}
                     />
                   </Grid>
-                  <Grid item xs={3}>
+                  <Grid item xs={5}>
                     <TextField
                       size="small"
                       variant="filled"
@@ -141,7 +141,12 @@ export const EducationForm: FC<EducationFormProps> = (props) => {
         </div>
       ))}
       <Typography align="center">
-        <Button variant="contained" onClick={handleAddFields} style={{ marginTop: 8, backgroundColor: "#00ccc9" }}>
+        <Button
+          size="medium"
+          variant="contained"
+          onClick={handleAddFields}
+          style={{ marginTop: 8, backgroundColor: "#00ccc9" }}
+        >
           Add Another
         </Button>
       </Typography>

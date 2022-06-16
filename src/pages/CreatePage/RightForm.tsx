@@ -57,8 +57,8 @@ export const RightForm: FC<RightFormProps> = (props) => {
     <>
       <div
         style={{
-          paddingLeft: 24,
-          paddingRight: 24,
+          paddingLeft: 36,
+          paddingRight: 36,
           minHeight: "100vh",
           backgroundColor: "#fafafa",
         }}
@@ -89,6 +89,7 @@ export const RightForm: FC<RightFormProps> = (props) => {
 
           <Button
             variant="contained"
+            size="large"
             fullWidth={true}
             onClick={async (e) => {
               e.preventDefault();
