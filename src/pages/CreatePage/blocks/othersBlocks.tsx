@@ -20,7 +20,7 @@ export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
       : props.others;
 
   return (
-    <div style={{ margin: 12, fontFamily: "sans-serif" }}>
+    <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 16, paddingBottom: 16, fontFamily: "sans-serif" }}>
       <h2 style={{ fontWeight: 600, color: "#123456", display: "inline-block" }}>
         Other Skills &<br />
         Activities

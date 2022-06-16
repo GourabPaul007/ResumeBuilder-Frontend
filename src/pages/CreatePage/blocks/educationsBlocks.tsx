@@ -53,12 +53,21 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
     : props.educations;
 
   return (
-    <div style={{ margin: 12, fontFamily: "sans-serif", overflow: "hidden" }}>
+    <div
+      style={{
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingTop: 16,
+        paddingBottom: 16,
+        fontFamily: "sans-serif",
+        overflow: "hidden",
+      }}
+    >
       <h2 style={{ fontWeight: 600, marginBottom: 4, color: "#123456", display: "inline-block" }}>Education</h2>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       <div
         style={{
-          fontSize: 14,
+          fontSize: 15,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-around",
@@ -69,8 +78,8 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
             <div
               style={{
                 display: "flex",
-                alignItems: "center",
                 justifyContent: "start",
+                alignItems: "center",
                 marginBottom: 0,
                 marginTop: 4,
               }}
@@ -86,11 +95,8 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
               >
                 <SchoolRoundedIcon style={{ color: "#434343" }} />
               </div>
-              <div
-                style={{ display: "flex", flexDirection: "column", alignItems: "start", justifyContent: "center" }}
-                className="ms-3"
-              >
-                <p style={{ fontWeight: 600, color: "#434343" }}>{course.organizationName}</p>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "start", justifyContent: "center" }}>
+                <p style={{ fontWeight: 600, color: "#434343", marginRight: 8 }}>{course.organizationName}</p>
                 <p style={{ fontWeight: 500, color: "#434343" }}>
                   {course.courseName} {course.courseResults}
                 </p>

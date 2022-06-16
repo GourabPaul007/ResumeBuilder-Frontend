@@ -17,7 +17,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
       : ["HTML/CSS/JS", "TypeScript", "ReactJS", "Flutter", "NodeJS", "ExpressJS", "MySql", "MongoDB", "Sqlite"];
 
   return (
-    <div style={{ margin: 12, fontFamily: "sans-serif" }}>
+    <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 16, paddingBottom: 16, fontFamily: "sans-serif" }}>
       <h2 style={{ fontWeight: 600, color: "#123456", display: "inline-block" }}>Skills</h2>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       <div style={{ marginTop: 4, paddingLeft: 8, fontWeight: 500 }}>

@@ -47,7 +47,7 @@ export const WorksBlock1: React.FC<WorksBlockProps> = (props) => {
     : props.works;
 
   return (
-    <div style={{ margin: 12, fontFamily: "sans-serif" }}>
+    <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 16, paddingBottom: 16, fontFamily: "sans-serif" }}>
       <h2 style={{ fontWeight: 600, marginBottom: 0, color: "#123456", display: "inline-block" }}>Work Experience</h2>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       {toBeDisplayedWorks.map((eachWork) => {
