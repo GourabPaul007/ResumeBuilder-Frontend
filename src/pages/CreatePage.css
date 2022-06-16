@@ -12,7 +12,7 @@
 }
 
 .leftMenu {
-  width: 160px;
+  width: 8%;
   /* min-width: 160px; */
   z-index: 1;
   padding: 10px 5px 10px 5px;
@@ -28,11 +28,15 @@
 
 .middleGrid {
   width: 50%;
-  min-width: 50%;
+  /* min-width: 50%; */
   background-color: #f5f5f7;
   height: 100%;
   overflow-y: scroll;
   overflow-x: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
 }
 .middleGrid::-webkit-scrollbar {
   display: none;
@@ -49,3 +53,23 @@
 .rightForm::-webkit-scrollbar {
   display: none;
 }
+
+@media (max-width: 1600px) {
+  .middleGrid {
+    width: 60%;
+  }
+
+  .rightForm {
+    width: 32%;
+  }
+}
+
+/* @media (max-width: 1280px) {
+  .middleGrid {
+    width: 65%;
+  }
+
+  .rightForm {
+    width: 27%;
+  }
+} */

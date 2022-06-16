@@ -16,16 +16,31 @@ import { Course } from "../../interfaces/Course";
 import { Work } from "../../interfaces/Work";
 import { ProjectsBlock1 } from "./blocks/projectsBlock";
 import { Project } from "../../interfaces/Project";
+import { Theme } from "@mui/system";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   blocks: {
     cursor: "grab",
     boxShadow: "3px 3px 4px #d5d5d7, -3px -3px 8px #f9f9fb",
     borderRadius: 8,
     backgroundColor: "white",
     overflow: "hidden",
+  },
+  gridLayoutWidth: {
+    width: "250mm",
+    paddingLeft: "3%",
+    paddingRight: "3%",
+    [theme.breakpoints.down("xl")]: {
+      width: "200mm",
+    },
+    [theme.breakpoints.down("lg")]: {
+      width: "150mm",
+    },
+    [theme.breakpoints.down("md")]: {
+      width: "150mm",
+    },
   },
 }));
 
@@ -39,6 +54,7 @@ interface MiddleGridProps {
   others: string[];
   works: Work[];
   projects: Project[];
+  accentColor: string;
 }
 
 const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
@@ -54,7 +70,14 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
       case "educations1":
         return <EducationsBlock1 removeItem={props.removeItem} item={item} educations={props.educations} />;
       case "skills1":
-        return <SkillsBlock1 removeItem={props.removeItem} item={item} skills={props.skills} />;
+        return (
+          <SkillsBlock1
+            removeItem={props.removeItem}
+            item={item}
+            skills={props.skills}
+            accentColor={props.accentColor}
+          />
+        );
       case "works1":
         return <WorksBlock1 removeItem={props.removeItem} item={item} works={props.works} />;
       case "projects1":
@@ -68,7 +91,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
 
   return (
     <>
-      <div style={{ paddingLeft: 60, paddingRight: 50, width: "250mm" }}>
+      <div className={classes.gridLayoutWidth}>
         <ResponsiveReactGridLayout
           className="layout"
           onLayoutChange={props.onLayoutChange}

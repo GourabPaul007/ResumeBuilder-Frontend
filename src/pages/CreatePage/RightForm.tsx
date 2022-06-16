@@ -7,6 +7,7 @@ import { GridItem } from "../../interfaces/GridItem";
 import { Project } from "../../interfaces/Project";
 import { Work } from "../../interfaces/Work";
 import { AboutWithContactForm } from "./RightForm/AboutWithContactForm";
+import { ColorPickerForm } from "./RightForm/ColorPickerForm";
 import { EducationForm } from "./RightForm/EducationsForm";
 import { OthersForm } from "./RightForm/OthersForm";
 import { ProjectsForm } from "./RightForm/ProjectsForm";
@@ -28,7 +29,8 @@ interface RightFormProps {
   setProjects: Dispatch<React.SetStateAction<Project[]>>;
   others: string[];
   setOthers: Dispatch<React.SetStateAction<string[]>>;
-
+  accentColor: string;
+  setAccentColor: Dispatch<React.SetStateAction<string>>;
   forms: string[];
 }
 
@@ -57,8 +59,9 @@ export const RightForm: FC<RightFormProps> = (props) => {
     <>
       <div
         style={{
-          paddingLeft: 36,
-          paddingRight: 36,
+          paddingLeft: "3%",
+          paddingRight: "3%",
+          paddingBottom: 36,
           minHeight: "100vh",
           backgroundColor: "#fafafa",
         }}
@@ -85,6 +88,9 @@ export const RightForm: FC<RightFormProps> = (props) => {
                 </Grid>
               );
             })}
+            <Grid item xs={12}>
+              <ColorPickerForm accentColor={props.accentColor} setAccentColor={props.setAccentColor} />
+            </Grid>
           </Grid>
 
           <Button

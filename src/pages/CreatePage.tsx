@@ -38,6 +38,8 @@ const CreatePage: React.FC = (props) => {
     { id: `project${Date.now()}`, projectName: "", projectDetails: [""] },
   ]);
   const [others, setOthers] = useState<string[]>([]);
+  const [accentColor, setAccentColor] = useState<string>("");
+  const [headerColor, setHeaderColor] = useState<string>("");
 
   useEffect(() => {
     setAbout({
@@ -110,6 +112,7 @@ const CreatePage: React.FC = (props) => {
       "Adipisicing Nulla repellat dolorum earum, accusantium exercit ationem.",
       "officiis distinctio ipsa officia soluta.",
     ]);
+    setAccentColor("#6b5be6");
     addItem(12, 7, "about1", true);
   }, []);
 
@@ -246,6 +249,7 @@ const CreatePage: React.FC = (props) => {
             works={works}
             projects={projects}
             others={others}
+            accentColor={accentColor}
           />
         </div>
         <div className="rightForm">
@@ -265,6 +269,8 @@ const CreatePage: React.FC = (props) => {
             forms={forms}
             others={others}
             setOthers={setOthers}
+            accentColor={accentColor}
+            setAccentColor={setAccentColor}
           />
         </div>
       </div>

@@ -7,7 +7,7 @@ interface SkillsBlockProps {
   item: GridItem;
   removeItem: (item: GridItem) => void;
   skills: string[];
-  // setSkills: Dispatch<React.SetStateAction<string[]>>;
+  accentColor: string;
 }
 
 export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
@@ -31,7 +31,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
                 margin: 4,
                 borderRadius: 6,
                 color: "#fff",
-                backgroundColor: "#123456",
+                backgroundColor: props.accentColor,
                 fontSize: 15,
               }}
             >
