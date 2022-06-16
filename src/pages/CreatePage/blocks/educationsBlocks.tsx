@@ -85,21 +85,14 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
               }}
               key={course.id}
             >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginRight: 12,
-                }}
-              >
+              <div style={{ marginRight: 12 }}>
                 <SchoolRoundedIcon style={{ color: "#434343" }} />
               </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "start", justifyContent: "center" }}>
-                <p style={{ fontWeight: 600, color: "#434343", marginRight: 8 }}>
-                  {course.organizationName}
-                  <span>hello</span>
-                </p>
+              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "start" }}>
+                <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <p style={{ fontWeight: 600, color: "#434343", marginRight: 8 }}>{course.organizationName}</p>
+                  <p style={{ color: "#ff3434", fontSize: 12, flexShrink: 0 }}>2019 - 2022</p>
+                </div>
 
                 <p style={{ fontWeight: 500, color: "#434343" }}>
                   {course.courseName} {course.courseResults}
