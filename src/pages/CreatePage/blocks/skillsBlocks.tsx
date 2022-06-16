@@ -2,26 +2,41 @@ import React, { Dispatch } from "react";
 import { v1 as uuidv1 } from "uuid";
 import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
 import { GridItem } from "../../../interfaces/GridItem";
+import { Skills } from "../../../interfaces/Skills";
 
 interface SkillsBlockProps {
   item: GridItem;
   removeItem: (item: GridItem) => void;
-  skills: string[];
+  skills: Skills;
   accentColor: string;
+  headerColor: string;
 }
 
 export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
   const toBeShownSkills =
-    props.skills.length > 0
+    props.skills.data.length > 0
       ? props.skills
-      : ["HTML/CSS/JS", "TypeScript", "ReactJS", "Flutter", "NodeJS", "ExpressJS", "MySql", "MongoDB", "Sqlite"];
+      : {
+          color: "#123456",
+          data: [
+            "HTML/CSS/JS",
+            "TypeScript",
+            "ReactJS",
+            "Flutter",
+            "NodeJS",
+            "ExpressJS",
+            "MySql",
+            "MongoDB",
+            "Sqlite",
+          ],
+        };
 
   return (
     <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 16, paddingBottom: 16, fontFamily: "sans-serif" }}>
-      <h2 style={{ fontWeight: 600, color: "#123456", display: "inline-block" }}>Skills</h2>
+      <h2 style={{ fontWeight: 600, color: props.headerColor, display: "inline-block" }}>Skills</h2>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       <div style={{ marginTop: 4, paddingLeft: 8, fontWeight: 500 }}>
-        {toBeShownSkills.map((eachSkill: string, index: number) => {
+        {toBeShownSkills.data.map((eachSkill: string, index: number) => {
           return (
             <div
               key={eachSkill + index}
@@ -31,7 +46,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
                 margin: 4,
                 borderRadius: 6,
                 color: "#fff",
-                backgroundColor: props.accentColor,
+                backgroundColor: props.skills.color,
                 fontSize: 15,
               }}
             >

@@ -17,6 +17,7 @@ import { Work } from "../../interfaces/Work";
 import { ProjectsBlock1 } from "./blocks/projectsBlock";
 import { Project } from "../../interfaces/Project";
 import { Theme } from "@mui/system";
+import { Skills } from "../../interfaces/Skills";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -49,12 +50,13 @@ interface MiddleGridProps {
   onLayoutChange: any;
   removeItem: (item: GridItem) => void;
   about: About;
-  skills: string[];
+  skills: Skills;
   educations: Course[];
   others: string[];
   works: Work[];
   projects: Project[];
   accentColor: string;
+  headerColor: string;
 }
 
 const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
@@ -76,6 +78,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             item={item}
             skills={props.skills}
             accentColor={props.accentColor}
+            headerColor={props.headerColor}
           />
         );
       case "works1":

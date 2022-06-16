@@ -96,7 +96,11 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
                 <SchoolRoundedIcon style={{ color: "#434343" }} />
               </div>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "start", justifyContent: "center" }}>
-                <p style={{ fontWeight: 600, color: "#434343", marginRight: 8 }}>{course.organizationName}</p>
+                <p style={{ fontWeight: 600, color: "#434343", marginRight: 8 }}>
+                  {course.organizationName}
+                  <span>hello</span>
+                </p>
+
                 <p style={{ fontWeight: 500, color: "#434343" }}>
                   {course.courseName} {course.courseResults}
                 </p>

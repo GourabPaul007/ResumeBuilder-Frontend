@@ -14,6 +14,7 @@ import { RightForm } from "./CreatePage/RightForm";
 import { Course } from "../interfaces/Course";
 import { Work } from "../interfaces/Work";
 import { Project } from "../interfaces/Project";
+import { Skills } from "../interfaces/Skills";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -27,7 +28,7 @@ const CreatePage: React.FC = (props) => {
     emails: [""],
     about: "",
   });
-  const [skills, setSkills] = useState<string[]>([]);
+  const [skills, setSkills] = useState<Skills>({ color: "#123456", data: [] });
   const [educations, setEducations] = useState<Course[]>([
     { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "" },
   ]);
@@ -66,19 +67,22 @@ const CreatePage: React.FC = (props) => {
         courseResults: "Result Percentage 72%",
       },
     ]);
-    setSkills([
-      "Lorem ipsum",
-      "dolor sit amet",
-      "consectetur.",
-      "Adipisicing",
-      "Nulla",
-      "accusantium",
-      "officiis",
-      "distinctio",
-      "ipsa",
-      "officia",
-      "soluta",
-    ]);
+    setSkills({
+      color: "#123456",
+      data: [
+        "Lorem ipsum",
+        "dolor sit amet",
+        "consectetur.",
+        "Adipisicing",
+        "Nulla",
+        "accusantium",
+        "officiis",
+        "distinctio",
+        "ipsa",
+        "officia",
+        "soluta",
+      ],
+    });
     setWorks([
       {
         id: "work1",
@@ -250,6 +254,7 @@ const CreatePage: React.FC = (props) => {
             projects={projects}
             others={others}
             accentColor={accentColor}
+            headerColor={headerColor}
           />
         </div>
         <div className="rightForm">
@@ -271,6 +276,8 @@ const CreatePage: React.FC = (props) => {
             setOthers={setOthers}
             accentColor={accentColor}
             setAccentColor={setAccentColor}
+            headerColor={headerColor}
+            setHeaderColor={setHeaderColor}
           />
         </div>
       </div>
