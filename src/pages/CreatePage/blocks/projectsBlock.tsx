@@ -65,14 +65,16 @@ export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
   const toBeShowedProjects = isProjectsEmpty(props.projects) ? exampleProjects : props.projects;
 
   return (
-    <div style={{ margin: 8, fontFamily: "sans-serif" }}>
+    <div style={{ margin: 8, fontFamily: "sans-serif", paddingLeft: 4, paddingRight: 20 }}>
       <h2 style={{ fontWeight: 600, marginBottom: 0, color: "#123456", display: "inline-block" }}>Projects</h2>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       {toBeShowedProjects.map((eachProjects) => {
         return (
           <div key={eachProjects.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 14 }}>
             {/* Project Name */}
-            <h4 style={{ fontSize: 20 }}>{eachProjects.projectName}</h4>
+            <h4 style={{ fontSize: 20, fontWeight: 600, marginLeft: 8, marginBottom: 8, marginTop: 12 }}>
+              {eachProjects.projectName}
+            </h4>
             {/* Project Details */}
             <div style={{ marginBottom: 4, marginLeft: 16, marginTop: 4, fontWeight: 500 }}>
               {eachProjects.projectDetails.map((detail) => {

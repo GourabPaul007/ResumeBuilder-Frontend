@@ -68,14 +68,14 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
 
   return (
     <>
-      <div style={{ paddingLeft: 60, paddingRight: 50 }}>
+      <div style={{ paddingLeft: 60, paddingRight: 50, width: "250mm" }}>
         <ResponsiveReactGridLayout
           className="layout"
           onLayoutChange={props.onLayoutChange}
           autoSize={false}
           rowHeight={20}
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-          cols={{ lg: 10, md: 10, sm: 10, xs: 10, xxs: 10 }}
+          cols={{ lg: 12, md: 12, sm: 12, xs: 12, xxs: 12 }}
         >
           {props.items.map((item: GridItem) => {
             return (

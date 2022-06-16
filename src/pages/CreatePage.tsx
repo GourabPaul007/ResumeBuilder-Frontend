@@ -110,7 +110,7 @@ const CreatePage: React.FC = (props) => {
       "Adipisicing Nulla repellat dolorum earum, accusantium exercit ationem.",
       "officiis distinctio ipsa officia soluta.",
     ]);
-    addItem(10, 7, "about1", true);
+    addItem(12, 7, "about1", true);
   }, []);
 
   const [layout, setLayout] = React.useState<GridItem[]>([]);

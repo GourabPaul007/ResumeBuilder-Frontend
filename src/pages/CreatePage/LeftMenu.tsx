@@ -45,51 +45,44 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
   const styles = useStyles();
   return (
     <>
-      <div
-        style={
-          {
-            // paddingLeft: 4,
-            // paddingRight: 4,
-          }
-        }
-      >
+      <div style={{ paddingLeft: 3, paddingRight: 3 }}>
         {/* About + Contact */}
         <div style={{ marginLeft: 12, color: "#777" }}>About + Contact</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(10, 7, "about1", true)}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(12, 7, "about1", true)}>
           <AboutIcon1 />
         </div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(10, 7, "about2", true)}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(12, 7, "about2", true)}>
           <AboutIcon2 />
         </div>
         {/* Works */}
         {/* Educations */}
         <div style={{ marginLeft: 12, color: "#777" }}>Education</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 7, "educations1", true)}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 7, "educations1", true)}>
           <EducationIcon1 />
         </div>
         {/* Skills */}
         <div style={{ marginLeft: 12, color: "#777" }}>Skills</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 7, "skills1", true)}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 7, "skills1", true)}>
           <SkillsIcon1 />
         </div>
         {/* Works */}
         <div style={{ marginLeft: 12, color: "#777" }}>Work History</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(6, 7, "works1", true)}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(7, 7, "works1", true)}>
           <WorksIcon1 />
         </div>
         {/* Projects */}
         <div style={{ marginLeft: 12, color: "#777" }}>Projects</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(6, 17, "projects1", true)}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(7, 17, "projects1", true)}>
           <ProjectsIcon1 />
         </div>
         {/* Others */}
         <div style={{ marginLeft: 12, color: "#777" }}>Others</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 6, "others1", true)}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 6, "others1", true)}>
           <OthersIcon1 />
         </div>
         {/* Others */}
         <div style={{ marginLeft: 12, color: "#777" }}>Others</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(4, 6, "others1", true)}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 6, "others1", true)}>
           <OthersIcon1 />
         </div>
       </div>
