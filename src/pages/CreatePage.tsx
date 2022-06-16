@@ -28,9 +28,9 @@ const CreatePage: React.FC = (props) => {
     emails: [""],
     about: "",
   });
-  const [skills, setSkills] = useState<Skills>({ color: "#123456", data: [] });
+  const [skills, setSkills] = useState<Skills>({ color: "#123456", title: "", data: [] });
   const [educations, setEducations] = useState<Course[]>([
-    { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "" },
+    { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "", courseDuration: "" },
   ]);
   const [works, setWorks] = useState<Work[]>([
     { id: `work${Date.now()}`, workOrganizationName: "", workDetails: [""] },
@@ -57,18 +57,21 @@ const CreatePage: React.FC = (props) => {
       {
         id: "education001",
         courseName: "Bachelor of Science in Computer Science",
+        courseDuration: "2019 - 2022",
         organizationName: "Dinabandhu Mahabidyalaya",
         courseResults: "Cumulative CGPA 9.00",
       },
       {
         id: "education002",
         courseName: "Higher Secondary Science Stream",
+        courseDuration: "2017 - 2019",
         organizationName: "Bangaon Higher Secondary School",
         courseResults: "Result Percentage 72%",
       },
     ]);
     setSkills({
       color: "#123456",
+      title: "Skills Title 123",
       data: [
         "Lorem ipsum",
         "dolor sit amet",
@@ -176,7 +179,7 @@ const CreatePage: React.FC = (props) => {
     for (let i = 0; i < items.length; i++) {
       const element = items[i];
       if (element.i === itemName) {
-        console.log(element.i, itemName, "this item already exists");
+        // console.log(element.i, itemName, "this item already exists");
         itemName = "";
         return;
       }
@@ -195,12 +198,12 @@ const CreatePage: React.FC = (props) => {
     const newFormsArray = forms;
     const newFormName = itemName.substring(0, itemName.length - 1); //setting formName. (exmaple, about1 -> about)
     if (newFormsArray.includes(newFormName)) {
-      console.log("Form Item already exists", newFormName, forms);
+      // console.log("Form Item already exists", newFormName, forms);
       return;
     }
     newFormsArray.push(newFormName);
     setForms(newFormsArray);
-    console.log("pushed", items, itemName, forms);
+    // console.log("pushed", items, itemName, forms);
   }
 
   function removeItem(toBeRemovedItem: GridItem) {

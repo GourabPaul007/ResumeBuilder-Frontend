@@ -19,6 +19,7 @@ export const EducationForm: FC<EducationFormProps> = (props) => {
       {
         id: `education${Date.now()}`,
         courseName: "",
+        courseDuration: "",
         organizationName: "",
         courseResults: "",
       },
@@ -54,6 +55,15 @@ export const EducationForm: FC<EducationFormProps> = (props) => {
     });
     props.setEducations(newEducations);
   };
+  const handleCourseDurationInput = (courseDuration: string, pos: number): void => {
+    const newEducations = props.educations.map((singleEducation: Course, index) => {
+      if (pos === index) {
+        singleEducation.courseDuration = courseDuration;
+      }
+      return singleEducation;
+    });
+    props.setEducations(newEducations);
+  };
   const handleCourseResultInput = (courseResults: string, pos: number): void => {
     const newEducations = props.educations.map((singleEducation: Course, index) => {
       if (pos === index) {
@@ -72,10 +82,10 @@ export const EducationForm: FC<EducationFormProps> = (props) => {
 
       {props.educations.map((singleCourse, index) => (
         <div key={index}>
-          <Grid container>
+          <Grid container marginBottom={2}>
             <Grid item xs={11}>
-              <Grid container>
-                <Grid item xs={12}>
+              <Grid container columnSpacing={2} rowSpacing={0}>
+                <Grid item xs={7}>
                   <TextField
                     size="small"
                     variant="filled"
@@ -89,35 +99,46 @@ export const EducationForm: FC<EducationFormProps> = (props) => {
                     onChange={(e) => handleOrganizationNameInput(e.target.value, index)}
                   />
                 </Grid>
-                <Grid container spacing={2}>
-                  <Grid item xs={7}>
-                    <TextField
-                      size="small"
-                      variant="filled"
-                      margin="dense"
-                      required
-                      fullWidth
-                      InputProps={{ classes: { underline: classes.underline } }}
-                      label="Course Name eg. Bachelors in Computer Science"
-                      name="courseName"
-                      value={singleCourse.courseName}
-                      onChange={(e) => handleCourseNameInput(e.target.value, index)}
-                    />
-                  </Grid>
-                  <Grid item xs={5}>
-                    <TextField
-                      size="small"
-                      variant="filled"
-                      margin="dense"
-                      required
-                      fullWidth
-                      InputProps={{ classes: { underline: classes.underline } }}
-                      label="Result"
-                      name="courseResults"
-                      value={singleCourse.courseResults}
-                      onChange={(e) => handleCourseResultInput(e.target.value, index)}
-                    />
-                  </Grid>
+                <Grid item xs={5}>
+                  <TextField
+                    size="small"
+                    variant="filled"
+                    margin="dense"
+                    fullWidth
+                    InputProps={{ classes: { underline: classes.underline } }}
+                    label="Duration or Passing year, e.g. 2019-2022"
+                    name="courseDuration"
+                    value={singleCourse.courseDuration}
+                    onChange={(e) => handleCourseDurationInput(e.target.value, index)}
+                  />
+                </Grid>
+                <Grid item xs={7}>
+                  <TextField
+                    size="small"
+                    variant="filled"
+                    margin="dense"
+                    required
+                    fullWidth
+                    InputProps={{ classes: { underline: classes.underline } }}
+                    label="Course Name eg. Bachelors in Computer Science"
+                    name="courseName"
+                    value={singleCourse.courseName}
+                    onChange={(e) => handleCourseNameInput(e.target.value, index)}
+                  />
+                </Grid>
+                <Grid item xs={5}>
+                  <TextField
+                    size="small"
+                    variant="filled"
+                    margin="dense"
+                    required
+                    fullWidth
+                    InputProps={{ classes: { underline: classes.underline } }}
+                    label="Result"
+                    name="courseResults"
+                    value={singleCourse.courseResults}
+                    onChange={(e) => handleCourseResultInput(e.target.value, index)}
+                  />
                 </Grid>
               </Grid>
             </Grid>

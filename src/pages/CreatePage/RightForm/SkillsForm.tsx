@@ -34,10 +34,26 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
         <Typography align="center" style={{ fontSize: 24 }}>
           Skills
         </Typography>
-        <Grid container spacing={2}>
+        <Grid container columnSpacing={2} rowSpacing={0}>
           {/* <Grid item xs={4}>
             <TextField {...props.textfieldDefaultProps} />
           </Grid> */}
+          <Grid item xs={4}>
+            <TextField
+              variant="filled"
+              size="small"
+              margin="dense"
+              required={true}
+              fullWidth={true}
+              InputProps={{ classes: { underline: classes.underline } }}
+              label="Title"
+              value={props.skills.title}
+              onChange={(e) => {
+                props.setSkills({ ...props.skills, title: e.target.value });
+              }}
+            />
+          </Grid>
+          <Grid item xs={8}></Grid>
           <Grid item xs={10}>
             <TextField
               variant="filled"

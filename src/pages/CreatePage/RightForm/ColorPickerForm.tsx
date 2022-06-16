@@ -1,4 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { materialPalette } from "../../../helpers/colorDatabase";
+
+let randomSaturatedColor = () => {
+  let r = Math.random()
+    .toString(16)
+    .slice(2, 4);
+  let value_012345 = Math.random()
+    .toString(6)
+    .slice(2, 3);
+  let hex = {
+    [0]: `${r}00FF`,
+    [1]: `00${r}FF`,
+    [2]: `00FF${r}`,
+    [3]: `${r}FF00`,
+    [4]: `FF${r}00`,
+    [5]: `FF00${r}`,
+  }[value_012345];
+  return "#" + hex;
+};
 
 interface ColorPickerProps {
   color: string;
@@ -6,16 +25,14 @@ interface ColorPickerProps {
   height?: number;
 }
 export const ColorPicker: React.FC<ColorPickerProps> = (props) => {
-  const [currentColor, setCurrentColor] = useState<string>(
-    "#000000".replace(/0/g, function() {
-      return (~~(Math.random() * 16)).toString(16);
-    })
-  );
+  const [currentColor, setCurrentColor] = useState<string>(materialPalette.A400[Math.floor(Math.random() * 16)]);
   const handleChangeColor = (newColor: string) => {
     setCurrentColor(newColor);
   };
 
   useEffect(() => {
+    console.log(currentColor);
+
     const lastRequest = setTimeout(() => {
       props.setColor(currentColor);
     }, 400);

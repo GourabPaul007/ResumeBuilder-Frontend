@@ -70,7 +70,15 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
       case "about2":
         return <AboutWithContactBlock2 removeItem={props.removeItem} item={item} about={props.about} />;
       case "educations1":
-        return <EducationsBlock1 removeItem={props.removeItem} item={item} educations={props.educations} />;
+        return (
+          <EducationsBlock1
+            removeItem={props.removeItem}
+            item={item}
+            educations={props.educations}
+            accentColor={props.accentColor}
+            headerColor={props.headerColor}
+          />
+        );
       case "skills1":
         return (
           <SkillsBlock1
