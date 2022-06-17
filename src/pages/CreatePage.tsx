@@ -260,6 +260,7 @@ const CreatePage: React.FC = (props) => {
             headerColor={headerColor}
           />
         </div>
+        <div className="divider"></div>
         <div className="rightForm">
           <RightForm
             makeItemsArray={makeItemsArray}

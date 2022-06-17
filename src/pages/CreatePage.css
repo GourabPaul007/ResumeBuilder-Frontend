@@ -9,6 +9,7 @@
   height: calc(100% - 72px);
   width: 100%;
   position: fixed;
+  background-color: #f5f5f7;
 }
 
 .leftMenu {
@@ -16,7 +17,6 @@
   /* min-width: 160px; */
   z-index: 1;
   padding: 10px 5px 10px 5px;
-  /* background-color: #ebf9ff; */
   background-color: #ebf4ff;
   box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.05);
   height: 100%;
@@ -28,8 +28,6 @@
 
 .middleGrid {
   width: 50%;
-  /* min-width: 50%; */
-  background-color: #f5f5f7;
   height: 100%;
   overflow-y: scroll;
   overflow-x: scroll;
@@ -42,13 +40,25 @@
   display: none;
 }
 
+.divider {
+  box-shadow: 3px 0px 3px #d5d5d7, -6px 0px 8px #f1f1fb;
+  width: 12px;
+  /* margin: 0px 8px 0px 8px; */
+  background-color: white;
+}
+
 .rightForm {
   width: 42%;
   z-index: 1;
   height: 100%;
   overflow-y: scroll;
-  box-shadow: -4px -0px 4px 0px rgba(0, 0, 0, 0.05);
-  /* background-color: aliceblue; */
+  background-color: transparent;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 .rightForm::-webkit-scrollbar {
   display: none;

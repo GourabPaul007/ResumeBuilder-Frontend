@@ -70,16 +70,7 @@ export const RightForm: FC<RightFormProps> = (props) => {
 
   return (
     <>
-      <div
-        style={{
-          paddingLeft: "3%",
-          paddingRight: "3%",
-          paddingBottom: 36,
-          minHeight: "100vh",
-          backgroundColor: "#fafafa",
-        }}
-      >
-        {/* <CssBaseline /> */}
+      <div style={{ paddingBottom: 36, minHeight: "100vh" }}>
         <div>
           <Grid container>
             <div style={{ height: 10 }}>&nbsp;</div>
