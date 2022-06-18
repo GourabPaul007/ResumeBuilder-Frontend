@@ -20,6 +20,7 @@ export const WorksForm: FC<WorksFormProps> = (props) => {
         id: `work${Date.now()}`,
         workOrganizationName: "",
         workDetails: [""],
+        workDuration: "",
       },
     ]);
   };
@@ -52,6 +53,15 @@ export const WorksForm: FC<WorksFormProps> = (props) => {
     });
     props.setWorks(newWorks);
   };
+  const handleWorkDurationInput = (workDuration: string, pos: number): void => {
+    const newWorks = props.works.map((singleWork: Work, index) => {
+      if (pos === index) {
+        singleWork.workDuration = workDuration;
+      }
+      return singleWork;
+    });
+    props.setWorks(newWorks);
+  };
 
   return (
     <>
@@ -63,8 +73,8 @@ export const WorksForm: FC<WorksFormProps> = (props) => {
         <div key={index}>
           <Grid container>
             <Grid item xs={11}>
-              <Grid container>
-                <Grid item xs={12}>
+              <Grid container rowSpacing={0} columnSpacing={2}>
+                <Grid item xs={7}>
                   <TextField
                     size="small"
                     variant="filled"
@@ -76,6 +86,19 @@ export const WorksForm: FC<WorksFormProps> = (props) => {
                     name="workOrganizationName"
                     value={singleWork.workOrganizationName}
                     onChange={(e) => handleWorkOrganizationNameInput(e.target.value, index)}
+                  />
+                </Grid>
+                <Grid item xs={5}>
+                  <TextField
+                    size="small"
+                    variant="filled"
+                    margin="dense"
+                    fullWidth
+                    InputProps={{ classes: { underline: classes.underline } }}
+                    label="Worked Between e.g. Mar 2020 - Present"
+                    name="workDuration"
+                    value={singleWork.workDuration}
+                    onChange={(e) => handleWorkDurationInput(e.target.value, index)}
                   />
                 </Grid>
                 <Grid item xs={12}>

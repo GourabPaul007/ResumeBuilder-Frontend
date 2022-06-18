@@ -8,6 +8,8 @@ import { checkHyperlink } from "../../../helpers/checkHyperlink";
 import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
 import { GridItem } from "../../../interfaces/GridItem";
 import { Project } from "../../../interfaces/Project";
+import { FormStyles } from "../../../interfaces/FormStyles";
+import { useBlockStyles } from "./_BlockStyles";
 
 const exampleProjects = [
   {
@@ -49,9 +51,12 @@ interface ProjectsBlockProps {
   item: GridItem;
   removeItem: (item: GridItem) => void;
   projects: Project[];
+  formStyles: FormStyles;
 }
 
 export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
+  const blockClasses = useBlockStyles(props.formStyles);
+
   const isProjectsEmpty = (projects: Project[]) => {
     return projects.every((value) => {
       // 1st -> checks if name is empty string, 2nd -> checks if all array members are empty strings
@@ -74,7 +79,9 @@ export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
         fontFamily: "sans-serif",
       }}
     >
-      <h2 style={{ fontWeight: 600, marginBottom: 0, color: "#123456", display: "inline-block" }}>Projects</h2>
+      <div className={blockClasses.blockTitleDiv}>
+        <h2 className={blockClasses.blockTitleH2}>Projects</h2>
+      </div>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       {toBeShowedProjects.map((eachProjects) => {
         return (

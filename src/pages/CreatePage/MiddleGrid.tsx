@@ -5,7 +5,7 @@ import { WidthProvider, Responsive } from "react-grid-layout";
 // Required by react-grid-layout to function properly
 import "./MiddleGrid.css";
 import { GridItem } from "../../interfaces/GridItem";
-import { SkillsBlock1 } from "./blocks/skillsBlocks";
+import { SkillsBlock1, SkillsBlock2 } from "./blocks/skillsBlocks";
 import { makeStyles } from "@mui/styles";
 import { EducationsBlock1 } from "./blocks/educationsBlocks";
 import { OthersBlock1 } from "./blocks/othersBlocks";
@@ -18,6 +18,7 @@ import { ProjectsBlock1 } from "./blocks/projectsBlock";
 import { Project } from "../../interfaces/Project";
 import { Theme } from "@mui/system";
 import { Skills } from "../../interfaces/Skills";
+import { FormStyles } from "../../interfaces/FormStyles";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -55,8 +56,7 @@ interface MiddleGridProps {
   others: string[];
   works: Work[];
   projects: Project[];
-  accentColor: string;
-  headerColor: string;
+  formStyles: FormStyles;
 }
 
 const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
@@ -75,26 +75,34 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             removeItem={props.removeItem}
             item={item}
             educations={props.educations}
-            accentColor={props.accentColor}
-            headerColor={props.headerColor}
+            formStyles={props.formStyles}
           />
         );
       case "skills1":
         return (
-          <SkillsBlock1
-            removeItem={props.removeItem}
-            item={item}
-            skills={props.skills}
-            accentColor={props.accentColor}
-            headerColor={props.headerColor}
-          />
+          <SkillsBlock1 removeItem={props.removeItem} item={item} skills={props.skills} formStyles={props.formStyles} />
+        );
+      case "skills2":
+        return (
+          <SkillsBlock2 removeItem={props.removeItem} item={item} skills={props.skills} formStyles={props.formStyles} />
         );
       case "works1":
-        return <WorksBlock1 removeItem={props.removeItem} item={item} works={props.works} />;
+        return (
+          <WorksBlock1 removeItem={props.removeItem} item={item} works={props.works} formStyles={props.formStyles} />
+        );
       case "projects1":
-        return <ProjectsBlock1 removeItem={props.removeItem} item={item} projects={props.projects} />;
+        return (
+          <ProjectsBlock1
+            removeItem={props.removeItem}
+            item={item}
+            projects={props.projects}
+            formStyles={props.formStyles}
+          />
+        );
       case "others1":
-        return <OthersBlock1 removeItem={props.removeItem} item={item} others={props.others} />;
+        return (
+          <OthersBlock1 removeItem={props.removeItem} item={item} others={props.others} formStyles={props.formStyles} />
+        );
       default:
         break;
     }

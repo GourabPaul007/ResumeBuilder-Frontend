@@ -15,6 +15,7 @@ import { Course } from "../interfaces/Course";
 import { Work } from "../interfaces/Work";
 import { Project } from "../interfaces/Project";
 import { Skills } from "../interfaces/Skills";
+import { FormStyles } from "../interfaces/FormStyles";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -28,19 +29,25 @@ const CreatePage: React.FC = (props) => {
     emails: [""],
     about: "",
   });
-  const [skills, setSkills] = useState<Skills>({ color: "#123456", title: "", data: [] });
+  const [skills, setSkills] = useState<Skills>({ color: "#123456", title: "", chipRadius: 10, data: [] });
   const [educations, setEducations] = useState<Course[]>([
     { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "", courseDuration: "" },
   ]);
   const [works, setWorks] = useState<Work[]>([
-    { id: `work${Date.now()}`, workOrganizationName: "", workDetails: [""] },
+    { id: `work${Date.now()}`, workOrganizationName: "", workDetails: [""], workDuration: "" },
   ]);
   const [projects, setProjects] = useState<Project[]>([
     { id: `project${Date.now()}`, projectName: "", projectDetails: [""] },
   ]);
   const [others, setOthers] = useState<string[]>([]);
-  const [accentColor, setAccentColor] = useState<string>("");
-  const [headerColor, setHeaderColor] = useState<string>("");
+  const [formStyles, setFormStyles] = useState<FormStyles>({
+    titleFilled: false,
+    titleFullWidth: false,
+    titleUnderline: false,
+    accentColor: "",
+    titleColor: "",
+    titleFillColor: "",
+  });
 
   useEffect(() => {
     setAbout({
@@ -72,6 +79,7 @@ const CreatePage: React.FC = (props) => {
     setSkills({
       color: "#123456",
       title: "Skills Title 123",
+      chipRadius: 10,
       data: [
         "Lorem ipsum",
         "dolor sit amet",
@@ -94,6 +102,7 @@ const CreatePage: React.FC = (props) => {
           "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
           "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
         ],
+        workDuration: "2022 - 2023",
       },
     ]);
     setProjects([
@@ -119,17 +128,16 @@ const CreatePage: React.FC = (props) => {
       "Adipisicing Nulla repellat dolorum earum, accusantium exercit ationem.",
       "officiis distinctio ipsa officia soluta.",
     ]);
-    setAccentColor("#6b5be6");
     addItem(12, 7, "about1", true);
   }, []);
 
-  const [layout, setLayout] = React.useState<GridItem[]>([]);
+  const [layout, setLayout] = useState<GridItem[]>([]);
   // The actual Items
-  const [items, setItems] = React.useState<GridItem[]>([]);
+  const [items, setItems] = useState<GridItem[]>([]);
   // The Forms corresponding to items in grid
   const [forms, setForms] = useState<string[]>([]);
 
-  // TODO: MAKE A COPY OF LAYOUT FOR STUFFS
+  // MAKE A COPY OF LAYOUT FOR STUFFS
   const makeItemsArray = () => {
     const finalItems: { name: string; x: number; y: number; w: number; h: number; data: any }[] = [];
     layout.forEach((element: any) => {
@@ -256,8 +264,7 @@ const CreatePage: React.FC = (props) => {
             works={works}
             projects={projects}
             others={others}
-            accentColor={accentColor}
-            headerColor={headerColor}
+            formStyles={formStyles}
           />
         </div>
         <div className="divider"></div>
@@ -265,6 +272,7 @@ const CreatePage: React.FC = (props) => {
           <RightForm
             makeItemsArray={makeItemsArray}
             items={items}
+            forms={forms}
             about={about}
             setAbout={setAbout}
             skills={skills}
@@ -275,13 +283,10 @@ const CreatePage: React.FC = (props) => {
             setWorks={setWorks}
             projects={projects}
             setProjects={setProjects}
-            forms={forms}
             others={others}
             setOthers={setOthers}
-            accentColor={accentColor}
-            setAccentColor={setAccentColor}
-            headerColor={headerColor}
-            setHeaderColor={setHeaderColor}
+            formStyles={formStyles}
+            setFormStyles={setFormStyles}
           />
         </div>
       </div>

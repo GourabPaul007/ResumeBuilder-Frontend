@@ -1,4 +1,4 @@
-import { Autocomplete, Chip, Grid, TextField, Typography } from "@mui/material";
+import { Autocomplete, Chip, Grid, Slider, TextField, Typography } from "@mui/material";
 import React, { Dispatch, FC, useEffect, useState } from "react";
 import { Skills } from "../../../interfaces/Skills";
 import { useStyles } from "./FormsStyles";
@@ -15,6 +15,7 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
       return (~~(Math.random() * 16)).toString(16);
     })
   );
+  const [sliderValue, setSliderValue] = useState(0);
 
   useEffect(() => {
     const lastRequest = setTimeout(() => {
@@ -25,9 +26,24 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
     };
   }, [currentColor]);
 
+  useEffect(() => {
+    const lastRequest = setTimeout(() => {
+      props.setSkills({ ...props.skills, chipRadius: sliderValue });
+    }, 400);
+    return () => {
+      clearTimeout(lastRequest);
+    };
+  }, [sliderValue]);
+
   const handleChangeSkillsItemsColor = (newColor: string) => {
     setCurrentColor(newColor);
   };
+  const handleChipRadiusSlider = (event: Event, newChipRadius: number | number[]) => {
+    const radius = Array.isArray(newChipRadius) ? newChipRadius[0] : newChipRadius;
+    // props.setSkills({ ...props.skills, chipRadius: radius });
+    setSliderValue(radius);
+  };
+
   return (
     <>
       <div style={{ fontFamily: "sans-serif", fontSize: 16 }}>
@@ -53,8 +69,61 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
               }}
             />
           </Grid>
-          <Grid item xs={8}></Grid>
-          <Grid item xs={10}>
+          <Grid
+            item
+            xs={4}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "#666",
+            }}
+          >
+            <Slider
+              aria-label="Chip Radius"
+              min={0}
+              max={14}
+              step={2}
+              valueLabelDisplay="auto"
+              value={sliderValue}
+              onChange={handleChipRadiusSlider}
+            />
+            Chip Radius
+          </Grid>
+          <Grid item xs={4}>
+            <div
+              style={{
+                height: "100%",
+                color: "#666",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              Chip Color &#9658;&nbsp;
+              {/* InputColorContainer */}
+              <label
+                style={{
+                  backgroundColor: props.skills.color,
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  boxShadow: "2px 2px 4px 0px rgba(0, 0, 0, 0.4)",
+                  cursor: "pointer",
+                }}
+              >
+                <input
+                  style={{ visibility: "hidden" }}
+                  type="color"
+                  name="colorPicker"
+                  value={currentColor}
+                  onChange={(e) => handleChangeSkillsItemsColor(e.target.value)}
+                />
+              </label>
+            </div>
+          </Grid>
+          <Grid item xs={12}>
             <TextField
               variant="filled"
               size="small"
@@ -68,37 +137,6 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
                 props.setSkills({ ...props.skills, data: e.target.value.split(",") });
               }}
             />
-          </Grid>
-          <Grid item xs={2}>
-            <div
-              style={{
-                height: "100%",
-                color: "#777",
-                display: "flex",
-                justifyContent: "space-evenly",
-                alignItems: "center",
-              }}
-            >
-              Color &#9658;
-              {/* InputColorContainer */}
-              <label
-                style={{
-                  backgroundColor: props.skills.color,
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  cursor: "pointer",
-                }}
-              >
-                <input
-                  style={{ visibility: "hidden" }}
-                  type="color"
-                  name="colorPicker"
-                  value={currentColor}
-                  onChange={(e) => handleChangeSkillsItemsColor(e.target.value)}
-                />
-              </label>
-            </div>
           </Grid>
         </Grid>
       </div>

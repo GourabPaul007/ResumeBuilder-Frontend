@@ -4,23 +4,26 @@ import React, { Dispatch } from "react";
 import { useState, FC } from "react";
 import { About } from "../../interfaces/About";
 import { Course } from "../../interfaces/Course";
+import { FormStyles } from "../../interfaces/FormStyles";
 import { GridItem } from "../../interfaces/GridItem";
 import { Project } from "../../interfaces/Project";
 import { Skills } from "../../interfaces/Skills";
 import { Work } from "../../interfaces/Work";
 import { AboutWithContactForm } from "./RightForm/AboutWithContactForm";
-import { AccentColorPickerForm, ColorPicker, HeaderColorPickerForm } from "./RightForm/ColorPickerForm";
 import { EducationForm } from "./RightForm/EducationsForm";
+import { Miscellaneous } from "./RightForm/MiscellaneousForm";
 import { OthersForm } from "./RightForm/OthersForm";
 import { ProjectsForm } from "./RightForm/ProjectsForm";
 import { SkillsForm } from "./RightForm/SkillsForm";
 import { WorksForm } from "./RightForm/WorksForm";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  colorPickerLabels: {
-    fontSize: 16,
-    color: "#545454",
-    fontFamily: "sans-serif",
+const useStyles = makeStyles(() => ({
+  formWrapper: {
+    boxShadow: "0px 1px 2px #d5d5d7",
+    padding: 16,
+    marginBottom: 16,
+    borderRadius: 8,
+    backgroundColor: "#ffffff",
   },
 }));
 
@@ -39,15 +42,14 @@ interface RightFormProps {
   setProjects: Dispatch<React.SetStateAction<Project[]>>;
   others: string[];
   setOthers: Dispatch<React.SetStateAction<string[]>>;
-  accentColor: string;
-  setAccentColor: Dispatch<React.SetStateAction<string>>;
-  headerColor: string;
-  setHeaderColor: Dispatch<React.SetStateAction<string>>;
+  formStyles: FormStyles;
+  setFormStyles: Dispatch<React.SetStateAction<FormStyles>>;
   forms: string[];
 }
 
 export const RightForm: FC<RightFormProps> = (props) => {
   const classes = useStyles();
+
   // Return the specific form from passed parameter
   const chooseFormToShow = (form: string): React.ReactNode => {
     switch (form) {
@@ -76,63 +78,13 @@ export const RightForm: FC<RightFormProps> = (props) => {
             <div style={{ height: 10 }}>&nbsp;</div>
             {props.forms.map((eachForm) => {
               return (
-                <Grid
-                  item
-                  xs={12}
-                  key={eachForm}
-                  style={{
-                    boxShadow: "0px 1px 2px #d5d5d7",
-                    padding: 16,
-                    marginBottom: 16,
-                    borderRadius: 8,
-                    backgroundColor: "#ffffff",
-                  }}
-                >
+                <Grid item xs={12} key={eachForm} className={classes.formWrapper}>
                   {chooseFormToShow(eachForm)}
                 </Grid>
               );
             })}
-            <Grid item xs={12}>
-              <div
-                style={{
-                  height: 96,
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                  alignItems: "center",
-                  margin: 24,
-                }}
-              >
-                {/* the accent color */}
-                <div
-                  style={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "start",
-                    alignItems: "center",
-                  }}
-                >
-                  <ColorPicker color={props.accentColor} setColor={props.setAccentColor} height={50} />
-                  <p className={classes.colorPickerLabels}>Accent Color</p>
-                </div>
-
-                {/* the header colors */}
-                <div
-                  style={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "start",
-                    alignItems: "center",
-                  }}
-                >
-                  <ColorPicker color={props.headerColor} setColor={props.setHeaderColor} height={50} />
-                  <p className={classes.colorPickerLabels}>Header Colors</p>
-                </div>
-
-                {/* <AccentColorPickerForm accentColor={props.accentColor} setAccentColor={props.setAccentColor} />
-                <HeaderColorPickerForm headerColor={props.headerColor} setHeaderColor={props.setHeaderColor} /> */}
-              </div>
+            <Grid item xs={12} className={classes.formWrapper}>
+              <Miscellaneous formStyles={props.formStyles} setFormStyles={props.setFormStyles} />
             </Grid>
           </Grid>
 
@@ -140,6 +92,7 @@ export const RightForm: FC<RightFormProps> = (props) => {
             variant="contained"
             size="large"
             fullWidth={true}
+            style={{ marginBottom: 36 }}
             onClick={async (e) => {
               e.preventDefault();
               props.makeItemsArray();

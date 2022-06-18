@@ -5,7 +5,7 @@ import { AboutIcon1, AboutIcon2 } from "./LeftMenuIcons/AboutIcons";
 import { EducationIcon1 } from "./LeftMenuIcons/EducationsIcons";
 import { ProjectsIcon1 } from "./LeftMenuIcons/ProjectIcons";
 import { OthersIcon1 } from "./LeftMenuIcons/OthersIcons";
-import { SkillsIcon1 } from "./LeftMenuIcons/SkillsIcons";
+import { SkillsIcon1, SkillsIcon2 } from "./LeftMenuIcons/SkillsIcons";
 import { WorksIcon1 } from "./LeftMenuIcons/WorksIcons";
 
 const useStyles = makeStyles((theme) => ({
@@ -65,6 +65,9 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.eachIcon} onClick={() => props.addBlock(5, 7, "skills1", true)}>
           <SkillsIcon1 />
         </div>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 7, "skills2", true)}>
+          <SkillsIcon2 />
+        </div>
         {/* Works */}
         <div style={{ marginLeft: 12, color: "#777" }}>Work History</div>
         <div className={styles.eachIcon} onClick={() => props.addBlock(7, 7, "works1", true)}>
@@ -74,11 +77,6 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div style={{ marginLeft: 12, color: "#777" }}>Projects</div>
         <div className={styles.eachIcon} onClick={() => props.addBlock(7, 17, "projects1", true)}>
           <ProjectsIcon1 />
-        </div>
-        {/* Others */}
-        <div style={{ marginLeft: 12, color: "#777" }}>Others</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 6, "others1", true)}>
-          <OthersIcon1 />
         </div>
         {/* Others */}
         <div style={{ marginLeft: 12, color: "#777" }}>Others</div>
