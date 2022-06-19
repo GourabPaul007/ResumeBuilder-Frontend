@@ -123,7 +123,12 @@ const CreatePage: React.FC = (props) => {
         ],
       },
     ]);
-    setOthers([]);
+    setOthers([
+      "Lorem ipsum dolor sit amet consectetur.",
+      "Adipisicing Nulla repellat dolorum earum.",
+      "officiis distinctio ipsa officia soluta.",
+      "accusantium exercit ationem.",
+    ]);
     addItem(12, 7, "about1", true);
   }, []);
 
