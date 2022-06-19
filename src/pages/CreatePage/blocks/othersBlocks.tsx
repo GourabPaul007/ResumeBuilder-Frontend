@@ -5,6 +5,13 @@ import { FormStyles } from "../../../interfaces/FormStyles";
 import { GridItem } from "../../../interfaces/GridItem";
 import { useBlockStyles } from "./_BlockStyles";
 
+const dummyOthers = [
+  "Lorem ipsum dolor sit amet consectetur.",
+  "Adipisicing Nulla repellat dolorum earum.",
+  "officiis distinctio ipsa officia soluta.",
+  "accusantium exercit ationem.",
+];
+
 interface OthersBlockProps {
   item: GridItem;
   removeItem: (item: GridItem) => void;
@@ -15,14 +22,7 @@ interface OthersBlockProps {
 export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
   const blockClasses = useBlockStyles(props.formStyles);
 
-  const toBeShownOthers =
-    props.others.length === 0
-      ? [
-          "Lorem ipsum dolor sit amet consectetur.",
-          "Adipisicing Nulla repellat dolorum earum, accusantium exercit ationem.",
-          "officiis distinctio ipsa officia soluta.",
-        ]
-      : props.others;
+  const toBeShownOthers = props.others.length === 0 ? dummyOthers : props.others;
 
   return (
     <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 16, paddingBottom: 16, fontFamily: "sans-serif" }}>
@@ -33,7 +33,7 @@ export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
         </h2>
       </div>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
-      <div style={{ marginTop: 8, paddingLeft: 8, fontSize: 15 }}>
+      <div style={{ paddingLeft: 8, fontSize: 15 }}>
         {toBeShownOthers.map((eachLine: string) => {
           return (
             <div
@@ -43,7 +43,7 @@ export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
                 flexDirection: "row",
                 justifyContent: "start",
                 alignItems: "start",
-                marginBottom: 6,
+                marginBottom: 8,
               }}
             >
               <div>&bull;&nbsp;</div>

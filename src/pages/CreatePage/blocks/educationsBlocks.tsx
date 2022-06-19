@@ -79,13 +79,22 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
                 alignItems: "center",
                 marginBottom: 0,
                 marginTop: 4,
+                width: "100%",
               }}
               key={course.id}
             >
               <div style={{ marginRight: 12 }}>
                 <SchoolRoundedIcon style={{ color: "#434343" || props.formStyles.accentColor }} />
               </div>
-              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "start" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "start",
+                  flex: 1,
+                }}
+              >
                 <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "start" }}>
                   <p style={{ fontWeight: 600, color: "#434343", marginRight: 8 }}>{course.organizationName}</p>
                   <p style={{ color: props.formStyles.accentColor, fontSize: 12, flexShrink: 0, paddingTop: 3 }}>
