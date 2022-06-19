@@ -56,30 +56,13 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
 };
 
 export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
+  const blockClasses = useBlockStyles(props.formStyles);
   const toBeShownSkills = props.skills.data.length > 0 ? props.skills : dummySkills;
 
   return (
     <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 16, paddingBottom: 16, fontFamily: "sans-serif" }}>
-      <div
-        style={{
-          borderBottom: `2px solid ${props.formStyles.titleUnderline ? props.formStyles.titleColor : "transparent"}`,
-          width: props.formStyles.titleFullWidth ? "100%" : "fit-content",
-          marginBottom: 4,
-        }}
-      >
-        <h2
-          style={{
-            fontWeight: 600,
-            display: "inline-block",
-            padding: `2px 4px 2px ${props.formStyles.titleFilled ? 4 : 0}px`,
-            color: props.formStyles.titleColor,
-            backgroundColor: props.formStyles.titleFilled ? props.formStyles.titleFillColor : "transparent",
-            borderRadius: 5,
-            width: props.formStyles.titleFullWidth ? "100%" : "fit-content",
-          }}
-        >
-          {props.skills.title}
-        </h2>
+      <div className={blockClasses.blockTitleDiv}>
+        <h2 className={blockClasses.blockTitleH2}>{props.skills.title}</h2>
       </div>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       <div style={{ marginTop: 4, paddingLeft: 8, fontWeight: 500 }}>

@@ -62,10 +62,10 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         </div>
         {/* Skills */}
         <div style={{ marginLeft: 12, color: "#777" }}>Skills</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 7, "skills1", true)}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 8, "skills1", true)}>
           <SkillsIcon1 />
         </div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 7, "skills2", true)}>
+        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 8, "skills2", true)}>
           <SkillsIcon2 />
         </div>
         {/* Works */}

@@ -101,7 +101,7 @@ export const RightForm: FC<RightFormProps> = (props) => {
                 headers: {
                   "Content-Type": "application/json", //This is required
                 },
-                body: JSON.stringify(props.makeItemsArray()),
+                body: JSON.stringify({ blocks: props.makeItemsArray(), formStyles: props.formStyles }),
               })
                 .then((response) => response.blob())
                 .then((blob) => {

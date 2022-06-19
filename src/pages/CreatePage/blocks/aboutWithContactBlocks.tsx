@@ -47,19 +47,19 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       <div style={{ display: "flex", flexDirection: "row", fontWeight: 500, fontSize: 15, marginTop: 8 }}>
         {/* the about extra */}
-        <div style={{ paddingRight: 4, paddingLeft: 4, flex: "60%" }}>
+        <div style={{ paddingRight: 4, paddingLeft: 4, flex: "59%" }}>
           <p>{props.about.about}</p>
         </div>
-        <div style={{ flex: "3%" }}>&nbsp;</div>
+        <div style={{ flex: "2%" }}>&nbsp;</div>
         {/* the contact section */}
         <div
           style={{
-            marginLeft: 10,
+            marginLeft: 20,
             marginTop: 0,
             marginBottom: 6,
             paddingLeft: 24,
-            borderLeft: "3px solid #123456",
-            flex: "37%",
+            borderLeft: "4px solid #123456",
+            flex: "39%",
           }}
         >
           <div style={{ display: "flex", marginBottom: 4 }}>
