@@ -1,12 +1,12 @@
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
 import React, { Dispatch, FC, useEffect, useState } from "react";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
-import { Work } from "../../../interfaces/Work";
+import { Work, Works } from "../../../interfaces/Works";
 import { useStyles } from "./FormsStyles";
 
 interface WorksFormProps {
-  works: Work[];
-  setWorks: Dispatch<React.SetStateAction<Work[]>>;
+  works: Works;
+  setWorks: Dispatch<React.SetStateAction<Works>>;
 }
 
 export const WorksForm: FC<WorksFormProps> = (props) => {
@@ -14,53 +14,60 @@ export const WorksForm: FC<WorksFormProps> = (props) => {
   // ==================================================================================================================
   // Add or Remove Fields
   const handleAddFields = () => {
-    props.setWorks([
+    props.setWorks({
       ...props.works,
-      {
-        id: `work${Date.now()}`,
-        workOrganizationName: "",
-        workDetails: [""],
-        workDuration: "",
-      },
-    ]);
+      data: [
+        ...props.works.data,
+        {
+          id: `work${Date.now()}`,
+          workOrganizationName: "",
+          workDetails: [""],
+          workDuration: "",
+        },
+      ],
+    });
   };
   const handleRemoveFields = (id: string) => {
-    const values = [...props.works];
-    values.splice(
-      values.findIndex((value) => value.id === id),
+    // remove the work from array where work id is the same as when clicked "X" in UI
+    const worksArray = [...props.works.data];
+    worksArray.splice(
+      worksArray.findIndex((value) => value.id === id),
       1
     );
-    props.setWorks(values);
+    props.setWorks({ ...props.works, data: worksArray });
   };
 
   // ==================================================================================================================
   // Handle Text Inputs
+  const handleBlockTitleInput = (title: string) => {
+    props.setWorks({ ...props.works, title: title });
+  };
   const handleWorkOrganizationNameInput = (organizationName: string, pos: number): void => {
-    const newWorks = props.works.map((singleWork: Work, index) => {
+    const newWorks = props.works.data.map((singleWork: Work, index) => {
       if (pos === index) {
         singleWork.workOrganizationName = organizationName;
       }
       return singleWork;
     });
-    props.setWorks(newWorks);
+    props.setWorks({ ...props.works, data: newWorks });
   };
   const handleWorkDetailsInput = (workDetails: string, pos: number): void => {
-    const newWorks = props.works.map((singleWork: Work, index) => {
+    const newWorks = props.works.data.map((singleWork: Work, index) => {
       if (pos === index) {
         singleWork.workDetails = workDetails.split("<li>");
       }
       return singleWork;
     });
-    props.setWorks(newWorks);
+    props.setWorks({ ...props.works, data: newWorks });
   };
   const handleWorkDurationInput = (workDuration: string, pos: number): void => {
-    const newWorks = props.works.map((singleWork: Work, index) => {
+    const newWorks = props.works.data.map((singleWork: Work, index) => {
       if (pos === index) {
         singleWork.workDuration = workDuration;
       }
       return singleWork;
     });
-    props.setWorks(newWorks);
+    props.setWorks({ ...props.works, data: newWorks });
   };
 
   return (
@@ -68,8 +75,23 @@ export const WorksForm: FC<WorksFormProps> = (props) => {
       <Typography align="center" style={{ fontSize: 24 }}>
         Work History
       </Typography>
-
-      {props.works.map((singleWork, index) => (
+      <Grid container marginBottom={2}>
+        <Grid item xs={12}>
+          <TextField
+            size="small"
+            variant="filled"
+            margin="dense"
+            required
+            fullWidth
+            InputProps={{ classes: { underline: classes.underline } }}
+            label="Title"
+            name="title"
+            value={props.works.title}
+            onChange={(e) => handleBlockTitleInput(e.target.value)}
+          />
+        </Grid>
+      </Grid>
+      {props.works.data.map((singleWork: Work, index) => (
         <div key={index}>
           <Grid container>
             <Grid item xs={11}>

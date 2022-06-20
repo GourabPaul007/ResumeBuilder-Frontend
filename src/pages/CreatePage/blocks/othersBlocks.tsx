@@ -3,26 +3,30 @@ import { v1 as uuidv1 } from "uuid";
 import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
 import { FormStyles } from "../../../interfaces/FormStyles";
 import { GridItem } from "../../../interfaces/GridItem";
+import { Others } from "../../../interfaces/Others";
 import { useBlockStyles } from "./_BlockStyles";
 
-const dummyOthers = [
-  "Lorem ipsum dolor sit amet consectetur.",
-  "Adipisicing Nulla repellat dolorum earum.",
-  "officiis distinctio ipsa officia soluta.",
-  "accusantium exercit ationem.",
-];
+const dummyOthers = {
+  title: "Others Title",
+  data: [
+    "Lorem ipsum dolor sit amet consectetur.",
+    "Adipisicing Nulla repellat dolorum earum.",
+    "officiis distinctio ipsa officia soluta.",
+    "accusantium exercit ationem.",
+  ],
+};
 
 interface OthersBlockProps {
   item: GridItem;
   removeItem: (item: GridItem) => void;
-  others: string[];
+  others: Others;
   formStyles: FormStyles;
 }
 
 export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
   const blockClasses = useBlockStyles(props.formStyles);
 
-  const toBeShownOthers = props.others.length === 0 ? dummyOthers : props.others;
+  const toBeShownOthers = props.others.data.length === 0 ? dummyOthers : props.others;
 
   return (
     <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 16, paddingBottom: 16, fontFamily: "sans-serif" }}>
@@ -34,7 +38,7 @@ export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
       </div>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       <div style={{ paddingLeft: 8, fontSize: 15 }}>
-        {toBeShownOthers.map((eachLine: string) => {
+        {toBeShownOthers.data.map((eachLine: string) => {
           return (
             <div
               key={eachLine + uuidv1}
@@ -46,7 +50,7 @@ export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
                 marginBottom: 8,
               }}
             >
-              <div>&bull;&nbsp;</div>
+              <div>{props.others.bullet === -1 ? "" : String.fromCharCode(props.others.bullet)}&nbsp;&nbsp;</div>
               <div style={{ fontWeight: 500, color: "#434343" }}>{eachLine}</div>
             </div>
           );

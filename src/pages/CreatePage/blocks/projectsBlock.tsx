@@ -7,7 +7,7 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import { checkHyperlink } from "../../../helpers/checkHyperlink";
 import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
 import { GridItem } from "../../../interfaces/GridItem";
-import { Project } from "../../../interfaces/Project";
+import { Project, Projects } from "../../../interfaces/Projects";
 import { FormStyles } from "../../../interfaces/FormStyles";
 import { useBlockStyles } from "./_BlockStyles";
 
@@ -50,15 +50,15 @@ const exampleProjects = [
 interface ProjectsBlockProps {
   item: GridItem;
   removeItem: (item: GridItem) => void;
-  projects: Project[];
+  projects: Projects;
   formStyles: FormStyles;
 }
 
 export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
   const blockClasses = useBlockStyles(props.formStyles);
 
-  const isProjectsEmpty = (projects: Project[]) => {
-    return projects.every((value) => {
+  const isProjectsEmpty = (projects: Projects) => {
+    return projects.data.every((value) => {
       // 1st -> checks if name is empty string, 2nd -> checks if all array members are empty strings
       if (value.projectName === "" && value.projectDetails.join("").length === 0) {
         return true;
@@ -67,7 +67,7 @@ export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
     });
   };
 
-  const toBeShowedProjects = isProjectsEmpty(props.projects) ? exampleProjects : props.projects;
+  const toBeShowedProjects = isProjectsEmpty(props.projects) ? exampleProjects : props.projects.data;
 
   return (
     <div
@@ -80,19 +80,19 @@ export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
       }}
     >
       <div className={blockClasses.blockTitleDiv}>
-        <h2 className={blockClasses.blockTitleH2}>Projects</h2>
+        <h2 className={blockClasses.blockTitleH2}>{props.projects.title}</h2>
       </div>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
-      {toBeShowedProjects.map((eachProjects) => {
+      {toBeShowedProjects.map((eachProject: Project) => {
         return (
-          <div key={eachProjects.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 14 }}>
+          <div key={eachProject.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 14 }}>
             {/* Project Name */}
             <h4 style={{ fontSize: 20, fontWeight: 600, marginLeft: 8, marginBottom: 8, marginTop: 12 }}>
-              {eachProjects.projectName}
+              {eachProject.projectName}
             </h4>
             {/* Project Details */}
             <div style={{ marginBottom: 4, marginLeft: 16, marginTop: 4, fontWeight: 500 }}>
-              {eachProjects.projectDetails.map((detail) => {
+              {eachProject.projectDetails.map((detail: string) => {
                 return (
                   <div
                     key={detail}

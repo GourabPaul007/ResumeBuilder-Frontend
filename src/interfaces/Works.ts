@@ -4,3 +4,8 @@ export interface Work {
   workOrganizationName: string;
   workDuration: string;
 }
+
+export interface Works {
+  title: string;
+  data: Work[];
+}

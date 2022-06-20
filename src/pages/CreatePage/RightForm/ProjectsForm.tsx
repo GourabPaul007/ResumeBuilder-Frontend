@@ -1,12 +1,12 @@
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
 import React, { Dispatch, FC } from "react";
-import { Project } from "../../../interfaces/Project";
+import { Project, Projects } from "../../../interfaces/Projects";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 import { useStyles } from "./FormsStyles";
 
 interface ProjectsFormProps {
-  projects: Project[];
-  setProjects: Dispatch<React.SetStateAction<Project[]>>;
+  projects: Projects;
+  setProjects: Dispatch<React.SetStateAction<Projects>>;
 }
 
 export const ProjectsForm: FC<ProjectsFormProps> = (props) => {
@@ -14,44 +14,50 @@ export const ProjectsForm: FC<ProjectsFormProps> = (props) => {
   // ==================================================================================================================
   // Add or Remove Fields
   const handleAddFields = () => {
-    props.setProjects([
+    props.setProjects({
       ...props.projects,
-      {
-        id: `project${Date.now()}`,
-        projectName: "",
-        projectDetails: [""],
-      },
-    ]);
+      data: [
+        ...props.projects.data,
+        {
+          id: `project${Date.now()}`,
+          projectName: "",
+          projectDetails: [""],
+        },
+      ],
+    });
   };
   const handleRemoveFields = (id: string) => {
-    const values = [...props.projects];
-    values.splice(
-      values.findIndex((value) => value.id === id),
+    const projectsArray = [...props.projects.data];
+    projectsArray.splice(
+      projectsArray.findIndex((value) => value.id === id),
       1
     );
-    props.setProjects(values);
+    props.setProjects({ ...props.projects, data: projectsArray });
   };
 
   // ==================================================================================================================
   // Handle Text Inputs
+  const handleBlockTitleInput = (title: string) => {
+    props.setProjects({ ...props.projects, title: title });
+  };
   const handleProjectNameInput = (projectName: string, pos: number): void => {
-    const newProjects = props.projects.map((singleProject: Project, index) => {
+    const newProjects = props.projects.data.map((singleProject: Project, index) => {
       if (pos === index) {
         singleProject.projectName = projectName;
       }
       return singleProject;
     });
-    props.setProjects(newProjects);
+    props.setProjects({ ...props.projects, data: newProjects });
     console.log(props.projects);
   };
   const handleProjectDetailsInput = (projectDetails: string, pos: number): void => {
-    const newProjects = props.projects.map((singleProject: Project, index) => {
+    const newProjects = props.projects.data.map((singleProject: Project, index) => {
       if (pos === index) {
         singleProject.projectDetails = projectDetails.split("<li>");
       }
       return singleProject;
     });
-    props.setProjects(newProjects);
+    props.setProjects({ ...props.projects, data: newProjects });
   };
 
   return (
@@ -59,8 +65,23 @@ export const ProjectsForm: FC<ProjectsFormProps> = (props) => {
       <Typography align="center" style={{ fontSize: 24 }}>
         Projects
       </Typography>
-
-      {props.projects.map((singleProject, index) => (
+      <Grid container marginBottom={2}>
+        <Grid item xs={12}>
+          <TextField
+            size="small"
+            variant="filled"
+            margin="dense"
+            required
+            fullWidth
+            InputProps={{ classes: { underline: classes.underline } }}
+            label="Title"
+            name="title"
+            value={props.projects.title}
+            onChange={(e) => handleBlockTitleInput(e.target.value)}
+          />
+        </Grid>
+      </Grid>
+      {props.projects.data.map((singleProject, index) => (
         <div key={index}>
           <Grid container>
             <Grid item xs={11}>

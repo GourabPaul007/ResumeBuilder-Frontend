@@ -37,7 +37,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
               key={eachSkill + index}
               style={{
                 display: "inline-block",
-                padding: "4px 8px",
+                padding: "6px 12px",
                 margin: 4,
                 border: `1px solid transparent`,
                 borderRadius: props.skills.chipRadius,

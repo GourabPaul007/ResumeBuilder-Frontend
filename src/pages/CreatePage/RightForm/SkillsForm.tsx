@@ -83,7 +83,7 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
             <Slider
               aria-label="Chip Radius"
               min={0}
-              max={14}
+              max={16}
               step={2}
               valueLabelDisplay="auto"
               value={sliderValue}

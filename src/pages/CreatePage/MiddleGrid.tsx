@@ -12,13 +12,14 @@ import { OthersBlock1 } from "./blocks/othersBlocks";
 import { AboutWithContactBlock1, AboutWithContactBlock2 } from "./blocks/aboutWithContactBlocks";
 import { WorksBlock1 } from "./blocks/worksBlocks";
 import { About } from "../../interfaces/About";
-import { Course } from "../../interfaces/Course";
-import { Work } from "../../interfaces/Work";
+import { Course, Educations } from "../../interfaces/Educations";
+import { Work, Works } from "../../interfaces/Works";
 import { ProjectsBlock1 } from "./blocks/projectsBlock";
-import { Project } from "../../interfaces/Project";
+import { Project, Projects } from "../../interfaces/Projects";
 import { Theme } from "@mui/system";
 import { Skills } from "../../interfaces/Skills";
 import { FormStyles } from "../../interfaces/FormStyles";
+import { Others } from "../../interfaces/Others";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -52,10 +53,10 @@ interface MiddleGridProps {
   removeItem: (item: GridItem) => void;
   about: About;
   skills: Skills;
-  educations: Course[];
-  others: string[];
-  works: Work[];
-  projects: Project[];
+  educations: Educations;
+  others: Others;
+  works: Works;
+  projects: Projects;
   formStyles: FormStyles;
 }
 

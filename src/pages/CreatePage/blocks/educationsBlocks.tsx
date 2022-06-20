@@ -1,32 +1,35 @@
 import React from "react";
-import { Course } from "../../../interfaces/Course";
+import { Course, Educations } from "../../../interfaces/Educations";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
 import { GridItem } from "../../../interfaces/GridItem";
 import { FormStyles } from "../../../interfaces/FormStyles";
 import { useBlockStyles } from "./_BlockStyles";
 
-const dummyEducations: Course[] = [
-  {
-    id: "education001",
-    courseName: "Bachelor of Science in Computer Science",
-    organizationName: "Dinabandhu Mahabidyalaya",
-    courseDuration: "2019 - 2022",
-    courseResults: "Cumulative CGPA 9.00",
-  },
-  {
-    id: "education002",
-    courseName: "Higher Secondary Science Stream",
-    organizationName: "Bangaon Higher Secondary School",
-    courseDuration: "2017 - 2019",
-    courseResults: "Result Percentage 72%",
-  },
-];
+const dummyEducations: Educations = {
+  title: "Bruh Education",
+  data: [
+    {
+      id: "education001",
+      courseName: "Bachelor of Science in Computer Science",
+      organizationName: "Dinabandhu Mahabidyalaya",
+      courseDuration: "2019 - 2022",
+      courseResults: "Cumulative CGPA 9.00",
+    },
+    {
+      id: "education002",
+      courseName: "Higher Secondary Science Stream",
+      organizationName: "Bangaon Higher Secondary School",
+      courseDuration: "2017 - 2019",
+      courseResults: "Result Percentage 72%",
+    },
+  ],
+};
 
 interface EducationsBlockProps {
   item: GridItem;
   removeItem: (item: GridItem) => void;
-  educations: Course[];
+  educations: Educations;
   formStyles: FormStyles;
 }
 
@@ -42,7 +45,7 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
     });
   };
 
-  const toBeShownEducations = !isEmptyObjArr(props.educations) ? props.educations : dummyEducations;
+  const toBeShownEducations = !isEmptyObjArr(props.educations.data) ? props.educations : dummyEducations;
 
   return (
     <div
@@ -56,7 +59,7 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
       }}
     >
       <div className={blockClasses.blockTitleDiv}>
-        <h2 className={blockClasses.blockTitleH2}>Education</h2>
+        <h2 className={blockClasses.blockTitleH2}>{props.educations.title}</h2>
       </div>
       {/* <hr
         style={{ border: `1px solid ${props.formStyles.titleUnderline ? props.formStyles.titleColor : "transparent"}` }}
@@ -70,7 +73,7 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
           justifyContent: "space-around",
         }}
       >
-        {toBeShownEducations.map((course) => {
+        {toBeShownEducations.data.map((course: Course) => {
           return (
             <div
               style={{

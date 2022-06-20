@@ -11,11 +11,12 @@ import LeftMenu from "./CreatePage/LeftMenu";
 import MiddleGrid from "./CreatePage/MiddleGrid";
 import { About } from "../interfaces/About";
 import { RightForm } from "./CreatePage/RightForm";
-import { Course } from "../interfaces/Course";
-import { Work } from "../interfaces/Work";
-import { Project } from "../interfaces/Project";
+import { Course, Educations } from "../interfaces/Educations";
+import { Work, Works } from "../interfaces/Works";
+import { Project, Projects } from "../interfaces/Projects";
 import { Skills } from "../interfaces/Skills";
 import { FormStyles } from "../interfaces/FormStyles";
+import { Others } from "../interfaces/Others";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -30,16 +31,21 @@ const CreatePage: React.FC = (props) => {
     about: "",
   });
   const [skills, setSkills] = useState<Skills>({ color: "#123456", title: "", chipRadius: 10, data: [] });
-  const [educations, setEducations] = useState<Course[]>([
-    { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "", courseDuration: "" },
-  ]);
-  const [works, setWorks] = useState<Work[]>([
-    { id: `work${Date.now()}`, workOrganizationName: "", workDetails: [""], workDuration: "" },
-  ]);
-  const [projects, setProjects] = useState<Project[]>([
-    { id: `project${Date.now()}`, projectName: "", projectDetails: [""] },
-  ]);
-  const [others, setOthers] = useState<string[]>([]);
+  const [educations, setEducations] = useState<Educations>({
+    title: "Education Init",
+    data: [
+      { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "", courseDuration: "" },
+    ],
+  });
+  const [works, setWorks] = useState<Works>({
+    title: "Works Init",
+    data: [{ id: `work${Date.now()}`, workOrganizationName: "", workDetails: [""], workDuration: "" }],
+  });
+  const [projects, setProjects] = useState<Projects>({
+    title: "Works Init",
+    data: [{ id: `project${Date.now()}`, projectName: "", projectDetails: [""] }],
+  });
+  const [others, setOthers] = useState<Others>({ title: "", bullet: -1, data: [""] });
   const [formStyles, setFormStyles] = useState<FormStyles>({
     titleFilled: false,
     titleFullWidth: false,
@@ -60,25 +66,28 @@ const CreatePage: React.FC = (props) => {
       about:
         "Hello There, I'm a Full-Stack Software Engineer. I like to build softwares to solve existing problems & to overcome major or minor inconveniences.",
     });
-    setEducations([
-      {
-        id: "education001",
-        courseName: "Bachelor of Science in Computer Science",
-        courseDuration: "2019 - 2022",
-        organizationName: "Dinabandhu Mahabidyalaya",
-        courseResults: "Cumulative CGPA 9.00",
-      },
-      {
-        id: "education002",
-        courseName: "Higher Secondary Science Stream",
-        courseDuration: "2017 - 2019",
-        organizationName: "Bangaon Higher Secondary School",
-        courseResults: "Result Percentage 72%",
-      },
-    ]);
+    setEducations({
+      title: "Educations UseEffect",
+      data: [
+        {
+          id: "education001",
+          courseName: "Bachelor of Science in Computer Science",
+          courseDuration: "2019 - 2022",
+          organizationName: "Dinabandhu Mahabidyalaya",
+          courseResults: "Cumulative CGPA 9.00",
+        },
+        {
+          id: "education002",
+          courseName: "Higher Secondary Science Stream",
+          courseDuration: "2017 - 2019",
+          organizationName: "Bangaon Higher Secondary School",
+          courseResults: "Result Percentage 72%",
+        },
+      ],
+    });
     setSkills({
       color: "#123456",
-      title: "Skills Title 123",
+      title: "Skills UseEffect",
       chipRadius: 10,
       data: [
         "Lorem ipsum",
@@ -94,41 +103,51 @@ const CreatePage: React.FC = (props) => {
         "soluta",
       ],
     });
-    setWorks([
-      {
-        id: "work1",
-        workOrganizationName: "Company 1",
-        workDetails: [
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
-          "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
-        ],
-        workDuration: "2022 - 2023",
-      },
-    ]);
-    setProjects([
-      {
-        id: "projectWed Jan 12 2022 13:38:12 GMT+0530 (India Standard Time)",
-        projectName: "Resume Builder",
-        projectDetails: [
-          "Built a Full-Stack Application to generate pdf files according to Dynamic User Input. Github: FrontEnd(https://github.com/GourabPaul007/ResumeBuilder-Frontend), Backend(https://github.com/GourabPaul007/ResumeBuilder-Backend).",
-          "Used Technologies: ReactJS, TS, Material UI, React-Redux, NodeJS, ExpressJS, EJS, TypeScript.",
-        ],
-      },
-      {
-        id: "projectWed Jan 12 2022 13:36:24 GMT+0530 (India Standard Time)",
-        projectName: "WhatsNote",
-        projectDetails: [
-          "A WhatsApp like look and feel note taking app built with clean architechture which helps people take detailed notes. Github: Codebase(https://github.com/GourabPaul007/Notebook).",
-          "Used Technologies: Flutter, Riverpod.",
-        ],
-      },
-    ]);
-    setOthers([
-      "Lorem ipsum dolor sit amet consectetur.",
-      "Adipisicing Nulla repellat dolorum earum.",
-      "officiis distinctio ipsa officia soluta.",
-      "accusantium exercit ationem.",
-    ]);
+    setWorks({
+      title: "Works UseEffect",
+      data: [
+        {
+          id: "work1",
+          workOrganizationName: "Company 1",
+          workDetails: [
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
+            "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
+          ],
+          workDuration: "2022 - 2023",
+        },
+      ],
+    });
+    setProjects({
+      title: "Projects UseEffect",
+      data: [
+        {
+          id: "projectWed Jan 12 2022 13:38:12 GMT+0530 (India Standard Time)",
+          projectName: "Resume Builder",
+          projectDetails: [
+            "Built a Full-Stack Application to generate pdf files according to Dynamic User Input. Github: FrontEnd(https://github.com/GourabPaul007/ResumeBuilder-Frontend), Backend(https://github.com/GourabPaul007/ResumeBuilder-Backend).",
+            "Used Technologies: ReactJS, TS, Material UI, React-Redux, NodeJS, ExpressJS, EJS, TypeScript.",
+          ],
+        },
+        {
+          id: "projectWed Jan 12 2022 13:36:24 GMT+0530 (India Standard Time)",
+          projectName: "WhatsNote",
+          projectDetails: [
+            "A WhatsApp like look and feel note taking app built with clean architechture which helps people take detailed notes. Github: Codebase(https://github.com/GourabPaul007/Notebook).",
+            "Used Technologies: Flutter, Riverpod.",
+          ],
+        },
+      ],
+    });
+    setOthers({
+      title: "Others UseEffect",
+      bullet: 9679,
+      data: [
+        "Lorem ipsum dolor sit amet consectetur.",
+        "Adipisicing Nulla repellat dolorum earum.",
+        "officiis distinctio ipsa officia soluta.",
+        "accusantium exercit ationem.",
+      ],
+    });
     addItem(12, 7, "about1", true);
   }, []);
 

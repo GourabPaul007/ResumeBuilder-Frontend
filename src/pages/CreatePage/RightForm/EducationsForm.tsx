@@ -1,12 +1,12 @@
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
 import React, { Dispatch, FC } from "react";
-import { Course } from "../../../interfaces/Course";
+import { Course, Educations } from "../../../interfaces/Educations";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 import { useStyles } from "./FormsStyles";
 
 interface EducationFormProps {
-  educations: Course[];
-  setEducations: Dispatch<React.SetStateAction<Course[]>>;
+  educations: Educations;
+  setEducations: Dispatch<React.SetStateAction<Educations>>;
 }
 
 export const EducationForm: FC<EducationFormProps> = (props) => {
@@ -14,64 +14,70 @@ export const EducationForm: FC<EducationFormProps> = (props) => {
   // ==================================================================================================================
   // Add or Remove Fields
   const handleAddFields = () => {
-    props.setEducations([
+    props.setEducations({
       ...props.educations,
-      {
-        id: `education${Date.now()}`,
-        courseName: "",
-        courseDuration: "",
-        organizationName: "",
-        courseResults: "",
-      },
-    ]);
+      data: [
+        ...props.educations.data,
+        {
+          id: `education${Date.now()}`,
+          courseName: "",
+          courseDuration: "",
+          organizationName: "",
+          courseResults: "",
+        },
+      ],
+    });
   };
   const handleRemoveFields = (id: string) => {
-    const values = [...props.educations];
-    values.splice(
-      values.findIndex((value) => value.id === id),
+    const educationsArray = [...props.educations.data];
+    educationsArray.splice(
+      educationsArray.findIndex((value) => value.id === id),
       1
     );
-    props.setEducations(values);
+    props.setEducations({ ...props.educations, data: educationsArray });
   };
 
   // ==================================================================================================================
   // Handle Text Inputs
+  const handleBlockTitleInput = (title: string) => {
+    props.setEducations({ ...props.educations, title: title });
+  };
   const handleOrganizationNameInput = (organizationName: string, pos: number): void => {
-    const newEducations = props.educations.map((singleEducation: Course, index) => {
+    const newEducations = props.educations.data.map((singleEducation: Course, index) => {
       if (pos === index) {
         singleEducation.organizationName = organizationName;
       }
       return singleEducation;
     });
-    props.setEducations(newEducations);
+    props.setEducations({ ...props.educations, data: newEducations });
     console.log(props.educations);
   };
   const handleCourseNameInput = (courseName: string, pos: number): void => {
-    const newEducations = props.educations.map((singleEducation: Course, index) => {
+    const newEducations = props.educations.data.map((singleEducation: Course, index) => {
       if (pos === index) {
         singleEducation.courseName = courseName;
       }
       return singleEducation;
     });
-    props.setEducations(newEducations);
+    props.setEducations({ ...props.educations, data: newEducations });
   };
   const handleCourseDurationInput = (courseDuration: string, pos: number): void => {
-    const newEducations = props.educations.map((singleEducation: Course, index) => {
+    const newEducations = props.educations.data.map((singleEducation: Course, index) => {
       if (pos === index) {
         singleEducation.courseDuration = courseDuration;
       }
       return singleEducation;
     });
-    props.setEducations(newEducations);
+    props.setEducations({ ...props.educations, data: newEducations });
   };
   const handleCourseResultInput = (courseResults: string, pos: number): void => {
-    const newEducations = props.educations.map((singleEducation: Course, index) => {
+    const newEducations = props.educations.data.map((singleEducation: Course, index) => {
       if (pos === index) {
         singleEducation.courseResults = courseResults;
       }
       return singleEducation;
     });
-    props.setEducations(newEducations);
+    props.setEducations({ ...props.educations, data: newEducations });
   };
 
   return (
@@ -79,8 +85,23 @@ export const EducationForm: FC<EducationFormProps> = (props) => {
       <Typography align="center" style={{ fontSize: 24 }}>
         Education
       </Typography>
-
-      {props.educations.map((singleCourse, index) => (
+      <Grid container marginBottom={2}>
+        <Grid item xs={12}>
+          <TextField
+            size="small"
+            variant="filled"
+            margin="dense"
+            required
+            fullWidth
+            InputProps={{ classes: { underline: classes.underline } }}
+            label="Title"
+            name="title"
+            value={props.educations.title}
+            onChange={(e) => handleBlockTitleInput(e.target.value)}
+          />
+        </Grid>
+      </Grid>
+      {props.educations.data.map((singleCourse, index) => (
         <div key={index}>
           <Grid container marginBottom={2}>
             <Grid item xs={11}>

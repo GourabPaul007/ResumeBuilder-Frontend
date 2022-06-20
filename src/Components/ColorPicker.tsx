@@ -31,6 +31,7 @@ export const ColorPicker: FC<ColorPickerProps> = (props) => {
         width: props.height ? props.height : 36,
         height: props.height ? props.height : 36,
         borderRadius: "50%",
+        boxShadow: "2px 2px 4px 0px rgba(0, 0, 0, 0.4)",
         cursor: "pointer",
       }}
     >
