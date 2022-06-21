@@ -52,8 +52,8 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
       style={{
         paddingLeft: 20,
         paddingRight: 20,
-        paddingTop: 16,
-        paddingBottom: 16,
+        paddingTop: 20,
+        paddingBottom: 20,
         fontFamily: "sans-serif",
         overflow: "hidden",
       }}
@@ -67,7 +67,7 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
       <div
         style={{
-          fontSize: 15,
+          fontSize: 14,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-around",
@@ -99,15 +99,14 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
                 }}
               >
                 <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "start" }}>
-                  <p style={{ fontWeight: 600, color: "#434343", marginRight: 8 }}>{course.organizationName}</p>
+                  <p style={{ fontWeight: 600, color: "#434343", marginRight: 20 }}>{course.organizationName}</p>
                   <p style={{ color: props.formStyles.accentColor, fontSize: 12, flexShrink: 0, paddingTop: 3 }}>
                     {course.courseDuration}
                   </p>
                 </div>
 
-                <p style={{ fontWeight: 500, color: "#434343" }}>
-                  {course.courseName} {course.courseResults}
-                </p>
+                <p style={{ fontWeight: 500, color: "#434343", margin: 0 }}>{course.courseName}</p>
+                <p style={{ fontWeight: 500, color: "#434343" }}>{course.courseResults}</p>
               </div>
             </div>
           );

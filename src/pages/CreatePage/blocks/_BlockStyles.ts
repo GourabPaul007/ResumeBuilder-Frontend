@@ -9,6 +9,7 @@ export const useBlockStyles = makeStyles(() => ({
   }),
   blockTitleH2: (formStyles: FormStyles) => ({
     fontWeight: 600,
+    fontSize: 24,
     display: "inline-block",
     padding: `2px 4px 2px ${formStyles.titleFilled ? 4 : 0}px`,
     color: formStyles.titleColor,
