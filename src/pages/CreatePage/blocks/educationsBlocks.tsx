@@ -48,16 +48,7 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
   const toBeShownEducations = !isEmptyObjArr(props.educations.data) ? props.educations : dummyEducations;
 
   return (
-    <div
-      style={{
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 20,
-        paddingBottom: 20,
-        fontFamily: "sans-serif",
-        overflow: "hidden",
-      }}
-    >
+    <div className={blockClasses.blockWrapper}>
       <div className={blockClasses.blockTitleDiv}>
         <h2 className={blockClasses.blockTitleH2}>{props.educations.title}</h2>
       </div>
@@ -70,7 +61,6 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
           fontSize: 14,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-around",
         }}
       >
         {toBeShownEducations.data.map((course: Course) => {
@@ -80,8 +70,7 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
                 display: "flex",
                 justifyContent: "start",
                 alignItems: "center",
-                marginBottom: 0,
-                marginTop: 4,
+                margin: "0px 0px 0px 0px",
                 width: "100%",
               }}
               key={course.id}

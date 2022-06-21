@@ -2,6 +2,14 @@ import { makeStyles } from "@mui/styles";
 import { FormStyles } from "../../../interfaces/FormStyles";
 
 export const useBlockStyles = makeStyles(() => ({
+  blockWrapper: (formStyles: FormStyles) => ({
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 12,
+    paddingBottom: 12,
+    fontFamily: "sans-serif",
+    overflow: "hidden",
+  }),
   blockTitleDiv: (formStyles: FormStyles) => ({
     borderBottom: `2px solid ${formStyles.titleUnderline ? formStyles.titleColor : "transparent"}`,
     width: formStyles.titleFullWidth ? "100%" : "fit-content",

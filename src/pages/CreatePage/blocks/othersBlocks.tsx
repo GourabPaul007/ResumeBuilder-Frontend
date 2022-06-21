@@ -29,7 +29,7 @@ export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
   const toBeShownOthers = props.others.data.length === 0 ? dummyOthers : props.others;
 
   return (
-    <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 16, paddingBottom: 16, fontFamily: "sans-serif" }}>
+    <div className={blockClasses.blockWrapper}>
       <div className={blockClasses.blockTitleDiv}>
         <h2 className={blockClasses.blockTitleH2}>
           Other Skills &<br />

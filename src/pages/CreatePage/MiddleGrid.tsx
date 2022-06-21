@@ -67,9 +67,23 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
     let name = item.i;
     switch (name) {
       case "about1":
-        return <AboutWithContactBlock1 removeItem={props.removeItem} item={item} about={props.about} />;
+        return (
+          <AboutWithContactBlock1
+            removeItem={props.removeItem}
+            item={item}
+            about={props.about}
+            formStyles={props.formStyles}
+          />
+        );
       case "about2":
-        return <AboutWithContactBlock2 removeItem={props.removeItem} item={item} about={props.about} />;
+        return (
+          <AboutWithContactBlock2
+            removeItem={props.removeItem}
+            item={item}
+            about={props.about}
+            formStyles={props.formStyles}
+          />
+        );
       case "educations1":
         return (
           <EducationsBlock1

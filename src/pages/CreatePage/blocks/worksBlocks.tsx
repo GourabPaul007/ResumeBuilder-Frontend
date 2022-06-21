@@ -54,7 +54,7 @@ export const WorksBlock1: React.FC<WorksBlockProps> = (props) => {
   const toBeDisplayedWorks = !isEmptyObjArr(props.works.data) ? props.works : dummyWorks;
 
   return (
-    <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 16, paddingBottom: 16, fontFamily: "sans-serif" }}>
+    <div className={blockClasses.blockWrapper}>
       <div className={blockClasses.blockTitleDiv}>
         <h2 className={blockClasses.blockTitleH2}>{props.works.title}</h2>
       </div>

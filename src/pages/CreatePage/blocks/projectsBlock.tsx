@@ -70,15 +70,7 @@ export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
   const toBeShowedProjects = isProjectsEmpty(props.projects) ? exampleProjects : props.projects.data;
 
   return (
-    <div
-      style={{
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 16,
-        paddingBottom: 16,
-        fontFamily: "sans-serif",
-      }}
-    >
+    <div className={blockClasses.blockWrapper}>
       <div className={blockClasses.blockTitleDiv}>
         <h2 className={blockClasses.blockTitleH2}>{props.projects.title}</h2>
       </div>

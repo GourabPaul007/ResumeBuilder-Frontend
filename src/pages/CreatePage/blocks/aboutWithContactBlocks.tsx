@@ -11,6 +11,8 @@ import { GridItem } from "../../../interfaces/GridItem";
 import { About } from "../../../interfaces/About";
 import { checkHyperlink } from "../../../helpers/checkHyperlink";
 import { checkNewLines } from "../../../helpers/checkNewLines";
+import { useBlockStyles } from "./_BlockStyles";
+import { FormStyles } from "../../../interfaces/FormStyles";
 
 const about = {
   name: "John Doe",
@@ -29,19 +31,13 @@ interface AboutWithContactBlockProps {
   item: GridItem;
   removeItem: (i: GridItem) => void;
   about: About;
+  formStyles: FormStyles;
 }
 export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (props) => {
+  const blockClasses = useBlockStyles(props.formStyles);
+
   return (
-    <div
-      style={{
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 16,
-        paddingBottom: 16,
-        fontFamily: "sans-serif",
-        color: "#111",
-      }}
-    >
+    <div className={blockClasses.blockWrapper}>
       <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{props.about.name}</h1>
       <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{props.about.profession}</p>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
