@@ -1,18 +1,14 @@
 import { FormControlLabel, Switch, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import React, { Dispatch, FC } from "react";
+import React, { Dispatch, FC, useEffect, useState } from "react";
 import { ColorPicker } from "../../../Components/ColorPicker";
 import { FormStyles } from "../../../interfaces/FormStyles";
 
 const useMiscellaneousStyles = makeStyles((theme: Theme) => ({
   miscellaneousWrapper: {
-    // padding: "24px 0px 24px 0px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    // margin: 24,
-    // border: "2px solid #aaa",
-    // borderRadius: 8,
   },
   colorPickerDiv: {
     height: "100%",
@@ -33,16 +29,22 @@ interface MiscellaneousProps {
 export const Miscellaneous: FC<MiscellaneousProps> = (props) => {
   const classes = useMiscellaneousStyles();
 
-  const setAccentColor = (newColor: string) => {
-    props.setFormStyles({ ...props.formStyles, accentColor: newColor });
+  const [currentTitleColor, setCurrentTitleColor] = useState("#ff0000");
+  const [currentTitleFillColor, setCurrentTitleFillColor] = useState("#00ff00");
+  const [currentAccentColor, setCurrentAccentColor] = useState("#0000ff");
+
+  // Handling Color Pickers
+  const handleChangeTitleColor = (newColor: string) => {
+    setCurrentTitleColor(newColor);
   };
-  const setHeaderColor = (newColor: string) => {
-    props.setFormStyles({ ...props.formStyles, titleColor: newColor });
+  const handleChangeTitleFillColor = (newColor: string) => {
+    setCurrentTitleFillColor(newColor);
   };
-  const setTitleFillColor = (newColor: string) => {
-    props.setFormStyles({ ...props.formStyles, titleFillColor: newColor });
+  const handleChangeAccentColor = (newColor: string) => {
+    setCurrentAccentColor(newColor);
   };
 
+  // Handling Switches
   const handleFillTitleChange = (checkedStatus: boolean) => {
     props.setFormStyles({ ...props.formStyles, titleFilled: checkedStatus });
   };
@@ -52,6 +54,33 @@ export const Miscellaneous: FC<MiscellaneousProps> = (props) => {
   const handleTitleFullWidth = (checkedStatus: boolean) => {
     props.setFormStyles({ ...props.formStyles, titleFullWidth: checkedStatus });
   };
+
+  useEffect(() => {
+    const lastRequest = setTimeout(() => {
+      props.setFormStyles({ ...props.formStyles, titleColor: currentTitleColor });
+    }, 400);
+    return () => {
+      clearTimeout(lastRequest);
+    };
+  }, [currentTitleColor]);
+
+  useEffect(() => {
+    const lastRequest = setTimeout(() => {
+      props.setFormStyles({ ...props.formStyles, titleFillColor: currentTitleFillColor });
+    }, 400);
+    return () => {
+      clearTimeout(lastRequest);
+    };
+  }, [currentTitleFillColor]);
+
+  useEffect(() => {
+    const lastRequest = setTimeout(() => {
+      props.setFormStyles({ ...props.formStyles, accentColor: currentAccentColor });
+    }, 400);
+    return () => {
+      clearTimeout(lastRequest);
+    };
+  }, [currentAccentColor]);
 
   return (
     <div className={classes.miscellaneousWrapper}>
@@ -76,7 +105,7 @@ export const Miscellaneous: FC<MiscellaneousProps> = (props) => {
                   onChange={(e) => handleFillTitleChange(e.target.checked)}
                 />
               }
-              label="Fill Title Background"
+              label="Fill Background"
             />
             <FormControlLabel
               control={
@@ -85,7 +114,7 @@ export const Miscellaneous: FC<MiscellaneousProps> = (props) => {
                   onChange={(e) => handleTitleUnderline(e.target.checked)}
                 />
               }
-              label="Title Underline"
+              label="Underline"
             />
             <FormControlLabel
               control={
@@ -94,23 +123,19 @@ export const Miscellaneous: FC<MiscellaneousProps> = (props) => {
                   onChange={(e) => handleTitleFullWidth(e.target.checked)}
                 />
               }
-              label="Title Full Width"
+              label="Full Width"
             />
           </div>
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-end" }}>
             {/* the Title Stroke colors */}
             <div className={classes.colorPickerDiv}>
               Title Colors &#9658;&nbsp;
-              <ColorPicker color={props.formStyles.titleColor} setColor={setHeaderColor} />
+              <ColorPicker color={props.formStyles.titleColor} handleColor={handleChangeTitleColor} />
             </div>
             {/* the Title Fill colors */}
             <div className={classes.colorPickerDiv}>
               Title Fill Color &#9658;&nbsp;
-              <ColorPicker
-                color={props.formStyles.titleFillColor}
-                setColor={setTitleFillColor}
-                starterColor={"#ffffff"}
-              />
+              <ColorPicker color={props.formStyles.titleFillColor} handleColor={handleChangeTitleFillColor} />
             </div>
           </div>
         </div>
@@ -124,7 +149,7 @@ export const Miscellaneous: FC<MiscellaneousProps> = (props) => {
         <div style={{ border: "2px solid #aaa", borderRadius: 8, padding: 24, display: "flex" }}>
           <div className={classes.colorPickerDiv}>
             Accent Color &#9658;&nbsp;
-            <ColorPicker color={props.formStyles.accentColor} setColor={setAccentColor} />
+            <ColorPicker color={props.formStyles.accentColor} handleColor={handleChangeAccentColor} />
           </div>
         </div>
       </section>

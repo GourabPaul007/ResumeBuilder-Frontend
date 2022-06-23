@@ -14,9 +14,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   title: {
-    padding: "4px 8px",
+    padding: "5px 8px",
     height: 24,
-    backgroundColor: "#ddd",
+    backgroundColor: "#eee",
     fontSize: 13,
     color: "#000",
     borderRadius: 3,

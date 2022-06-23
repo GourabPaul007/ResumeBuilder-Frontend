@@ -12,9 +12,11 @@ interface SkillsFormProps {
 export const SkillsForm: FC<SkillsFormProps> = (props) => {
   const classes = useStyles();
   const [currentColor, setCurrentColor] = useState<string>(
-    "#000000".replace(/0/g, function() {
-      return (~~(Math.random() * 16)).toString(16);
-    })
+    props.skills.color.length > 0
+      ? props.skills.color
+      : "#000000".replace(/0/g, function() {
+          return (~~(Math.random() * 16)).toString(16);
+        })
   );
   const [sliderValue, setSliderValue] = useState(props.skills.chipRadius);
 

@@ -73,9 +73,9 @@ const CreatePage: React.FC = (props) => {
     titleFilled: false,
     titleFullWidth: false,
     titleUnderline: false,
-    accentColor: "",
-    titleColor: "",
-    titleFillColor: "",
+    titleColor: "#ff0000",
+    titleFillColor: "#00ff00",
+    accentColor: "#0000ff",
   });
 
   useEffect(() => {

@@ -3,31 +3,14 @@ import { materialPalette } from "../helpers/colorDatabase";
 
 interface ColorPickerProps {
   color: string;
-  setColor: (newColor: string) => void;
+  handleColor: (newColor: string) => void;
   height?: number;
-  starterColor?: string;
 }
 export const ColorPicker: FC<ColorPickerProps> = (props) => {
-  const [currentColor, setCurrentColor] = useState<string>(
-    props.color ? props.color : materialPalette.A400[Math.floor(Math.random() * 16)]
-  );
-  const handleChangeColor = (newColor: string) => {
-    setCurrentColor(newColor);
-  };
-
-  useEffect(() => {
-    const lastRequest = setTimeout(() => {
-      props.setColor(currentColor);
-    }, 400);
-    return () => {
-      clearTimeout(lastRequest);
-    };
-  }, [currentColor]);
-
   return (
     <label
       style={{
-        backgroundColor: currentColor,
+        backgroundColor: props.color,
         width: props.height ? props.height : 36,
         height: props.height ? props.height : 36,
         borderRadius: "50%",
@@ -39,8 +22,8 @@ export const ColorPicker: FC<ColorPickerProps> = (props) => {
         style={{ visibility: "hidden" }}
         type="color"
         name="colorPicker"
-        value={currentColor}
-        onChange={(e) => handleChangeColor(e.target.value)}
+        value={props.color}
+        onChange={(e) => props.handleColor(e.target.value)}
       />
     </label>
   );

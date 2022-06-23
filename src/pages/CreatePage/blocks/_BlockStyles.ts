@@ -19,7 +19,7 @@ export const useBlockStyles = makeStyles(() => ({
     fontWeight: 600,
     fontSize: 24,
     display: "inline-block",
-    padding: `2px 4px 2px ${formStyles.titleFilled ? 4 : 0}px`,
+    padding: `2px 6px 2px ${formStyles.titleFilled ? 6 : 0}px`,
     color: formStyles.titleColor,
     backgroundColor: formStyles.titleFilled ? formStyles.titleFillColor : "transparent",
     borderRadius: 5,
