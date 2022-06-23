@@ -33,6 +33,7 @@ const dummyWorks = {
 };
 
 interface WorksBlockProps {
+  blockTitle: string;
   item: GridItem;
   removeItem: (item: GridItem) => void;
   works: Works;
@@ -58,7 +59,7 @@ export const WorksBlock1: React.FC<WorksBlockProps> = (props) => {
       <div className={blockClasses.blockTitleDiv}>
         <h2 className={blockClasses.blockTitleH2}>{props.works.title}</h2>
       </div>
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
+      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
       {toBeDisplayedWorks.data.map((eachWork: Work) => {
         return (
           <div key={eachWork.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 15 }}>

@@ -6,6 +6,7 @@ import { About } from "../../../interfaces/About";
 import { useStyles } from "./FormsStyles";
 
 interface AboutWithContactFormProps {
+  formTitle: string;
   about: About;
   setAbout: Dispatch<React.SetStateAction<About>>;
 }
@@ -15,7 +16,7 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
   return (
     <>
       <Typography align="center" style={{ fontSize: 24 }}>
-        About & Contact
+        {props.formTitle}
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={6}>

@@ -48,6 +48,7 @@ const exampleProjects = [
 ];
 
 interface ProjectsBlockProps {
+  blockTitle: string;
   item: GridItem;
   removeItem: (item: GridItem) => void;
   projects: Projects;
@@ -74,7 +75,7 @@ export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
       <div className={blockClasses.blockTitleDiv}>
         <h2 className={blockClasses.blockTitleH2}>{props.projects.title}</h2>
       </div>
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
+      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
       {toBeShowedProjects.map((eachProject: Project) => {
         return (
           <div key={eachProject.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 14 }}>

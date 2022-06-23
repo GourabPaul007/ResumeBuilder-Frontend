@@ -51,8 +51,10 @@ interface MiddleGridProps {
   items: any;
   onLayoutChange: any;
   removeItem: (item: GridItem) => void;
-  about: About;
-  skills: Skills;
+  about1: About;
+  about2: About;
+  skills1: Skills;
+  skills2: Skills;
   educations: Educations;
   others: Others;
   works: Works;
@@ -69,24 +71,27 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
       case "about1":
         return (
           <AboutWithContactBlock1
+            blockTitle={"About & Contact #1"}
             removeItem={props.removeItem}
             item={item}
-            about={props.about}
+            about={props.about1}
             formStyles={props.formStyles}
           />
         );
       case "about2":
         return (
           <AboutWithContactBlock2
+            blockTitle={"About & Contact #2"}
             removeItem={props.removeItem}
             item={item}
-            about={props.about}
+            about={props.about2}
             formStyles={props.formStyles}
           />
         );
       case "educations1":
         return (
           <EducationsBlock1
+            blockTitle={"Education #1"}
             removeItem={props.removeItem}
             item={item}
             educations={props.educations}
@@ -95,19 +100,38 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
         );
       case "skills1":
         return (
-          <SkillsBlock1 removeItem={props.removeItem} item={item} skills={props.skills} formStyles={props.formStyles} />
+          <SkillsBlock1
+            blockTitle={"Skills #1"}
+            removeItem={props.removeItem}
+            item={item}
+            skills={props.skills1}
+            formStyles={props.formStyles}
+          />
         );
       case "skills2":
         return (
-          <SkillsBlock2 removeItem={props.removeItem} item={item} skills={props.skills} formStyles={props.formStyles} />
+          <SkillsBlock2
+            blockTitle={"Skills #2"}
+            removeItem={props.removeItem}
+            item={item}
+            skills={props.skills2}
+            formStyles={props.formStyles}
+          />
         );
       case "works1":
         return (
-          <WorksBlock1 removeItem={props.removeItem} item={item} works={props.works} formStyles={props.formStyles} />
+          <WorksBlock1
+            blockTitle={"Work #1"}
+            removeItem={props.removeItem}
+            item={item}
+            works={props.works}
+            formStyles={props.formStyles}
+          />
         );
       case "projects1":
         return (
           <ProjectsBlock1
+            blockTitle={"Projects #1"}
             removeItem={props.removeItem}
             item={item}
             projects={props.projects}
@@ -116,7 +140,13 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
         );
       case "others1":
         return (
-          <OthersBlock1 removeItem={props.removeItem} item={item} others={props.others} formStyles={props.formStyles} />
+          <OthersBlock1
+            blockTitle={"Others #1"}
+            removeItem={props.removeItem}
+            item={item}
+            others={props.others}
+            formStyles={props.formStyles}
+          />
         );
       default:
         break;

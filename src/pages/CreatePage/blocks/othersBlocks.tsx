@@ -17,6 +17,7 @@ const dummyOthers = {
 };
 
 interface OthersBlockProps {
+  blockTitle: string;
   item: GridItem;
   removeItem: (item: GridItem) => void;
   others: Others;
@@ -36,7 +37,7 @@ export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
           Activities
         </h2>
       </div>
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
+      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
       <div style={{ paddingLeft: 8, fontSize: 15 }}>
         {toBeShownOthers.data.map((eachLine: string) => {
           return (

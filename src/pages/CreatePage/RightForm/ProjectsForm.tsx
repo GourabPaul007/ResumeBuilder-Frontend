@@ -5,6 +5,7 @@ import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutl
 import { useStyles } from "./FormsStyles";
 
 interface ProjectsFormProps {
+  formTitle: string;
   projects: Projects;
   setProjects: Dispatch<React.SetStateAction<Projects>>;
 }
@@ -63,7 +64,7 @@ export const ProjectsForm: FC<ProjectsFormProps> = (props) => {
   return (
     <>
       <Typography align="center" style={{ fontSize: 24 }}>
-        Projects
+        {props.formTitle}
       </Typography>
       <Grid container marginBottom={2}>
         <Grid item xs={12}>

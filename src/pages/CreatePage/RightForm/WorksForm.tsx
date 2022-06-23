@@ -5,6 +5,7 @@ import { Work, Works } from "../../../interfaces/Works";
 import { useStyles } from "./FormsStyles";
 
 interface WorksFormProps {
+  formTitle: string;
   works: Works;
   setWorks: Dispatch<React.SetStateAction<Works>>;
 }
@@ -73,7 +74,7 @@ export const WorksForm: FC<WorksFormProps> = (props) => {
   return (
     <>
       <Typography align="center" style={{ fontSize: 24 }}>
-        Work History
+        {props.formTitle}
       </Typography>
       <Grid container marginBottom={2}>
         <Grid item xs={12}>

@@ -1,16 +1,29 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { GridItem } from "../interfaces/GridItem";
-import { IconButton } from "@mui/material";
+import { Chip, IconButton } from "@mui/material";
 import { DeleteRounded } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
-  button: {
-    // display: "inline-block",
+  wrapper: {
     position: "absolute",
     top: 12,
     right: 12,
-    // float: "right",
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  title: {
+    padding: "4px 8px",
+    height: 24,
+    backgroundColor: "#ddd",
+    fontSize: 13,
+    color: "#000",
+    borderRadius: 3,
+    marginRight: 8,
+    zIndex: 1,
+  },
+  button: {
     backgroundColor: "#ff5252",
     border: "none",
     borderRadius: 3,
@@ -23,11 +36,11 @@ const useStyles = makeStyles((theme) => ({
   iconButton: {
     display: "inline-block",
     float: "right",
-    // "&:hover": { backgroundColor: "#ff1744", cursor: "pointer" },
   },
 }));
 
 interface RemoveBlockButtonProps {
+  blockTitle: string;
   removeItem: (i: GridItem) => void;
   item: GridItem;
 }
@@ -35,9 +48,13 @@ interface RemoveBlockButtonProps {
 export const RemoveBlockButton: React.FC<RemoveBlockButtonProps> = (props) => {
   const classes = useStyles();
   return (
-    <button className={classes.button} onClick={() => props.removeItem(props.item)}>
-      X
-    </button>
+    <div className={classes.wrapper} style={{}}>
+      <div className={classes.title}>{props.blockTitle}</div>
+      {/* <Chip size="small" label={props.blockTitle} /> */}
+      <button className={classes.button} onClick={() => props.removeItem(props.item)}>
+        X
+      </button>
+    </div>
     // <IconButton className={classes.iconButton} size="large" onClick={() => props.removeItem(props.item)}>
     //   <DeleteRounded color="error" />
     // </IconButton>

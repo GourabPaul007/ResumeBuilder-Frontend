@@ -9,7 +9,7 @@ interface ColorPickerProps {
 }
 export const ColorPicker: FC<ColorPickerProps> = (props) => {
   const [currentColor, setCurrentColor] = useState<string>(
-    props.starterColor ? props.starterColor : materialPalette.A400[Math.floor(Math.random() * 16)]
+    props.color ? props.color : materialPalette.A400[Math.floor(Math.random() * 16)]
   );
   const handleChangeColor = (newColor: string) => {
     setCurrentColor(newColor);

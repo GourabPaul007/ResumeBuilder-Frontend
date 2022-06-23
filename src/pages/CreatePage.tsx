@@ -17,11 +17,12 @@ import { Project, Projects } from "../interfaces/Projects";
 import { Skills } from "../interfaces/Skills";
 import { FormStyles } from "../interfaces/FormStyles";
 import { Others } from "../interfaces/Others";
+import { AboutIcon2 } from "./CreatePage/LeftMenuIcons/AboutIcons";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
 const CreatePage: React.FC = (props) => {
-  const [about, setAbout] = useState<About>({
+  const [about1, setAbout1] = useState<About>({
     name: "",
     profession: "",
     address: [""],
@@ -30,7 +31,29 @@ const CreatePage: React.FC = (props) => {
     emails: [""],
     about: "",
   });
-  const [skills, setSkills] = useState<Skills>({ color: "#123456", title: "", chipRadius: 10, data: [] });
+  const [about2, setAbout2] = useState<About>({
+    name: "",
+    profession: "",
+    address: [""],
+    cityZip: "",
+    phno: "",
+    emails: [""],
+    about: "",
+  });
+  const [skills1, setSkills1] = useState<Skills>({
+    color: "#123456",
+    title: "",
+    chipRadius: 10,
+    filled: true,
+    data: [],
+  });
+  const [skills2, setSkills2] = useState<Skills>({
+    color: "#123456",
+    title: "",
+    chipRadius: 10,
+    filled: true,
+    data: [],
+  });
   const [educations, setEducations] = useState<Educations>({
     title: "Education Init",
     data: [
@@ -56,7 +79,7 @@ const CreatePage: React.FC = (props) => {
   });
 
   useEffect(() => {
-    setAbout({
+    setAbout1({
       name: "Gourab Paul",
       profession: "Software Engineer",
       address: ["Saktigarh, Railgate Rd.", "Bongaon WB 743235"],
@@ -85,10 +108,11 @@ const CreatePage: React.FC = (props) => {
         },
       ],
     });
-    setSkills({
+    setSkills1({
       color: "#123456",
       title: "Skills UseEffect",
       chipRadius: 10,
+      filled: true,
       data: [
         "Lorem ipsum",
         "dolor sit amet",
@@ -171,12 +195,16 @@ const CreatePage: React.FC = (props) => {
         data: ((elementName: string) => {
           console.log(elementName);
           switch (elementName) {
-            case "about":
-              return about;
+            case "about1":
+              return about1;
+            case "about2":
+              return AboutIcon2;
             case "educations":
               return educations;
-            case "skills":
-              return skills;
+            case "skills1":
+              return skills1;
+            case "skills2":
+              return skills2;
             case "works":
               return works;
             case "projects":
@@ -224,7 +252,7 @@ const CreatePage: React.FC = (props) => {
     );
     // Add to Form
     const newFormsArray = forms;
-    const newFormName = itemName.substring(0, itemName.length - 1); //setting formName. (exmaple, about1 -> about)
+    const newFormName = itemName;
     if (newFormsArray.includes(newFormName)) {
       // console.log("Form Item already exists", newFormName, forms);
       return;
@@ -233,7 +261,6 @@ const CreatePage: React.FC = (props) => {
     setForms(newFormsArray);
     // console.log("pushed", items, itemName, forms);
   }
-
   function removeItem(toBeRemovedItem: GridItem) {
     console.log("removing", toBeRemovedItem);
     for (let i = 0; i < items.length; i++) {
@@ -246,24 +273,47 @@ const CreatePage: React.FC = (props) => {
       }
     }
   }
-
   /**
    * check if the `itemName w/o number` still exists in the `items` after deletion, because ['about1','about2'] -> ['about1'] -> ['about']
    *
    * if exists (there were 2 different instances of same items i.e. ['about1' , 'about2']) then dont remove from forms array, else remove from form array
    */
   const removeFromFormsArray = (newItems: GridItem[], toBeRemovedItemName: string) => {
-    const newItemsNameArrayWithoutNumber = newItems.map((item) => {
-      return item.i.substring(0, item.i.length - 1);
-    });
-    const toBeRemovedItemWithoutNumber = toBeRemovedItemName.substring(0, toBeRemovedItemName.length - 1);
-    if (newItemsNameArrayWithoutNumber.includes(toBeRemovedItemWithoutNumber)) {
-      console.log("Another item with same form exists", newItemsNameArrayWithoutNumber);
+    const newItemsNameArray = newItems.map((item) => item.i);
+    if (newItemsNameArray.includes(toBeRemovedItemName)) {
+      console.log("Another item with same form exists", newItemsNameArray);
     } else {
-      console.log("Removing Form", toBeRemovedItemWithoutNumber);
-      setForms(forms.filter((formItem) => formItem != toBeRemovedItemWithoutNumber)); // remove from form array where matches the `toBeRemovedItemName`
+      console.log("Removing Form", toBeRemovedItemName);
+      setForms(forms.filter((formItem) => formItem != toBeRemovedItemName)); // remove from form array where matches the `toBeRemovedItemName`
     }
   };
+
+  // const addItemNew = (width: number = 1, height: number = 1, itemName: string, isResizable?: boolean) => {
+  //   // iterate through each member in items, if exists, ++counter & set the forms according to the number
+  //   let numberOfSameItemsAlreadyInArray = 0;
+  //   for (let i = 0; i < items.length; i++) {
+  //     if (items[i].i === itemName) {
+  //       numberOfSameItemsAlreadyInArray += 1;
+  //     }
+  //   }
+  //   setItems(
+  //     items.concat({
+  //       i: `${itemName}#${numberOfSameItemsAlreadyInArray}`,
+  //       x: Infinity,
+  //       y: Infinity,
+  //       w: width,
+  //       h: height,
+  //       isResizable: isResizable ? true : false,
+  //     })
+  //   );
+  //   // Add to Form
+  //   const newFormsArray = forms;
+  //   //setting formName. (exmaple, about1 -> about1#1 or about1#2)
+  //   const newFormName = `${itemName}#${numberOfSameItemsAlreadyInArray})`;
+  //   newFormsArray.push(newFormName);
+  //   setForms(newFormsArray);
+  //   console.log(items, forms);
+  // };
 
   return (
     <>
@@ -278,8 +328,10 @@ const CreatePage: React.FC = (props) => {
             items={items}
             onLayoutChange={onLayoutChange}
             removeItem={removeItem}
-            about={about}
-            skills={skills}
+            about1={about1}
+            about2={about2}
+            skills1={skills1}
+            skills2={skills2}
             educations={educations}
             works={works}
             projects={projects}
@@ -293,10 +345,14 @@ const CreatePage: React.FC = (props) => {
             makeItemsArray={makeItemsArray}
             items={items}
             forms={forms}
-            about={about}
-            setAbout={setAbout}
-            skills={skills}
-            setSkills={setSkills}
+            about1={about1}
+            setAbout1={setAbout1}
+            about2={about2}
+            setAbout2={setAbout2}
+            skills1={skills1}
+            setSkills1={setSkills1}
+            skills2={skills2}
+            setSkills2={setSkills2}
             educations={educations}
             setEducations={setEducations}
             works={works}

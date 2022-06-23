@@ -5,6 +5,7 @@ import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutl
 import { useStyles } from "./FormsStyles";
 
 interface EducationFormProps {
+  formTitle: string;
   educations: Educations;
   setEducations: Dispatch<React.SetStateAction<Educations>>;
 }
@@ -83,7 +84,7 @@ export const EducationForm: FC<EducationFormProps> = (props) => {
   return (
     <>
       <Typography align="center" style={{ fontSize: 24 }}>
-        Education
+        {props.formTitle}
       </Typography>
       <Grid container marginBottom={2}>
         <Grid item xs={12}>

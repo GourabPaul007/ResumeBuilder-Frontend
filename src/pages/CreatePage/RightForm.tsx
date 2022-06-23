@@ -17,6 +17,7 @@ import { OthersForm } from "./RightForm/OthersForm";
 import { ProjectsForm } from "./RightForm/ProjectsForm";
 import { SkillsForm } from "./RightForm/SkillsForm";
 import { WorksForm } from "./RightForm/WorksForm";
+import ReactDOMServer from "react-dom/server";
 
 const useStyles = makeStyles(() => ({
   formWrapper: {
@@ -31,12 +32,16 @@ const useStyles = makeStyles(() => ({
 interface RightFormProps {
   makeItemsArray: () => void;
   items: GridItem[];
-  about: About;
-  setAbout: Dispatch<React.SetStateAction<About>>;
+  about1: About;
+  setAbout1: Dispatch<React.SetStateAction<About>>;
+  about2: About;
+  setAbout2: Dispatch<React.SetStateAction<About>>;
   educations: Educations;
   setEducations: Dispatch<React.SetStateAction<Educations>>;
-  skills: Skills;
-  setSkills: Dispatch<React.SetStateAction<Skills>>;
+  skills1: Skills;
+  setSkills1: Dispatch<React.SetStateAction<Skills>>;
+  skills2: Skills;
+  setSkills2: Dispatch<React.SetStateAction<Skills>>;
   works: Works;
   setWorks: Dispatch<React.SetStateAction<Works>>;
   projects: Projects;
@@ -54,18 +59,32 @@ export const RightForm: FC<RightFormProps> = (props) => {
   // Return the specific form from passed parameter
   const chooseFormToShow = (form: string): React.ReactNode => {
     switch (form) {
-      case "about":
-        return <AboutWithContactForm about={props.about} setAbout={props.setAbout} />;
-      case "skills":
-        return <SkillsForm skills={props.skills} setSkills={props.setSkills} />;
-      case "educations":
-        return <EducationForm educations={props.educations} setEducations={props.setEducations} />;
-      case "works":
-        return <WorksForm works={props.works} setWorks={props.setWorks} />;
-      case "projects":
-        return <ProjectsForm projects={props.projects} setProjects={props.setProjects} />;
-      case "others":
-        return <OthersForm others={props.others} setOthers={props.setOthers} />;
+      case "about1":
+        return (
+          <AboutWithContactForm about={props.about1} setAbout={props.setAbout1} formTitle={"About & Contact #1"} />
+        );
+      case "about2":
+        return (
+          <AboutWithContactForm about={props.about2} setAbout={props.setAbout2} formTitle={"About & Contact #2"} />
+        );
+      case "skills1":
+        return <SkillsForm skills={props.skills1} setSkills={props.setSkills1} formTitle={"Skills #1"} />;
+      case "skills2":
+        return <SkillsForm skills={props.skills2} setSkills={props.setSkills2} formTitle={"Skills #2"} />;
+      case "educations1":
+        return (
+          <EducationForm educations={props.educations} setEducations={props.setEducations} formTitle={"Education #1"} />
+        );
+      case "works1":
+        return <WorksForm works={props.works} setWorks={props.setWorks} formTitle={"Work #1"} />;
+      case "projects1":
+        return <ProjectsForm projects={props.projects} setProjects={props.setProjects} formTitle={"Projects #1"} />;
+      case "others1":
+        return <OthersForm others={props.others} setOthers={props.setOthers} formTitle={"Others #1"} />;
+      // case "others2":
+      //   return <OthersForm others={props.others} setOthers={props.setOthers} formTitle={"About #1"} />;
+      // case "others#2":
+      //   return <OthersForm others={props.others} setOthers={props.setOthers} formTitle={"About #1"} />;
       default:
         return null;
     }
@@ -97,6 +116,15 @@ export const RightForm: FC<RightFormProps> = (props) => {
             onClick={async (e) => {
               e.preventDefault();
               props.makeItemsArray();
+              let html = ReactDOMServer.renderToString(
+                <div>
+                  <>
+                    <Typography>Bruh</Typography>
+                  </>
+                </div>
+              );
+              console.log(html);
+
               await fetch("http://localhost:5000/api/custom/custom-resume", {
                 method: "POST",
                 headers: {

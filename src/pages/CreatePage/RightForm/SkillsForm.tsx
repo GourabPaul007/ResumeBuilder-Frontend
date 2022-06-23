@@ -1,9 +1,10 @@
-import { Autocomplete, Chip, Grid, Slider, TextField, Typography } from "@mui/material";
+import { Autocomplete, Chip, Grid, Slider, Switch, TextField, Typography } from "@mui/material";
 import React, { Dispatch, FC, useEffect, useState } from "react";
 import { Skills } from "../../../interfaces/Skills";
 import { useStyles } from "./FormsStyles";
 
 interface SkillsFormProps {
+  formTitle: string;
   skills: Skills;
   setSkills: Dispatch<React.SetStateAction<Skills>>;
 }
@@ -15,7 +16,7 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
       return (~~(Math.random() * 16)).toString(16);
     })
   );
-  const [sliderValue, setSliderValue] = useState(0);
+  const [sliderValue, setSliderValue] = useState(props.skills.chipRadius);
 
   useEffect(() => {
     const lastRequest = setTimeout(() => {
@@ -38,6 +39,10 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
   const handleChangeSkillsItemsColor = (newColor: string) => {
     setCurrentColor(newColor);
   };
+  const handleCheckFilled = (isFilled: boolean) => {
+    console.log(isFilled);
+    props.setSkills({ ...props.skills, filled: isFilled });
+  };
   const handleChipRadiusSlider = (event: Event, newChipRadius: number | number[]) => {
     const radius = Array.isArray(newChipRadius) ? newChipRadius[0] : newChipRadius;
     // props.setSkills({ ...props.skills, chipRadius: radius });
@@ -48,7 +53,7 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
     <>
       <div style={{ fontFamily: "sans-serif", fontSize: 16 }}>
         <Typography align="center" style={{ fontSize: 24 }}>
-          Skills
+          {props.formTitle}
         </Typography>
         <Grid container columnSpacing={2} rowSpacing={0}>
           {/* <Grid item xs={4}>
@@ -71,7 +76,7 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
           </Grid>
           <Grid
             item
-            xs={4}
+            xs={3}
             style={{
               display: "flex",
               flexDirection: "column",
@@ -91,7 +96,21 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
             />
             Chip Radius
           </Grid>
-          <Grid item xs={4}>
+          <Grid
+            item
+            xs={2}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "#666",
+            }}
+          >
+            <Switch checked={props.skills.filled} onChange={(e) => handleCheckFilled(e.target.checked)} />
+            Filled
+          </Grid>
+          <Grid item xs={3}>
             <div
               style={{
                 height: "100%",
@@ -123,6 +142,7 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
               </label>
             </div>
           </Grid>
+
           <Grid item xs={12}>
             <TextField
               variant="filled"

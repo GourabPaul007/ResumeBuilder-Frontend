@@ -19,7 +19,6 @@ const about = {
   profession: "Software Engineer",
   about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
 };
-
 const contact = {
   emails: ["johndoe@abc.com", "github.com/JohnDoe"],
   phno: ["123-456-7890"],
@@ -28,6 +27,7 @@ const contact = {
 };
 
 interface AboutWithContactBlockProps {
+  blockTitle: string;
   item: GridItem;
   removeItem: (i: GridItem) => void;
   about: About;
@@ -40,7 +40,7 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
     <div className={blockClasses.blockWrapper}>
       <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{props.about.name}</h1>
       <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{props.about.profession}</p>
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
+      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
       <div style={{ display: "flex", flexDirection: "row", fontWeight: 500, fontSize: 15, marginTop: 8 }}>
         {/* the about extra */}
         <div style={{ paddingRight: 4, paddingLeft: 4, flex: "59%" }}>
@@ -91,7 +91,7 @@ export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (pro
     <div style={{ margin: 16, fontFamily: "sans-serif" }}>
       <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{props.about.name}</h1>
       <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{props.about.profession}</p>
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
+      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
       <div style={{ marginTop: 16, paddingLeft: 8 }}>
         {[
           "Lorem ipsum dolor sit amet consectetur.",

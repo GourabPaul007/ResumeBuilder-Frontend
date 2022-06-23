@@ -27,6 +27,7 @@ const dummyEducations: Educations = {
 };
 
 interface EducationsBlockProps {
+  blockTitle: string;
   item: GridItem;
   removeItem: (item: GridItem) => void;
   educations: Educations;
@@ -55,7 +56,7 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
       {/* <hr
         style={{ border: `1px solid ${props.formStyles.titleUnderline ? props.formStyles.titleColor : "transparent"}` }}
       /> */}
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} />
+      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
       <div
         style={{
           fontSize: 14,
@@ -88,7 +89,7 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
                 }}
               >
                 <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "start" }}>
-                  <p style={{ fontWeight: 600, color: "#434343", marginRight: 20 }}>{course.organizationName}</p>
+                  <p style={{ fontWeight: 600, color: "#434343", marginRight: 30 }}>{course.organizationName}</p>
                   <p style={{ color: props.formStyles.accentColor, fontSize: 12, flexShrink: 0, paddingTop: 3 }}>
                     {course.courseDuration}
                   </p>

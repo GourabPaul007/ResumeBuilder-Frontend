@@ -13,6 +13,7 @@ import { Others } from "../../../interfaces/Others";
 import { useStyles } from "./FormsStyles";
 
 interface OthersFormProps {
+  formTitle: string;
   others: Others;
   setOthers: Dispatch<React.SetStateAction<Others>>;
 }
@@ -34,7 +35,7 @@ export const OthersForm: FC<OthersFormProps> = (props) => {
   return (
     <>
       <Typography align="center" style={{ fontSize: 24 }}>
-        Others
+        {props.formTitle}
       </Typography>
       <Grid container marginBottom={2} spacing={2}>
         <Grid item xs={7}>
