@@ -26,6 +26,30 @@ const contact = {
   cityZip: "Los Angeles CA 12345",
 };
 
+const dummyAboutAndContactData = {
+  name: "Gourab Paul",
+  profession: "Software Engineer",
+  address: ["Saktigarh, Bongaon WB 743235"],
+  cityZip: "Bangaon WB 743235",
+  phno: "+91 9064040525",
+  emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
+  about:
+    "Hello There, I'm a Full-Stack Software Engineer. I like to build softwares to solve existing problems & to overcome major or minor inconveniences.",
+};
+const isEmptyAandC = (about: About) => {
+  // if (
+  //   about.about === "" &&
+  //   about.address.join().length === 0 &&
+  //   about.cityZip === "" &&
+  //   about.emails.join().length &&
+  //   about.name === "" &&
+  //   about.phno === "" &&
+  //   about.profession === ""
+  // )
+  //   return true;
+  // else return false;
+  return true;
+};
 interface AboutWithContactBlockProps {
   blockTitle: string;
   item: GridItem;
@@ -36,22 +60,23 @@ interface AboutWithContactBlockProps {
 export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (props) => {
   const blockClasses = useBlockStyles(props.formStyles);
 
+  const toBeShownAboutAndContact = isEmptyAandC(props.about) ? dummyAboutAndContactData : props.about;
+
   return (
     <div className={blockClasses.blockWrapper}>
-      <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{props.about.name}</h1>
-      <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{props.about.profession}</p>
+      <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{toBeShownAboutAndContact.name}</h1>
+      <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{toBeShownAboutAndContact.profession}</p>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
       <div style={{ display: "flex", flexDirection: "row", fontWeight: 500, fontSize: 15, marginTop: 8 }}>
         {/* the about extra */}
         <div style={{ paddingRight: 4, paddingLeft: 4, flex: "59%" }}>
-          <p>{props.about.about}</p>
+          <p>{toBeShownAboutAndContact.about}</p>
         </div>
         <div style={{ flex: "2%" }}>&nbsp;</div>
         {/* the contact section */}
         <div
           style={{
             marginLeft: 20,
-            marginTop: 0,
             marginBottom: 6,
             paddingLeft: 24,
             borderLeft: "4px solid #123456",
@@ -61,7 +86,7 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
           <div style={{ display: "flex", marginBottom: 4 }}>
             <LocationOnRoundedIcon style={{ color: "#FF2071", fontSize: 16, marginRight: 8 }} />
             <div>
-              {props.about.address.map((element) => (
+              {toBeShownAboutAndContact.address.map((element) => (
                 <div key={element + uuidv1}>{checkHyperlink(element)}</div>
               ))}
             </div>
@@ -71,14 +96,14 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
             <EmailRoundedIcon style={{ color: "#1565c0", fontSize: 16, marginRight: 8 }} />
             {/* emails, for flex reasons */}
             <div>
-              {props.about.emails.map((element) => (
+              {toBeShownAboutAndContact.emails.map((element) => (
                 <div key={element + uuidv1}>{checkHyperlink(element)}</div>
               ))}
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <PhoneIcon style={{ color: "#388e3c", fontSize: 16, marginRight: 8 }} />
-            {props.about.phno}
+            {toBeShownAboutAndContact.phno}
           </div>
         </div>
       </div>
@@ -87,33 +112,45 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
 };
 
 export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (props) => {
+  const toBeShownAboutAndContact = isEmptyAandC(props.about) ? dummyAboutAndContactData : props.about;
+  const joinAddresses = (addresses: string[]) => {
+    let joinedAddress = "";
+    addresses.forEach((address) => {
+      joinedAddress += address;
+    });
+    return joinedAddress;
+  };
   return (
     <div style={{ margin: 16, fontFamily: "sans-serif" }}>
-      <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{props.about.name}</h1>
-      <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{props.about.profession}</p>
+      <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{toBeShownAboutAndContact.name}</h1>
+      <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{toBeShownAboutAndContact.profession}</p>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
-      <div style={{ marginTop: 16, paddingLeft: 8 }}>
-        {[
-          "Lorem ipsum dolor sit amet consectetur.",
-          " adipisicing Nulla repellat dolorum earum, accusantium exercit ationem.",
-          "officiis distinctio ipsa officia soluta minus ideaque fuga.",
-        ].map((eachLine: string) => {
-          return (
-            <div
-              key={eachLine + uuidv1}
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "start",
-                alignItems: "start",
-                marginBottom: 6,
-              }}
-            >
-              <div>&bull;&nbsp;</div>
-              <div style={{ fontSize: 14, fontWeight: 500, color: "#434343" }}>{eachLine}</div>
+      <div style={{ display: "flex", flexDirection: "column", fontWeight: 500, fontSize: 15, marginTop: 8 }}>
+        <div style={{ paddingRight: 8, paddingLeft: 4 }}>
+          <p>{toBeShownAboutAndContact.about}</p>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-evenly", color: "red" }}>
+          {/* The Left Links */}
+          <div style={{ paddingRight: 8, paddingLeft: 4 }}>
+            {toBeShownAboutAndContact.emails.map((element) => (
+              <div key={element + uuidv1} style={{ textDecoration: "none", margin: 2 }}>
+                {checkHyperlink(element)}
+              </div>
+            ))}
+          </div>
+          {/* The Right Links */}
+          <div style={{ paddingRight: 8, paddingLeft: 4, display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", alignItems: "center", margin: 2 }}>
+              <PhoneIcon style={{ color: "#388e3c", fontSize: 16, marginRight: 8 }} />
+              {toBeShownAboutAndContact.phno}
             </div>
-          );
-        })}
+            <div style={{ margin: 2 }}>
+              {toBeShownAboutAndContact.address.map((e) => (
+                <span>{checkHyperlink(e)}</span>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

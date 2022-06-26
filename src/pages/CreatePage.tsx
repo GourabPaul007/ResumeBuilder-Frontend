@@ -321,7 +321,7 @@ const CreatePage: React.FC = (props) => {
 
       <div className="createPageWrapper">
         <aside className="leftMenu">
-          <LeftMenu addBlock={addItem} />
+          <LeftMenu addBlock={addItem} items={items} />
         </aside>
         <div className="middleGrid">
           <MiddleGrid

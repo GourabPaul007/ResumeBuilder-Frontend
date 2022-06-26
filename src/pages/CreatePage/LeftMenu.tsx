@@ -7,18 +7,32 @@ import { ProjectsIcon1 } from "./LeftMenuIcons/ProjectIcons";
 import { OthersIcon1 } from "./LeftMenuIcons/OthersIcons";
 import { SkillsIcon1, SkillsIcon2 } from "./LeftMenuIcons/SkillsIcons";
 import { WorksIcon1 } from "./LeftMenuIcons/WorksIcons";
+import { GridItem } from "../../interfaces/GridItem";
 
 const useStyles = makeStyles((theme) => ({
   eachIcon: {
     backgroundColor: "#fff",
     margin: 10,
     marginBottom: 20,
-    boxShadow: "0 5px 5px -3px rgba(36,69,101,0.19),0 4px 6px -2px #d0dce8;",
+    border: "1px solid #00000021",
+    borderBottom: "2px solid #00000021",
+    backfaceVisibility: "hidden",
     borderRadius: 5,
     "&:hover": {
       transform: "scale(1.1)",
       transitionDuration: "0.2s",
       cursor: "pointer",
+    },
+  },
+  eachSelectedIcon: {
+    backgroundColor: "#dedede",
+    margin: 10,
+    marginBottom: 20,
+    border: "1px solid #00000021",
+    borderBottom: "2px solid #00000021",
+    borderRadius: 5,
+    "&:hover": {
+      cursor: "not-allowed",
     },
   },
   avatar: {
@@ -39,48 +53,83 @@ const useStyles = makeStyles((theme) => ({
 
 interface LeftMenuProps {
   addBlock: (width: number, height: number, name: string, isResizable?: boolean) => void;
+  items: GridItem[];
 }
 
 const LeftMenu: React.FC<LeftMenuProps> = (props) => {
   const styles = useStyles();
+
+  const inItemsArray = (itemName: string): boolean => {
+    for (let i = 0; i < props.items.length; i++) {
+      if (props.items[i].i == itemName) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   return (
     <>
       <div style={{ paddingLeft: 3, paddingRight: 3 }}>
         {/* About + Contact */}
         <div style={{ marginLeft: 12, color: "#777" }}>About + Contact</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(12, 7, "about1", true)}>
+        <div
+          className={inItemsArray("about1") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock(12, 7, "about1", true)}
+        >
           <AboutIcon1 />
         </div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(12, 7, "about2", true)}>
+        <div
+          className={inItemsArray("about2") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock(12, 7, "about2", true)}
+        >
           <AboutIcon2 />
         </div>
         {/* Works */}
         {/* Educations */}
         <div style={{ marginLeft: 12, color: "#777" }}>Education</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 8, "educations1", true)}>
+        <div
+          className={inItemsArray("educations1") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock(5, 8, "educations1", true)}
+        >
           <EducationIcon1 />
         </div>
         {/* Skills */}
         <div style={{ marginLeft: 12, color: "#777" }}>Skills</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 8, "skills1", true)}>
+        <div
+          className={inItemsArray("skills1") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock(5, 8, "skills1", true)}
+        >
           <SkillsIcon1 />
         </div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 8, "skills2", true)}>
+        <div
+          className={inItemsArray("skills2") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock(5, 8, "skills2", true)}
+        >
           <SkillsIcon2 />
         </div>
         {/* Works */}
         <div style={{ marginLeft: 12, color: "#777" }}>Work History</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(7, 7, "works1", true)}>
+        <div
+          className={inItemsArray("works1") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock(7, 7, "works1", true)}
+        >
           <WorksIcon1 />
         </div>
         {/* Projects */}
         <div style={{ marginLeft: 12, color: "#777" }}>Projects</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(7, 17, "projects1", true)}>
+        <div
+          className={inItemsArray("projects1") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock(7, 17, "projects1", true)}
+        >
           <ProjectsIcon1 />
         </div>
         {/* Others */}
         <div style={{ marginLeft: 12, color: "#777" }}>Others</div>
-        <div className={styles.eachIcon} onClick={() => props.addBlock(5, 7, "others1", true)}>
+        <div
+          className={inItemsArray("others1") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock(5, 7, "others1", true)}
+        >
           <OthersIcon1 />
         </div>
       </div>
