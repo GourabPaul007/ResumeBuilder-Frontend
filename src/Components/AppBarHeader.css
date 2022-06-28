@@ -58,7 +58,8 @@
   text-transform: capitalize;
   margin-right: 25px;
   /* color: var(--primary-color); */
-  color: white;
+  /* cause visited links are colored inherit in createpage.css */
+  color: white !important;
   font-weight: 500;
   font-size: 16px;
 }
