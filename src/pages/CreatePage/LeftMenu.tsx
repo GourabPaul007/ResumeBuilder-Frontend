@@ -14,8 +14,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#fff",
     margin: 10,
     marginBottom: 20,
-    border: "1px solid #00000021",
-    borderBottom: "2px solid #00000021",
+    border: "1px solid #6b5be6",
+    // border: "1px solid #00000021",
+    // borderBottom: "2px solid #00000021",
     backfaceVisibility: "hidden",
     borderRadius: 5,
     "&:hover": {
@@ -28,8 +29,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#dedede",
     margin: 10,
     marginBottom: 20,
-    border: "1px solid #00000021",
-    borderBottom: "2px solid #00000021",
+    border: "1px solid #6b5be6",
+    // border: "1px solid #00000021",
+    // borderBottom: "2px solid #00000021",
     borderRadius: 5,
     "&:hover": {
       cursor: "not-allowed",

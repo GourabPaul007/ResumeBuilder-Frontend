@@ -4,13 +4,10 @@ import { v1 as uuidv1 } from "uuid";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import PhoneIcon from "@mui/icons-material/Phone";
-import { Button, IconButton } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
+import { chooseLinkIcon, RemoveBlockButton } from "../../../Components/CustomPageComponents";
 import { GridItem } from "../../../interfaces/GridItem";
 import { About } from "../../../interfaces/About";
 import { checkHyperlink } from "../../../helpers/checkHyperlink";
-import { checkNewLines } from "../../../helpers/checkNewLines";
 import { useBlockStyles } from "./_BlockStyles";
 import { FormStyles } from "../../../interfaces/FormStyles";
 
@@ -37,18 +34,18 @@ const dummyAboutAndContactData = {
     "Hello There, I'm a Full-Stack Software Engineer. I like to build softwares to solve existing problems & to overcome major or minor inconveniences.",
 };
 const isEmptyAandC = (about: About) => {
-  // if (
-  //   about.about === "" &&
-  //   about.address.join().length === 0 &&
-  //   about.cityZip === "" &&
-  //   about.emails.join().length &&
-  //   about.name === "" &&
-  //   about.phno === "" &&
-  //   about.profession === ""
-  // )
-  //   return true;
-  // else return false;
-  return true;
+  if (
+    about.about === "" &&
+    about.address.join().length === 0 &&
+    about.cityZip === "" &&
+    about.emails.join().length === 0 &&
+    about.name === "" &&
+    about.phno === "" &&
+    about.profession === ""
+  )
+    return true;
+  else return false;
+  // return true;
 };
 interface AboutWithContactBlockProps {
   blockTitle: string;
@@ -84,7 +81,7 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
           }}
         >
           <div style={{ display: "flex", marginBottom: 4 }}>
-            <LocationOnRoundedIcon style={{ color: "#FF2071", fontSize: 16, marginRight: 8 }} />
+            <LocationOnRoundedIcon style={{ color: "#FF2071", fontSize: 16, marginRight: 8, marginTop: 4 }} />
             <div>
               {toBeShownAboutAndContact.address.map((element) => (
                 <div key={element + uuidv1}>{checkHyperlink(element)}</div>
@@ -93,7 +90,7 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
           </div>
 
           <div style={{ display: "flex", marginBottom: 6 }}>
-            <EmailRoundedIcon style={{ color: "#1565c0", fontSize: 16, marginRight: 8 }} />
+            <EmailRoundedIcon style={{ color: "#1565c0", fontSize: 16, marginRight: 8, marginTop: 5 }} />
             {/* emails, for flex reasons */}
             <div>
               {toBeShownAboutAndContact.emails.map((element) => (
@@ -112,7 +109,9 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
 };
 
 export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (props) => {
+  const blockClasses = useBlockStyles(props.formStyles);
   const toBeShownAboutAndContact = isEmptyAandC(props.about) ? dummyAboutAndContactData : props.about;
+
   const joinAddresses = (addresses: string[]) => {
     let joinedAddress = "";
     addresses.forEach((address) => {
@@ -121,7 +120,7 @@ export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (pro
     return joinedAddress;
   };
   return (
-    <div style={{ margin: 16, fontFamily: "sans-serif" }}>
+    <div className={blockClasses.blockWrapper}>
       <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{toBeShownAboutAndContact.name}</h1>
       <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{toBeShownAboutAndContact.profession}</p>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
@@ -129,11 +128,15 @@ export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (pro
         <div style={{ paddingRight: 8, paddingLeft: 4 }}>
           <p>{toBeShownAboutAndContact.about}</p>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-evenly", color: "red" }}>
+        <div style={{ display: "flex", justifyContent: "space-evenly", color: props.formStyles.accentColor }}>
           {/* The Left Links */}
           <div style={{ paddingRight: 8, paddingLeft: 4 }}>
             {toBeShownAboutAndContact.emails.map((element) => (
-              <div key={element + uuidv1} style={{ textDecoration: "none", margin: 2 }}>
+              <div
+                key={element + uuidv1}
+                style={{ textDecoration: "none", margin: 2, display: "flex", alignItems: "center" }}
+              >
+                {chooseLinkIcon(element)}
                 {checkHyperlink(element)}
               </div>
             ))}
@@ -141,12 +144,14 @@ export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (pro
           {/* The Right Links */}
           <div style={{ paddingRight: 8, paddingLeft: 4, display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", alignItems: "center", margin: 2 }}>
-              <PhoneIcon style={{ color: "#388e3c", fontSize: 16, marginRight: 8 }} />
+              <PhoneIcon style={{ fontSize: 16, marginRight: 8 }} />
+              {chooseLinkIcon("phone")}
               {toBeShownAboutAndContact.phno}
             </div>
-            <div style={{ margin: 2 }}>
-              {toBeShownAboutAndContact.address.map((e) => (
-                <span>{checkHyperlink(e)}</span>
+            <div style={{ margin: 2, display: "flex", alignItems: "center" }}>
+              {chooseLinkIcon("home")}
+              {toBeShownAboutAndContact.address.map((e, index) => (
+                <span key={e + index}>{checkHyperlink(e)}</span>
               ))}
             </div>
           </div>
