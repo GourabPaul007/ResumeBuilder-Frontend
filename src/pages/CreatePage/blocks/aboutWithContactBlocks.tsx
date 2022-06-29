@@ -3,13 +3,14 @@ import { v1 as uuidv1 } from "uuid";
 
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
-import PhoneIcon from "@mui/icons-material/Phone";
-import { chooseLinkIcon, RemoveBlockButton } from "../../../Components/CustomPageComponents";
+import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
 import { GridItem } from "../../../interfaces/GridItem";
-import { About } from "../../../interfaces/About";
+import { AboutWithContact } from "../../../interfaces/AboutWithContact";
 import { checkHyperlink } from "../../../helpers/checkHyperlink";
 import { useBlockStyles } from "./_BlockStyles";
 import { FormStyles } from "../../../interfaces/FormStyles";
+import { getUrlDomainName } from "../../../helpers/getUrlDomainName";
+import { getIcon } from "../../../helpers/Icons";
 
 const about = {
   name: "John Doe",
@@ -30,10 +31,9 @@ const dummyAboutAndContactData = {
   cityZip: "Bangaon WB 743235",
   phno: "+91 9064040525",
   emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
-  about:
-    "Hello There, I'm a Full-Stack Software Engineer. I like to build softwares to solve existing problems & to overcome major or minor inconveniences.",
+  about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
 };
-const isEmptyAandC = (about: About) => {
+const isEmptyAandC = (about: AboutWithContact) => {
   if (
     about.about === "" &&
     about.address.join().length === 0 &&
@@ -51,7 +51,7 @@ interface AboutWithContactBlockProps {
   blockTitle: string;
   item: GridItem;
   removeItem: (i: GridItem) => void;
-  about: About;
+  about: AboutWithContact;
   formStyles: FormStyles;
 }
 export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (props) => {
@@ -69,7 +69,7 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
         <div style={{ paddingRight: 4, paddingLeft: 4, flex: "59%" }}>
           <p>{toBeShownAboutAndContact.about}</p>
         </div>
-        <div style={{ flex: "2%" }}>&nbsp;</div>
+        <div style={{ flex: "3%" }}>&nbsp;</div>
         {/* the contact section */}
         <div
           style={{
@@ -77,11 +77,12 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
             marginBottom: 6,
             paddingLeft: 24,
             borderLeft: "4px solid #123456",
-            flex: "39%",
+            flex: "38%",
           }}
         >
           <div style={{ display: "flex", marginBottom: 4 }}>
-            <LocationOnRoundedIcon style={{ color: "#FF2071", fontSize: 16, marginRight: 8, marginTop: 4 }} />
+            {getIcon({ name: "location", color: "#FF2071", margin: "4px 8px 0px 0px" })}
+            {/* <LocationOnRoundedIcon style={{ color: "#FF2071", fontSize: 16, marginRight: 8, marginTop: 4 }} /> */}
             <div>
               {toBeShownAboutAndContact.address.map((element) => (
                 <div key={element + uuidv1}>{checkHyperlink(element)}</div>
@@ -99,7 +100,7 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <PhoneIcon style={{ color: "#388e3c", fontSize: 16, marginRight: 8 }} />
+            {getIcon({ name: "phone", color: "#388e3c", margin: "0px 8px 0px 0px" })}
             {toBeShownAboutAndContact.phno}
           </div>
         </div>
@@ -128,7 +129,9 @@ export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (pro
         <div style={{ paddingRight: 8, paddingLeft: 4 }}>
           <p>{toBeShownAboutAndContact.about}</p>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-evenly", color: props.formStyles.accentColor }}>
+        <div
+          style={{ display: "flex", justifyContent: "space-evenly", color: props.formStyles.accentColor, marginTop: 8 }}
+        >
           {/* The Left Links */}
           <div style={{ paddingRight: 8, paddingLeft: 4 }}>
             {toBeShownAboutAndContact.emails.map((element) => (
@@ -136,7 +139,11 @@ export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (pro
                 key={element + uuidv1}
                 style={{ textDecoration: "none", margin: 2, display: "flex", alignItems: "center" }}
               >
-                {chooseLinkIcon(element)}
+                {getIcon({
+                  name: getUrlDomainName(element),
+                  color: props.formStyles.accentColor,
+                  margin: "0px 8px 0px 8px",
+                })}
                 {checkHyperlink(element)}
               </div>
             ))}
@@ -144,12 +151,11 @@ export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (pro
           {/* The Right Links */}
           <div style={{ paddingRight: 8, paddingLeft: 4, display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", alignItems: "center", margin: 2 }}>
-              <PhoneIcon style={{ fontSize: 16, marginRight: 8 }} />
-              {chooseLinkIcon("phone")}
+              {getIcon({ name: "phone", color: props.formStyles.accentColor, margin: "0px 8px 0px 8px" })}
               {toBeShownAboutAndContact.phno}
             </div>
             <div style={{ margin: 2, display: "flex", alignItems: "center" }}>
-              {chooseLinkIcon("home")}
+              {getIcon({ name: "home", color: props.formStyles.accentColor, margin: "0px 8px 0px 8px" })}
               {toBeShownAboutAndContact.address.map((e, index) => (
                 <span key={e + index}>{checkHyperlink(e)}</span>
               ))}

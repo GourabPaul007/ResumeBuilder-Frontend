@@ -11,7 +11,7 @@ import { EducationsBlock1 } from "./blocks/educationsBlocks";
 import { OthersBlock1 } from "./blocks/othersBlocks";
 import { AboutWithContactBlock1, AboutWithContactBlock2 } from "./blocks/aboutWithContactBlocks";
 import { WorksBlock1 } from "./blocks/worksBlocks";
-import { About } from "../../interfaces/About";
+import { AboutWithContact } from "../../interfaces/AboutWithContact";
 import { Course, Educations } from "../../interfaces/Educations";
 import { Work, Works } from "../../interfaces/Works";
 import { ProjectsBlock1 } from "./blocks/projectsBlock";
@@ -20,6 +20,10 @@ import { Theme } from "@mui/system";
 import { Skills } from "../../interfaces/Skills";
 import { FormStyles } from "../../interfaces/FormStyles";
 import { Others } from "../../interfaces/Others";
+import { About } from "../../interfaces/About";
+import { AboutBlock1 } from "./blocks/AboutBlocks";
+import { ContactBlock1 } from "./blocks/ContactBlocks";
+import { Contact } from "../../interfaces/Contact";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -51,8 +55,10 @@ interface MiddleGridProps {
   items: any;
   onLayoutChange: any;
   removeItem: (item: GridItem) => void;
+  aboutWithContact1: AboutWithContact;
+  aboutWithContact2: AboutWithContact;
   about1: About;
-  about2: About;
+  contact1: Contact;
   skills1: Skills;
   skills2: Skills;
   educations: Educations;
@@ -68,23 +74,43 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
   function getItemBlueprint(item: GridItem): React.ReactNode {
     let name = item.i;
     switch (name) {
-      case "about1":
+      case "aboutwithcontact1":
         return (
           <AboutWithContactBlock1
             blockTitle={"About & Contact #1"}
+            removeItem={props.removeItem}
+            item={item}
+            about={props.aboutWithContact1}
+            formStyles={props.formStyles}
+          />
+        );
+      case "aboutwithcontact2":
+        return (
+          <AboutWithContactBlock2
+            blockTitle={"About & Contact #2"}
+            removeItem={props.removeItem}
+            item={item}
+            about={props.aboutWithContact2}
+            formStyles={props.formStyles}
+          />
+        );
+      case "about1":
+        return (
+          <AboutBlock1
+            blockTitle={"About #1"}
             removeItem={props.removeItem}
             item={item}
             about={props.about1}
             formStyles={props.formStyles}
           />
         );
-      case "about2":
+      case "contact1":
         return (
-          <AboutWithContactBlock2
-            blockTitle={"About & Contact #2"}
+          <ContactBlock1
+            blockTitle={"Contact #1"}
             removeItem={props.removeItem}
             item={item}
-            about={props.about2}
+            contact={props.contact1}
             formStyles={props.formStyles}
           />
         );

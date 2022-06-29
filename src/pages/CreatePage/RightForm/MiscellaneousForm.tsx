@@ -2,6 +2,7 @@ import { FormControlLabel, Switch, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { Dispatch, FC, useEffect, useState } from "react";
 import { ColorPicker } from "../../../Components/ColorPicker";
+import { accentColorList } from "../../../helpers/colorDatabase";
 import { FormStyles } from "../../../interfaces/FormStyles";
 
 const useMiscellaneousStyles = makeStyles((theme: Theme) => ({
@@ -29,9 +30,15 @@ interface MiscellaneousProps {
 export const Miscellaneous: FC<MiscellaneousProps> = (props) => {
   const classes = useMiscellaneousStyles();
 
-  const [currentTitleColor, setCurrentTitleColor] = useState("#ff0000");
-  const [currentTitleFillColor, setCurrentTitleFillColor] = useState("#00ff00");
-  const [currentAccentColor, setCurrentAccentColor] = useState("#0000ff");
+  const [currentTitleColor, setCurrentTitleColor] = useState(
+    accentColorList[Math.floor(Math.random() * accentColorList.length)]
+  );
+  const [currentTitleFillColor, setCurrentTitleFillColor] = useState(
+    accentColorList[Math.floor(Math.random() * accentColorList.length)]
+  );
+  const [currentAccentColor, setCurrentAccentColor] = useState(
+    accentColorList[Math.floor(Math.random() * accentColorList.length)]
+  );
 
   // Handling Color Pickers
   const handleChangeTitleColor = (newColor: string) => {

@@ -9,7 +9,7 @@ import "./CreatePage.css";
 import { v1 as uuidv1 } from "uuid";
 import LeftMenu from "./CreatePage/LeftMenu";
 import MiddleGrid from "./CreatePage/MiddleGrid";
-import { About } from "../interfaces/About";
+import { AboutWithContact } from "../interfaces/AboutWithContact";
 import { RightForm } from "./CreatePage/RightForm";
 import { Course, Educations } from "../interfaces/Educations";
 import { Work, Works } from "../interfaces/Works";
@@ -17,12 +17,14 @@ import { Project, Projects } from "../interfaces/Projects";
 import { Skills } from "../interfaces/Skills";
 import { FormStyles } from "../interfaces/FormStyles";
 import { Others } from "../interfaces/Others";
-import { AboutIcon2 } from "./CreatePage/LeftMenuIcons/AboutIcons";
+import { AboutAndContactIcon2 } from "./CreatePage/LeftMenuIcons/AboutAndContactIcons";
+import { About } from "../interfaces/About";
+import { Contact } from "../interfaces/Contact";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
 const CreatePage: React.FC = (props) => {
-  const [about1, setAbout1] = useState<About>({
+  const [aboutWithContact1, setAboutWithContact1] = useState<AboutWithContact>({
     name: "",
     profession: "",
     address: [""],
@@ -31,7 +33,7 @@ const CreatePage: React.FC = (props) => {
     emails: [""],
     about: "",
   });
-  const [about2, setAbout2] = useState<About>({
+  const [aboutWithContact2, setAboutWithContact2] = useState<AboutWithContact>({
     name: "",
     profession: "",
     address: [""],
@@ -39,6 +41,16 @@ const CreatePage: React.FC = (props) => {
     phno: "",
     emails: [""],
     about: "",
+  });
+  const [about1, setAbout1] = useState<About>({
+    name: "",
+    profession: "",
+    about: "",
+  });
+  const [contact1, setContact1] = useState<Contact>({
+    address: [""],
+    emails: [""],
+    phno: "",
   });
   const [skills1, setSkills1] = useState<Skills>({
     color: "#123456",
@@ -79,15 +91,14 @@ const CreatePage: React.FC = (props) => {
   });
 
   useEffect(() => {
-    setAbout1({
+    setAboutWithContact1({
       name: "Gourab Paul",
       profession: "Software Engineer",
       address: ["Saktigarh, Railgate Rd.", "Bongaon WB 743235"],
       cityZip: "Bangaon WB 743235",
       phno: "+91 9064040525",
       emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
-      about:
-        "Hello There, I'm a Full-Stack Software Engineer. I like to build softwares to solve existing problems & to overcome major or minor inconveniences.",
+      about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
     });
     setEducations({
       title: "Educations UseEffect",
@@ -172,7 +183,7 @@ const CreatePage: React.FC = (props) => {
         "accusantium exercit ationem.",
       ],
     });
-    addItem(12, 7, "about1", true);
+    addItem(12, 7, "aboutwithcontact1", true);
   }, []);
 
   const [layout, setLayout] = useState<GridItem[]>([]);
@@ -195,10 +206,10 @@ const CreatePage: React.FC = (props) => {
         data: ((elementName: string) => {
           console.log(elementName);
           switch (elementName) {
-            case "about1":
-              return about1;
-            case "about2":
-              return AboutIcon2;
+            case "aboutwithcontact1":
+              return aboutWithContact1;
+            case "aboutwithcontact2":
+              return AboutAndContactIcon2;
             case "educations":
               return educations;
             case "skills1":
@@ -220,10 +231,6 @@ const CreatePage: React.FC = (props) => {
     console.log(finalItems);
     return finalItems;
   };
-
-  // const setItemsData = (elementName: string) => {
-
-  // };
 
   function onLayoutChange(layout: GridItem[]) {
     setLayout(layout);
@@ -250,6 +257,7 @@ const CreatePage: React.FC = (props) => {
         isResizable: isResizable ? true : false,
       })
     );
+
     // Add to Form
     const newFormsArray = forms;
     const newFormName = itemName;
@@ -269,51 +277,18 @@ const CreatePage: React.FC = (props) => {
           return el != toBeRemovedItem;
         });
         setItems(newItems);
-        removeFromFormsArray(newItems, toBeRemovedItem.i);
+
+        // remove From Forms Array
+        const newItemsNameArray = newItems.map((item) => item.i);
+        if (newItemsNameArray.includes(toBeRemovedItem.i)) {
+          console.log("Another item with same form exists", newItemsNameArray);
+        } else {
+          console.log("Removing Form", toBeRemovedItem.i);
+          setForms(forms.filter((formItem) => formItem != toBeRemovedItem.i)); // remove from form array where matches the `toBeRemovedItemName`
+        }
       }
     }
   }
-  /**
-   * check if the `itemName w/o number` still exists in the `items` after deletion, because ['about1','about2'] -> ['about1'] -> ['about']
-   *
-   * if exists (there were 2 different instances of same items i.e. ['about1' , 'about2']) then dont remove from forms array, else remove from form array
-   */
-  const removeFromFormsArray = (newItems: GridItem[], toBeRemovedItemName: string) => {
-    const newItemsNameArray = newItems.map((item) => item.i);
-    if (newItemsNameArray.includes(toBeRemovedItemName)) {
-      console.log("Another item with same form exists", newItemsNameArray);
-    } else {
-      console.log("Removing Form", toBeRemovedItemName);
-      setForms(forms.filter((formItem) => formItem != toBeRemovedItemName)); // remove from form array where matches the `toBeRemovedItemName`
-    }
-  };
-
-  // const addItemNew = (width: number = 1, height: number = 1, itemName: string, isResizable?: boolean) => {
-  //   // iterate through each member in items, if exists, ++counter & set the forms according to the number
-  //   let numberOfSameItemsAlreadyInArray = 0;
-  //   for (let i = 0; i < items.length; i++) {
-  //     if (items[i].i === itemName) {
-  //       numberOfSameItemsAlreadyInArray += 1;
-  //     }
-  //   }
-  //   setItems(
-  //     items.concat({
-  //       i: `${itemName}#${numberOfSameItemsAlreadyInArray}`,
-  //       x: Infinity,
-  //       y: Infinity,
-  //       w: width,
-  //       h: height,
-  //       isResizable: isResizable ? true : false,
-  //     })
-  //   );
-  //   // Add to Form
-  //   const newFormsArray = forms;
-  //   //setting formName. (exmaple, about1 -> about1#1 or about1#2)
-  //   const newFormName = `${itemName}#${numberOfSameItemsAlreadyInArray})`;
-  //   newFormsArray.push(newFormName);
-  //   setForms(newFormsArray);
-  //   console.log(items, forms);
-  // };
 
   return (
     <>
@@ -328,8 +303,10 @@ const CreatePage: React.FC = (props) => {
             items={items}
             onLayoutChange={onLayoutChange}
             removeItem={removeItem}
+            aboutWithContact1={aboutWithContact1}
+            aboutWithContact2={aboutWithContact2}
             about1={about1}
-            about2={about2}
+            contact1={contact1}
             skills1={skills1}
             skills2={skills2}
             educations={educations}
@@ -345,10 +322,14 @@ const CreatePage: React.FC = (props) => {
             makeItemsArray={makeItemsArray}
             items={items}
             forms={forms}
+            aboutWithContact1={aboutWithContact1}
+            setAboutWithContact1={setAboutWithContact1}
+            aboutWithContact2={aboutWithContact2}
+            setAboutWithContact2={setAboutWithContact2}
             about1={about1}
             setAbout1={setAbout1}
-            about2={about2}
-            setAbout2={setAbout2}
+            contact1={contact1}
+            setContact1={setContact1}
             skills1={skills1}
             setSkills1={setSkills1}
             skills2={skills2}

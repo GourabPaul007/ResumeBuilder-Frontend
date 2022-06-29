@@ -2,13 +2,13 @@ import { Grid, styled, TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { Dispatch, FC } from "react";
 import NeumorphicTextField from "../../../Components/NeumorphicTextField";
-import { About } from "../../../interfaces/About";
+import { AboutWithContact } from "../../../interfaces/AboutWithContact";
 import { useStyles } from "./FormsStyles";
 
 interface AboutWithContactFormProps {
   formTitle: string;
-  about: About;
-  setAbout: Dispatch<React.SetStateAction<About>>;
+  about: AboutWithContact;
+  setAbout: Dispatch<React.SetStateAction<AboutWithContact>>;
 }
 
 export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {

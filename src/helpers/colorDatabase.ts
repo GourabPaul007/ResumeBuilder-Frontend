@@ -1,3 +1,24 @@
+export const accentColorList = [
+  "#ff1744",
+  "#f50057",
+  "#d500f9",
+  "#651fff",
+  "#3d5afe",
+  "#2979ff",
+  "#00b0ff",
+  "#00e5ff",
+  "#1de9b6",
+  "#00e676",
+  "#76ff03",
+  "#c6ff00",
+  "#ffea00",
+  "#ffc400",
+  "#ff9100",
+  "#ff3d00",
+  "#6d4c41",
+  "#546e7a",
+];
+
 export const materialPaletteArray = [
   "50",
   "100",

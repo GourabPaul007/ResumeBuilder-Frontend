@@ -1,11 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { GridItem } from "../interfaces/GridItem";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -54,13 +49,4 @@ export const RemoveBlockButton: React.FC<RemoveBlockButtonProps> = (props) => {
       </button>
     </div>
   );
-};
-
-export const chooseLinkIcon = (link: string) => {
-  if (link.toLowerCase().includes("linkedin")) return <LinkedInIcon style={{ fontSize: 16, marginRight: 8 }} />;
-  if (link.toLowerCase().includes("github")) return <GitHubIcon style={{ fontSize: 16, marginRight: 8 }} />;
-  if (link.toLowerCase().includes("mail")) return <EmailRoundedIcon style={{ fontSize: 16, marginRight: 8 }} />;
-  if (link.toLowerCase().includes("home")) return <HomeRoundedIcon style={{ fontSize: 16, marginRight: 8 }} />;
-  if (link.toLowerCase().includes("location"))
-    return <LocationOnRoundedIcon style={{ fontSize: 16, marginRight: 8 }} />;
 };

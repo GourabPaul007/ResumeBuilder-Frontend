@@ -71,13 +71,13 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
                 display: "flex",
                 justifyContent: "start",
                 alignItems: "center",
-                margin: "0px 0px 0px 0px",
+                margin: "0px 0px 8px 0px",
                 width: "100%",
               }}
               key={course.id}
             >
               <div style={{ marginRight: 12 }}>
-                <SchoolRoundedIcon style={{ color: "#434343" || props.formStyles.accentColor }} />
+                <SchoolRoundedIcon style={{ color: "#666" || props.formStyles.accentColor }} />
               </div>
               <div
                 style={{
@@ -89,14 +89,14 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
                 }}
               >
                 <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "start" }}>
-                  <p style={{ fontWeight: 600, color: "#434343", marginRight: 30 }}>{course.organizationName}</p>
+                  <p style={{ fontWeight: 600, color: "#545454", marginRight: 30 }}>{course.organizationName}</p>
                   <p style={{ color: props.formStyles.accentColor, fontSize: 12, flexShrink: 0, paddingTop: 3 }}>
                     {course.courseDuration}
                   </p>
                 </div>
 
-                <p style={{ fontWeight: 500, color: "#434343", margin: 0 }}>{course.courseName}</p>
-                <p style={{ fontWeight: 500, color: "#434343" }}>{course.courseResults}</p>
+                <p style={{ fontWeight: 500, color: "#434343", margin: 0, fontSize: 13 }}>{course.courseName}</p>
+                <p style={{ fontWeight: 500, color: "#434343", fontSize: 13 }}>{course.courseResults}</p>
               </div>
             </div>
           );

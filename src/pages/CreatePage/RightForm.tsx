@@ -2,7 +2,7 @@ import { Button, Container, CssBaseline, Grid, TextField, Theme, Typography } fr
 import { makeStyles } from "@mui/styles";
 import React, { Dispatch } from "react";
 import { useState, FC } from "react";
-import { About } from "../../interfaces/About";
+import { AboutWithContact } from "../../interfaces/AboutWithContact";
 import { Course, Educations } from "../../interfaces/Educations";
 import { FormStyles } from "../../interfaces/FormStyles";
 import { GridItem } from "../../interfaces/GridItem";
@@ -18,6 +18,10 @@ import { ProjectsForm } from "./RightForm/ProjectsForm";
 import { SkillsForm } from "./RightForm/SkillsForm";
 import { WorksForm } from "./RightForm/WorksForm";
 import ReactDOMServer from "react-dom/server";
+import { Contact } from "../../interfaces/Contact";
+import { About } from "../../interfaces/About";
+import { AboutForm } from "./RightForm/AboutForm";
+import { ContactForm } from "./RightForm/ContactForm";
 
 const useStyles = makeStyles(() => ({
   formWrapper: {
@@ -32,10 +36,14 @@ const useStyles = makeStyles(() => ({
 interface RightFormProps {
   makeItemsArray: () => void;
   items: GridItem[];
+  aboutWithContact1: AboutWithContact;
+  setAboutWithContact1: Dispatch<React.SetStateAction<AboutWithContact>>;
+  aboutWithContact2: AboutWithContact;
+  setAboutWithContact2: Dispatch<React.SetStateAction<AboutWithContact>>;
   about1: About;
   setAbout1: Dispatch<React.SetStateAction<About>>;
-  about2: About;
-  setAbout2: Dispatch<React.SetStateAction<About>>;
+  contact1: Contact;
+  setContact1: Dispatch<React.SetStateAction<Contact>>;
   educations: Educations;
   setEducations: Dispatch<React.SetStateAction<Educations>>;
   skills1: Skills;
@@ -59,14 +67,26 @@ export const RightForm: FC<RightFormProps> = (props) => {
   // Return the specific form from passed parameter
   const chooseFormToShow = (form: string): React.ReactNode => {
     switch (form) {
+      case "aboutwithcontact1":
+        return (
+          <AboutWithContactForm
+            about={props.aboutWithContact1}
+            setAbout={props.setAboutWithContact1}
+            formTitle={"About & Contact #1"}
+          />
+        );
+      case "aboutwithcontact2":
+        return (
+          <AboutWithContactForm
+            about={props.aboutWithContact2}
+            setAbout={props.setAboutWithContact2}
+            formTitle={"About & Contact #2"}
+          />
+        );
       case "about1":
-        return (
-          <AboutWithContactForm about={props.about1} setAbout={props.setAbout1} formTitle={"About & Contact #1"} />
-        );
-      case "about2":
-        return (
-          <AboutWithContactForm about={props.about2} setAbout={props.setAbout2} formTitle={"About & Contact #2"} />
-        );
+        return <AboutForm about={props.about1} setAbout={props.setAbout1} formTitle={"About #1"} />;
+      case "contact1":
+        return <ContactForm contact={props.contact1} setContact={props.setContact1} formTitle={"Contact #1"} />;
       case "skills1":
         return <SkillsForm skills={props.skills1} setSkills={props.setSkills1} formTitle={"Skills #1"} />;
       case "skills2":
