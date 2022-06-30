@@ -7,7 +7,7 @@ import { Skills } from "../../../interfaces/Skills";
 import { useBlockStyles } from "./_BlockStyles";
 
 const dummySkills: Skills = {
-  color: "#123456",
+  color: "#ff5656",
   title: "Skills Title",
   chipRadius: 10,
   filled: true,
@@ -76,9 +76,10 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
                 display: "inline-block",
                 padding: "6px 12px",
                 margin: 4,
-                border: `1px solid ${props.skills.color}`,
+                border: props.skills.filled ? `1px solid transparent` : `1px solid ${props.skills.color}`,
                 borderRadius: props.skills.chipRadius,
-                color: props.skills.color,
+                color: props.skills.filled ? "#fff" : props.skills.color,
+                backgroundColor: props.skills.filled ? props.skills.color : "transparent",
                 fontSize: 15,
               }}
             >

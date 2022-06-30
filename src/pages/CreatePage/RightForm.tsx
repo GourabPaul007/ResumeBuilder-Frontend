@@ -22,6 +22,8 @@ import { Contact } from "../../interfaces/Contact";
 import { About } from "../../interfaces/About";
 import { AboutForm } from "./RightForm/AboutForm";
 import { ContactForm } from "./RightForm/ContactForm";
+import { Ratings } from "../../interfaces/Ratings";
+import { RatingsForm } from "./RightForm/RatingsForm";
 
 const useStyles = makeStyles(() => ({
   formWrapper: {
@@ -54,6 +56,8 @@ interface RightFormProps {
   setWorks: Dispatch<React.SetStateAction<Works>>;
   projects: Projects;
   setProjects: Dispatch<React.SetStateAction<Projects>>;
+  ratings1: Ratings;
+  setRatings1: Dispatch<React.SetStateAction<Ratings>>;
   others: Others;
   setOthers: Dispatch<React.SetStateAction<Others>>;
   formStyles: FormStyles;
@@ -99,6 +103,8 @@ export const RightForm: FC<RightFormProps> = (props) => {
         return <WorksForm works={props.works} setWorks={props.setWorks} formTitle={"Work #1"} />;
       case "projects1":
         return <ProjectsForm projects={props.projects} setProjects={props.setProjects} formTitle={"Projects #1"} />;
+      case "ratings1":
+        return <RatingsForm ratings={props.ratings1} setRatings={props.setRatings1} formTitle={"Ratings #1"} />;
       case "others1":
         return <OthersForm others={props.others} setOthers={props.setOthers} formTitle={"Others #1"} />;
       // case "others2":
@@ -133,7 +139,7 @@ export const RightForm: FC<RightFormProps> = (props) => {
             size="large"
             fullWidth={true}
             style={{ marginBottom: 36 }}
-            onClick={async (e) => {
+            onClick={async (e: React.SyntheticEvent) => {
               e.preventDefault();
               props.makeItemsArray();
               let html = ReactDOMServer.renderToString(

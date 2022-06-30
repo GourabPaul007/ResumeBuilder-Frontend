@@ -14,9 +14,9 @@ export const EducationIcon1: React.FC = () => {
       <rect x={60} y={100} width={150} height={5} rx={2.5} fill="#757575" />
       <rect x={60} y={110} width={120} height={5} rx={2.5} fill="#757575" />
       {/* the size text on bottom */}
-      <text x="170" y="145" style={{ fontWeight: "bold", fontSize: 24 }} fill="#545454">
+      {/* <text x="170" y="145" style={{ fontWeight: "bold", fontSize: 24 }} fill="#545454">
         3 x 4
-      </text>
+      </text> */}
     </svg>
   );
 };

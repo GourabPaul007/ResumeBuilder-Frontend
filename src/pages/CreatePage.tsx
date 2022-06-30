@@ -20,6 +20,7 @@ import { Others } from "../interfaces/Others";
 import { AboutAndContactIcon2 } from "./CreatePage/LeftMenuIcons/AboutAndContactIcons";
 import { About } from "../interfaces/About";
 import { Contact } from "../interfaces/Contact";
+import { Ratings } from "../interfaces/Ratings";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -81,6 +82,7 @@ const CreatePage: React.FC = (props) => {
     data: [{ id: `project${Date.now()}`, projectName: "", projectDetails: [""] }],
   });
   const [others, setOthers] = useState<Others>({ title: "", bullet: -1, data: [""] });
+  const [ratings1, setRatings1] = useState<Ratings>({ title: "", data: [] });
   const [formStyles, setFormStyles] = useState<FormStyles>({
     titleFilled: false,
     titleFullWidth: false,
@@ -120,9 +122,9 @@ const CreatePage: React.FC = (props) => {
       ],
     });
     setSkills1({
-      color: "#123456",
+      color: "#ff5656",
       title: "Skills UseEffect",
-      chipRadius: 10,
+      chipRadius: 16,
       filled: true,
       data: [
         "Lorem ipsum",
@@ -312,6 +314,7 @@ const CreatePage: React.FC = (props) => {
             educations={educations}
             works={works}
             projects={projects}
+            ratings1={ratings1}
             others={others}
             formStyles={formStyles}
           />
@@ -342,6 +345,8 @@ const CreatePage: React.FC = (props) => {
             setProjects={setProjects}
             others={others}
             setOthers={setOthers}
+            ratings1={ratings1}
+            setRatings1={setRatings1}
             formStyles={formStyles}
             setFormStyles={setFormStyles}
           />

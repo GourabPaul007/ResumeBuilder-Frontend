@@ -14,9 +14,9 @@ export const OthersIcon1: React.FC = () => {
       <rect x={55} y={90} width={140} height={5} rx={2.5} fill="#545454" />
 
       {/* the size text on bottom */}
-      <text x="170" y="145" style={{ fontWeight: "bold", fontSize: 24 }} fill="#545454">
+      {/* <text x="170" y="145" style={{ fontWeight: "bold", fontSize: 24 }} fill="#545454">
         3 x 4
-      </text>
+      </text> */}
     </svg>
   );
 };

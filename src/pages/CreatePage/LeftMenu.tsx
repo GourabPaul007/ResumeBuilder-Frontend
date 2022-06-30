@@ -10,31 +10,31 @@ import { WorksIcon1 } from "./LeftMenuIcons/WorksIcons";
 import { GridItem } from "../../interfaces/GridItem";
 import { AboutIcon1 } from "./LeftMenuIcons/AboutIcons";
 import { ContactIcon1 } from "./LeftMenuIcons/ContactIcons";
+import { RatingsIcon1 } from "./LeftMenuIcons/RatingsIcons";
 
 const useStyles = makeStyles((theme) => ({
   eachIcon: {
     backgroundColor: "#fff",
-    margin: 10,
-    marginBottom: 20,
-    border: "1px solid #6b5be6",
-    // border: "1px solid #00000021",
-    // borderBottom: "2px solid #00000021",
+    margin: "5px 5px 20px 5px",
+    // border: "1px solid #6b5be6",
+    boxShadow: "0 10px 15px -3px rgba(36,69,101,.19),0 4px 6px -2px #d0dce8",
     backfaceVisibility: "hidden",
     borderRadius: 5,
+    height: 70,
+    // width: 125,
     "&:hover": {
       transform: "scale(1.1)",
-      transitionDuration: "0.2s",
+      transitionDuration: "100ms",
       cursor: "pointer",
     },
   },
   eachSelectedIcon: {
     backgroundColor: "#dedede",
-    margin: 10,
-    marginBottom: 20,
-    border: "1px solid #6b5be6",
-    // border: "1px solid #00000021",
-    // borderBottom: "2px solid #00000021",
+    margin: "5px 5px 20px 5px",
+    // border: "1px solid #6b5be6",
+    boxShadow: "0 10px 15px -3px rgba(36,69,101,.19),0 4px 6px -2px #d0dce8",
     borderRadius: 5,
+    height: 70,
     "&:hover": {
       cursor: "not-allowed",
     },
@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#00ccc9",
     padding: 12,
   },
+  categoryTitle: { marginLeft: 12, color: "#777", marginTop: 36 },
 }));
 
 interface LeftMenuProps {
@@ -63,6 +64,7 @@ interface LeftMenuProps {
 const LeftMenu: React.FC<LeftMenuProps> = (props) => {
   const styles = useStyles();
 
+  // Check if already in Array then grey out the block
   const inItemsArray = (itemName: string): boolean => {
     for (let i = 0; i < props.items.length; i++) {
       if (props.items[i].i == itemName) {
@@ -78,7 +80,9 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         {/* ======================================================================================================= */}
         {/* About + Contact */}
         {/* ======================================================================================================= */}
-        <div style={{ marginLeft: 12, color: "#777" }}>About + Contact</div>
+        <div className={styles.categoryTitle} style={{ marginTop: 0 }}>
+          About + Contact
+        </div>
         <div
           className={inItemsArray("aboutwithcontact1") ? styles.eachSelectedIcon : styles.eachIcon}
           onClick={() => props.addBlock(12, 7, "aboutwithcontact1", true)}
@@ -94,7 +98,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         {/* ======================================================================================================= */}
         {/* About */}
         {/* ======================================================================================================= */}
-        <div style={{ marginLeft: 12, color: "#777" }}>About</div>
+        <div className={styles.categoryTitle}>About</div>
         <div
           className={inItemsArray("about1") ? styles.eachSelectedIcon : styles.eachIcon}
           onClick={() => props.addBlock(8, 7, "about1", true)}
@@ -104,7 +108,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         {/* ======================================================================================================= */}
         {/* Contact */}
         {/* ======================================================================================================= */}
-        <div style={{ marginLeft: 12, color: "#777" }}>Contact</div>
+        <div className={styles.categoryTitle}>Contact</div>
         <div
           className={inItemsArray("contact1") ? styles.eachSelectedIcon : styles.eachIcon}
           onClick={() => props.addBlock(4, 7, "contact1", true)}
@@ -114,7 +118,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         {/* ======================================================================================================= */}
         {/* Educations */}
         {/* ======================================================================================================= */}
-        <div style={{ marginLeft: 12, color: "#777" }}>Education</div>
+        <div className={styles.categoryTitle}>Education</div>
         <div
           className={inItemsArray("educations1") ? styles.eachSelectedIcon : styles.eachIcon}
           onClick={() => props.addBlock(5, 8, "educations1", true)}
@@ -124,7 +128,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         {/* ======================================================================================================= */}
         {/* Skills */}
         {/* ======================================================================================================= */}
-        <div style={{ marginLeft: 12, color: "#777" }}>Skills</div>
+        <div className={styles.categoryTitle}>Skills</div>
         <div
           className={inItemsArray("skills1") ? styles.eachSelectedIcon : styles.eachIcon}
           onClick={() => props.addBlock(5, 8, "skills1", true)}
@@ -140,7 +144,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         {/* ======================================================================================================= */}
         {/* Works */}
         {/* ======================================================================================================= */}
-        <div style={{ marginLeft: 12, color: "#777" }}>Work History</div>
+        <div className={styles.categoryTitle}>Work History</div>
         <div
           className={inItemsArray("works1") ? styles.eachSelectedIcon : styles.eachIcon}
           onClick={() => props.addBlock(7, 7, "works1", true)}
@@ -150,7 +154,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         {/* ======================================================================================================= */}
         {/* Projects */}
         {/* ======================================================================================================= */}
-        <div style={{ marginLeft: 12, color: "#777" }}>Projects</div>
+        <div className={styles.categoryTitle}>Projects</div>
         <div
           className={inItemsArray("projects1") ? styles.eachSelectedIcon : styles.eachIcon}
           onClick={() => props.addBlock(7, 17, "projects1", true)}
@@ -158,9 +162,19 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
           <ProjectsIcon1 />
         </div>
         {/* ======================================================================================================= */}
+        {/* Rating */}
+        {/* ======================================================================================================= */}
+        <div className={styles.categoryTitle}>Ratings</div>
+        <div
+          className={inItemsArray("ratings1") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock(4, 7, "ratings1", true)}
+        >
+          <RatingsIcon1 />
+        </div>
+        {/* ======================================================================================================= */}
         {/* Others */}
         {/* ======================================================================================================= */}
-        <div style={{ marginLeft: 12, color: "#777" }}>Others</div>
+        <div className={styles.categoryTitle}>Others</div>
         <div
           className={inItemsArray("others1") ? styles.eachSelectedIcon : styles.eachIcon}
           onClick={() => props.addBlock(5, 7, "others1", true)}

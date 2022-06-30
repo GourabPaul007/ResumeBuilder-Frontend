@@ -18,8 +18,8 @@
   z-index: 1;
   padding: 10px 5px 10px 5px;
   /* background-color: #6b5be6; */
-  /* background-color: #ebf4ff; */
-  background-color: #fff;
+  background-color: #ebf4ff;
+  /* background-color: #fff; */
   box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.05);
   height: 100%;
   overflow-y: scroll;

@@ -49,7 +49,7 @@ export const OthersForm: FC<OthersFormProps> = (props) => {
             label="Title"
             name="title"
             value={props.others.title}
-            onChange={(e) => handleBlockTitleInput(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleBlockTitleInput(e.target.value)}
           />
         </Grid>
         <Grid item xs={5}>
@@ -83,7 +83,7 @@ export const OthersForm: FC<OthersFormProps> = (props) => {
             InputProps={{ classes: { underline: classes.underline } }}
             label="Other Skills & Activities"
             value={props.others.data.join("<np>")}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               props.setOthers({ ...props.others, data: e.target.value.split("<np>") });
             }}
           />
