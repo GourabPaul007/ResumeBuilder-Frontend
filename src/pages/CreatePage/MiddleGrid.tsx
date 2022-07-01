@@ -16,7 +16,6 @@ import { Course, Educations } from "../../interfaces/Educations";
 import { Work, Works } from "../../interfaces/Works";
 import { ProjectsBlock1 } from "./blocks/projectsBlock";
 import { Project, Projects } from "../../interfaces/Projects";
-import { Theme } from "@mui/system";
 import { Skills } from "../../interfaces/Skills";
 import { FormStyles } from "../../interfaces/FormStyles";
 import { Others } from "../../interfaces/Others";
@@ -26,6 +25,7 @@ import { ContactBlock1 } from "./blocks/ContactBlocks";
 import { Contact } from "../../interfaces/Contact";
 import { Ratings } from "../../interfaces/Ratings";
 import { RatingsBlock1 } from "./blocks/RatingsBlocks";
+import { Theme } from "@mui/material/styles";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 

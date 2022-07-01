@@ -1,6 +1,5 @@
-import { Button, Card, CircularProgress, Typography } from "@mui/material";
+import { Box, Button, Card, CircularProgress, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AppBarHeader from "../Components/AppBarHeader";
