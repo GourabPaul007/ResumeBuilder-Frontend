@@ -45,12 +45,12 @@ export const ContactBlock1: React.FC<AboutProps> = (props) => {
           alignItems: "flex-end",
           fontWeight: 500,
           fontSize: 15,
-          marginTop: 26,
+          marginTop: 24,
         }}
       >
         <div style={{ display: "flex", alignItems: "center", margin: 4 }}>
           {toBeShownContact.address}
-          {getIcon({ name: "address", color: props.formStyles.accentColor, margin: "2px 0px 0px 8px" })}
+          {getIcon({ name: "address", color: props.formStyles.accentColor, margin: "0px 0px 0px 8px" })}
         </div>
         <div style={{ display: "flex", alignItems: "center", margin: 4 }}>
           {toBeShownContact.phno}

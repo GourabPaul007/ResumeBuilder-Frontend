@@ -82,7 +82,12 @@ const CreatePage: React.FC = (props) => {
     data: [{ id: `project${Date.now()}`, projectName: "", projectDetails: [""] }],
   });
   const [others, setOthers] = useState<Others>({ title: "", bullet: -1, data: [""] });
-  const [ratings1, setRatings1] = useState<Ratings>({ title: "", data: [] });
+  const [ratings1, setRatings1] = useState<Ratings>({
+    title: "Ratings",
+    ratingType: "star",
+    icon: "star",
+    data: [{ id: `rating${Date.now()}`, ratingSubject: "", rateInPercentage: 100 }],
+  });
   const [formStyles, setFormStyles] = useState<FormStyles>({
     titleFilled: false,
     titleFullWidth: false,
@@ -275,7 +280,7 @@ const CreatePage: React.FC = (props) => {
     console.log("removing", toBeRemovedItem);
     for (let i = 0; i < items.length; i++) {
       if (items[i].i === toBeRemovedItem.i) {
-        const newItems = items.filter(function(el) {
+        const newItems = items.filter(function (el) {
           return el != toBeRemovedItem;
         });
         setItems(newItems);

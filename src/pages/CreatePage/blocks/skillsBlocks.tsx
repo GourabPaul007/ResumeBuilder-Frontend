@@ -39,7 +39,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
               key={eachSkill + index}
               style={{
                 display: "inline-block",
-                padding: "6px 12px",
+                padding: "5px 10px",
                 margin: 4,
                 border: props.skills.filled ? `1px solid transparent` : `1px solid ${props.skills.color}`,
                 borderRadius: props.skills.chipRadius,
@@ -74,7 +74,7 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
               key={eachSkill + index}
               style={{
                 display: "inline-block",
-                padding: "6px 12px",
+                padding: "5px 10px",
                 margin: 4,
                 border: props.skills.filled ? `1px solid transparent` : `1px solid ${props.skills.color}`,
                 borderRadius: props.skills.chipRadius,
