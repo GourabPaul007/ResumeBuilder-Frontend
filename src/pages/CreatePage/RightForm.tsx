@@ -46,20 +46,20 @@ interface RightFormProps {
   setAbout1: Dispatch<React.SetStateAction<About>>;
   contact1: Contact;
   setContact1: Dispatch<React.SetStateAction<Contact>>;
-  educations: Educations;
-  setEducations: Dispatch<React.SetStateAction<Educations>>;
+  educations1: Educations;
+  setEducations1: Dispatch<React.SetStateAction<Educations>>;
   skills1: Skills;
   setSkills1: Dispatch<React.SetStateAction<Skills>>;
   skills2: Skills;
   setSkills2: Dispatch<React.SetStateAction<Skills>>;
-  works: Works;
-  setWorks: Dispatch<React.SetStateAction<Works>>;
-  projects: Projects;
-  setProjects: Dispatch<React.SetStateAction<Projects>>;
+  works1: Works;
+  setWorks1: Dispatch<React.SetStateAction<Works>>;
+  projects1: Projects;
+  setProjects1: Dispatch<React.SetStateAction<Projects>>;
   ratings1: Ratings;
   setRatings1: Dispatch<React.SetStateAction<Ratings>>;
-  others: Others;
-  setOthers: Dispatch<React.SetStateAction<Others>>;
+  others1: Others;
+  setOthers1: Dispatch<React.SetStateAction<Others>>;
   formStyles: FormStyles;
   setFormStyles: Dispatch<React.SetStateAction<FormStyles>>;
   forms: string[];
@@ -97,16 +97,20 @@ export const RightForm: FC<RightFormProps> = (props) => {
         return <SkillsForm skills={props.skills2} setSkills={props.setSkills2} formTitle={"Skills #2"} />;
       case "educations1":
         return (
-          <EducationForm educations={props.educations} setEducations={props.setEducations} formTitle={"Education #1"} />
+          <EducationForm
+            educations={props.educations1}
+            setEducations={props.setEducations1}
+            formTitle={"Education #1"}
+          />
         );
       case "works1":
-        return <WorksForm works={props.works} setWorks={props.setWorks} formTitle={"Work #1"} />;
+        return <WorksForm works={props.works1} setWorks={props.setWorks1} formTitle={"Work #1"} />;
       case "projects1":
-        return <ProjectsForm projects={props.projects} setProjects={props.setProjects} formTitle={"Projects #1"} />;
+        return <ProjectsForm projects={props.projects1} setProjects={props.setProjects1} formTitle={"Projects #1"} />;
       case "ratings1":
         return <RatingsForm ratings={props.ratings1} setRatings={props.setRatings1} formTitle={"Ratings #1"} />;
       case "others1":
-        return <OthersForm others={props.others} setOthers={props.setOthers} formTitle={"Others #1"} />;
+        return <OthersForm others={props.others1} setOthers={props.setOthers1} formTitle={"Others #1"} />;
       // case "others2":
       //   return <OthersForm others={props.others} setOthers={props.setOthers} formTitle={"About #1"} />;
       // case "others#2":
@@ -149,7 +153,6 @@ export const RightForm: FC<RightFormProps> = (props) => {
                   </>
                 </div>
               );
-              console.log(html);
 
               await fetch("http://localhost:5000/api/custom/custom-resume", {
                 method: "POST",

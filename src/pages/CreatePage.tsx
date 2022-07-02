@@ -67,21 +67,21 @@ const CreatePage: React.FC = (props) => {
     filled: true,
     data: [],
   });
-  const [educations, setEducations] = useState<Educations>({
+  const [educations1, setEducations1] = useState<Educations>({
     title: "Education Init",
     data: [
       { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "", courseDuration: "" },
     ],
   });
-  const [works, setWorks] = useState<Works>({
+  const [works1, setWorks1] = useState<Works>({
     title: "Works Init",
     data: [{ id: `work${Date.now()}`, workOrganizationName: "", workDetails: [""], workDuration: "" }],
   });
-  const [projects, setProjects] = useState<Projects>({
+  const [projects1, setProjects1] = useState<Projects>({
     title: "Works Init",
     data: [{ id: `project${Date.now()}`, projectName: "", projectDetails: [""] }],
   });
-  const [others, setOthers] = useState<Others>({ title: "", bullet: -1, data: [""] });
+  const [others1, setOthers1] = useState<Others>({ title: "", bullet: -1, data: [""] });
   const [ratings1, setRatings1] = useState<Ratings>({
     title: "Ratings",
     ratingType: "star",
@@ -107,7 +107,18 @@ const CreatePage: React.FC = (props) => {
       emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
       about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
     });
-    setEducations({
+    setAbout1({
+      name: "Bruh Doe",
+      profession: "Bruhware Engineer",
+      about:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quod dolorem libero reprehenderit maxime maiores officiis? Beatae fuga, quia dolorum sequi accusamus omnis ab corrupti, atque architecto expedita ipsa inventore.",
+    });
+    setContact1({
+      address: ["123 BV Rd, California"],
+      emails: ["abc@gmail.com", "Github.com/JohnDoe"],
+      phno: "123 456 7890",
+    });
+    setEducations1({
       title: "Educations UseEffect",
       data: [
         {
@@ -145,7 +156,7 @@ const CreatePage: React.FC = (props) => {
         "soluta",
       ],
     });
-    setWorks({
+    setWorks1({
       title: "Works UseEffect",
       data: [
         {
@@ -159,7 +170,7 @@ const CreatePage: React.FC = (props) => {
         },
       ],
     });
-    setProjects({
+    setProjects1({
       title: "Projects UseEffect",
       data: [
         {
@@ -180,7 +191,7 @@ const CreatePage: React.FC = (props) => {
         },
       ],
     });
-    setOthers({
+    setOthers1({
       title: "Others UseEffect",
       bullet: 9679,
       data: [
@@ -190,7 +201,7 @@ const CreatePage: React.FC = (props) => {
         "accusantium exercit ationem.",
       ],
     });
-    addItem(12, 7, "aboutwithcontact1", true);
+    addItem(8, 7, "about1", true);
   }, []);
 
   const [layout, setLayout] = useState<GridItem[]>([]);
@@ -203,7 +214,8 @@ const CreatePage: React.FC = (props) => {
   const makeItemsArray = () => {
     const finalItems: { name: string; x: number; y: number; w: number; h: number; data: any }[] = [];
     layout.forEach((element: any) => {
-      const elementName = element.i.substring(0, element.i.indexOf("function ") - 1);
+      const elementName = element.i.substring(0, element.i.indexOf("function"));
+
       finalItems.push({
         name: elementName,
         x: element.x,
@@ -211,24 +223,27 @@ const CreatePage: React.FC = (props) => {
         w: element.w,
         h: element.h,
         data: ((elementName: string) => {
-          console.log(elementName);
           switch (elementName) {
             case "aboutwithcontact1":
               return aboutWithContact1;
             case "aboutwithcontact2":
-              return AboutAndContactIcon2;
-            case "educations":
-              return educations;
+              return aboutWithContact2;
+            case "about1":
+              return about1;
+            case "contact1":
+              return contact1;
+            case "educations1":
+              return educations1;
             case "skills1":
               return skills1;
             case "skills2":
               return skills2;
-            case "works":
-              return works;
-            case "projects":
-              return projects;
-            case "others":
-              return others;
+            case "works1":
+              return works1;
+            case "projects1":
+              return projects1;
+            case "others1":
+              return others1;
             default:
               return "bruh";
           }
@@ -316,11 +331,11 @@ const CreatePage: React.FC = (props) => {
             contact1={contact1}
             skills1={skills1}
             skills2={skills2}
-            educations={educations}
-            works={works}
-            projects={projects}
+            educations1={educations1}
+            works1={works1}
+            projects1={projects1}
             ratings1={ratings1}
-            others={others}
+            others1={others1}
             formStyles={formStyles}
           />
         </div>
@@ -342,14 +357,14 @@ const CreatePage: React.FC = (props) => {
             setSkills1={setSkills1}
             skills2={skills2}
             setSkills2={setSkills2}
-            educations={educations}
-            setEducations={setEducations}
-            works={works}
-            setWorks={setWorks}
-            projects={projects}
-            setProjects={setProjects}
-            others={others}
-            setOthers={setOthers}
+            educations1={educations1}
+            setEducations1={setEducations1}
+            works1={works1}
+            setWorks1={setWorks1}
+            projects1={projects1}
+            setProjects1={setProjects1}
+            others1={others1}
+            setOthers1={setOthers1}
             ratings1={ratings1}
             setRatings1={setRatings1}
             formStyles={formStyles}

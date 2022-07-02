@@ -63,11 +63,11 @@ interface MiddleGridProps {
   contact1: Contact;
   skills1: Skills;
   skills2: Skills;
-  educations: Educations;
-  works: Works;
-  projects: Projects;
+  educations1: Educations;
+  works1: Works;
+  projects1: Projects;
   ratings1: Ratings;
-  others: Others;
+  others1: Others;
   formStyles: FormStyles;
 }
 
@@ -123,7 +123,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             blockTitle={"Education #1"}
             removeItem={props.removeItem}
             item={item}
-            educations={props.educations}
+            educations={props.educations1}
             formStyles={props.formStyles}
           />
         );
@@ -153,7 +153,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             blockTitle={"Work #1"}
             removeItem={props.removeItem}
             item={item}
-            works={props.works}
+            works={props.works1}
             formStyles={props.formStyles}
           />
         );
@@ -163,7 +163,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             blockTitle={"Projects #1"}
             removeItem={props.removeItem}
             item={item}
-            projects={props.projects}
+            projects={props.projects1}
             formStyles={props.formStyles}
           />
         );
@@ -183,7 +183,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             blockTitle={"Others #1"}
             removeItem={props.removeItem}
             item={item}
-            others={props.others}
+            others={props.others1}
             formStyles={props.formStyles}
           />
         );

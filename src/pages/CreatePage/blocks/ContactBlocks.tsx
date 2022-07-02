@@ -58,7 +58,7 @@ export const ContactBlock1: React.FC<AboutProps> = (props) => {
         </div>
         {toBeShownContact.emails.map((eachLink) => {
           return (
-            <div style={{ display: "flex", alignItems: "center", margin: 4 }}>
+            <div key={eachLink} style={{ display: "flex", alignItems: "center", margin: 4 }}>
               {eachLink}
               {getIcon({
                 name: getUrlDomainName(eachLink),
