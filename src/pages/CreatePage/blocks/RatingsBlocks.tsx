@@ -71,15 +71,6 @@ export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
           })}
         </div>
       </div>
-      {/* <Rating
-        name="text-feedback"
-        value={5}
-        readOnly
-        precision={0.5}
-        icon={<SquareRoundedIcon style={{ color: props.formStyles.accentColor }} />}
-        emptyIcon={<CropSquareRoundedIcon style={{}} />}
-      />
-      WHAT */}
     </>
   );
 };

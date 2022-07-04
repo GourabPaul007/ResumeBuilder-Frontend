@@ -83,10 +83,14 @@ const CreatePage: React.FC = (props) => {
   });
   const [others1, setOthers1] = useState<Others>({ title: "", bullet: -1, data: [""] });
   const [ratings1, setRatings1] = useState<Ratings>({
-    title: "Ratings",
+    title: "Language",
     ratingType: "star",
     icon: "star",
-    data: [{ id: `rating${Date.now()}`, ratingSubject: "", rateInPercentage: 100 }],
+    data: [
+      { id: `rating${Date.now()}`, ratingSubject: "English", rateInPercentage: 75 },
+      { id: `rating${Date.now()}`, ratingSubject: "Hindi", rateInPercentage: 75 },
+      { id: `rating${Date.now()}`, ratingSubject: "Bengali", rateInPercentage: 100 },
+    ],
   });
   const [formStyles, setFormStyles] = useState<FormStyles>({
     titleFilled: false,
@@ -242,6 +246,8 @@ const CreatePage: React.FC = (props) => {
               return works1;
             case "projects1":
               return projects1;
+            case "ratings1":
+              return ratings1;
             case "others1":
               return others1;
             default:
