@@ -22,14 +22,15 @@ const isEmptyContact = (contact: Contact) => {
   // return true;
 };
 
-interface AboutProps {
+interface ContactBlockProps {
   blockTitle: string;
   item: GridItem;
   removeItem: (i: GridItem) => void;
   contact: Contact;
   formStyles: FormStyles;
 }
-export const ContactBlock1: React.FC<AboutProps> = (props) => {
+
+export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
   const blockClasses = useBlockStyles(props.formStyles);
 
   const toBeShownContact = isEmptyContact(props.contact) ? dummyContact : props.contact;
@@ -65,6 +66,51 @@ export const ContactBlock1: React.FC<AboutProps> = (props) => {
                 color: props.formStyles.accentColor,
                 margin: "2px 0px 0px 8px",
               })}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
+  const blockClasses = useBlockStyles(props.formStyles);
+
+  const toBeShownContact = isEmptyContact(props.contact) ? dummyContact : props.contact;
+
+  return (
+    <div className={blockClasses.blockWrapper}>
+      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          fontWeight: 500,
+          fontSize: 15,
+          marginTop: 24,
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", margin: 4 }}>
+          {getIcon({ name: "address", color: props.formStyles.accentColor, margin: "0px" })}&nbsp;&nbsp;
+          {toBeShownContact.address}
+        </div>
+        <div style={{ display: "flex", alignItems: "center", margin: 4 }}>
+          {getIcon({ name: "phone", color: props.formStyles.accentColor, margin: "0px" })}&nbsp;&nbsp;
+          {toBeShownContact.phno}
+        </div>
+        {toBeShownContact.emails.map((eachLink) => {
+          return (
+            <div key={eachLink} style={{ display: "flex", alignItems: "center", margin: 4 }}>
+              {getIcon({
+                name: getUrlDomainName(eachLink),
+                color: props.formStyles.accentColor,
+                margin: "2px 0px 0px 0px",
+              })}
+              &nbsp;&nbsp;
+              {eachLink}
             </div>
           );
         })}

@@ -9,7 +9,7 @@ import { SkillsIcon1, SkillsIcon2 } from "./LeftMenuIcons/SkillsIcons";
 import { WorksIcon1 } from "./LeftMenuIcons/WorksIcons";
 import { GridItem } from "../../interfaces/GridItem";
 import { AboutIcon1 } from "./LeftMenuIcons/AboutIcons";
-import { ContactIcon1 } from "./LeftMenuIcons/ContactIcons";
+import { ContactIcon1, ContactIcon2 } from "./LeftMenuIcons/ContactIcons";
 import { RatingsIcon1 } from "./LeftMenuIcons/RatingsIcons";
 
 const useStyles = makeStyles((theme) => ({
@@ -114,6 +114,12 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
           onClick={() => props.addBlock(4, 7, "contact1", true)}
         >
           <ContactIcon1 />
+        </div>
+        <div
+          className={inItemsArray("contact2") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock(4, 7, "contact2", true)}
+        >
+          <ContactIcon2 />
         </div>
         {/* ======================================================================================================= */}
         {/* Educations */}

@@ -53,6 +53,11 @@ const CreatePage: React.FC = (props) => {
     emails: [""],
     phno: "",
   });
+  const [contact2, setContact2] = useState<Contact>({
+    address: [""],
+    emails: [""],
+    phno: "",
+  });
   const [skills1, setSkills1] = useState<Skills>({
     color: "#123456",
     title: "",
@@ -118,6 +123,11 @@ const CreatePage: React.FC = (props) => {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quod dolorem libero reprehenderit maxime maiores officiis? Beatae fuga, quia dolorum sequi accusamus omnis ab corrupti, atque architecto expedita ipsa inventore.",
     });
     setContact1({
+      address: ["123 BV Rd, California"],
+      emails: ["abc@gmail.com", "Github.com/JohnDoe"],
+      phno: "123 456 7890",
+    });
+    setContact2({
       address: ["123 BV Rd, California"],
       emails: ["abc@gmail.com", "Github.com/JohnDoe"],
       phno: "123 456 7890",
@@ -236,6 +246,8 @@ const CreatePage: React.FC = (props) => {
               return about1;
             case "contact1":
               return contact1;
+            case "contact2":
+              return contact2;
             case "educations1":
               return educations1;
             case "skills1":
@@ -335,6 +347,7 @@ const CreatePage: React.FC = (props) => {
             aboutWithContact2={aboutWithContact2}
             about1={about1}
             contact1={contact1}
+            contact2={contact2}
             skills1={skills1}
             skills2={skills2}
             educations1={educations1}
@@ -359,6 +372,8 @@ const CreatePage: React.FC = (props) => {
             setAbout1={setAbout1}
             contact1={contact1}
             setContact1={setContact1}
+            contact2={contact2}
+            setContact2={setContact2}
             skills1={skills1}
             setSkills1={setSkills1}
             skills2={skills2}

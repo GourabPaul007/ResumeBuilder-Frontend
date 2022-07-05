@@ -4,19 +4,19 @@ export const SkillsIcon1: React.FC = () => {
   return (
     <svg fill="none" viewBox="0 0 250 150">
       {/* first row */}
-      <rect x={35} y={35} width={90} height={12} rx={4} fill="#123488" />
-      <rect x={135} y={35} width={60} height={12} rx={4} fill="#123488" />
+      <rect x={35} y={35} width={90} height={12} rx={4} fill="#651fff" />
+      <rect x={135} y={35} width={60} height={12} rx={4} fill="#651fff" />
       {/* 2nd row */}
-      <rect x={35} y={55} width={50} height={12} rx={4} fill="#123488" />
-      <rect x={95} y={55} width={40} height={12} rx={4} fill="#123488" />
-      <rect x={145} y={55} width={50} height={12} rx={4} fill="#123488" />
+      <rect x={35} y={55} width={50} height={12} rx={4} fill="#651fff" />
+      <rect x={95} y={55} width={40} height={12} rx={4} fill="#651fff" />
+      <rect x={145} y={55} width={50} height={12} rx={4} fill="#651fff" />
       {/* 3rd row */}
-      <rect x={35} y={75} width={60} height={12} rx={4} fill="#123488" />
-      <rect x={105} y={75} width={40} height={12} rx={4} fill="#123488" />
-      <rect x={155} y={75} width={50} height={12} rx={4} fill="#123488" />
+      <rect x={35} y={75} width={60} height={12} rx={4} fill="#651fff" />
+      <rect x={105} y={75} width={40} height={12} rx={4} fill="#651fff" />
+      <rect x={155} y={75} width={50} height={12} rx={4} fill="#651fff" />
       {/* 4th row */}
-      <rect x={35} y={95} width={70} height={12} rx={4} fill="#123488" />
-      <rect x={115} y={95} width={50} height={12} rx={4} fill="#123488" />
+      <rect x={35} y={95} width={70} height={12} rx={4} fill="#651fff" />
+      <rect x={115} y={95} width={50} height={12} rx={4} fill="#651fff" />
       {/* the size text on bottom */}
       {/* <text x="170" y="145" style={{ fontWeight: "bold", fontSize: 24 }} fill="#545454">
         3 x 4
@@ -29,19 +29,19 @@ export const SkillsIcon2: React.FC = () => {
   return (
     <svg fill="none" viewBox="0 0 250 150">
       {/* first row */}
-      <rect x={35} y={35} width={90} height={12} rx={4} fill="#fa4f85" />
-      <rect x={135} y={35} width={60} height={12} rx={4} fill="#fa4f85" />
+      <rect x={35} y={35} width={90} height={12} rx={4} fill="#f50057" />
+      <rect x={135} y={35} width={60} height={12} rx={4} fill="#f50057" />
       {/* 2nd row */}
-      <rect x={35} y={55} width={50} height={12} rx={4} fill="#fa4f85" />
-      <rect x={95} y={55} width={40} height={12} rx={4} fill="#fa4f85" />
-      <rect x={145} y={55} width={50} height={12} rx={4} fill="#fa4f85" />
+      <rect x={35} y={55} width={50} height={12} rx={4} fill="#f50057" />
+      <rect x={95} y={55} width={40} height={12} rx={4} fill="#f50057" />
+      <rect x={145} y={55} width={50} height={12} rx={4} fill="#f50057" />
       {/* 3rd row */}
-      <rect x={35} y={75} width={60} height={12} rx={4} fill="#fa4f85" />
-      <rect x={105} y={75} width={40} height={12} rx={4} fill="#fa4f85" />
-      <rect x={155} y={75} width={50} height={12} rx={4} fill="#fa4f85" />
+      <rect x={35} y={75} width={60} height={12} rx={4} fill="#f50057" />
+      <rect x={105} y={75} width={40} height={12} rx={4} fill="#f50057" />
+      <rect x={155} y={75} width={50} height={12} rx={4} fill="#f50057" />
       {/* 4th row */}
-      <rect x={35} y={95} width={70} height={12} rx={4} fill="#fa4f85" />
-      <rect x={115} y={95} width={50} height={12} rx={4} fill="#fa4f85" />
+      <rect x={35} y={95} width={70} height={12} rx={4} fill="#f50057" />
+      <rect x={115} y={95} width={50} height={12} rx={4} fill="#f50057" />
       {/* the size text on bottom */}
       {/* <text x="170" y="145" style={{ fontWeight: "bold", fontSize: 24 }} fill="#545454">
       3 x 4

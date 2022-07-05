@@ -53,9 +53,6 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
       <div className={blockClasses.blockTitleDiv}>
         <h2 className={blockClasses.blockTitleH2}>{props.educations.title}</h2>
       </div>
-      {/* <hr
-        style={{ border: `1px solid ${props.formStyles.titleUnderline ? props.formStyles.titleColor : "transparent"}` }}
-      /> */}
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
       <div
         style={{
@@ -77,7 +74,7 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
               key={course.id}
             >
               <div style={{ marginRight: 12 }}>
-                <SchoolRoundedIcon style={{ color: "#666" || props.formStyles.accentColor }} />
+                <SchoolRoundedIcon style={{ color: props.formStyles.accentColor }} />
               </div>
               <div
                 style={{

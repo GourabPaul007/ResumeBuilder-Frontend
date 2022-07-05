@@ -21,7 +21,7 @@ import { FormStyles } from "../../interfaces/FormStyles";
 import { Others } from "../../interfaces/Others";
 import { About } from "../../interfaces/About";
 import { AboutBlock1 } from "./blocks/AboutBlocks";
-import { ContactBlock1 } from "./blocks/ContactBlocks";
+import { ContactBlock1, ContactBlock2 } from "./blocks/ContactBlocks";
 import { Contact } from "../../interfaces/Contact";
 import { Ratings } from "../../interfaces/Ratings";
 import { RatingsBlock1 } from "./blocks/RatingsBlocks";
@@ -61,6 +61,7 @@ interface MiddleGridProps {
   aboutWithContact2: AboutWithContact;
   about1: About;
   contact1: Contact;
+  contact2: Contact;
   skills1: Skills;
   skills2: Skills;
   educations1: Educations;
@@ -114,6 +115,16 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             removeItem={props.removeItem}
             item={item}
             contact={props.contact1}
+            formStyles={props.formStyles}
+          />
+        );
+      case "contact2":
+        return (
+          <ContactBlock2
+            blockTitle={"Contact #2"}
+            removeItem={props.removeItem}
+            item={item}
+            contact={props.contact2}
             formStyles={props.formStyles}
           />
         );

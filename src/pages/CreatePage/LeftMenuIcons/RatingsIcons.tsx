@@ -5,7 +5,7 @@ import StarOutlineRoundedIcon from "@mui/icons-material/StarOutlineRounded";
 export const RatingsIcon1: React.FC = () => {
   const fillStarStyles = {
     fontSize: 13,
-    color: "#ffd600",
+    color: "#651fff",
   };
   return (
     <div
@@ -20,7 +20,7 @@ export const RatingsIcon1: React.FC = () => {
     >
       <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
         <svg fill="none" viewBox="0 0 50 10">
-          <rect x={0} y={0} width={45} height={10} rx={2} fill="#656565" />
+          <rect x={0} y={2} width={40} height={8} rx={2} fill="#656565" />
         </svg>
         <StarRoundedIcon style={fillStarStyles} />
         <StarRoundedIcon style={fillStarStyles} />
@@ -30,7 +30,7 @@ export const RatingsIcon1: React.FC = () => {
       </div>
       <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
         <svg fill="none" viewBox="0 0 50 10">
-          <rect x={0} y={0} width={45} height={10} rx={2} fill="#656565" />
+          <rect x={0} y={2} width={40} height={8} rx={2} fill="#656565" />
         </svg>
         <StarRoundedIcon style={fillStarStyles} />
         <StarRoundedIcon style={fillStarStyles} />
@@ -40,7 +40,7 @@ export const RatingsIcon1: React.FC = () => {
       </div>
       <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
         <svg fill="none" viewBox="0 0 50 10">
-          <rect x={0} y={0} width={45} height={10} rx={2} fill="#656565" />
+          <rect x={0} y={2} width={40} height={8} rx={2} fill="#656565" />
         </svg>
         <StarRoundedIcon style={fillStarStyles} />
         <StarRoundedIcon style={fillStarStyles} />
