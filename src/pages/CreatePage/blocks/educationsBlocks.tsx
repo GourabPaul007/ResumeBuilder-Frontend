@@ -26,6 +26,15 @@ const dummyEducations: Educations = {
   ],
 };
 
+const isEmptyObjArr = (arr: Course[]) => {
+  return arr.every((value) => {
+    if (value.courseName === "" && value.courseResults === "" && value.organizationName === "") {
+      return true;
+    }
+    return false;
+  });
+};
+
 interface EducationsBlockProps {
   blockTitle: string;
   item: GridItem;
@@ -36,16 +45,6 @@ interface EducationsBlockProps {
 
 export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
   const blockClasses = useBlockStyles(props.formStyles);
-
-  const isEmptyObjArr = (arr: Course[]) => {
-    return arr.every((value) => {
-      if (value.courseName === "" && value.courseResults === "" && value.organizationName === "") {
-        return true;
-      }
-      return false;
-    });
-  };
-
   const toBeShownEducations = !isEmptyObjArr(props.educations.data) ? props.educations : dummyEducations;
 
   return (
@@ -95,6 +94,51 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
                 <p style={{ fontWeight: 500, color: "#434343", margin: 0, fontSize: 13 }}>{course.courseName}</p>
                 <p style={{ fontWeight: 500, color: "#434343", fontSize: 13 }}>{course.courseResults}</p>
               </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export const EducationsBlock2: React.FC<EducationsBlockProps> = (props) => {
+  const blockClasses = useBlockStyles(props.formStyles);
+  const toBeShownEducations = !isEmptyObjArr(props.educations.data) ? props.educations : dummyEducations;
+
+  return (
+    <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockTitleDiv}>
+        <h2 className={blockClasses.blockTitleH2}>{props.educations.title}</h2>
+      </div>
+      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+      <div
+        style={{
+          fontSize: 14,
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          margin: "0px 4px",
+          width: "100%",
+        }}
+      >
+        {toBeShownEducations.data.map((course: Course) => {
+          return (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "4px 0px 0px 0px",
+              }}
+              key={course.id}
+            >
+              <div style={{ fontWeight: 600, margin: 2, textAlign: "center" }}>{course.organizationName}</div>
+              <div style={{ fontWeight: 500, margin: 2, textAlign: "center" }}>
+                {course.courseName}, {course.courseDuration}
+              </div>
+              <div style={{ fontWeight: 500, margin: 2, textAlign: "center" }}>{course.courseResults}</div>
             </div>
           );
         })}

@@ -7,7 +7,7 @@ import "./MiddleGrid.css";
 import { GridItem } from "../../interfaces/GridItem";
 import { SkillsBlock1, SkillsBlock2 } from "./blocks/skillsBlocks";
 import { makeStyles } from "@mui/styles";
-import { EducationsBlock1 } from "./blocks/educationsBlocks";
+import { EducationsBlock1, EducationsBlock2 } from "./blocks/educationsBlocks";
 import { OthersBlock1 } from "./blocks/othersBlocks";
 import { AboutWithContactBlock1, AboutWithContactBlock2 } from "./blocks/aboutWithContactBlocks";
 import { WorksBlock1 } from "./blocks/worksBlocks";
@@ -65,6 +65,7 @@ interface MiddleGridProps {
   skills1: Skills;
   skills2: Skills;
   educations1: Educations;
+  educations2: Educations;
   works1: Works;
   projects1: Projects;
   ratings1: Ratings;
@@ -135,6 +136,16 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             removeItem={props.removeItem}
             item={item}
             educations={props.educations1}
+            formStyles={props.formStyles}
+          />
+        );
+      case "educations2":
+        return (
+          <EducationsBlock2
+            blockTitle={"Education #2"}
+            removeItem={props.removeItem}
+            item={item}
+            educations={props.educations2}
             formStyles={props.formStyles}
           />
         );

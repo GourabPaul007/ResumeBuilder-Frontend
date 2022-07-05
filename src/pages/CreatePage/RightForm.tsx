@@ -50,6 +50,8 @@ interface RightFormProps {
   setContact2: Dispatch<React.SetStateAction<Contact>>;
   educations1: Educations;
   setEducations1: Dispatch<React.SetStateAction<Educations>>;
+  educations2: Educations;
+  setEducations2: Dispatch<React.SetStateAction<Educations>>;
   skills1: Skills;
   setSkills1: Dispatch<React.SetStateAction<Skills>>;
   skills2: Skills;
@@ -107,6 +109,14 @@ export const RightForm: FC<RightFormProps> = (props) => {
             formTitle={"Education #1"}
           />
         );
+      case "educations2":
+        return (
+          <EducationForm
+            educations={props.educations2}
+            setEducations={props.setEducations2}
+            formTitle={"Education #2"}
+          />
+        );
       case "works1":
         return <WorksForm works={props.works1} setWorks={props.setWorks1} formTitle={"Work #1"} />;
       case "projects1":
@@ -115,10 +125,6 @@ export const RightForm: FC<RightFormProps> = (props) => {
         return <RatingsForm ratings={props.ratings1} setRatings={props.setRatings1} formTitle={"Ratings #1"} />;
       case "others1":
         return <OthersForm others={props.others1} setOthers={props.setOthers1} formTitle={"Others #1"} />;
-      // case "others2":
-      //   return <OthersForm others={props.others} setOthers={props.setOthers} formTitle={"About #1"} />;
-      // case "others#2":
-      //   return <OthersForm others={props.others} setOthers={props.setOthers} formTitle={"About #1"} />;
       default:
         return null;
     }

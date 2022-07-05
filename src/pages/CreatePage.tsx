@@ -78,6 +78,12 @@ const CreatePage: React.FC = (props) => {
       { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "", courseDuration: "" },
     ],
   });
+  const [educations2, setEducations2] = useState<Educations>({
+    title: "Education Init 2",
+    data: [
+      { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "", courseDuration: "" },
+    ],
+  });
   const [works1, setWorks1] = useState<Works>({
     title: "Works Init",
     data: [{ id: `work${Date.now()}`, workOrganizationName: "", workDetails: [""], workDuration: "" }],
@@ -133,7 +139,26 @@ const CreatePage: React.FC = (props) => {
       phno: "123 456 7890",
     });
     setEducations1({
-      title: "Educations UseEffect",
+      title: "Educations #1 UseEffect",
+      data: [
+        {
+          id: "education001",
+          courseName: "Bachelor of Science in Computer Science",
+          courseDuration: "2019 - 2022",
+          organizationName: "Dinabandhu Mahabidyalaya",
+          courseResults: "Cumulative CGPA 9.00",
+        },
+        {
+          id: "education002",
+          courseName: "Higher Secondary Science Stream",
+          courseDuration: "2017 - 2019",
+          organizationName: "Bangaon Higher Secondary School",
+          courseResults: "Result Percentage 72%",
+        },
+      ],
+    });
+    setEducations2({
+      title: "Educations #2 UseEffect",
       data: [
         {
           id: "education001",
@@ -250,6 +275,8 @@ const CreatePage: React.FC = (props) => {
               return contact2;
             case "educations1":
               return educations1;
+            case "educations2":
+              return educations2;
             case "skills1":
               return skills1;
             case "skills2":
@@ -351,6 +378,7 @@ const CreatePage: React.FC = (props) => {
             skills1={skills1}
             skills2={skills2}
             educations1={educations1}
+            educations2={educations2}
             works1={works1}
             projects1={projects1}
             ratings1={ratings1}
@@ -380,6 +408,8 @@ const CreatePage: React.FC = (props) => {
             setSkills2={setSkills2}
             educations1={educations1}
             setEducations1={setEducations1}
+            educations2={educations2}
+            setEducations2={setEducations2}
             works1={works1}
             setWorks1={setWorks1}
             projects1={projects1}

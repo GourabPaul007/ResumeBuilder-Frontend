@@ -62,7 +62,7 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
   const toBeShownSkills = props.skills.data.length === 0 && props.skills.title === "" ? dummySkills : props.skills;
 
   return (
-    <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 16, paddingBottom: 16, fontFamily: "sans-serif" }}>
+    <div className={blockClasses.blockWrapper}>
       <div className={blockClasses.blockTitleDiv}>
         <h2 className={blockClasses.blockTitleH2}>{toBeShownSkills.title}</h2>
       </div>

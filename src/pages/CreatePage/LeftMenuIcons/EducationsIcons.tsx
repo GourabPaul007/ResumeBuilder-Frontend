@@ -22,3 +22,22 @@ export const EducationIcon1: React.FC = () => {
     </svg>
   );
 };
+
+export const EducationIcon2: React.FC = () => {
+  return (
+    <svg fill="none" viewBox="0 0 250 150">
+      {/* 1st education block */}
+      <rect x={45} y={52} width={50} height={8} rx={2} fill="#6366f1" />
+      <rect x={27} y={65} width={85} height={8} rx={2} fill="#888888" />
+      <rect x={35} y={78} width={70} height={8} rx={2} fill="#888888" />
+      {/* 2nd education block */}
+      <rect x={150} y={52} width={50} height={8} rx={2} fill="#6366f1" />
+      <rect x={132} y={65} width={86} height={8} rx={2} fill="#888888" />
+      <rect x={140} y={78} width={70} height={8} rx={2} fill="#888888" />
+      {/* the size text on bottom */}
+      {/* <text x="170" y="145" style={{ fontWeight: "bold", fontSize: 24 }} fill="#545454">
+        3 x 4
+      </text> */}
+    </svg>
+  );
+};

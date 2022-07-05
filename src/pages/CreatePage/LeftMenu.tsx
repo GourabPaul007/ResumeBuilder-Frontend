@@ -2,7 +2,7 @@ import { orange } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
 import * as React from "react";
 import { AboutAndContactIcon1, AboutAndContactIcon2 } from "./LeftMenuIcons/AboutAndContactIcons";
-import { EducationIcon1 } from "./LeftMenuIcons/EducationsIcons";
+import { EducationIcon1, EducationIcon2 } from "./LeftMenuIcons/EducationsIcons";
 import { ProjectsIcon1 } from "./LeftMenuIcons/ProjectIcons";
 import { OthersIcon1 } from "./LeftMenuIcons/OthersIcons";
 import { SkillsIcon1, SkillsIcon2 } from "./LeftMenuIcons/SkillsIcons";
@@ -130,6 +130,12 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
           onClick={() => props.addBlock(5, 8, "educations1", true)}
         >
           <EducationIcon1 />
+        </div>
+        <div
+          className={inItemsArray("educations2") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock(12, 8, "educations2", true)}
+        >
+          <EducationIcon2 />
         </div>
         {/* ======================================================================================================= */}
         {/* Skills */}
