@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 import React, { Dispatch, FC } from "react";
 import NeumorphicTextField from "../../../Components/NeumorphicTextField";
 import { AboutWithContact } from "../../../interfaces/AboutWithContact";
-import { useStyles } from "./FormsStyles";
+import { useStyles } from "./_FormsStyles";
 
 interface AboutWithContactFormProps {
   formTitle: string;
@@ -11,7 +11,7 @@ interface AboutWithContactFormProps {
   setAbout: Dispatch<React.SetStateAction<AboutWithContact>>;
 }
 
-export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
+export const AboutWithContactForm: FC<AboutWithContactFormProps> = React.memo((props) => {
   const classes = useStyles();
   return (
     <>
@@ -117,4 +117,4 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = (props) => {
       />
     </>
   );
-};
+});

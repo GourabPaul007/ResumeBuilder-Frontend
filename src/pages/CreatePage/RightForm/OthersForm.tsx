@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React, { Dispatch, FC, useState } from "react";
 import { Others } from "../../../interfaces/Others";
-import { useStyles } from "./FormsStyles";
+import { useStyles } from "./_FormsStyles";
 
 interface OthersFormProps {
   formTitle: string;
@@ -18,7 +18,7 @@ interface OthersFormProps {
   setOthers: Dispatch<React.SetStateAction<Others>>;
 }
 
-export const OthersForm: FC<OthersFormProps> = (props) => {
+export const OthersForm: FC<OthersFormProps> = React.memo((props) => {
   const classes = useStyles();
   const [selectValue, setSelectValue] = useState("9679");
   // ======================================================
@@ -91,4 +91,4 @@ export const OthersForm: FC<OthersFormProps> = (props) => {
       </Grid>
     </>
   );
-};
+});

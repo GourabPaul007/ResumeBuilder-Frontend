@@ -1,7 +1,7 @@
 import { Autocomplete, Chip, Grid, Slider, Switch, TextField, Typography } from "@mui/material";
 import React, { Dispatch, FC, useEffect, useState } from "react";
 import { Skills } from "../../../interfaces/Skills";
-import { useStyles } from "./FormsStyles";
+import { useStyles } from "./_FormsStyles";
 
 interface SkillsFormProps {
   formTitle: string;
@@ -9,12 +9,12 @@ interface SkillsFormProps {
   setSkills: Dispatch<React.SetStateAction<Skills>>;
 }
 
-export const SkillsForm: FC<SkillsFormProps> = (props) => {
+export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
   const classes = useStyles();
   const [currentColor, setCurrentColor] = useState<string>(
     props.skills.color.length > 0
       ? props.skills.color
-      : "#000000".replace(/0/g, function() {
+      : "#000000".replace(/0/g, function () {
           return (~~(Math.random() * 16)).toString(16);
         })
   );
@@ -164,4 +164,4 @@ export const SkillsForm: FC<SkillsFormProps> = (props) => {
       </div>
     </>
   );
-};
+});

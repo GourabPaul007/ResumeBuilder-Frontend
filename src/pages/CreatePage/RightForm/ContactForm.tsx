@@ -1,7 +1,7 @@
 import { Grid, TextField, Typography } from "@mui/material";
 import React, { Dispatch, FC } from "react";
 import { Contact } from "../../../interfaces/Contact";
-import { useStyles } from "./FormsStyles";
+import { useStyles } from "./_FormsStyles";
 
 interface AboutWithContactFormProps {
   formTitle: string;
@@ -9,7 +9,7 @@ interface AboutWithContactFormProps {
   setContact: Dispatch<React.SetStateAction<Contact>>;
 }
 
-export const ContactForm: FC<AboutWithContactFormProps> = (props) => {
+export const ContactForm: FC<AboutWithContactFormProps> = React.memo((props) => {
   const classes = useStyles();
   return (
     <>
@@ -65,4 +65,4 @@ export const ContactForm: FC<AboutWithContactFormProps> = (props) => {
       </Grid>
     </>
   );
-};
+});

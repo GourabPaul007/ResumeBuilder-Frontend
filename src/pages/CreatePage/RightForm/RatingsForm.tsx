@@ -9,7 +9,7 @@ import SquareRoundedIcon from "@mui/icons-material/SquareRounded";
 import CropDinRoundedIcon from "@mui/icons-material/CropDinRounded";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import { useStyles } from "./FormsStyles";
+import { useStyles } from "./_FormsStyles";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
@@ -22,7 +22,7 @@ interface RatingsFormProps {
   setRatings: Dispatch<React.SetStateAction<Ratings>>;
 }
 
-export const RatingsForm: FC<RatingsFormProps> = (props) => {
+export const RatingsForm: FC<RatingsFormProps> = React.memo((props) => {
   const classes = useStyles();
   // const [ratingValue, setRatingValue] = useState(2);
 
@@ -205,4 +205,4 @@ export const RatingsForm: FC<RatingsFormProps> = (props) => {
       </Typography>
     </>
   );
-};
+});

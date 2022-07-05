@@ -2,7 +2,7 @@ import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
 import React, { Dispatch, FC } from "react";
 import { Course, Educations } from "../../../interfaces/Educations";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
-import { useStyles } from "./FormsStyles";
+import { useStyles } from "./_FormsStyles";
 
 interface EducationFormProps {
   formTitle: string;
@@ -10,7 +10,7 @@ interface EducationFormProps {
   setEducations: Dispatch<React.SetStateAction<Educations>>;
 }
 
-export const EducationForm: FC<EducationFormProps> = (props) => {
+export const EducationForm: FC<EducationFormProps> = React.memo((props) => {
   const classes = useStyles();
   // ==================================================================================================================
   // Add or Remove Fields
@@ -195,4 +195,4 @@ export const EducationForm: FC<EducationFormProps> = (props) => {
       </Typography>
     </>
   );
-};
+});

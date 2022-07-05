@@ -27,7 +27,7 @@ interface MiscellaneousProps {
   setFormStyles: Dispatch<React.SetStateAction<FormStyles>>;
 }
 
-export const Miscellaneous: FC<MiscellaneousProps> = (props) => {
+export const Miscellaneous: FC<MiscellaneousProps> = React.memo((props) => {
   const classes = useMiscellaneousStyles();
 
   const [currentTitleColor, setCurrentTitleColor] = useState(
@@ -162,4 +162,4 @@ export const Miscellaneous: FC<MiscellaneousProps> = (props) => {
       </section>
     </div>
   );
-};
+});

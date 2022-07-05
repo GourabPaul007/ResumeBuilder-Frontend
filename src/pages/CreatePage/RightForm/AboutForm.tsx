@@ -2,7 +2,7 @@ import { Grid, styled, TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { Dispatch, FC } from "react";
 import { About } from "../../../interfaces/About";
-import { useStyles } from "./FormsStyles";
+import { useStyles } from "./_FormsStyles";
 
 interface AboutFormProps {
   formTitle: string;
@@ -10,7 +10,7 @@ interface AboutFormProps {
   setAbout: Dispatch<React.SetStateAction<About>>;
 }
 
-export const AboutForm: FC<AboutFormProps> = (props) => {
+export const AboutForm: FC<AboutFormProps> = React.memo((props) => {
   const classes = useStyles();
   return (
     <>
@@ -69,4 +69,4 @@ export const AboutForm: FC<AboutFormProps> = (props) => {
       />
     </>
   );
-};
+});
