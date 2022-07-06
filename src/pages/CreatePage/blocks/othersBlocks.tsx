@@ -32,10 +32,7 @@ export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
   return (
     <div className={blockClasses.blockWrapper}>
       <div className={blockClasses.blockTitleDiv}>
-        <h2 className={blockClasses.blockTitleH2}>
-          Other Skills &<br />
-          Activities
-        </h2>
+        <h2 className={blockClasses.blockTitleH2}>{props.others.title}</h2>
       </div>
       <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
       <div style={{ paddingLeft: 8, fontSize: 15 }}>

@@ -1,8 +1,5 @@
-import { Button } from "@mui/material";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { Component } from "react";
-import ReactGridLayout from "react-grid-layout";
 import AppBarHeader from "../Components/AppBarHeader";
 import { GridItem } from "../interfaces/GridItem";
 import "./CreatePage.css";
@@ -11,13 +8,12 @@ import LeftMenu from "./CreatePage/LeftMenu";
 import MiddleGrid from "./CreatePage/MiddleGrid";
 import { AboutWithContact } from "../interfaces/AboutWithContact";
 import { RightForm } from "./CreatePage/RightForm";
-import { Course, Educations } from "../interfaces/Educations";
-import { Work, Works } from "../interfaces/Works";
-import { Project, Projects } from "../interfaces/Projects";
+import { Educations } from "../interfaces/Educations";
+import { Works } from "../interfaces/Works";
+import { Projects } from "../interfaces/Projects";
 import { Skills } from "../interfaces/Skills";
 import { FormStyles } from "../interfaces/FormStyles";
 import { Others } from "../interfaces/Others";
-import { AboutAndContactIcon2 } from "./CreatePage/LeftMenuIcons/AboutAndContactIcons";
 import { About } from "../interfaces/About";
 import { Contact } from "../interfaces/Contact";
 import { Ratings } from "../interfaces/Ratings";
@@ -249,7 +245,7 @@ const CreatePage: React.FC = (props) => {
         "accusantium exercit ationem.",
       ],
     });
-    addItem(8, 7, "about1", true);
+    addItem(8, 8, "about1", true);
   }, []);
 
   const [layout, setLayout] = useState<GridItem[]>([]);

@@ -5,17 +5,12 @@ import { WidthProvider, Responsive } from "react-grid-layout";
 // Required by react-grid-layout to function properly
 import "./MiddleGrid.css";
 import { GridItem } from "../../interfaces/GridItem";
-import { SkillsBlock1, SkillsBlock2 } from "./blocks/skillsBlocks";
 import { makeStyles } from "@mui/styles";
-import { EducationsBlock1, EducationsBlock2 } from "./blocks/educationsBlocks";
-import { OthersBlock1 } from "./blocks/othersBlocks";
-import { AboutWithContactBlock1, AboutWithContactBlock2 } from "./blocks/aboutWithContactBlocks";
-import { WorksBlock1 } from "./blocks/worksBlocks";
 import { AboutWithContact } from "../../interfaces/AboutWithContact";
-import { Course, Educations } from "../../interfaces/Educations";
-import { Work, Works } from "../../interfaces/Works";
-import { ProjectsBlock1 } from "./blocks/projectsBlock";
-import { Project, Projects } from "../../interfaces/Projects";
+import { Educations } from "../../interfaces/Educations";
+import { Works } from "../../interfaces/Works";
+import { ProjectsBlock1 } from "./blocks/ProjectsBlocks";
+import { Projects } from "../../interfaces/Projects";
 import { Skills } from "../../interfaces/Skills";
 import { FormStyles } from "../../interfaces/FormStyles";
 import { Others } from "../../interfaces/Others";
@@ -26,6 +21,11 @@ import { Contact } from "../../interfaces/Contact";
 import { Ratings } from "../../interfaces/Ratings";
 import { RatingsBlock1 } from "./blocks/RatingsBlocks";
 import { Theme } from "@mui/material/styles";
+import { SkillsBlock1, SkillsBlock2 } from "./blocks/SkillsBlocks";
+import { EducationsBlock1, EducationsBlock2 } from "./blocks/EducationsBlocks";
+import { AboutWithContactBlock1, AboutWithContactBlock2 } from "./blocks/AboutWithContactBlocks";
+import { WorksBlock1 } from "./blocks/WorksBlocks";
+import { OthersBlock1 } from "./blocks/OthersBlocks";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -221,7 +221,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
           className="layout"
           onLayoutChange={props.onLayoutChange}
           autoSize={false}
-          rowHeight={20}
+          rowHeight={10}
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
           cols={{ lg: 12, md: 12, sm: 12, xs: 12, xxs: 12 }}
         >

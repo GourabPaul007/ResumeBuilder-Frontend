@@ -84,7 +84,7 @@ export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
               {eachProject.projectName}
             </h4>
             {/* Project Details */}
-            <div style={{ marginBottom: 4, marginLeft: 16, marginTop: 4, fontWeight: 500 }}>
+            <div style={{ margin: "4px 0px 4px 16px", fontWeight: 500 }}>
               {eachProject.projectDetails.map((detail: string) => {
                 return (
                   <div

@@ -85,13 +85,13 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         </div>
         <div
           className={inItemsArray("aboutwithcontact1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(12, 7, "aboutwithcontact1", true)}
+          onClick={() => props.addBlock(12, 10, "aboutwithcontact1", true)}
         >
           <AboutAndContactIcon1 />
         </div>
         <div
           className={inItemsArray("aboutwithcontact2") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(12, 7, "aboutwithcontact2", true)}
+          onClick={() => props.addBlock(12, 10, "aboutwithcontact2", true)}
         >
           <AboutAndContactIcon2 />
         </div>
@@ -101,7 +101,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>About</div>
         <div
           className={inItemsArray("about1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(8, 7, "about1", true)}
+          onClick={() => props.addBlock(8, 8, "about1", true)}
         >
           <AboutIcon1 />
         </div>
@@ -111,13 +111,13 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Contact</div>
         <div
           className={inItemsArray("contact1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(4, 7, "contact1", true)}
+          onClick={() => props.addBlock(4, 8, "contact1", true)}
         >
           <ContactIcon1 />
         </div>
         <div
           className={inItemsArray("contact2") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(4, 7, "contact2", true)}
+          onClick={() => props.addBlock(4, 8, "contact2", true)}
         >
           <ContactIcon2 />
         </div>
@@ -127,13 +127,13 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Education</div>
         <div
           className={inItemsArray("educations1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(5, 8, "educations1", true)}
+          onClick={() => props.addBlock(5, 12, "educations1", true)}
         >
           <EducationIcon1 />
         </div>
         <div
           className={inItemsArray("educations2") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(12, 8, "educations2", true)}
+          onClick={() => props.addBlock(12, 7, "educations2", true)}
         >
           <EducationIcon2 />
         </div>
@@ -143,13 +143,13 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Skills</div>
         <div
           className={inItemsArray("skills1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(5, 8, "skills1", true)}
+          onClick={() => props.addBlock(5, 11, "skills1", true)}
         >
           <SkillsIcon1 />
         </div>
         <div
           className={inItemsArray("skills2") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(5, 8, "skills2", true)}
+          onClick={() => props.addBlock(5, 11, "skills2", true)}
         >
           <SkillsIcon2 />
         </div>
@@ -159,7 +159,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Work History</div>
         <div
           className={inItemsArray("works1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(7, 7, "works1", true)}
+          onClick={() => props.addBlock(7, 10, "works1", true)}
         >
           <WorksIcon1 />
         </div>
@@ -169,17 +169,17 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Projects</div>
         <div
           className={inItemsArray("projects1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(7, 17, "projects1", true)}
+          onClick={() => props.addBlock(7, 16, "projects1", true)}
         >
           <ProjectsIcon1 />
         </div>
         {/* ======================================================================================================= */}
-        {/* Rating */}
+        {/* Ratings */}
         {/* ======================================================================================================= */}
         <div className={styles.categoryTitle}>Ratings</div>
         <div
           className={inItemsArray("ratings1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(4, 7, "ratings1", true)}
+          onClick={() => props.addBlock(5, 10, "ratings1", true)}
         >
           <RatingsIcon1 />
         </div>
@@ -189,7 +189,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Others</div>
         <div
           className={inItemsArray("others1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(5, 7, "others1", true)}
+          onClick={() => props.addBlock(6, 10, "others1", true)}
         >
           <OthersIcon1 />
         </div>
