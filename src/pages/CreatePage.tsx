@@ -122,6 +122,15 @@ const CreatePage: React.FC = (props) => {
       emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
       about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
     });
+    setAboutWithContact2({
+      name: "John Doe Two",
+      profession: "Software Engineer",
+      address: ["Saktigarh, Railgate Rd.", "Bongaon WB 743235"],
+      cityZip: "Bangaon WB 743235",
+      phno: "+91 9064040525",
+      emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
+      about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
+    });
     setAbout1({
       name: "Bruh Doe",
       profession: "Bruhware Engineer",
