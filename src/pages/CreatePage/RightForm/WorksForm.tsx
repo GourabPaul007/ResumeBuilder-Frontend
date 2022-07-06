@@ -55,7 +55,7 @@ export const WorksForm: FC<WorksFormProps> = React.memo((props) => {
   const handleWorkDetailsInput = (workDetails: string, pos: number): void => {
     const newWorks = props.works.data.map((singleWork: Work, index) => {
       if (pos === index) {
-        singleWork.workDetails = workDetails.split("<li>");
+        singleWork.workDetails = workDetails.split("<nl>");
       }
       return singleWork;
     });
@@ -134,7 +134,7 @@ export const WorksForm: FC<WorksFormProps> = React.memo((props) => {
                     InputProps={{ classes: { underline: classes.underline } }}
                     label="Work Details eg. Worked on Stuff"
                     name="workDetails"
-                    value={singleWork.workDetails.join("<li>")}
+                    value={singleWork.workDetails.join("<nl>")}
                     onChange={(e) => handleWorkDetailsInput(e.target.value, index)}
                   />
                 </Grid>
