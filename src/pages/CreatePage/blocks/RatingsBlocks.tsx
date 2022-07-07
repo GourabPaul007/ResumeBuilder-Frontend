@@ -77,7 +77,8 @@ export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
                       {getStarsArray(
                         Math.round(eachRating.rateInPercentage / 20),
                         props.ratings.icon,
-                        props.formStyles.accentColor
+                        props.formStyles.accentColor,
+                        22
                       )}
                     </div>
                   )}
@@ -99,16 +100,30 @@ export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
   return (
     <>
       <div className={blockClasses.blockWrapper}>
-        <div className={blockClasses.blockTitleDiv}>
-          <h2 className={blockClasses.blockTitleH2}>{toBeShownRatings.title}</h2>
+        <div style={{ display: "flex", flexDirection: props.ratings.flipped ? "row-reverse" : "row" }}>
+          <div className={blockClasses.blockTitleDiv}>
+            <h2 className={blockClasses.blockTitleH2}>{toBeShownRatings.title}</h2>
+          </div>
+          <RemoveBlockButton
+            item={props.item}
+            removeItem={props.removeItem}
+            blockTitle={props.blockTitle}
+            flipped={props.ratings.flipped}
+          />
         </div>
-        <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+
         <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500 }}>
           {toBeShownRatings.data.map((eachRating, i) => {
             return (
               <div
                 key={eachRating.ratingSubject + i}
-                style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "4px 0px" }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  alignItems: props.ratings.flipped ? "flex-end" : "flex-start",
+                  margin: "4px 0px",
+                }}
               >
                 <div style={{ margin: "0px 0px 2px 0px" /* for aligning with the starts */ }}>
                   {eachRating.ratingSubject}
@@ -121,7 +136,8 @@ export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
                       {getStarsArray(
                         Math.round(eachRating.rateInPercentage / 20),
                         props.ratings.icon,
-                        props.formStyles.accentColor
+                        props.formStyles.accentColor,
+                        20
                       )}
                     </div>
                   )}
@@ -135,28 +151,42 @@ export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
   );
 };
 
-function getStarsArray(numberOfRatesInStar: number, type: string, color: string): React.ReactNode {
+function getStarsArray(numberOfRatesInStar: number, type: string, color: string, size: number): React.ReactNode {
   return (
     <div>
-      {[...Array(numberOfRatesInStar)].map((e, i) => chooseIcon(type + "_fill", i, color))}
-      {[...Array(5 - numberOfRatesInStar)].map((e, i) => chooseIcon(type + "_empty", i, color))}
+      {[...Array(numberOfRatesInStar)].map((e, i) => {
+        return (
+          <>
+            {/* &nbsp; */}
+            {chooseIcon(type + "_fill", i, color, size)}
+          </>
+        );
+      })}
+      {[...Array(5 - numberOfRatesInStar)].map((e, i) => {
+        return (
+          <>
+            {/* &nbsp; */}
+            {chooseIcon(type + "_empty", i, color, size)}
+          </>
+        );
+      })}
     </div>
   );
 }
-function chooseIcon(iconName: string, key: number, color: string) {
+function chooseIcon(iconName: string, key: number, color: string, size: number) {
   switch (iconName) {
     case "star_fill":
-      return <StarRoundedIcon key={key + "_fill"} style={{ color: color, fontSize: 26 }} />;
+      return <StarRoundedIcon key={key + "_fill"} style={{ color: color, fontSize: size + 4 }} />;
     case "star_empty":
-      return <StarOutlineRoundedIcon key={key + "_empty"} style={{ color: color, fontSize: 26 }} />;
+      return <StarOutlineRoundedIcon key={key + "_empty"} style={{ color: color, fontSize: size + 4 }} />;
     case "circle_fill":
-      return <CircleIcon key={key + "_fill"} style={{ color: color, fontSize: 22, margin: "2px 2px" }} />;
+      return <CircleIcon key={key + "_fill"} style={{ color: color, fontSize: size, margin: "2px 2px" }} />;
     case "circle_empty":
-      return <CircleOutlinedIcon key={key + "_empty"} style={{ color: color, fontSize: 22, margin: "2px 2px" }} />;
+      return <CircleOutlinedIcon key={key + "_empty"} style={{ color: color, fontSize: size, margin: "2px 2px" }} />;
     case "square_fill":
-      return <SquareRoundedIcon key={key + "_fill"} style={{ color: color, fontSize: 22, margin: "2px 2px" }} />;
+      return <SquareRoundedIcon key={key + "_fill"} style={{ color: color, fontSize: size, margin: "2px 2px" }} />;
     case "square_empty":
-      return <CropDinRoundedIcon key={key + "_empty"} style={{ color: color, fontSize: 22, margin: "2px 2px" }} />;
+      return <CropDinRoundedIcon key={key + "_empty"} style={{ color: color, fontSize: size, margin: "2px 2px" }} />;
     default:
       break;
   }

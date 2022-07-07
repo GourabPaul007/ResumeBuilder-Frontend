@@ -62,6 +62,8 @@ interface RightFormProps {
   setProjects1: Dispatch<React.SetStateAction<Projects>>;
   ratings1: Ratings;
   setRatings1: Dispatch<React.SetStateAction<Ratings>>;
+  ratings2: Ratings;
+  setRatings2: Dispatch<React.SetStateAction<Ratings>>;
   others1: Others;
   setOthers1: Dispatch<React.SetStateAction<Others>>;
   formStyles: FormStyles;
@@ -123,6 +125,8 @@ export const RightForm: FC<RightFormProps> = (props) => {
         return <ProjectsForm projects={props.projects1} setProjects={props.setProjects1} formTitle={"Projects #1"} />;
       case "ratings1":
         return <RatingsForm ratings={props.ratings1} setRatings={props.setRatings1} formTitle={"Ratings #1"} />;
+      case "ratings2":
+        return <RatingsForm ratings={props.ratings2} setRatings={props.setRatings2} formTitle={"Ratings #2"} />;
       case "others1":
         return <OthersForm others={props.others1} setOthers={props.setOthers1} formTitle={"Others #1"} />;
       default:

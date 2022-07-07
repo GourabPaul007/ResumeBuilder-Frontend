@@ -137,10 +137,18 @@ export const RatingsForm: FC<RatingsFormProps> = React.memo((props) => {
         </Grid>
         <Grid item xs={2} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <ButtonGroup variant="contained" size="small">
-            <Button disabled={props.ratings.flipped ? false : true} onClick={() => handleFlip(false)}>
+            <Button
+              disabled={props.ratings.flipped ? false : true}
+              // style={{ backgroundColor: "#00ccc9" }}
+              onClick={() => handleFlip(false)}
+            >
               <AlignHorizontalLeftIcon />
             </Button>
-            <Button disabled={props.ratings.flipped ? true : false} onClick={() => handleFlip(true)}>
+            <Button
+              disabled={props.ratings.flipped ? true : false}
+              // style={{ backgroundColor: "#00ccc9" }}
+              onClick={() => handleFlip(true)}
+            >
               <AlignHorizontalRightIcon />
             </Button>
           </ButtonGroup>

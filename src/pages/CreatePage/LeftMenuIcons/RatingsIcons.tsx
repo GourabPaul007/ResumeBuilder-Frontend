@@ -51,3 +51,54 @@ export const RatingsIcon1: React.FC = () => {
     </div>
   );
 };
+
+export const RatingsIcon2: React.FC = () => {
+  const fillStarStyles = {
+    fontSize: 13,
+    marginRight: 3,
+    color: "#f50057",
+  };
+  return (
+    // <div
+    //   style={{
+    //     height: "100%",
+    //     padding: "8px 24px",
+    //     display: "flex",
+    //     flexDirection: "column",
+    //     justifyContent: "space-evenly",
+    //   }}
+    // >
+    <div
+      style={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        paddingTop: 4,
+      }}
+    >
+      <div>
+        <div style={{ height: 5, width: 50, backgroundColor: "#656565", marginBottom: 2, borderRadius: 2 }}>&nbsp;</div>
+        <div style={{ display: "flex" }}>
+          <StarRoundedIcon style={fillStarStyles} />
+          <StarRoundedIcon style={fillStarStyles} />
+          <StarRoundedIcon style={fillStarStyles} />
+          <StarRoundedIcon style={fillStarStyles} />
+          <StarRoundedIcon style={fillStarStyles} />
+        </div>
+      </div>
+
+      <div>
+        <div style={{ height: 5, width: 50, backgroundColor: "#656565", marginBottom: 2, borderRadius: 2 }}>&nbsp;</div>
+        <div style={{ display: "flex" }}>
+          <StarRoundedIcon style={fillStarStyles} />
+          <StarRoundedIcon style={fillStarStyles} />
+          <StarRoundedIcon style={fillStarStyles} />
+          <StarRoundedIcon style={fillStarStyles} />
+          <StarRoundedIcon style={fillStarStyles} />
+        </div>
+      </div>
+    </div>
+  );
+};

@@ -19,7 +19,7 @@ import { AboutBlock1 } from "./blocks/AboutBlocks";
 import { ContactBlock1, ContactBlock2 } from "./blocks/ContactBlocks";
 import { Contact } from "../../interfaces/Contact";
 import { Ratings } from "../../interfaces/Ratings";
-import { RatingsBlock1 } from "./blocks/RatingsBlocks";
+import { RatingsBlock1, RatingsBlock2 } from "./blocks/RatingsBlocks";
 import { Theme } from "@mui/material/styles";
 import { SkillsBlock1, SkillsBlock2 } from "./blocks/SkillsBlocks";
 import { EducationsBlock1, EducationsBlock2 } from "./blocks/EducationsBlocks";
@@ -69,6 +69,7 @@ interface MiddleGridProps {
   works1: Works;
   projects1: Projects;
   ratings1: Ratings;
+  ratings2: Ratings;
   others1: Others;
   formStyles: FormStyles;
 }
@@ -196,6 +197,16 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             removeItem={props.removeItem}
             item={item}
             ratings={props.ratings1}
+            formStyles={props.formStyles}
+          />
+        );
+      case "ratings2":
+        return (
+          <RatingsBlock2
+            blockTitle={"Ratings #2"}
+            removeItem={props.removeItem}
+            item={item}
+            ratings={props.ratings2}
             formStyles={props.formStyles}
           />
         );
