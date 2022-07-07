@@ -44,7 +44,7 @@ interface EducationsBlockProps {
 }
 
 export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
-  const blockClasses = useBlockStyles(props.formStyles);
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
   const toBeShownEducations = !isEmptyObjArr(props.educations.data) ? props.educations : dummyEducations;
 
   return (
@@ -103,7 +103,7 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
 };
 
 export const EducationsBlock2: React.FC<EducationsBlockProps> = (props) => {
-  const blockClasses = useBlockStyles(props.formStyles);
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
   const toBeShownEducations = !isEmptyObjArr(props.educations.data) ? props.educations : dummyEducations;
 
   return (

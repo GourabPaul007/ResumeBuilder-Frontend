@@ -9,7 +9,6 @@
 export interface SingleRating {
   id: string;
   ratingSubject: string;
-  // rateInStar?: 1 | 2 | 3 | 4 | 5;
   rateInPercentage: number;
 }
 
@@ -17,5 +16,6 @@ export interface Ratings {
   title: string;
   ratingType: "star" | "percent";
   icon: "star" | "circle" | "square";
+  flipped: boolean;
   data: SingleRating[];
 }

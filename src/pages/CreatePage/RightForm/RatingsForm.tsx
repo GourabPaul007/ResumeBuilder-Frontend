@@ -4,9 +4,7 @@ import { SingleRating, Ratings } from "../../../interfaces/Ratings";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import StarOutlineRoundedIcon from "@mui/icons-material/StarOutlineRounded";
 import CircleIcon from "@mui/icons-material/Circle";
-import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import SquareRoundedIcon from "@mui/icons-material/SquareRounded";
-import CropDinRoundedIcon from "@mui/icons-material/CropDinRounded";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { useStyles } from "./_FormsStyles";
@@ -14,7 +12,9 @@ import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 import Button from "@mui/material/Button";
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Select } from "@mui/material";
+import { ButtonGroup, FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
+import AlignHorizontalRightIcon from "@mui/icons-material/AlignHorizontalRight";
 
 interface RatingsFormProps {
   formTitle: string;
@@ -57,6 +57,10 @@ export const RatingsForm: FC<RatingsFormProps> = React.memo((props) => {
 
   // ==================================================================================================================
   // Handle Inputs
+  const handleFlip = (flipped: boolean) => {
+    if (props.ratings.flipped === flipped) return;
+    props.setRatings({ ...props.ratings, flipped: flipped });
+  };
   const handleBlockTitleInput = (title: string) => {
     props.setRatings({ ...props.ratings, title: title });
   };
@@ -101,7 +105,7 @@ export const RatingsForm: FC<RatingsFormProps> = React.memo((props) => {
         {props.formTitle}
       </Typography>
       <Grid container columnSpacing={2} rowSpacing={0} marginBottom={2}>
-        <Grid item xs={7}>
+        <Grid item xs={5}>
           <TextField
             size="small"
             variant="filled"
@@ -130,6 +134,16 @@ export const RatingsForm: FC<RatingsFormProps> = React.memo((props) => {
               <FormControlLabel value="square" control={<Radio />} label={<SquareRoundedIcon />} />
             </RadioGroup>
           </FormControl>
+        </Grid>
+        <Grid item xs={2} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <ButtonGroup variant="contained" size="small">
+            <Button disabled={props.ratings.flipped ? false : true} onClick={() => handleFlip(false)}>
+              <AlignHorizontalLeftIcon />
+            </Button>
+            <Button disabled={props.ratings.flipped ? true : false} onClick={() => handleFlip(true)}>
+              <AlignHorizontalRightIcon />
+            </Button>
+          </ButtonGroup>
         </Grid>
       </Grid>
       {props.ratings.data.map((singleRating, i) => (
@@ -165,7 +179,6 @@ export const RatingsForm: FC<RatingsFormProps> = React.memo((props) => {
                       value={Math.round(singleRating.rateInPercentage / 20)}
                       onChange={(event, newValue) => {
                         handleRatingStarInput(newValue ? newValue : 0, i);
-                        // setRatingValue(newValue ? newValue : 0);
                       }}
                       icon={<StarRoundedIcon style={starStyles} />}
                       emptyIcon={<StarOutlineRoundedIcon style={starStyles} />}

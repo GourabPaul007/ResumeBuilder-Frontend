@@ -25,7 +25,7 @@ interface OthersBlockProps {
 }
 
 export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
-  const blockClasses = useBlockStyles(props.formStyles);
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
 
   const toBeShownOthers = props.others.data.length === 0 ? dummyOthers : props.others;
 

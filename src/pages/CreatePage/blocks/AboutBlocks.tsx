@@ -28,7 +28,7 @@ interface AboutProps {
   formStyles: FormStyles;
 }
 export const AboutBlock1: React.FC<AboutProps> = (props) => {
-  const blockClasses = useBlockStyles(props.formStyles);
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
 
   const toBeShownAbout = isEmptyAbout(props.about) ? dummyAbout : props.about;
 

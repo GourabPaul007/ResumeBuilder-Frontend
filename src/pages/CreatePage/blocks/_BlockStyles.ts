@@ -1,8 +1,9 @@
+import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { FormStyles } from "../../../interfaces/FormStyles";
 
 export const useBlockStyles = makeStyles(() => ({
-  blockWrapper: (formStyles: FormStyles) => ({
+  blockWrapper: (props: { formStyles: FormStyles }) => ({
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 12,
@@ -10,19 +11,25 @@ export const useBlockStyles = makeStyles(() => ({
     fontFamily: "sans-serif",
     overflow: "hidden",
   }),
-  blockTitleDiv: (formStyles: FormStyles) => ({
+  // It works, No idea why
+  blockTitleDiv: ({ formStyles, flipped = false }: { formStyles: FormStyles; flipped?: boolean }) => ({
+    display: "flex",
+    justifyContent: flipped ? "flex-end" : "flex-start",
+    borderTop: `2px solid ${formStyles.titleUnderline ? "transparent" : "transparent"}`,
     borderBottom: `2px solid ${formStyles.titleUnderline ? formStyles.titleColor : "transparent"}`,
+    // borderLeft: `2px solid ${formStyles.titleUnderline ? "transparent" : "transparent"}`,
+    // borderRight: `2px solid ${formStyles.titleUnderline ? "transparent" : "transparent"}`,
+    backgroundColor: formStyles.titleFilled ? formStyles.titleFillColor : "transparent",
     width: formStyles.titleFullWidth ? "100%" : "fit-content",
     marginBottom: 4,
+    marginLeft: flipped ? "auto" : "0px",
+    borderRadius: formStyles.titleFilled ? 5 : 0,
   }),
-  blockTitleH2: (formStyles: FormStyles) => ({
+  blockTitleH2: (props: { formStyles: FormStyles }) => ({
     fontWeight: 600,
     fontSize: 24,
     display: "inline-block",
-    padding: `2px 6px 2px ${formStyles.titleFilled ? 6 : 0}px`,
-    color: formStyles.titleColor,
-    backgroundColor: formStyles.titleFilled ? formStyles.titleFillColor : "transparent",
-    borderRadius: 5,
-    width: formStyles.titleFullWidth ? "100%" : "fit-content",
+    padding: `3px 6px`,
+    color: props.formStyles.titleColor,
   }),
 }));

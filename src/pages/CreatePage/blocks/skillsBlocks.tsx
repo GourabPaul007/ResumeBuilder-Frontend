@@ -23,7 +23,7 @@ interface SkillsBlockProps {
 }
 
 export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
-  const blockClasses = useBlockStyles(props.formStyles);
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
   const toBeShownSkills = props.skills.data.length === 0 && props.skills.title === "" ? dummySkills : props.skills;
 
   return (
@@ -58,7 +58,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
 };
 
 export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
-  const blockClasses = useBlockStyles(props.formStyles);
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
   const toBeShownSkills = props.skills.data.length === 0 && props.skills.title === "" ? dummySkills : props.skills;
 
   return (

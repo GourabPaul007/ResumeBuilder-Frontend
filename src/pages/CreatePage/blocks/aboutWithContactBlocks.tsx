@@ -55,7 +55,7 @@ interface AboutWithContactBlockProps {
   formStyles: FormStyles;
 }
 export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (props) => {
-  const blockClasses = useBlockStyles(props.formStyles);
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
 
   const toBeShownAboutAndContact = isEmptyAandC(props.about) ? dummyAboutAndContactData : props.about;
 
@@ -110,7 +110,7 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
 };
 
 export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (props) => {
-  const blockClasses = useBlockStyles(props.formStyles);
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
   const toBeShownAboutAndContact = isEmptyAandC(props.about) ? dummyAboutAndContactData : props.about;
 
   const joinAddresses = (addresses: string[]) => {

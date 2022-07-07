@@ -11,6 +11,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     alignItems: "center",
   },
+  wrapperFlipped: {
+    position: "absolute",
+    top: 12,
+    left: 12,
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
   title: {
     padding: "5px 8px",
     height: 24,
@@ -36,14 +44,22 @@ interface RemoveBlockButtonProps {
   blockTitle: string;
   removeItem: (i: GridItem) => void;
   item: GridItem;
+  flipped?: boolean;
 }
 
 export const RemoveBlockButton: React.FC<RemoveBlockButtonProps> = (props) => {
   const classes = useStyles();
-  return (
-    <div className={classes.wrapper} style={{}}>
+  return props.flipped ? (
+    <div className={classes.wrapperFlipped}>
+      <button className={classes.button} onClick={() => props.removeItem(props.item)}>
+        X
+      </button>
+      &nbsp;&nbsp;
       <div className={classes.title}>{props.blockTitle}</div>
-      {/* <Chip size="small" label={props.blockTitle} /> */}
+    </div>
+  ) : (
+    <div className={classes.wrapper}>
+      <div className={classes.title}>{props.blockTitle}</div>
       <button className={classes.button} onClick={() => props.removeItem(props.item)}>
         X
       </button>

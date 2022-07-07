@@ -31,7 +31,7 @@ interface ContactBlockProps {
 }
 
 export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
-  const blockClasses = useBlockStyles(props.formStyles);
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
 
   const toBeShownContact = isEmptyContact(props.contact) ? dummyContact : props.contact;
 
@@ -75,7 +75,7 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
 };
 
 export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
-  const blockClasses = useBlockStyles(props.formStyles);
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
 
   const toBeShownContact = isEmptyContact(props.contact) ? dummyContact : props.contact;
 

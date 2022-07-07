@@ -16,6 +16,7 @@ const dummyRatings: Ratings = {
   title: "Language",
   ratingType: "star",
   icon: "square",
+  flipped: false,
   data: [
     { id: "1", ratingSubject: "English", rateInPercentage: 75 },
     { id: "2", ratingSubject: "Hindi", rateInPercentage: 75 },
@@ -32,7 +33,66 @@ interface RatingBlockProps {
   formStyles: FormStyles;
 }
 export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
-  const blockClasses = useBlockStyles(props.formStyles);
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles, flipped: props.ratings.flipped });
+
+  const toBeShownRatings = props.ratings.data.length === 0 && props.ratings.title === "" ? dummyRatings : props.ratings;
+
+  return (
+    <>
+      <div className={blockClasses.blockWrapper}>
+        {props.ratings.flipped ? (
+          <RemoveBlockButton
+            item={props.item}
+            removeItem={props.removeItem}
+            blockTitle={props.blockTitle}
+            flipped={props.ratings.flipped}
+          />
+        ) : null}
+        <div className={blockClasses.blockTitleDiv}>
+          <h2 className={blockClasses.blockTitleH2}>{toBeShownRatings.title}</h2>
+        </div>
+        {props.ratings.flipped ? null : (
+          <RemoveBlockButton
+            item={props.item}
+            removeItem={props.removeItem}
+            blockTitle={props.blockTitle}
+            flipped={props.ratings.flipped}
+          />
+        )}
+        <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500 }}>
+          {toBeShownRatings.data.map((eachRating, i) => {
+            return (
+              <div
+                key={eachRating.ratingSubject + i}
+                style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "4px 0px" }}
+              >
+                <div style={{ margin: "0px 0px 2px 0px" /* for aligning with the starts */ }}>
+                  {eachRating.ratingSubject}
+                </div>
+                <div>
+                  {eachRating.rateInPercentage === undefined ? (
+                    eachRating.rateInPercentage
+                  ) : (
+                    <div>
+                      {getStarsArray(
+                        Math.round(eachRating.rateInPercentage / 20),
+                        props.ratings.icon,
+                        props.formStyles.accentColor
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles, flipped: props.ratings.flipped });
 
   const toBeShownRatings = props.ratings.data.length === 0 && props.ratings.title === "" ? dummyRatings : props.ratings;
 

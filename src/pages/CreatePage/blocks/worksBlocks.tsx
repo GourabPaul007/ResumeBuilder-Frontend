@@ -41,7 +41,7 @@ interface WorksBlockProps {
 }
 
 export const WorksBlock1: React.FC<WorksBlockProps> = (props) => {
-  const blockClasses = useBlockStyles(props.formStyles);
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
   const isEmptyObjArr = (arr: Work[]) => {
     return arr.every((value) => {
       // 1st -> checks if name is empty string, 2nd -> checks if all array members are empty strings

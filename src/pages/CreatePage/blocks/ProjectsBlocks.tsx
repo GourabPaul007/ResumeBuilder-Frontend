@@ -56,7 +56,7 @@ interface ProjectsBlockProps {
 }
 
 export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
-  const blockClasses = useBlockStyles(props.formStyles);
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
 
   const isProjectsEmpty = (projects: Projects) => {
     return projects.data.every((value) => {

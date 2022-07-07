@@ -93,6 +93,7 @@ const CreatePage: React.FC = (props) => {
     title: "Language",
     ratingType: "star",
     icon: "star",
+    flipped: false,
     data: [
       { id: `rating${Date.now()}`, ratingSubject: "English", rateInPercentage: 75 },
       { id: `rating${Date.now()}`, ratingSubject: "Hindi", rateInPercentage: 75 },
