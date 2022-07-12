@@ -64,7 +64,13 @@ export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
             return (
               <div
                 key={eachRating.ratingSubject + i}
-                style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "4px 0px" }}
+                style={{
+                  display: "flex",
+                  flexDirection: props.ratings.flipped ? "row-reverse" : "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  margin: "4px 0px",
+                }}
               >
                 <div style={{ margin: "0px 0px 2px 0px" /* for aligning with the starts */ }}>
                   {eachRating.ratingSubject}
@@ -78,7 +84,8 @@ export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
                         Math.round(eachRating.rateInPercentage / 20),
                         props.ratings.icon,
                         props.formStyles.accentColor,
-                        22
+                        22,
+                        props.ratings.flipped
                       )}
                     </div>
                   )}
@@ -137,7 +144,8 @@ export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
                         Math.round(eachRating.rateInPercentage / 20),
                         props.ratings.icon,
                         props.formStyles.accentColor,
-                        20
+                        20,
+                        props.ratings.flipped
                       )}
                     </div>
                   )}
@@ -151,24 +159,29 @@ export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
   );
 };
 
-function getStarsArray(numberOfRatesInStar: number, type: string, color: string, size: number): React.ReactNode {
-  return (
+function getStarsArray(
+  numberOfRatesInStar: number,
+  type: string,
+  color: string,
+  size: number,
+  flipped: boolean
+): React.ReactNode {
+  return flipped ? (
+    <div>
+      {[...Array(5 - numberOfRatesInStar)].map((e, i) => {
+        return <>{chooseIcon(type + "_empty", i, color, size)}</>;
+      })}
+      {[...Array(numberOfRatesInStar)].map((e, i) => {
+        return <>{chooseIcon(type + "_fill", i, color, size)}</>;
+      })}
+    </div>
+  ) : (
     <div>
       {[...Array(numberOfRatesInStar)].map((e, i) => {
-        return (
-          <>
-            {/* &nbsp; */}
-            {chooseIcon(type + "_fill", i, color, size)}
-          </>
-        );
+        return <>{chooseIcon(type + "_fill", i, color, size)}</>;
       })}
       {[...Array(5 - numberOfRatesInStar)].map((e, i) => {
-        return (
-          <>
-            {/* &nbsp; */}
-            {chooseIcon(type + "_empty", i, color, size)}
-          </>
-        );
+        return <>{chooseIcon(type + "_empty", i, color, size)}</>;
       })}
     </div>
   );

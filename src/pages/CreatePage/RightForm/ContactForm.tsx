@@ -17,6 +17,19 @@ export const ContactForm: FC<AboutWithContactFormProps> = React.memo((props) => 
         {props.formTitle}
       </Typography>
       <Grid container columnSpacing={2}>
+        <Grid item xs={4}>
+          <TextField
+            variant="filled"
+            size="small"
+            margin="dense"
+            fullWidth={true}
+            InputProps={{ classes: { underline: classes.underline } }}
+            label="Title"
+            onChange={(e) => {}}
+          />
+        </Grid>
+      </Grid>
+      <Grid container columnSpacing={2}>
         <Grid item xs={12}>
           <TextField
             variant="filled"

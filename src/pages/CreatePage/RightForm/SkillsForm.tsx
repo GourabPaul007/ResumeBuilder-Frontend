@@ -1,7 +1,9 @@
-import { Autocomplete, Chip, Grid, Slider, Switch, TextField, Typography } from "@mui/material";
+import { Autocomplete, Button, ButtonGroup, Chip, Grid, Slider, Switch, TextField, Typography } from "@mui/material";
 import React, { Dispatch, FC, useEffect, useState } from "react";
 import { Skills } from "../../../interfaces/Skills";
 import { useStyles } from "./_FormsStyles";
+import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
+import AlignHorizontalRightIcon from "@mui/icons-material/AlignHorizontalRight";
 
 interface SkillsFormProps {
   formTitle: string;
@@ -38,6 +40,10 @@ export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
     };
   }, [sliderValue]);
 
+  const handleFlip = (flipped: boolean) => {
+    if (props.skills.flipped === flipped) return;
+    props.setSkills({ ...props.skills, flipped: flipped });
+  };
   const handleChangeSkillsItemsColor = (newColor: string) => {
     setCurrentColor(newColor);
   };
@@ -57,7 +63,7 @@ export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
         <Typography align="center" style={{ fontSize: 24 }}>
           {props.formTitle}
         </Typography>
-        <Grid container columnSpacing={2} rowSpacing={0}>
+        <Grid container columnSpacing={2} rowSpacing={1}>
           {/* <Grid item xs={4}>
             <TextField {...props.textfieldDefaultProps} />
           </Grid> */}
@@ -78,7 +84,7 @@ export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
           </Grid>
           <Grid
             item
-            xs={3}
+            xs={5}
             style={{
               display: "flex",
               flexDirection: "column",
@@ -98,21 +104,31 @@ export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
             />
             Chip Radius
           </Grid>
+          <Grid item xs={3} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <ButtonGroup variant="contained" size="small">
+              <Button disabled={props.skills.flipped ? false : true} onClick={() => handleFlip(false)}>
+                <AlignHorizontalLeftIcon />
+              </Button>
+              <Button disabled={props.skills.flipped ? true : false} onClick={() => handleFlip(true)}>
+                <AlignHorizontalRightIcon />
+              </Button>
+            </ButtonGroup>
+          </Grid>
           <Grid
             item
-            xs={2}
+            xs={6}
             style={{
               display: "flex",
-              flexDirection: "column",
+              flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
               color: "#666",
             }}
           >
-            <Switch checked={props.skills.filled} onChange={(e) => handleCheckFilled(e.target.checked)} />
             Filled
+            <Switch checked={props.skills.filled} onChange={(e) => handleCheckFilled(e.target.checked)} />
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6}>
             <div
               style={{
                 height: "100%",

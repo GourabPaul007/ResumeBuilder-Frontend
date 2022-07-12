@@ -11,6 +11,7 @@ const dummySkills: Skills = {
   title: "Skills Title",
   chipRadius: 10,
   filled: true,
+  flipped: false,
   data: ["HTML/CSS/JSS", "TypeScript", "ReactJS", "Flutter", "NodeJS", "ExpressJS", "MySql", "MongoDB", "Sqlite"],
 };
 
@@ -23,16 +24,33 @@ interface SkillsBlockProps {
 }
 
 export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles, flipped: props.skills.flipped });
   const toBeShownSkills = props.skills.data.length === 0 && props.skills.title === "" ? dummySkills : props.skills;
 
   return (
     <div className={blockClasses.blockWrapper}>
-      <div className={blockClasses.blockTitleDiv}>
-        <h2 className={blockClasses.blockTitleH2}>{toBeShownSkills.title}</h2>
+      <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
+        <div className={blockClasses.blockTitleDiv}>
+          <h2 className={blockClasses.blockTitleH2}>{toBeShownSkills.title}</h2>
+        </div>
+        <RemoveBlockButton
+          item={props.item}
+          removeItem={props.removeItem}
+          blockTitle={props.blockTitle}
+          flipped={props.skills.flipped}
+        />
       </div>
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
-      <div style={{ marginTop: 4, paddingLeft: 8, fontWeight: 500 }}>
+      <div
+        style={{
+          marginTop: 4,
+          paddingLeft: 8,
+          fontWeight: 500,
+          // for aligning to left or right
+          display: "flex",
+          flexFlow: "wrap",
+          flexDirection: props.skills.flipped ? "row-reverse" : "row",
+        }}
+      >
         {toBeShownSkills.data.map((eachSkill: string, index: number) => {
           return (
             <div
@@ -58,16 +76,33 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
 };
 
 export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles, flipped: props.skills.flipped });
   const toBeShownSkills = props.skills.data.length === 0 && props.skills.title === "" ? dummySkills : props.skills;
 
   return (
     <div className={blockClasses.blockWrapper}>
-      <div className={blockClasses.blockTitleDiv}>
-        <h2 className={blockClasses.blockTitleH2}>{toBeShownSkills.title}</h2>
+      <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
+        <div className={blockClasses.blockTitleDiv}>
+          <h2 className={blockClasses.blockTitleH2}>{toBeShownSkills.title}</h2>
+        </div>
+        <RemoveBlockButton
+          item={props.item}
+          removeItem={props.removeItem}
+          blockTitle={props.blockTitle}
+          flipped={props.skills.flipped}
+        />
       </div>
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
-      <div style={{ marginTop: 4, paddingLeft: 8, fontWeight: 500 }}>
+      <div
+        style={{
+          marginTop: 4,
+          paddingLeft: 8,
+          fontWeight: 500,
+          // for aligning to left or right
+          display: "flex",
+          flexFlow: "wrap",
+          flexDirection: props.skills.flipped ? "row-reverse" : "row",
+        }}
+      >
         {toBeShownSkills.data.map((eachSkill: string, index: number) => {
           return (
             <div

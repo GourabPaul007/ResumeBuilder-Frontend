@@ -59,6 +59,7 @@ const CreatePage: React.FC = (props) => {
     title: "",
     chipRadius: 10,
     filled: true,
+    flipped: false,
     data: [],
   });
   const [skills2, setSkills2] = useState<Skills>({
@@ -66,6 +67,7 @@ const CreatePage: React.FC = (props) => {
     title: "",
     chipRadius: 10,
     filled: true,
+    flipped: false,
     data: [],
   });
   const [educations1, setEducations1] = useState<Educations>({
@@ -195,21 +197,23 @@ const CreatePage: React.FC = (props) => {
     });
     setSkills1({
       color: "#ff5656",
-      title: "Skills UseEffect",
+      title: "Skills UE",
       chipRadius: 16,
       filled: true,
+      flipped: false,
       data: [
-        "Lorem ipsum",
-        "dolor sit amet",
-        "consectetur.",
-        "Adipisicing",
+        "Lorem",
+        "ipsum",
+        "dolor sit",
+        "amet",
+        "consect",
+        "etur",
+        "Adipis",
+        "icing",
         "Nulla",
-        "accusantium",
+        "acusant",
         "officiis",
-        "distinctio",
-        "ipsa",
-        "officia",
-        "soluta",
+        "distinct",
       ],
     });
     setWorks1({
