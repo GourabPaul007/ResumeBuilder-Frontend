@@ -6,14 +6,18 @@ import { checkHyperlink } from "../../../helpers/checkHyperlink";
 import { useBlockStyles } from "./_BlockStyles";
 import { FormStyles } from "../../../interfaces/FormStyles";
 import { About } from "../../../interfaces/About";
-import { Contact } from "../../../interfaces/Contact";
+import { Contact, ContactBlock } from "../../../interfaces/Contact";
 import { getUrlDomainName } from "../../../helpers/getUrlDomainName";
 import { getIcon } from "../../../helpers/Icons";
 
-const dummyContact: Contact = {
-  address: ["123 Main Rd, Address State"],
-  emails: ["abc@example.com", "github.com/JohnDoe"],
-  phno: "+00 1234567890",
+const dummyContact: ContactBlock = {
+  title: "Dummy Contact",
+  flipped: false,
+  data: {
+    address: ["123 Main Rd, Address State"],
+    emails: ["abc@example.com", "github.com/JohnDoe"],
+    phno: "+00 1234567890",
+  },
 };
 
 const isEmptyContact = (contact: Contact) => {
@@ -26,45 +30,89 @@ interface ContactBlockProps {
   blockTitle: string;
   item: GridItem;
   removeItem: (i: GridItem) => void;
-  contact: Contact;
+  contact: ContactBlock;
   formStyles: FormStyles;
 }
 
 export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
-
-  const toBeShownContact = isEmptyContact(props.contact) ? dummyContact : props.contact;
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles, flipped: props.contact.flipped });
+  const toBeShownContact = isEmptyContact(props.contact.data) ? dummyContact : props.contact;
 
   return (
     <div className={blockClasses.blockWrapper}>
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+      {/* The Title */}
+      {toBeShownContact.title === "" ? (
+        <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+      ) : (
+        <div style={{ display: "flex", flexDirection: toBeShownContact.flipped ? "row-reverse" : "row" }}>
+          <div className={blockClasses.blockTitleDiv}>
+            <h2 className={blockClasses.blockTitleH2}>{toBeShownContact.title}</h2>
+          </div>
+          <RemoveBlockButton
+            item={props.item}
+            removeItem={props.removeItem}
+            blockTitle={props.blockTitle}
+            flipped={toBeShownContact.flipped}
+          />
+        </div>
+      )}
 
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-end",
+          alignItems: toBeShownContact.flipped ? "flex-end" : "flex-start",
           fontWeight: 500,
           fontSize: 15,
-          marginTop: 24,
+          marginTop: toBeShownContact.title === "" ? 24 : 0,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", margin: 4 }}>
-          {toBeShownContact.address}
-          {getIcon({ name: "address", color: props.formStyles.accentColor, margin: "0px 0px 0px 8px" })}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            margin: 4,
+            flexDirection: toBeShownContact.flipped ? "row" : "row-reverse",
+          }}
+        >
+          {toBeShownContact.data.address}
+          {getIcon({
+            name: "address",
+            color: props.formStyles.accentColor,
+            margin: toBeShownContact.flipped ? "0px 0px 0px 8px" : "0px 8px 0px 0px",
+          })}
         </div>
-        <div style={{ display: "flex", alignItems: "center", margin: 4 }}>
-          {toBeShownContact.phno}
-          {getIcon({ name: "phone", color: props.formStyles.accentColor, margin: "0px 0px 0px 8px" })}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            margin: 4,
+            flexDirection: toBeShownContact.flipped ? "row" : "row-reverse",
+          }}
+        >
+          {toBeShownContact.data.phno}
+          {getIcon({
+            name: "phone",
+            color: props.formStyles.accentColor,
+            margin: toBeShownContact.flipped ? "0px 0px 0px 8px" : "0px 8px 0px 0px",
+          })}
         </div>
-        {toBeShownContact.emails.map((eachLink) => {
+        {toBeShownContact.data.emails.map((eachLink) => {
           return (
-            <div key={eachLink} style={{ display: "flex", alignItems: "center", margin: 4 }}>
+            <div
+              key={eachLink}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                margin: 4,
+                flexDirection: toBeShownContact.flipped ? "row" : "row-reverse",
+              }}
+            >
               {eachLink}
               {getIcon({
                 name: getUrlDomainName(eachLink),
                 color: props.formStyles.accentColor,
-                margin: "2px 0px 0px 8px",
+                margin: toBeShownContact.flipped ? "0px 0px 0px 8px" : "0px 8px 0px 0px",
               })}
             </div>
           );
@@ -75,42 +123,85 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
 };
 
 export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
-
-  const toBeShownContact = isEmptyContact(props.contact) ? dummyContact : props.contact;
+  const blockClasses = useBlockStyles({ formStyles: props.formStyles, flipped: props.contact.flipped });
+  const toBeShownContact = isEmptyContact(props.contact.data) ? dummyContact : props.contact;
 
   return (
     <div className={blockClasses.blockWrapper}>
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+      {/* The Title */}
+      {toBeShownContact.title === "" ? (
+        <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+      ) : (
+        <div style={{ display: "flex", flexDirection: toBeShownContact.flipped ? "row-reverse" : "row" }}>
+          <div className={blockClasses.blockTitleDiv}>
+            <h2 className={blockClasses.blockTitleH2}>{toBeShownContact.title}</h2>
+          </div>
+          <RemoveBlockButton
+            item={props.item}
+            removeItem={props.removeItem}
+            blockTitle={props.blockTitle}
+            flipped={toBeShownContact.flipped}
+          />
+        </div>
+      )}
 
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-start",
+          alignItems: toBeShownContact.flipped ? "flex-end" : "flex-start",
           fontWeight: 500,
           fontSize: 15,
-          marginTop: 24,
+          marginTop: toBeShownContact.title === "" ? 24 : 0,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", margin: 4 }}>
-          {getIcon({ name: "address", color: props.formStyles.accentColor, margin: "0px" })}&nbsp;&nbsp;
-          {toBeShownContact.address}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            margin: 4,
+            flexDirection: toBeShownContact.flipped ? "row" : "row-reverse",
+          }}
+        >
+          {toBeShownContact.data.address}
+          {getIcon({
+            name: "address",
+            color: props.formStyles.accentColor,
+            margin: toBeShownContact.flipped ? "0px 0px 0px 8px" : "0px 8px 0px 0px",
+          })}
         </div>
-        <div style={{ display: "flex", alignItems: "center", margin: 4 }}>
-          {getIcon({ name: "phone", color: props.formStyles.accentColor, margin: "0px" })}&nbsp;&nbsp;
-          {toBeShownContact.phno}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            margin: 4,
+            flexDirection: toBeShownContact.flipped ? "row" : "row-reverse",
+          }}
+        >
+          {toBeShownContact.data.phno}
+          {getIcon({
+            name: "phone",
+            color: props.formStyles.accentColor,
+            margin: toBeShownContact.flipped ? "0px 0px 0px 8px" : "0px 8px 0px 0px",
+          })}
         </div>
-        {toBeShownContact.emails.map((eachLink) => {
+        {toBeShownContact.data.emails.map((eachLink) => {
           return (
-            <div key={eachLink} style={{ display: "flex", alignItems: "center", margin: 4 }}>
+            <div
+              key={eachLink}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                margin: 4,
+                flexDirection: toBeShownContact.flipped ? "row" : "row-reverse",
+              }}
+            >
+              {eachLink}
               {getIcon({
                 name: getUrlDomainName(eachLink),
                 color: props.formStyles.accentColor,
-                margin: "2px 0px 0px 0px",
+                margin: toBeShownContact.flipped ? "0px 0px 0px 8px" : "0px 8px 0px 0px",
               })}
-              &nbsp;&nbsp;
-              {eachLink}
             </div>
           );
         })}

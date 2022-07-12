@@ -15,7 +15,7 @@ import { Skills } from "../interfaces/Skills";
 import { FormStyles } from "../interfaces/FormStyles";
 import { Others } from "../interfaces/Others";
 import { About } from "../interfaces/About";
-import { Contact } from "../interfaces/Contact";
+import { Contact, ContactBlock } from "../interfaces/Contact";
 import { Ratings } from "../interfaces/Ratings";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
@@ -44,15 +44,15 @@ const CreatePage: React.FC = (props) => {
     profession: "",
     about: "",
   });
-  const [contact1, setContact1] = useState<Contact>({
-    address: [""],
-    emails: [""],
-    phno: "",
+  const [contact1, setContact1] = useState<ContactBlock>({
+    title: "Contact1",
+    flipped: false,
+    data: { address: [""], emails: [""], phno: "" },
   });
-  const [contact2, setContact2] = useState<Contact>({
-    address: [""],
-    emails: [""],
-    phno: "",
+  const [contact2, setContact2] = useState<ContactBlock>({
+    title: "Contact1",
+    flipped: false,
+    data: { address: [""], emails: [""], phno: "" },
   });
   const [skills1, setSkills1] = useState<Skills>({
     color: "#123456",
@@ -148,14 +148,22 @@ const CreatePage: React.FC = (props) => {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quod dolorem libero reprehenderit maxime maiores officiis? Beatae fuga, quia dolorum sequi accusamus omnis ab corrupti, atque architecto expedita ipsa inventore.",
     });
     setContact1({
-      address: ["123 BV Rd, California"],
-      emails: ["abc@gmail.com", "Github.com/JohnDoe"],
-      phno: "123 456 7890",
+      title: "",
+      flipped: true,
+      data: {
+        address: ["123 BV Rd, California"],
+        emails: ["abc@gmail.com", "Github.com/JohnDoe"],
+        phno: "123 456 7890",
+      },
     });
     setContact2({
-      address: ["123 BV Rd, California"],
-      emails: ["abc@gmail.com", "Github.com/JohnDoe"],
-      phno: "123 456 7890",
+      title: "",
+      flipped: false,
+      data: {
+        address: ["123 BV Rd, California"],
+        emails: ["abc@gmail.com", "Github.com/JohnDoe"],
+        phno: "123 456 7890",
+      },
     });
     setEducations1({
       title: "Educations #1 UseEffect",
