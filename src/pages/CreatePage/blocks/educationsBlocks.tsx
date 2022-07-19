@@ -130,15 +130,16 @@ export const EducationsBlock2: React.FC<EducationsBlockProps> = (props) => {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                margin: "4px 0px 0px 0px",
+                margin: 0,
               }}
               key={course.id}
             >
-              <div style={{ fontWeight: 600, margin: 2, textAlign: "center" }}>{course.organizationName}</div>
-              <div style={{ fontWeight: 500, margin: 2, textAlign: "center" }}>
-                {course.courseName}, {course.courseDuration}
+              <div style={{ fontWeight: 600, marginBottom: 1, textAlign: "center" }}>{course.organizationName}</div>
+              <div style={{ fontWeight: 500, margin: 1, textAlign: "center", color: props.formStyles.accentColor }}>
+                {course.courseDuration}
               </div>
-              <div style={{ fontWeight: 500, margin: 2, textAlign: "center" }}>{course.courseResults}</div>
+              <div style={{ fontWeight: 500, margin: 1, textAlign: "center" }}>{course.courseName}</div>
+              <div style={{ fontWeight: 500, margin: 1, textAlign: "center" }}>{course.courseResults}</div>
             </div>
           );
         })}
