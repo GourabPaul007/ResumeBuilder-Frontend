@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 // import { jsPDF } from "jspdf";
 import { Button, createTheme, ThemeProvider } from "@mui/material";
@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DownloadPage from "./pages/DownloadPage";
 import LandingPage from "./pages/LandingPage";
 import CreatePage from "./pages/CreatePage";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "./firebase";
 
 // async function makePDF() {
 //   // var s = '<div id="myDiv"></div>';
@@ -58,6 +60,10 @@ const theme = createTheme({
 });
 
 const App: React.FC = () => {
+  useEffect(() => {
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>

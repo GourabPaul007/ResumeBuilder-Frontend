@@ -25,6 +25,8 @@ import { ContactForm } from "./RightForm/ContactForm";
 import { Ratings } from "../../interfaces/Ratings";
 import { RatingsForm } from "./RightForm/RatingsForm";
 
+import { getFirestore, addDoc, collection } from "firebase/firestore";
+
 const useStyles = makeStyles(() => ({
   formWrapper: {
     boxShadow: "0px 1px 2px #d5d5d7",
@@ -160,6 +162,28 @@ export const RightForm: FC<RightFormProps> = (props) => {
             onClick={async (e: React.SyntheticEvent) => {
               e.preventDefault();
               props.makeItemsArray();
+
+              const db = getFirestore();
+              try {
+                const docRef = await addDoc(collection(db, "resumes"), {
+                  resumeData: "bruh",
+                });
+                console.log("Document written with ID: ", docRef);
+              } catch (e) {
+                console.error("Error adding document: ", e);
+              }
+            }}
+          >
+            Get&nbsp;&nbsp;Resume
+          </Button>
+          {/* <Button
+            variant="contained"
+            size="large"
+            fullWidth={true}
+            style={{ marginBottom: 36 }}
+            onClick={async (e: React.SyntheticEvent) => {
+              e.preventDefault();
+              props.makeItemsArray();
               let html = ReactDOMServer.renderToString(
                 <div>
                   <>
@@ -188,7 +212,7 @@ export const RightForm: FC<RightFormProps> = (props) => {
             }}
           >
             Get&nbsp;&nbsp;Resume
-          </Button>
+          </Button> */}
         </div>
       </div>
     </>
