@@ -1,10 +1,14 @@
-import React from "react";
-import { Box, Button, Card, CircularProgress, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CircularProgress from "@mui/material/CircularProgress";
 import { makeStyles } from "@mui/styles";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import AppBarHeader from "../Components/AppBarHeader";
-import Footer from "../Components/Footer";
+import Typography from "@mui/material/Typography";
+import React, { useEffect, useState } from "react";
+
+interface DownloadModalProps {
+  resumeID: string;
+}
 
 const useStyles = makeStyles({
   centerChildren: {
@@ -14,17 +18,18 @@ const useStyles = makeStyles({
   },
 });
 
-interface DownloadPageProps {}
-
-const DownloadPage: React.FC<DownloadPageProps> = (props) => {
-  const params = useParams();
+const DownloadModal: React.FC<DownloadModalProps> = (props) => {
+  const classes = useStyles();
 
   const [disabled, setDisabled] = useState(true);
   const [progress, setProgress] = useState(5);
 
   // Download PDF
   async function downloadPDF() {
-    await fetch(`http://localhost:5000/api/custom/get-pdf/${params.resumeID}`, {
+    // await fetch(`http://localhost:5000/api/custom/get-pdf/${props.id}`, {
+    //   method: "GET",
+    // });
+    await fetch(`http://localhost:5000/api/custom/get-pdf/${props.resumeID}`, {
       method: "GET",
     })
       .then((response) => response.blob())
@@ -37,8 +42,8 @@ const DownloadPage: React.FC<DownloadPageProps> = (props) => {
       .then(() => {
         setDisabled(true);
       })
-      .catch(() => {
-        console.log("Something went worng, please Try again");
+      .catch((e) => {
+        console.log("Something went worng, please Try again", e);
       });
   }
 
@@ -46,12 +51,11 @@ const DownloadPage: React.FC<DownloadPageProps> = (props) => {
     const colorArray = ["tomato", "violet", "#ff6f00", "#ad1457"];
     return colorArray[Math.floor(Math.random() * colorArray.length)];
   };
-  const classes = useStyles();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDisabled(false);
-    }, 5000);
+    }, 1000);
 
     const interval = setInterval(() => {
       setProgress((prevProgress) => (prevProgress <= 0 ? 0 : prevProgress - 1));
@@ -65,19 +69,23 @@ const DownloadPage: React.FC<DownloadPageProps> = (props) => {
 
   return (
     <>
-      <AppBarHeader />
       <div
         className={classes.centerChildren}
         style={{
-          height: "70vh",
+          height: "400px",
+          width: "70vh",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
         }}
       >
         <Card
           style={{
             backgroundColor: "#ddd",
             border: "1px solid #aaa",
-            boxShadow: "24px 24px #ccc",
-            padding: 42,
+            // boxShadow: "24px 24px #ccc",
+            padding: 48,
           }}
         >
           <Typography
@@ -134,11 +142,8 @@ const DownloadPage: React.FC<DownloadPageProps> = (props) => {
           </div>
         </Card>
       </div>
-      <div style={{ position: "fixed", bottom: 0, right: 0, left: 0 }}>
-        <Footer />
-      </div>
     </>
   );
 };
 
-export default DownloadPage;
+export default DownloadModal;

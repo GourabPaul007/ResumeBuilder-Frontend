@@ -60,10 +60,10 @@ const theme = createTheme({
 });
 
 const App: React.FC = () => {
-  useEffect(() => {
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-  }, []);
+  // useEffect(() => {
+  //   // Initialize Firebase
+  //   const app = initializeApp(firebaseConfig);
+  // }, []);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -71,7 +71,7 @@ const App: React.FC = () => {
           <Route path="/" element={<LandingPage />} />
           {/* <Route path="/form" element={<FormPage />} /> */}
           <Route path="/create" element={<CreatePage />} />
-          <Route path="/download/:id" element={<DownloadPage />} />
+          <Route path="/download/:resumeID" element={<DownloadPage />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

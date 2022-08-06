@@ -1,4 +1,4 @@
-import { Button, Container, CssBaseline, Grid, TextField, Theme, Typography } from "@mui/material";
+import { Button, Container, CssBaseline, Grid, Modal, TextField, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { Dispatch } from "react";
 import { useState, FC } from "react";
@@ -26,6 +26,9 @@ import { Ratings } from "../../interfaces/Ratings";
 import { RatingsForm } from "./RightForm/RatingsForm";
 
 import { getFirestore, addDoc, collection } from "firebase/firestore";
+import firebaseApp from "../../firebase";
+import DownloadModal from "./DownloadModal";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   formWrapper: {
@@ -75,6 +78,10 @@ interface RightFormProps {
 
 export const RightForm: FC<RightFormProps> = (props) => {
   const classes = useStyles();
+  const navigate = useNavigate();
+
+  const [resumeID, setResumeID] = useState("");
+  const [downloadModalOpen, setDownloadModalOpen] = useState(false);
 
   // Return the specific form from passed parameter
   const chooseFormToShow = (form: string): React.ReactNode => {
@@ -163,19 +170,23 @@ export const RightForm: FC<RightFormProps> = (props) => {
               e.preventDefault();
               props.makeItemsArray();
 
-              const db = getFirestore();
+              const db = getFirestore(firebaseApp);
               try {
                 const docRef = await addDoc(collection(db, "resumes"), {
-                  resumeData: "bruh",
+                  resumeData: { blocks: props.makeItemsArray(), formStyles: props.formStyles },
                 });
-                console.log("Document written with ID: ", docRef);
+                console.log("Document written with ID: ", docRef.id);
+                navigate("/download/" + docRef.id);
               } catch (e) {
                 console.error("Error adding document: ", e);
               }
+              // setDownloadModalOpen(true);
+              // navigate("/download/"+docRef.id);
             }}
           >
             Get&nbsp;&nbsp;Resume
           </Button>
+
           {/* <Button
             variant="contained"
             size="large"
