@@ -12,6 +12,15 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
   },
+  downloadButton: {
+    backgroundColor: `#6b5be6`,
+    color: "#fdfdfd",
+    margin: 20,
+    fontWeight: 600,
+    "&:disabled": {
+      backgroundColor: "red",
+    },
+  },
 });
 
 interface DownloadPageProps {}
@@ -43,7 +52,7 @@ const DownloadPage: React.FC<DownloadPageProps> = (props) => {
   }
 
   const randomColor = () => {
-    const colorArray = ["tomato", "violet", "#ff6f00", "#ad1457"];
+    const colorArray = ["#f44336", "#e91e63", "#673ab7", "#ff5722", "#4caf50"];
     return colorArray[Math.floor(Math.random() * colorArray.length)];
   };
   const classes = useStyles();
@@ -51,7 +60,7 @@ const DownloadPage: React.FC<DownloadPageProps> = (props) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDisabled(false);
-    }, 5000);
+    }, 1000);
 
     const interval = setInterval(() => {
       setProgress((prevProgress) => (prevProgress <= 0 ? 0 : prevProgress - 1));
@@ -72,25 +81,14 @@ const DownloadPage: React.FC<DownloadPageProps> = (props) => {
           height: "70vh",
         }}
       >
-        <Card
-          style={{
-            backgroundColor: "#ddd",
-            border: "1px solid #aaa",
-            boxShadow: "24px 24px #ccc",
-            padding: 42,
-          }}
-        >
+        <div style={{ padding: 42 }}>
           <Typography
             fontSize={24}
             align="center"
             fontFamily="monospace"
             fontWeight="600"
-            color="yellow"
-            style={{
-              marginBottom: 28,
-              color: `${randomColor()}`,
-              margin: 20,
-            }}
+            color="#6b5be6"
+            style={{ marginBottom: 28, /* color: `${randomColor()}`,*/ margin: 20 }}
           >
             Please wait 5 seconds while we prepare your resume
             <br />
@@ -120,19 +118,16 @@ const DownloadPage: React.FC<DownloadPageProps> = (props) => {
 
           <div className={classes.centerChildren}>
             <Button
-              color="inherit"
+              size="large"
+              variant="contained"
               disabled={disabled}
-              style={{
-                backgroundColor: `${randomColor()}`,
-                margin: 20,
-                fontWeight: 600,
-              }}
+              className={classes.downloadButton}
               onClick={downloadPDF}
             >
               Download
             </Button>
           </div>
-        </Card>
+        </div>
       </div>
       <div style={{ position: "fixed", bottom: 0, right: 0, left: 0 }}>
         <Footer />
