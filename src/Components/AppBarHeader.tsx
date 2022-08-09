@@ -3,12 +3,12 @@ import * as React from "react";
 import { Button, Drawer, List } from "@mui/material";
 import { useState } from "react";
 import "./AppBarHeader.css";
+import { getAuth, signOut } from "firebase/auth";
 
 interface AppBarHeaderProps {}
 
 const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
-
   return (
     <>
       <header>
@@ -28,6 +28,7 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
           <a href="/" className="logo">
             <h1>JohnDoe's Resume Builder</h1>
           </a>
+
           <div className="nav-links">
             <a style={{ fontWeight: 700 }} href="/" className="fill">
               Home
@@ -41,10 +42,23 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
             <a style={{ fontWeight: 700 }} href="/#contact" className="fill">
               contact
             </a>
+            {getAuth().currentUser ? (
+              <a
+                style={{ fontWeight: 700 }}
+                href="/login"
+                className="fill"
+                onClick={() => {
+                  signOut(getAuth());
+                }}
+              >
+                Sign Out
+              </a>
+            ) : null}
             <div className="toggle-menu scale-effect">
               <i className="fas fa-times"></i>
             </div>
           </div>
+
           <div className="toggle-menu scale-effect">
             <i
               className="fas fa-bars"
@@ -105,6 +119,22 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
                 href="/"
               >
                 Home
+              </Button>
+
+              <Button
+                style={{
+                  paddingRight: 48,
+                  paddingLeft: 48,
+                  marginTop: 24,
+                  textTransform: "none",
+                }}
+                variant="contained"
+                fullWidth
+                onClick={() => {
+                  signOut(getAuth());
+                }}
+              >
+                Log out
               </Button>
             </div>
           </Drawer>

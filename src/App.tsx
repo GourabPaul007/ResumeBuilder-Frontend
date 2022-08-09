@@ -9,6 +9,12 @@ import LandingPage from "./pages/LandingPage";
 import CreatePage from "./pages/CreatePage";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebase";
+import AuthRoute from "./Components/AuthRoute";
+import LoginPage from "./pages/auth/loginPage";
+import SignupPage from "./pages/auth/signupPage";
+
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
 
 // async function makePDF() {
 //   // var s = '<div id="myDiv"></div>';
@@ -60,18 +66,37 @@ const theme = createTheme({
 });
 
 const App: React.FC = () => {
-  // useEffect(() => {
-  //   // Initialize Firebase
-  //   const app = initializeApp(firebaseConfig);
-  // }, []);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route
+            path="/"
+            element={
+              // <AuthRoute>
+              <LandingPage />
+              // </AuthRoute>
+            }
+          />
           {/* <Route path="/form" element={<FormPage />} /> */}
-          <Route path="/create" element={<CreatePage />} />
-          <Route path="/download/:resumeID" element={<DownloadPage />} />
+          <Route
+            path="/create"
+            element={
+              <AuthRoute>
+                <CreatePage />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/download/:resumeID"
+            element={
+              <AuthRoute>
+                <DownloadPage />
+              </AuthRoute>
+            }
+          />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

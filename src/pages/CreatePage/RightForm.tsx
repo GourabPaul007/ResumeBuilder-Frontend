@@ -26,7 +26,6 @@ import { Ratings } from "../../interfaces/Ratings";
 import { RatingsForm } from "./RightForm/RatingsForm";
 
 import { getFirestore, addDoc, collection } from "firebase/firestore";
-import firebaseApp from "../../firebase";
 import DownloadModal from "./DownloadModal";
 import { useNavigate } from "react-router-dom";
 
@@ -170,7 +169,7 @@ export const RightForm: FC<RightFormProps> = (props) => {
               e.preventDefault();
               props.makeItemsArray();
 
-              const db = getFirestore(firebaseApp);
+              const db = getFirestore();
               try {
                 const docRef = await addDoc(collection(db, "resumes"), {
                   resumeData: { blocks: props.makeItemsArray(), formStyles: props.formStyles },
