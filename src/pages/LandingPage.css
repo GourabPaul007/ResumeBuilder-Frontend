@@ -20,12 +20,14 @@
   --header-height: 60px;
   --sections-padding: 60px;
   /* --main-color: hsl(206, 92%, 46%); */
-  --primary-color: hsl(247, 74%, 63%);
-  --secondary-color: hsl(179, 100%, 40%);
+  --primary-color: #6b5be6;
+  --secondary-color: #00ccc9;
   /* --third-color: hsl(179, 100%, 40%); */
   /* --light-main-color: hsl(206, 92%, 50%); */
   --light-primary-color: hsl(247, 74%, 67%);
-  --light-secondary-color: hsl(179, 100%, 44%);
+  --light-secondary-color: #00e0dd;
+  --dark-primary-color: #5a4ad5;
+  --dark-secondary-color: #03bbb8;
 }
 html {
   scroll-behavior: smooth;
@@ -80,18 +82,16 @@ img {
 /* End Global Rules */
 
 /* Start Utility Classes */
-.btn {
-  text-transform: capitalize;
-  border: 1px solid transparent;
+.button-secondary {
+  background-color: var(--secondary-color);
+  color: #ffffff !important;
   border-radius: 4px;
   font-size: 16px;
   font-weight: 600;
   padding: 6px 15px;
-  transition: var(--main-transition), background-color var(--f-transition);
 }
-.btn-primary {
-  background: var(--secondary-color);
-  color: #fff;
+.button-secondary:hover {
+  background-color: var(--dark-secondary-color);
 }
 .btn-primary:hover {
   background: var(--light-third-color);
@@ -147,7 +147,7 @@ img {
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  height: 100%;
+  height: 90%;
 }
 .landing .text {
   text-align: start;
@@ -219,7 +219,7 @@ img {
 .projects {
   padding-top: var(--sections-padding);
   padding-bottom: var(--sections-padding);
-  background: aliceblue;
+  background-color: aliceblue;
 }
 .projects-content {
   display: grid;

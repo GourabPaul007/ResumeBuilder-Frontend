@@ -1,14 +1,27 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 
-import { Button, Drawer, List } from "@mui/material";
-import { useState } from "react";
+import { Avatar, Button, Drawer, List } from "@mui/material";
 import "./AppBarHeader.css";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 interface AppBarHeaderProps {}
 
 const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
+  const navigate = useNavigate();
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [userExists, setUserExists] = useState(false);
+  const auth = getAuth();
+
+  useEffect(() => {
+    checkAuthChange();
+  }, [userExists]);
+
+  const checkAuthChange = onAuthStateChanged(auth, (user) => {
+    if (user) setUserExists(true);
+    else setUserExists(false);
+  });
+
   return (
     <>
       <header>
@@ -42,18 +55,28 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
             <a style={{ fontWeight: 700 }} href="/#contact" className="fill">
               contact
             </a>
-            {getAuth().currentUser ? (
+            {/* <p style={{ width: "24px" }}></p> */}
+            {userExists ? (
               <a
-                style={{ fontWeight: 700 }}
-                href="/login"
+                style={{ fontWeight: 700, marginLeft: "24px" }}
                 className="fill"
                 onClick={() => {
-                  signOut(getAuth());
+                  signOut(auth);
                 }}
               >
                 Sign Out
               </a>
-            ) : null}
+            ) : (
+              <a
+                style={{ fontWeight: 700, marginLeft: "24px" }}
+                className="fill"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                Login / Sign up
+              </a>
+            )}
             <div className="toggle-menu scale-effect">
               <i className="fas fa-times"></i>
             </div>
@@ -102,9 +125,9 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
                 }}
                 variant="contained"
                 fullWidth
-                href="/form"
+                href="/create"
               >
-                <i className="fas fa-align-center"></i>&nbsp; Form
+                <i className="fas fa-align-center"></i>&nbsp; Create
               </Button>
 
               <Button
@@ -121,21 +144,40 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
                 Home
               </Button>
 
-              <Button
-                style={{
-                  paddingRight: 48,
-                  paddingLeft: 48,
-                  marginTop: 24,
-                  textTransform: "none",
-                }}
-                variant="contained"
-                fullWidth
-                onClick={() => {
-                  signOut(getAuth());
-                }}
-              >
-                Log out
-              </Button>
+              {userExists ? (
+                <Button
+                  style={{
+                    paddingRight: 48,
+                    paddingLeft: 48,
+                    marginTop: 24,
+                    textTransform: "none",
+                  }}
+                  variant="contained"
+                  fullWidth
+                  onClick={() => {
+                    signOut(auth);
+                    navigate("/login");
+                  }}
+                >
+                  Sign out
+                </Button>
+              ) : (
+                <Button
+                  style={{
+                    paddingRight: 48,
+                    paddingLeft: 48,
+                    marginTop: 24,
+                    textTransform: "none",
+                  }}
+                  variant="contained"
+                  fullWidth
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                >
+                  Login / Sign up
+                </Button>
+              )}
             </div>
           </Drawer>
         </>
@@ -145,3 +187,13 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
 };
 
 export default AppBarHeader;
+
+// interface UserAvatarProps {}
+
+// const UserAvatar: React.FC<UserAvatarProps> = () => {
+//   return (
+//     <>
+//       <Avatar>G</Avatar>
+//     </>
+//   );
+// };

@@ -10,11 +10,10 @@ import { useNavigate } from "react-router-dom";
 import AppBarHeader from "../../Components/AppBarHeader";
 import Footer from "../../Components/Footer";
 import { Avatar, Button, Checkbox, FormControlLabel, Grid, Link, TextField, Typography } from "@mui/material";
-import GoogleIcon from "@mui/icons-material/Google";
 import { makeStyles } from "@mui/styles";
 // import { error } from "console";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { googleSvg } from "../../Components/Icons";
+import OAuthCard from "./OAuthCard";
 
 const useStyles = makeStyles(() => ({
   paper: {
@@ -46,19 +45,6 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const signInWithGoogle = async () => {
-    setAuthing(true);
-    signInWithPopup(auth, new GoogleAuthProvider())
-      .then((response) => {
-        console.log(response.user.uid);
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-        setAuthing(false);
-      });
-  };
 
   const signUpWithUsernameAndPassword = async (email: string, password: string) => {
     setAuthing(true);
@@ -145,25 +131,16 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                 Log In
               </Button>
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 8 }}>
-                <Link href="http://localhost:3000/forgot-password" variant="body2">
+                <Link href="/forgot-password" variant="body2">
                   Forgot password?
                 </Link>
-                <Link href="http://localhost:3000/login" variant="body2">
+                <Link href="/login" variant="body2">
                   {"Have an account? Log In"}
                 </Link>
               </div>
             </form>
           </div>
-          <Button
-            variant="contained"
-            onClick={() => signInWithGoogle()}
-            disabled={authing}
-            style={{ padding: "10px 16px", marginTop: 8 }}
-          >
-            <GoogleIcon />
-            {/* {googleSvg} */}
-            &nbsp; Sign in with Google
-          </Button>
+          <OAuthCard />
         </div>
         <Footer />
       </div>

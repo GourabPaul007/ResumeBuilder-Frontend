@@ -145,10 +145,10 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                 Log In
               </Button>
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 8 }}>
-                <Link href="http://localhost:3000/forgot-password" variant="body2">
+                <Link href="/forgot-password" variant="body2">
                   Forgot password?
                 </Link>
-                <Link href="http://localhost:3000/signup" variant="body2">
+                <Link href="/signup" variant="body2">
                   Don't have an account? Sign Up
                 </Link>
               </div>

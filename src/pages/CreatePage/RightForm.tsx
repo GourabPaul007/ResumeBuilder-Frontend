@@ -79,9 +79,6 @@ export const RightForm: FC<RightFormProps> = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
-  const [resumeID, setResumeID] = useState("");
-  const [downloadModalOpen, setDownloadModalOpen] = useState(false);
-
   // Return the specific form from passed parameter
   const chooseFormToShow = (form: string): React.ReactNode => {
     switch (form) {
