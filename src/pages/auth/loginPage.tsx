@@ -15,6 +15,7 @@ import { makeStyles } from "@mui/styles";
 // import { error } from "console";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { googleSvg } from "../../Components/Icons";
+import { getErrorMessage } from "./errorMessages";
 
 const useStyles = makeStyles(() => ({
   paper: {
@@ -43,6 +44,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [authing, setAuthing] = useState(false);
+  const [error, setError] = useState("");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,16 +63,19 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
   };
 
   const logInWithUsernameAndPassword = async (email: string, password: string) => {
+    setAuthing(true);
     console.log(email, password);
-    try {
-      signInWithEmailAndPassword(auth, email, password).then((response) => {
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((response) => {
         console.log(response.user);
         navigate("/");
+      })
+      .catch((e) => {
+        console.log("err", e.code);
+        setError(getErrorMessage(e.code));
+        setAuthing(false);
       });
-    } catch (e) {
-      console.log(e);
-      setAuthing(false);
-    }
   };
 
   return (
@@ -97,20 +102,20 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
               </Typography>
             </div>
 
-            {/* {error ? (
+            {error ? (
               <Typography
                 style={{
-                  color: "#e1868f",
-                  backgroundColor: "#430c11",
-                  padding: 16,
-                  marginTop: 16,
-                  border: "1px solid #68121b",
+                  color: "#b71c1c",
+                  backgroundColor: "#ffcdd2",
+                  padding: "16px 32px",
+                  margin: 16,
+                  // border: "1px solid #68121b",
                   borderRadius: 8,
                 }}
               >
                 {error}
               </Typography>
-            ) : null} */}
+            ) : null}
             <form className={classes.form} noValidate>
               <TextField
                 variant="filled"
