@@ -57,7 +57,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        setError(getErrorMessage(error.code));
         setAuthing(false);
       });
   };
@@ -72,7 +72,6 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
         navigate("/");
       })
       .catch((e) => {
-        console.log("err", e.code);
         setError(getErrorMessage(e.code));
         setAuthing(false);
       });

@@ -1,4 +1,5 @@
-export const getErrorMessage = (errorCode: string | undefined) => {
+export const getErrorMessage = (errorCode: string) => {
+  console.log(errorCode);
   switch (errorCode) {
     case "auth/wrong-password":
       return "Wrong Email or Password";

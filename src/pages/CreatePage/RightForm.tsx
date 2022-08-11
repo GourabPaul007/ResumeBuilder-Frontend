@@ -182,44 +182,6 @@ export const RightForm: FC<RightFormProps> = (props) => {
           >
             Get&nbsp;&nbsp;Resume
           </Button>
-
-          {/* <Button
-            variant="contained"
-            size="large"
-            fullWidth={true}
-            style={{ marginBottom: 36 }}
-            onClick={async (e: React.SyntheticEvent) => {
-              e.preventDefault();
-              props.makeItemsArray();
-              let html = ReactDOMServer.renderToString(
-                <div>
-                  <>
-                    <Typography>Bruh</Typography>
-                  </>
-                </div>
-              );
-
-              await fetch("http://localhost:5000/api/custom/custom-resume", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json", //This is required
-                },
-                body: JSON.stringify({ blocks: props.makeItemsArray(), formStyles: props.formStyles }),
-              })
-                .then((response) => response.blob())
-                .then((blob) => {
-                  let link = document.createElement("a");
-                  link.href = window.URL.createObjectURL(blob);
-                  link.download = "resume.pdf";
-                  link.click();
-                })
-                .catch((e) => {
-                  console.error(e);
-                });
-            }}
-          >
-            Get&nbsp;&nbsp;Resume
-          </Button> */}
         </div>
       </div>
     </>

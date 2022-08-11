@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AppBarHeader from "../Components/AppBarHeader";
 import Footer from "../Components/Footer";
+import { getAuth } from "firebase/auth";
 
 const useStyles = makeStyles({
   centerChildren: {
@@ -33,7 +34,14 @@ const DownloadPage: React.FC<DownloadPageProps> = (props) => {
 
   // Download PDF
   async function downloadPDF() {
-    await fetch(`http://localhost:5000/api/custom/get-pdf/${params.resumeID}`, {
+    setDisabled(true);
+    const auth = getAuth();
+    if (!auth.currentUser) {
+      console.log("User doesnt exist");
+      return;
+    }
+
+    await fetch(`http://localhost:5000/api/custom/get-pdf/${auth.currentUser.uid}/${params.resumeID}`, {
       method: "GET",
     })
       .then((response) => response.blob())
@@ -43,11 +51,11 @@ const DownloadPage: React.FC<DownloadPageProps> = (props) => {
         link.download = "resume.pdf";
         link.click();
       })
-      .then(() => {
-        setDisabled(true);
-      })
       .catch(() => {
         console.log("Something went worng, please Try again");
+      })
+      .finally(() => {
+        console.log("Done");
       });
   }
 
