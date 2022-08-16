@@ -5,6 +5,8 @@ import { useStyles } from "./_FormsStyles";
 import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
 import AlignHorizontalRightIcon from "@mui/icons-material/AlignHorizontalRight";
 
+import "./SkillsForm.css";
+
 interface SkillsFormProps {
   formTitle: string;
   skills: Skills;
@@ -20,7 +22,8 @@ export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
           return (~~(Math.random() * 16)).toString(16);
         })
   );
-  const [sliderValue, setSliderValue] = useState(props.skills.chipRadius);
+  const [chipRadiusSliderValue, setChipRadiusSliderValue] = useState(props.skills.chipRadius);
+  const [chipSizeSliderValue, setChipSizeSliderValue] = useState(props.skills.chipSize);
 
   useEffect(() => {
     const lastRequest = setTimeout(() => {
@@ -31,14 +34,25 @@ export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
     };
   }, [currentColor]);
 
+  // Change the value after user has done sliding the chip radius slider
   useEffect(() => {
     const lastRequest = setTimeout(() => {
-      props.setSkills({ ...props.skills, chipRadius: sliderValue });
+      props.setSkills({ ...props.skills, chipRadius: chipRadiusSliderValue });
     }, 400);
     return () => {
       clearTimeout(lastRequest);
     };
-  }, [sliderValue]);
+  }, [chipRadiusSliderValue]);
+
+  // Change the value after user has done sliding the chip size slider
+  useEffect(() => {
+    const lastRequest = setTimeout(() => {
+      props.setSkills({ ...props.skills, chipSize: chipSizeSliderValue });
+    }, 400);
+    return () => {
+      clearTimeout(lastRequest);
+    };
+  }, [chipSizeSliderValue]);
 
   const handleFlip = (flipped: boolean) => {
     if (props.skills.flipped === flipped) return;
@@ -51,10 +65,14 @@ export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
     console.log(isFilled);
     props.setSkills({ ...props.skills, filled: isFilled });
   };
+  const handleChipSizeSlider = (event: Event, newChipSize: number | number[]) => {
+    const radius = Array.isArray(newChipSize) ? newChipSize[0] : newChipSize;
+    setChipSizeSliderValue(radius);
+  };
   const handleChipRadiusSlider = (event: Event, newChipRadius: number | number[]) => {
     const radius = Array.isArray(newChipRadius) ? newChipRadius[0] : newChipRadius;
     // props.setSkills({ ...props.skills, chipRadius: radius });
-    setSliderValue(radius);
+    setChipRadiusSliderValue(radius);
   };
 
   return (
@@ -82,53 +100,7 @@ export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
               }}
             />
           </Grid>
-          <Grid
-            item
-            xs={5}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              color: "#666",
-            }}
-          >
-            <Slider
-              aria-label="Chip Radius"
-              min={0}
-              max={16}
-              step={2}
-              valueLabelDisplay="auto"
-              value={sliderValue}
-              onChange={handleChipRadiusSlider}
-            />
-            Chip Radius
-          </Grid>
-          <Grid item xs={3} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <ButtonGroup variant="contained" size="small">
-              <Button disabled={props.skills.flipped ? false : true} onClick={() => handleFlip(false)}>
-                <AlignHorizontalLeftIcon />
-              </Button>
-              <Button disabled={props.skills.flipped ? true : false} onClick={() => handleFlip(true)}>
-                <AlignHorizontalRightIcon />
-              </Button>
-            </ButtonGroup>
-          </Grid>
-          <Grid
-            item
-            xs={6}
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              color: "#666",
-            }}
-          >
-            Filled
-            <Switch checked={props.skills.filled} onChange={(e) => handleCheckFilled(e.target.checked)} />
-          </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={3}>
             <div
               style={{
                 height: "100%",
@@ -160,6 +132,31 @@ export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
               </label>
             </div>
           </Grid>
+          <Grid
+            item
+            xs={2}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "#666",
+            }}
+          >
+            Filled
+            <Switch checked={props.skills.filled} onChange={(e) => handleCheckFilled(e.target.checked)} />
+          </Grid>
+
+          <Grid item xs={3} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <ButtonGroup variant="contained" size="small">
+              <Button disabled={props.skills.flipped ? false : true} onClick={() => handleFlip(false)}>
+                <AlignHorizontalLeftIcon />
+              </Button>
+              <Button disabled={props.skills.flipped ? true : false} onClick={() => handleFlip(true)}>
+                <AlignHorizontalRightIcon />
+              </Button>
+            </ButtonGroup>
+          </Grid>
 
           <Grid item xs={12}>
             <TextField
@@ -175,6 +172,31 @@ export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
                 props.setSkills({ ...props.skills, data: e.target.value.split(",") });
               }}
             />
+          </Grid>
+
+          <Grid item xs={6} className="sliderWrapper">
+            <Slider
+              aria-label="Chip Radius"
+              min={0}
+              max={16}
+              step={2}
+              valueLabelDisplay="auto"
+              value={chipRadiusSliderValue}
+              onChange={handleChipRadiusSlider}
+            />
+            Chip Radius
+          </Grid>
+          <Grid item xs={6} className="sliderWrapper">
+            <Slider
+              aria-label="Chip Size"
+              min={0}
+              max={8}
+              step={1}
+              valueLabelDisplay="auto"
+              value={chipSizeSliderValue}
+              onChange={handleChipSizeSlider}
+            />
+            Chip Size
           </Grid>
         </Grid>
       </div>

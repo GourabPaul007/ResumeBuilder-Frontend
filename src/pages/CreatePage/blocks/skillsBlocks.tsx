@@ -10,6 +10,7 @@ const dummySkills: Skills = {
   color: "#ff5656",
   title: "Skills Title",
   chipRadius: 10,
+  chipSize: 5,
   filled: true,
   flipped: false,
   data: ["HTML/CSS/JSS", "TypeScript", "ReactJS", "Flutter", "NodeJS", "ExpressJS", "MySql", "MongoDB", "Sqlite"],
@@ -26,6 +27,7 @@ interface SkillsBlockProps {
 export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
   const blockClasses = useBlockStyles({ formStyles: props.formStyles, flipped: props.skills.flipped });
   const toBeShownSkills = props.skills.data.length === 0 && props.skills.title === "" ? dummySkills : props.skills;
+  console.log(toBeShownSkills.chipSize);
 
   return (
     <div className={blockClasses.blockWrapper}>
@@ -49,6 +51,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
           display: "flex",
           flexFlow: "wrap",
           flexDirection: props.skills.flipped ? "row-reverse" : "row",
+          // opacity: props.skills.data.length == 0 ? 0.1 : 1,
         }}
       >
         {toBeShownSkills.data.map((eachSkill: string, index: number) => {
@@ -57,12 +60,12 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
               key={eachSkill + index}
               style={{
                 display: "inline-block",
-                padding: "5px 10px",
+                padding: `${toBeShownSkills.chipSize}px ${toBeShownSkills.chipSize * 2}px`,
                 margin: 4,
-                border: props.skills.filled ? `1px solid transparent` : `1px solid ${props.skills.color}`,
-                borderRadius: props.skills.chipRadius,
-                color: props.skills.filled ? "#fff" : props.skills.color,
-                backgroundColor: props.skills.filled ? props.skills.color : "transparent",
+                border: toBeShownSkills.filled ? `1px solid transparent` : `1px solid ${toBeShownSkills.color}`,
+                borderRadius: toBeShownSkills.chipRadius,
+                color: toBeShownSkills.filled ? "#fff" : toBeShownSkills.color,
+                backgroundColor: toBeShownSkills.filled ? toBeShownSkills.color : "transparent",
                 fontSize: 15,
               }}
             >
@@ -101,6 +104,7 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
           display: "flex",
           flexFlow: "wrap",
           flexDirection: props.skills.flipped ? "row-reverse" : "row",
+          // opacity: props.skills.data.length == 0 ? 0.1 : 1,
         }}
       >
         {toBeShownSkills.data.map((eachSkill: string, index: number) => {
@@ -109,7 +113,7 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
               key={eachSkill + index}
               style={{
                 display: "inline-block",
-                padding: "5px 10px",
+                padding: `${toBeShownSkills.chipSize}px ${toBeShownSkills.chipSize * 2}px`,
                 margin: 4,
                 border: props.skills.filled ? `1px solid transparent` : `1px solid ${props.skills.color}`,
                 borderRadius: props.skills.chipRadius,

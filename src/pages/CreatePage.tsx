@@ -58,6 +58,7 @@ const CreatePage: React.FC = (props) => {
     color: "#123456",
     title: "",
     chipRadius: 10,
+    chipSize: 5,
     filled: true,
     flipped: false,
     data: [],
@@ -66,6 +67,7 @@ const CreatePage: React.FC = (props) => {
     color: "#123456",
     title: "",
     chipRadius: 10,
+    chipSize: 5,
     filled: true,
     flipped: false,
     data: [],
@@ -207,6 +209,7 @@ const CreatePage: React.FC = (props) => {
       color: "#ff5656",
       title: "Skills UE",
       chipRadius: 16,
+      chipSize: 5,
       filled: true,
       flipped: false,
       data: [
