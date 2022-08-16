@@ -125,11 +125,7 @@ img {
   color: var(--primary-color);
   cursor: pointer;
 }
-@media (max-width: 767px) {
-  .section-title {
-    margin-bottom: 40px;
-  }
-}
+
 .btns-group {
   margin-top: 20px;
   display: flex;
@@ -153,64 +149,67 @@ img {
   text-align: start;
   flex: 1;
 }
-@media (max-width: 992px) {
-  .landing .text {
-    text-align: center;
-  }
-}
-.landing .text h1 {
-  font-size: 40px;
+
+#welcomeHeader {
+  font-size: 60px;
   text-transform: capitalize;
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--primary-color);
 }
-@media (max-width: 1200px) {
-  .landing .text h1 {
-    font-size: 36px;
-  }
-}
-@media (max-width: 500px) {
-  .landing .text h1 {
-    font-size: 30px;
-  }
-}
-.landing .text span {
-  font-size: 18px;
+
+#welcomeSubheader {
+  font-size: 24px;
   text-transform: capitalize;
   color: var(--secondary-color);
   font-weight: 500;
 }
-@media (max-width: 992px) {
-  .landing .text span {
-    font-size: 17px;
-  }
-}
-.landing .text p {
+
+#welcomeText {
   margin-top: 14px;
   max-width: 600px;
   line-height: 1.7;
-  font-size: 17px;
+  font-size: 24px;
 }
+
+@media (max-width: 1200px) {
+  #welcomeHeader {
+    font-size: 36px;
+  }
+}
+
 @media (max-width: 992px) {
-  .landing .text p {
+  .landing .text {
+    text-align: center;
+  }
+  #welcomeSubheader {
+    font-size: 17px;
+  }
+  #welcomeText {
     font-size: 16px;
     margin-right: auto;
     margin-left: auto;
   }
-}
-@media (max-width: 992px) {
   .landing .btns-group {
     justify-content: center;
+  }
+  .landing .image {
+    display: none;
   }
 }
 .landing .image {
   flex: 0.85;
   z-index: -1;
 }
-@media (max-width: 992px) {
-  .landing .image {
-    display: none;
+@media (max-width: 767px) {
+  .section-title {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  #welcomeHeader {
+    font-size: 30px;
   }
 }
 /* End Landing Section */

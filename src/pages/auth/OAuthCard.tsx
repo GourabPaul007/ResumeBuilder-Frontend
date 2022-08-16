@@ -31,7 +31,7 @@ const OAuthCard: React.FC<OAuthCardProps> = () => {
         variant="contained"
         onClick={() => signInWithGoogle()}
         disabled={authing}
-        style={{ padding: "10px 16px", marginTop: 8 }}
+        style={{ padding: "10px 16px", marginTop: 32 }}
       >
         <GoogleIcon />
         {/* {googleSvg} */}

@@ -45,14 +45,14 @@ const LandingPage: React.FC<LandingPageProps> = () => {
       <section className="landing" id="welcome-section">
         <div className="container">
           <div className="text">
-            <h1>
-              welcome to the Drag & Drop <br />
+            <h1 id="welcomeHeader">
+              Free Drag & Drop <br />
               Resume Builder.
             </h1>
-            <span>build your resume now, Its free!</span>
-            <p>
-              I have made up this resume builder as a side project and for getting my my resume built the way I wanted.
-              Don't forget to give me your feedbacks. your feedbacks will make this site much more elegant & better.
+            <span id="welcomeSubheader">build your resume now, Its free!</span>
+            <p id="welcomeText">
+              I made this resume builder for getting my resume built the way I wanted. Your feedbacks will make this
+              site much more elegant & better.
             </p>
             <div className="btns-group">
               <a href="/create" className="button-secondary">

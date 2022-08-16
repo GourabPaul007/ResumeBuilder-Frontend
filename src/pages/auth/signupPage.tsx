@@ -14,34 +14,17 @@ import { makeStyles } from "@mui/styles";
 // import { error } from "console";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import OAuthCard from "./OAuthCard";
+import { getErrorMessage } from "./errorMessages";
 
-const useStyles = makeStyles(() => ({
-  paper: {
-    marginTop: 8,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: 2,
-    backgroundColor: "#6b5be6",
-  },
-  form: {
-    width: 350, // Fix IE 11 issue.
-    margin: 8,
-  },
-  submit: {
-    margin: "3px 0px 2px 2px",
-  },
-}));
+import "./AuthPagesStyles.css";
 
 export interface ILoginPageProps {}
 
 const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
-  const classes = useStyles();
   const auth = getAuth();
   const navigate = useNavigate();
   const [authing, setAuthing] = useState(false);
+  const [error, setError] = useState("");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,6 +38,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
       })
       .catch((e) => {
         console.log(e);
+        setError(getErrorMessage(e.code));
         setAuthing(false);
       });
   };
@@ -72,9 +56,11 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
             alignItems: "center",
           }}
         >
-          <div className={classes.paper}>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <Avatar className={classes.avatar}>
+          <div className="paper">
+            <div
+              style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: error ? 0 : 48 }}
+            >
+              <Avatar className="avatar">
                 <LockOutlinedIcon />
               </Avatar>
               &nbsp;
@@ -83,21 +69,21 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
               </Typography>
             </div>
 
-            {/* {error ? (
+            {error ? (
               <Typography
                 style={{
-                  color: "#e1868f",
-                  backgroundColor: "#430c11",
-                  padding: 16,
-                  marginTop: 16,
-                  border: "1px solid #68121b",
+                  color: "#b71c1c",
+                  backgroundColor: "#ffcdd2",
+                  padding: "16px 32px",
+                  margin: 16,
+                  // border: "1px solid #68121b",
                   borderRadius: 8,
                 }}
               >
                 {error}
               </Typography>
-            ) : null} */}
-            <form className={classes.form} noValidate>
+            ) : null}
+            <form className="form" noValidate>
               <TextField
                 variant="filled"
                 size="small"
@@ -115,6 +101,8 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                 fullWidth
                 label="Password"
                 type="password"
+                error={password.length < 6}
+                helperText="Password should be atleast 6 characters long."
                 onChange={(e) => setPassword(e.target.value)}
               />
               <div style={{ height: "12px" }}>&nbsp;</div>
@@ -123,12 +111,12 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                 fullWidth
                 variant="contained"
                 color="primary"
-                className={classes.submit}
+                className="submit"
                 onClick={() => {
                   signUpWithUsernameAndPassword(email, password);
                 }}
               >
-                Log In
+                Sign Up
               </Button>
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 8 }}>
                 <Link href="/forgot-password" variant="body2">

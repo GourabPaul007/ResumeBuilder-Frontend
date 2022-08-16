@@ -10,37 +10,16 @@ import { useNavigate } from "react-router-dom";
 import AppBarHeader from "../../Components/AppBarHeader";
 import Footer from "../../Components/Footer";
 import { Avatar, Button, Checkbox, FormControlLabel, Grid, Link, TextField, Typography } from "@mui/material";
-import GoogleIcon from "@mui/icons-material/Google";
-import { makeStyles } from "@mui/styles";
-// import { error } from "console";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { googleSvg } from "../../Components/Icons";
 import { getErrorMessage } from "./errorMessages";
+import OAuthCard from "./OAuthCard";
+import makeStyles from "@mui/styles/makeStyles";
 
-const useStyles = makeStyles(() => ({
-  paper: {
-    marginTop: 8,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: 2,
-    backgroundColor: "#6b5be6",
-  },
-  form: {
-    width: 350, // Fix IE 11 issue.
-    margin: 8,
-  },
-  submit: {
-    margin: "3px 0px 2px 2px",
-  },
-}));
+import "./AuthPagesStyles.css";
 
 export interface ILoginPageProps {}
 
 const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
-  const classes = useStyles();
   const auth = getAuth();
   const navigate = useNavigate();
   const [authing, setAuthing] = useState(false);
@@ -48,19 +27,6 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const signInWithGoogle = async () => {
-    setAuthing(true);
-    signInWithPopup(auth, new GoogleAuthProvider())
-      .then((response) => {
-        console.log(response.user.uid);
-        navigate("/");
-      })
-      .catch((error) => {
-        setError(getErrorMessage(error.code));
-        setAuthing(false);
-      });
-  };
 
   const logInWithUsernameAndPassword = async (email: string, password: string) => {
     setAuthing(true);
@@ -90,9 +56,11 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
             alignItems: "center",
           }}
         >
-          <div className={classes.paper}>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <Avatar className={classes.avatar}>
+          <div className="paper">
+            <div
+              style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: error ? 0 : 48 }}
+            >
+              <Avatar className="avatar">
                 <LockOutlinedIcon />
               </Avatar>
               &nbsp;
@@ -115,7 +83,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                 {error}
               </Typography>
             ) : null}
-            <form className={classes.form} noValidate>
+            <form className="form" noValidate>
               <TextField
                 variant="filled"
                 size="small"
@@ -125,7 +93,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                 onChange={(e) => setEmail(e.target.value)}
                 autoFocus
               />
-              <div style={{ height: "12px" }}>&nbsp;</div>
+              <div style={{ height: "16px" }}>&nbsp;</div>
               <TextField
                 variant="filled"
                 size="small"
@@ -135,13 +103,13 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <div style={{ height: "12px" }}>&nbsp;</div>
+              <div style={{ height: "16px" }}>&nbsp;</div>
               <Button
                 disabled={authing}
                 fullWidth
                 variant="contained"
                 color="primary"
-                className={classes.submit}
+                className="submit"
                 onClick={() => {
                   logInWithUsernameAndPassword(email, password);
                 }}
@@ -158,16 +126,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
               </div>
             </form>
           </div>
-          <Button
-            variant="contained"
-            onClick={() => signInWithGoogle()}
-            disabled={authing}
-            style={{ padding: "10px 16px", marginTop: 8 }}
-          >
-            <GoogleIcon />
-            {/* {googleSvg} */}
-            &nbsp; Sign in with Google
-          </Button>
+          <OAuthCard />
         </div>
         <Footer />
       </div>
