@@ -115,10 +115,10 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
                 display: "inline-block",
                 padding: `${toBeShownSkills.chipSize}px ${toBeShownSkills.chipSize * 2}px`,
                 margin: 4,
-                border: props.skills.filled ? `1px solid transparent` : `1px solid ${props.skills.color}`,
-                borderRadius: props.skills.chipRadius,
-                color: props.skills.filled ? "#fff" : props.skills.color,
-                backgroundColor: props.skills.filled ? props.skills.color : "transparent",
+                border: toBeShownSkills.filled ? `1px solid transparent` : `1px solid ${toBeShownSkills.color}`,
+                borderRadius: toBeShownSkills.chipRadius,
+                color: toBeShownSkills.filled ? "#fff" : toBeShownSkills.color,
+                backgroundColor: toBeShownSkills.filled ? toBeShownSkills.color : "transparent",
                 fontSize: 15,
               }}
             >
