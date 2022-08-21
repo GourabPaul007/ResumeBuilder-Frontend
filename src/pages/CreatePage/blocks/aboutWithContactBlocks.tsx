@@ -32,6 +32,10 @@ const dummyAboutAndContactData = {
   phno: "+91 9064040525",
   emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
   about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
+  style: {
+    bgColor: "#ffffff",
+    textColor: "#000000",
+  },
 };
 const isEmptyAandC = (about: AboutWithContact) => {
   if (
@@ -60,48 +64,55 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
   const toBeShownAboutAndContact = isEmptyAandC(props.about) ? dummyAboutAndContactData : props.about;
 
   return (
-    <div className={blockClasses.blockWrapper}>
-      <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{toBeShownAboutAndContact.name}</h1>
-      <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{toBeShownAboutAndContact.profession}</p>
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
-      <div style={{ display: "flex", flexDirection: "row", fontWeight: 500, fontSize: 15, marginTop: 8 }}>
-        {/* the about extra */}
-        <div style={{ paddingRight: 4, paddingLeft: 4, flex: "59%" }}>
-          <p>{toBeShownAboutAndContact.about}</p>
-        </div>
-        <div style={{ flex: "3%" }}>&nbsp;</div>
-        {/* the contact section */}
-        <div
-          style={{
-            marginLeft: 20,
-            marginBottom: 6,
-            paddingLeft: 24,
-            borderLeft: "4px solid #123456",
-            flex: "38%",
-          }}
-        >
-          <div style={{ display: "flex", marginBottom: 4 }}>
-            {getIcon({ name: "location", color: "#FF2071", margin: "4px 8px 0px 0px" })}
-            {/* <LocationOnRoundedIcon style={{ color: "#FF2071", fontSize: 16, marginRight: 8, marginTop: 4 }} /> */}
-            <div>
-              {toBeShownAboutAndContact.address.map((element) => (
-                <div key={element + uuidv1}>{checkHyperlink(element)}</div>
-              ))}
-            </div>
+    <div
+      style={{
+        backgroundColor: toBeShownAboutAndContact.style.bgColor,
+        color: toBeShownAboutAndContact.style.textColor,
+      }}
+    >
+      <div className={blockClasses.blockWrapper}>
+        <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{toBeShownAboutAndContact.name}</h1>
+        <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{toBeShownAboutAndContact.profession}</p>
+        <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+        <div style={{ display: "flex", flexDirection: "row", fontWeight: 500, fontSize: 15, marginTop: 8 }}>
+          {/* the about extra */}
+          <div style={{ paddingRight: 4, paddingLeft: 4, flex: "59%" }}>
+            <p>{toBeShownAboutAndContact.about}</p>
           </div>
+          <div style={{ flex: "3%" }}>&nbsp;</div>
+          {/* the contact section */}
+          <div
+            style={{
+              marginLeft: 20,
+              marginBottom: 6,
+              paddingLeft: 24,
+              borderLeft: "4px solid #123456",
+              flex: "38%",
+            }}
+          >
+            <div style={{ display: "flex", marginBottom: 4 }}>
+              {getIcon({ name: "location", color: "#FF2071", margin: "4px 8px 0px 0px" })}
+              {/* <LocationOnRoundedIcon style={{ color: "#FF2071", fontSize: 16, marginRight: 8, marginTop: 4 }} /> */}
+              <div>
+                {toBeShownAboutAndContact.address.map((element) => (
+                  <div key={element + uuidv1}>{checkHyperlink(element)}</div>
+                ))}
+              </div>
+            </div>
 
-          <div style={{ display: "flex", marginBottom: 6 }}>
-            <EmailRoundedIcon style={{ color: "#1565c0", fontSize: 16, marginRight: 8, marginTop: 5 }} />
-            {/* emails, for flex reasons */}
-            <div>
-              {toBeShownAboutAndContact.emails.map((element) => (
-                <div key={element + uuidv1}>{checkHyperlink(element)}</div>
-              ))}
+            <div style={{ display: "flex", marginBottom: 6 }}>
+              <EmailRoundedIcon style={{ color: "#1565c0", fontSize: 16, marginRight: 8, marginTop: 5 }} />
+              {/* emails, for flex reasons */}
+              <div>
+                {toBeShownAboutAndContact.emails.map((element) => (
+                  <div key={element + uuidv1}>{checkHyperlink(element)}</div>
+                ))}
+              </div>
             </div>
-          </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            {getIcon({ name: "phone", color: "#388e3c", margin: "0px 8px 0px 0px" })}
-            {toBeShownAboutAndContact.phno}
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {getIcon({ name: "phone", color: "#388e3c", margin: "0px 8px 0px 0px" })}
+              {toBeShownAboutAndContact.phno}
+            </div>
           </div>
         </div>
       </div>

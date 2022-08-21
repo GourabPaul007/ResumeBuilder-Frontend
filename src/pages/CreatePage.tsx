@@ -29,6 +29,10 @@ const CreatePage: React.FC = (props) => {
     phno: "",
     emails: [""],
     about: "",
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
   });
   const [aboutWithContact2, setAboutWithContact2] = useState<AboutWithContact>({
     name: "",
@@ -38,6 +42,10 @@ const CreatePage: React.FC = (props) => {
     phno: "",
     emails: [""],
     about: "",
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
   });
   const [about1, setAbout1] = useState<About>({
     name: "",
@@ -133,6 +141,10 @@ const CreatePage: React.FC = (props) => {
       phno: "+91 9064040525",
       emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
       about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
+      style: {
+        bgColor: "#123456",
+        textColor: "#ffffff",
+      },
     });
     setAboutWithContact2({
       name: "John Doe Two",
@@ -142,6 +154,10 @@ const CreatePage: React.FC = (props) => {
       phno: "+91 9064040525",
       emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
       about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
+      style: {
+        bgColor: "#123456",
+        textColor: "#ffffff",
+      },
     });
     setAbout1({
       name: "Bruh Doe",
