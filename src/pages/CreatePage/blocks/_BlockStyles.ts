@@ -10,6 +10,7 @@ export const useBlockStyles = makeStyles(() => ({
     paddingBottom: 12,
     fontFamily: "sans-serif",
     overflow: "hidden",
+    // fontSize: "15px !important",
   }),
   // It works, No idea why
   blockTitleDiv: ({ formStyles, flipped = false }: { formStyles: FormStyles; flipped?: boolean }) => ({

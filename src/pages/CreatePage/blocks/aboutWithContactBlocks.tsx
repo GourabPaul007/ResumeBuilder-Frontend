@@ -68,6 +68,8 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
       style={{
         backgroundColor: toBeShownAboutAndContact.style.bgColor,
         color: toBeShownAboutAndContact.style.textColor,
+        height: "100%",
+        width: "100%",
       }}
     >
       <div className={blockClasses.blockWrapper}>

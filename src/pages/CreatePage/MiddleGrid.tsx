@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     overflow: "hidden",
   },
   gridLayoutWidth: {
+    margin: "0px 20px 20px 20px",
     width: "250mm",
     paddingLeft: "2rem",
     paddingRight: "2rem",
