@@ -1,4 +1,4 @@
-export interface BlockStyle {
+export interface SingleBlockStyle {
   bgColor: string;
   textColor: string;
 }

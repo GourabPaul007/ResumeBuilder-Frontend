@@ -1,8 +1,8 @@
-import { BlockStyle } from "./_SingleBlockStyle";
+import { SingleBlockStyle } from "./_SingleBlockStyle";
 
 export interface About {
   name: string;
   profession: string;
   about: string;
-  style: BlockStyle;
+  style: SingleBlockStyle;
 }

@@ -1,4 +1,4 @@
-import { BlockStyle } from "./_SingleBlockStyle";
+import { SingleBlockStyle } from "./_SingleBlockStyle";
 
 export interface AboutWithContact {
   name: string;
@@ -8,5 +8,5 @@ export interface AboutWithContact {
   phno: string;
   emails: string[];
   about: string;
-  style: BlockStyle;
+  style: SingleBlockStyle;
 }

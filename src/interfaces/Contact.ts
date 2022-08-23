@@ -1,4 +1,4 @@
-import { BlockStyle } from "./_SingleBlockStyle";
+import { SingleBlockStyle } from "./_SingleBlockStyle";
 
 export interface Contact {
   address: string[];
@@ -10,5 +10,5 @@ export interface ContactBlock {
   title: string;
   flipped: boolean;
   data: Contact;
-  style: BlockStyle;
+  style: SingleBlockStyle;
 }

@@ -97,12 +97,20 @@ const CreatePage: React.FC = (props) => {
     data: [
       { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "", courseDuration: "" },
     ],
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
   });
   const [educations2, setEducations2] = useState<Educations>({
     title: "Education Init 2",
     data: [
       { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "", courseDuration: "" },
     ],
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
   });
   const [works1, setWorks1] = useState<Works>({
     title: "Works Init",
@@ -208,7 +216,7 @@ const CreatePage: React.FC = (props) => {
       },
     });
     setEducations1({
-      title: "Educations #1 UseEffect",
+      title: "EducationsUE #1",
       data: [
         {
           id: "education001",
@@ -225,9 +233,13 @@ const CreatePage: React.FC = (props) => {
           courseResults: "Result Percentage 72%",
         },
       ],
+      style: {
+        bgColor: "#ffffff",
+        textColor: "#000000",
+      },
     });
     setEducations2({
-      title: "Educations #2 UseEffect",
+      title: "EducationsUE #2",
       data: [
         {
           id: "education001",
@@ -244,6 +256,10 @@ const CreatePage: React.FC = (props) => {
           courseResults: "Result Percentage 72%",
         },
       ],
+      style: {
+        bgColor: "#ffffff",
+        textColor: "#000000",
+      },
     });
     setSkills1({
       color: "#ff5656",
