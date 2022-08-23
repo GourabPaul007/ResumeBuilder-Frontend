@@ -12,6 +12,10 @@ const dummyAbout = {
   profession: "Software Engineer",
   about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, 
           maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
+  style: {
+    bgColor: "#ffffff",
+    textColor: "#000000",
+  },
 };
 
 const isEmptyAbout = (about: About) => {
@@ -33,14 +37,23 @@ export const AboutBlock1: React.FC<AboutProps> = (props) => {
   const toBeShownAbout = isEmptyAbout(props.about) ? dummyAbout : props.about;
 
   return (
-    <div className={blockClasses.blockWrapper}>
-      <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{toBeShownAbout.name}</h1>
-      <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{toBeShownAbout.profession}</p>
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
-      <div style={{ fontWeight: 500, fontSize: 15, marginTop: 8 }}>
-        {/* the about extra */}
-        <div style={{ paddingRight: 4, paddingLeft: 4 }}>
-          <p>{toBeShownAbout.about}</p>
+    <div
+      style={{
+        backgroundColor: toBeShownAbout.style.bgColor,
+        color: toBeShownAbout.style.textColor,
+        height: "100%",
+        width: "100%",
+      }}
+    >
+      <div className={blockClasses.blockWrapper}>
+        <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{toBeShownAbout.name}</h1>
+        <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{toBeShownAbout.profession}</p>
+        <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+        <div style={{ fontWeight: 500, fontSize: 15, marginTop: 8 }}>
+          {/* the about extra */}
+          <div style={{ paddingRight: 4, paddingLeft: 4 }}>
+            <p>{toBeShownAbout.about}</p>
+          </div>
         </div>
       </div>
     </div>

@@ -51,16 +51,28 @@ const CreatePage: React.FC = (props) => {
     name: "",
     profession: "",
     about: "",
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
   });
   const [contact1, setContact1] = useState<ContactBlock>({
     title: "Contact1",
     flipped: false,
     data: { address: [""], emails: [""], phno: "" },
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
   });
   const [contact2, setContact2] = useState<ContactBlock>({
     title: "Contact1",
     flipped: false,
     data: { address: [""], emails: [""], phno: "" },
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
   });
   const [skills1, setSkills1] = useState<Skills>({
     color: "#123456",
@@ -164,6 +176,10 @@ const CreatePage: React.FC = (props) => {
       profession: "Bruhware Engineer",
       about:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quod dolorem libero reprehenderit maxime maiores officiis? Beatae fuga, quia dolorum sequi accusamus omnis ab corrupti, atque architecto expedita ipsa inventore.",
+      style: {
+        bgColor: "#ffffff",
+        textColor: "#000000",
+      },
     });
     setContact1({
       title: "",
@@ -173,6 +189,10 @@ const CreatePage: React.FC = (props) => {
         emails: ["abc@gmail.com", "Github.com/JohnDoe"],
         phno: "123 456 7890",
       },
+      style: {
+        bgColor: "#ffffff",
+        textColor: "#000000",
+      },
     });
     setContact2({
       title: "",
@@ -181,6 +201,10 @@ const CreatePage: React.FC = (props) => {
         address: ["123 BV Rd, California"],
         emails: ["abc@gmail.com", "Github.com/JohnDoe"],
         phno: "123 456 7890",
+      },
+      style: {
+        bgColor: "#ffffff",
+        textColor: "#000000",
       },
     });
     setEducations1({

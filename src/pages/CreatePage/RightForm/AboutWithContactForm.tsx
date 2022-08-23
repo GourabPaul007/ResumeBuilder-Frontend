@@ -8,8 +8,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 interface AboutWithContactFormProps {
   formTitle: string;
-  about: AboutWithContact;
-  setAbout: Dispatch<React.SetStateAction<AboutWithContact>>;
+  aboutWithContact: AboutWithContact;
+  setAboutWithContact: Dispatch<React.SetStateAction<AboutWithContact>>;
 }
 
 export const AboutWithContactForm: FC<AboutWithContactFormProps> = React.memo((props) => {
@@ -41,9 +41,9 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = React.memo((p
               required={true}
               fullWidth={true}
               label="Full Name"
-              value={props.about.name}
+              value={props.aboutWithContact.name}
               onChange={(e) => {
-                props.setAbout({ ...props.about, name: e.target.value });
+                props.setAboutWithContact({ ...props.aboutWithContact, name: e.target.value });
               }}
             />
           </Grid>
@@ -56,9 +56,9 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = React.memo((p
               fullWidth={true}
               InputProps={{ classes: { underline: classes.underline } }}
               label="Profession"
-              value={props.about.profession}
+              value={props.aboutWithContact.profession}
               onChange={(e) => {
-                props.setAbout({ ...props.about, profession: e.target.value });
+                props.setAboutWithContact({ ...props.aboutWithContact, profession: e.target.value });
               }}
             />
           </Grid>
@@ -71,9 +71,9 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = React.memo((p
               fullWidth={true}
               InputProps={{ classes: { underline: classes.underline } }}
               label="Emails"
-              value={props.about.emails.join("<br>")}
+              value={props.aboutWithContact.emails.join("<br>")}
               onChange={(e) => {
-                props.setAbout({ ...props.about, emails: e.target.value.split("<br>") });
+                props.setAboutWithContact({ ...props.aboutWithContact, emails: e.target.value.split("<br>") });
               }}
             />
           </Grid>
@@ -86,9 +86,9 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = React.memo((p
               fullWidth={true}
               InputProps={{ classes: { underline: classes.underline } }}
               label="Phone Number"
-              value={props.about.phno}
+              value={props.aboutWithContact.phno}
               onChange={(e) => {
-                props.setAbout({ ...props.about, phno: e.target.value });
+                props.setAboutWithContact({ ...props.aboutWithContact, phno: e.target.value });
               }}
             />
           </Grid>
@@ -101,9 +101,9 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = React.memo((p
               fullWidth={true}
               InputProps={{ classes: { underline: classes.underline } }}
               label="Address"
-              value={props.about.address.join("<br>")}
+              value={props.aboutWithContact.address.join("<br>")}
               onChange={(e) => {
-                props.setAbout({ ...props.about, address: e.target.value.split("<br>") });
+                props.setAboutWithContact({ ...props.aboutWithContact, address: e.target.value.split("<br>") });
               }}
             />
           </Grid>
@@ -119,9 +119,9 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = React.memo((p
               rows={3}
               // maxRows={3}
               label="Pitch about yourself"
-              value={props.about.about}
+              value={props.aboutWithContact.about}
               onChange={(e) => {
-                props.setAbout({ ...props.about, about: e.target.value });
+                props.setAboutWithContact({ ...props.aboutWithContact, about: e.target.value });
               }}
             />
           </Grid>
@@ -163,10 +163,13 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = React.memo((p
               >
                 Background Color &#9658;&nbsp;
                 <ColorPicker
-                  color={props.about.style.bgColor ? props.about.style.bgColor : "#123456"}
+                  color={props.aboutWithContact.style.bgColor ? props.aboutWithContact.style.bgColor : "#123456"}
                   height={36}
                   handleColor={(newColor: string) => {
-                    props.setAbout({ ...props.about, style: { ...props.about.style, bgColor: newColor } });
+                    props.setAboutWithContact({
+                      ...props.aboutWithContact,
+                      style: { ...props.aboutWithContact.style, bgColor: newColor },
+                    });
                   }}
                 />
               </div>
@@ -183,10 +186,13 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = React.memo((p
               >
                 Text Color &#9658;&nbsp;
                 <ColorPicker
-                  color={props.about.style.textColor ? props.about.style.textColor : "#000000"}
+                  color={props.aboutWithContact.style.textColor ? props.aboutWithContact.style.textColor : "#000000"}
                   height={36}
                   handleColor={(newColor: string) => {
-                    props.setAbout({ ...props.about, style: { ...props.about.style, textColor: newColor } });
+                    props.setAboutWithContact({
+                      ...props.aboutWithContact,
+                      style: { ...props.aboutWithContact.style, textColor: newColor },
+                    });
                   }}
                 />
               </div>

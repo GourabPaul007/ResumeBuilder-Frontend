@@ -85,16 +85,16 @@ export const RightForm: FC<RightFormProps> = (props) => {
       case "aboutwithcontact1":
         return (
           <AboutWithContactForm
-            about={props.aboutWithContact1}
-            setAbout={props.setAboutWithContact1}
+            aboutWithContact={props.aboutWithContact1}
+            setAboutWithContact={props.setAboutWithContact1}
             formTitle={"About & Contact #1"}
           />
         );
       case "aboutwithcontact2":
         return (
           <AboutWithContactForm
-            about={props.aboutWithContact2}
-            setAbout={props.setAboutWithContact2}
+            aboutWithContact={props.aboutWithContact2}
+            setAboutWithContact={props.setAboutWithContact2}
             formTitle={"About & Contact #2"}
           />
         );

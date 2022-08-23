@@ -88,7 +88,7 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
               marginLeft: 20,
               marginBottom: 6,
               paddingLeft: 24,
-              borderLeft: "4px solid #123456",
+              borderLeft: `4px solid ${props.formStyles.accentColor}`,
               flex: "38%",
             }}
           >
@@ -134,44 +134,58 @@ export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (pro
     return joinedAddress;
   };
   return (
-    <div className={blockClasses.blockWrapper}>
-      <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{toBeShownAboutAndContact.name}</h1>
-      <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{toBeShownAboutAndContact.profession}</p>
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
-      <div style={{ display: "flex", flexDirection: "column", fontWeight: 500, fontSize: 15, marginTop: 8 }}>
-        <div style={{ paddingRight: 8, paddingLeft: 4 }}>
-          <p>{toBeShownAboutAndContact.about}</p>
-        </div>
-        <div
-          style={{ display: "flex", justifyContent: "space-evenly", color: props.formStyles.accentColor, marginTop: 8 }}
-        >
-          {/* The Left Links */}
+    <div
+      style={{
+        backgroundColor: toBeShownAboutAndContact.style.bgColor,
+        color: toBeShownAboutAndContact.style.textColor,
+        height: "100%",
+        width: "100%",
+      }}
+    >
+      <div className={blockClasses.blockWrapper}>
+        <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{toBeShownAboutAndContact.name}</h1>
+        <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{toBeShownAboutAndContact.profession}</p>
+        <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+        <div style={{ display: "flex", flexDirection: "column", fontWeight: 500, fontSize: 15, marginTop: 8 }}>
           <div style={{ paddingRight: 8, paddingLeft: 4 }}>
-            {toBeShownAboutAndContact.emails.map((element) => (
-              <div
-                key={element + uuidv1}
-                style={{ textDecoration: "none", margin: 2, display: "flex", alignItems: "center" }}
-              >
-                {getIcon({
-                  name: getUrlDomainName(element),
-                  color: props.formStyles.accentColor,
-                  margin: "0px 8px 0px 8px",
-                })}
-                {checkHyperlink(element)}
-              </div>
-            ))}
+            <p>{toBeShownAboutAndContact.about}</p>
           </div>
-          {/* The Right Links */}
-          <div style={{ paddingRight: 8, paddingLeft: 4, display: "flex", flexDirection: "column" }}>
-            <div style={{ display: "flex", alignItems: "center", margin: 2 }}>
-              {getIcon({ name: "phone", color: props.formStyles.accentColor, margin: "0px 8px 0px 8px" })}
-              {toBeShownAboutAndContact.phno}
-            </div>
-            <div style={{ margin: 2, display: "flex", alignItems: "center" }}>
-              {getIcon({ name: "home", color: props.formStyles.accentColor, margin: "0px 8px 0px 8px" })}
-              {toBeShownAboutAndContact.address.map((e, index) => (
-                <span key={e + index}>{checkHyperlink(e)}</span>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-evenly",
+              color: props.formStyles.accentColor,
+              marginTop: 8,
+            }}
+          >
+            {/* The Left Links */}
+            <div style={{ paddingRight: 8, paddingLeft: 4 }}>
+              {toBeShownAboutAndContact.emails.map((element) => (
+                <div
+                  key={element + uuidv1}
+                  style={{ textDecoration: "none", margin: 2, display: "flex", alignItems: "center" }}
+                >
+                  {getIcon({
+                    name: getUrlDomainName(element),
+                    color: props.formStyles.accentColor,
+                    margin: "0px 8px 0px 8px",
+                  })}
+                  {checkHyperlink(element)}
+                </div>
               ))}
+            </div>
+            {/* The Right Links */}
+            <div style={{ paddingRight: 8, paddingLeft: 4, display: "flex", flexDirection: "column" }}>
+              <div style={{ display: "flex", alignItems: "center", margin: 2 }}>
+                {getIcon({ name: "phone", color: props.formStyles.accentColor, margin: "0px 8px 0px 8px" })}
+                {toBeShownAboutAndContact.phno}
+              </div>
+              <div style={{ margin: 2, display: "flex", alignItems: "center" }}>
+                {getIcon({ name: "home", color: props.formStyles.accentColor, margin: "0px 8px 0px 8px" })}
+                {toBeShownAboutAndContact.address.map((e, index) => (
+                  <span key={e + index}>{checkHyperlink(e)}</span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
