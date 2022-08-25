@@ -8,7 +8,7 @@ import { Work, Works } from "../../../interfaces/Works";
 import { FormStyles } from "../../../interfaces/FormStyles";
 import { useBlockStyles } from "./_BlockStyles";
 
-const dummyWorks = {
+const dummyWorks: Works = {
   title: "Bruh Works",
   data: [
     {
@@ -20,16 +20,20 @@ const dummyWorks = {
       ],
       workDuration: "2022 - 2025",
     },
-    // {
-    //   id: "work2",
-    //   organizationName: "Company 2",
-    //   workDetails: [
-    //     "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
-    //     "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
-    //   ],
-    // workDuration: "2025 - 2030",
-    // },
+    {
+      id: "work2",
+      workOrganizationName: "Company 2",
+      workDetails: [
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
+        "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
+      ],
+      workDuration: "2025 - 2030",
+    },
   ],
+  style: {
+    bgColor: "#fff",
+    textColor: "#000",
+  },
 };
 
 interface WorksBlockProps {
@@ -55,37 +59,46 @@ export const WorksBlock1: React.FC<WorksBlockProps> = (props) => {
   const toBeDisplayedWorks = !isEmptyObjArr(props.works.data) ? props.works : dummyWorks;
 
   return (
-    <div className={blockClasses.blockWrapper}>
-      <div className={blockClasses.blockTitleDiv}>
-        <h2 className={blockClasses.blockTitleH2}>{props.works.title}</h2>
+    <div
+      style={{
+        backgroundColor: toBeDisplayedWorks.style.bgColor,
+        color: toBeDisplayedWorks.style.textColor,
+        height: "100%",
+        width: "100%",
+      }}
+    >
+      <div className={blockClasses.blockWrapper}>
+        <div className={blockClasses.blockTitleDiv}>
+          <h2 className={blockClasses.blockTitleH2}>{props.works.title}</h2>
+        </div>
+        <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+        {toBeDisplayedWorks.data.map((eachWork: Work) => {
+          return (
+            <div key={eachWork.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 15 }}>
+              {/* Work Name & Duration*/}
+              <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "start" }}>
+                <h4 style={{ fontSize: 20 }}>{eachWork.workOrganizationName}</h4>
+                <p style={{ color: props.formStyles.accentColor, fontSize: 12, flexShrink: 0, paddingTop: 3 }}>
+                  {eachWork.workDuration}
+                </p>
+              </div>
+              {/* Work Details */}
+              <div style={{ marginBottom: 4, marginLeft: 16, marginTop: 4, fontWeight: 500 }}>
+                {eachWork.workDetails.map((detail) => {
+                  return (
+                    <div
+                      key={detail}
+                      style={{ display: "flex", flexDirection: "row", justifyContent: "start", alignItems: "start" }}
+                    >
+                      &bull;&nbsp;{checkHyperlink(detail)}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
-      {toBeDisplayedWorks.data.map((eachWork: Work) => {
-        return (
-          <div key={eachWork.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 15 }}>
-            {/* Work Name & Duration*/}
-            <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "start" }}>
-              <h4 style={{ fontSize: 20 }}>{eachWork.workOrganizationName}</h4>
-              <p style={{ color: props.formStyles.accentColor, fontSize: 12, flexShrink: 0, paddingTop: 3 }}>
-                {eachWork.workDuration}
-              </p>
-            </div>
-            {/* Work Details */}
-            <div style={{ marginBottom: 4, marginLeft: 16, marginTop: 4, fontWeight: 500 }}>
-              {eachWork.workDetails.map((detail) => {
-                return (
-                  <div
-                    key={detail}
-                    style={{ display: "flex", flexDirection: "row", justifyContent: "start", alignItems: "start" }}
-                  >
-                    &bull;&nbsp;{checkHyperlink(detail)}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        );
-      })}
     </div>
   );
 };

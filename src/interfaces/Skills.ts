@@ -1,3 +1,5 @@
+import { SingleBlockStyle } from "./_SingleBlockStyle";
+
 export interface Skills {
   color: string;
   title: string;
@@ -6,4 +8,5 @@ export interface Skills {
   filled: boolean;
   flipped: boolean;
   data: string[];
+  style: SingleBlockStyle;
 }

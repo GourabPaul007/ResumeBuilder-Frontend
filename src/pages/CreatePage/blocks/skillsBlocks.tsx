@@ -14,6 +14,10 @@ const dummySkills: Skills = {
   filled: true,
   flipped: false,
   data: ["HTML/CSS/JSS", "TypeScript", "ReactJS", "Flutter", "NodeJS", "ExpressJS", "MySql", "MongoDB", "Sqlite"],
+  style: {
+    bgColor: "#ffffff",
+    textColor: "#000000",
+  },
 };
 
 interface SkillsBlockProps {
@@ -30,49 +34,58 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
   console.log(toBeShownSkills.chipSize);
 
   return (
-    <div className={blockClasses.blockWrapper}>
-      <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
-        <div className={blockClasses.blockTitleDiv}>
-          <h2 className={blockClasses.blockTitleH2}>{toBeShownSkills.title}</h2>
+    <div
+      style={{
+        backgroundColor: toBeShownSkills.style.bgColor,
+        color: toBeShownSkills.style.textColor,
+        height: "100%",
+        width: "100%",
+      }}
+    >
+      <div className={blockClasses.blockWrapper}>
+        <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
+          <div className={blockClasses.blockTitleDiv}>
+            <h2 className={blockClasses.blockTitleH2}>{toBeShownSkills.title}</h2>
+          </div>
+          <RemoveBlockButton
+            item={props.item}
+            removeItem={props.removeItem}
+            blockTitle={props.blockTitle}
+            flipped={props.skills.flipped}
+          />
         </div>
-        <RemoveBlockButton
-          item={props.item}
-          removeItem={props.removeItem}
-          blockTitle={props.blockTitle}
-          flipped={props.skills.flipped}
-        />
-      </div>
-      <div
-        style={{
-          marginTop: 4,
-          paddingLeft: 8,
-          fontWeight: 500,
-          // for aligning to left or right
-          display: "flex",
-          flexFlow: "wrap",
-          flexDirection: props.skills.flipped ? "row-reverse" : "row",
-          // opacity: props.skills.data.length == 0 ? 0.1 : 1,
-        }}
-      >
-        {toBeShownSkills.data.map((eachSkill: string, index: number) => {
-          return (
-            <div
-              key={eachSkill + index}
-              style={{
-                display: "inline-block",
-                padding: `${toBeShownSkills.chipSize}px ${toBeShownSkills.chipSize * 2}px`,
-                margin: 4,
-                border: toBeShownSkills.filled ? `1px solid transparent` : `1px solid ${toBeShownSkills.color}`,
-                borderRadius: toBeShownSkills.chipRadius,
-                color: toBeShownSkills.filled ? "#fff" : toBeShownSkills.color,
-                backgroundColor: toBeShownSkills.filled ? toBeShownSkills.color : "transparent",
-                fontSize: 15,
-              }}
-            >
-              {eachSkill}
-            </div>
-          );
-        })}
+        <div
+          style={{
+            marginTop: 4,
+            paddingLeft: 8,
+            fontWeight: 500,
+            // for aligning to left or right
+            display: "flex",
+            flexFlow: "wrap",
+            flexDirection: props.skills.flipped ? "row-reverse" : "row",
+            // opacity: props.skills.data.length == 0 ? 0.1 : 1,
+          }}
+        >
+          {toBeShownSkills.data.map((eachSkill: string, index: number) => {
+            return (
+              <div
+                key={eachSkill + index}
+                style={{
+                  display: "inline-block",
+                  padding: `${toBeShownSkills.chipSize}px ${toBeShownSkills.chipSize * 2}px`,
+                  margin: 4,
+                  border: toBeShownSkills.filled ? `1px solid transparent` : `1px solid ${toBeShownSkills.color}`,
+                  borderRadius: toBeShownSkills.chipRadius,
+                  color: toBeShownSkills.filled ? "#fff" : toBeShownSkills.color,
+                  backgroundColor: toBeShownSkills.filled ? toBeShownSkills.color : "transparent",
+                  fontSize: 15,
+                }}
+              >
+                {eachSkill}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
@@ -83,49 +96,58 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
   const toBeShownSkills = props.skills.data.length === 0 && props.skills.title === "" ? dummySkills : props.skills;
 
   return (
-    <div className={blockClasses.blockWrapper}>
-      <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
-        <div className={blockClasses.blockTitleDiv}>
-          <h2 className={blockClasses.blockTitleH2}>{toBeShownSkills.title}</h2>
+    <div
+      style={{
+        backgroundColor: toBeShownSkills.style.bgColor,
+        color: toBeShownSkills.style.textColor,
+        height: "100%",
+        width: "100%",
+      }}
+    >
+      <div className={blockClasses.blockWrapper}>
+        <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
+          <div className={blockClasses.blockTitleDiv}>
+            <h2 className={blockClasses.blockTitleH2}>{toBeShownSkills.title}</h2>
+          </div>
+          <RemoveBlockButton
+            item={props.item}
+            removeItem={props.removeItem}
+            blockTitle={props.blockTitle}
+            flipped={props.skills.flipped}
+          />
         </div>
-        <RemoveBlockButton
-          item={props.item}
-          removeItem={props.removeItem}
-          blockTitle={props.blockTitle}
-          flipped={props.skills.flipped}
-        />
-      </div>
-      <div
-        style={{
-          marginTop: 4,
-          paddingLeft: 8,
-          fontWeight: 500,
-          // for aligning to left or right
-          display: "flex",
-          flexFlow: "wrap",
-          flexDirection: props.skills.flipped ? "row-reverse" : "row",
-          // opacity: props.skills.data.length == 0 ? 0.1 : 1,
-        }}
-      >
-        {toBeShownSkills.data.map((eachSkill: string, index: number) => {
-          return (
-            <div
-              key={eachSkill + index}
-              style={{
-                display: "inline-block",
-                padding: `${toBeShownSkills.chipSize}px ${toBeShownSkills.chipSize * 2}px`,
-                margin: 4,
-                border: toBeShownSkills.filled ? `1px solid transparent` : `1px solid ${toBeShownSkills.color}`,
-                borderRadius: toBeShownSkills.chipRadius,
-                color: toBeShownSkills.filled ? "#fff" : toBeShownSkills.color,
-                backgroundColor: toBeShownSkills.filled ? toBeShownSkills.color : "transparent",
-                fontSize: 15,
-              }}
-            >
-              {eachSkill}
-            </div>
-          );
-        })}
+        <div
+          style={{
+            marginTop: 4,
+            paddingLeft: 8,
+            fontWeight: 500,
+            // for aligning to left or right
+            display: "flex",
+            flexFlow: "wrap",
+            flexDirection: props.skills.flipped ? "row-reverse" : "row",
+            // opacity: props.skills.data.length == 0 ? 0.1 : 1,
+          }}
+        >
+          {toBeShownSkills.data.map((eachSkill: string, index: number) => {
+            return (
+              <div
+                key={eachSkill + index}
+                style={{
+                  display: "inline-block",
+                  padding: `${toBeShownSkills.chipSize}px ${toBeShownSkills.chipSize * 2}px`,
+                  margin: 4,
+                  border: toBeShownSkills.filled ? `1px solid transparent` : `1px solid ${toBeShownSkills.color}`,
+                  borderRadius: toBeShownSkills.chipRadius,
+                  color: toBeShownSkills.filled ? "#fff" : toBeShownSkills.color,
+                  backgroundColor: toBeShownSkills.filled ? toBeShownSkills.color : "transparent",
+                  fontSize: 15,
+                }}
+              >
+                {eachSkill}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,20 @@
-import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Collapse,
+  Grid,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { Dispatch, FC } from "react";
 import { Project, Projects } from "../../../interfaces/Projects";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 import { useStyles } from "./_FormsStyles";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { ColorPicker } from "../../../Components/ColorPicker";
 
 interface ProjectsFormProps {
   formTitle: string;
@@ -12,6 +24,12 @@ interface ProjectsFormProps {
 
 export const ProjectsForm: FC<ProjectsFormProps> = React.memo((props) => {
   const classes = useStyles();
+
+  const [expanded, setExpanded] = React.useState(false);
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
   // ==================================================================================================================
   // Add or Remove Fields
   const handleAddFields = () => {
@@ -63,82 +81,132 @@ export const ProjectsForm: FC<ProjectsFormProps> = React.memo((props) => {
 
   return (
     <>
-      <Typography align="center" style={{ fontSize: 24 }}>
-        {props.formTitle}
-      </Typography>
-      <Grid container marginBottom={2}>
-        <Grid item xs={12}>
-          <TextField
-            size="small"
-            variant="filled"
-            margin="dense"
-            required
-            fullWidth
-            InputProps={{ classes: { underline: classes.underline } }}
-            label="Title"
-            name="title"
-            value={props.projects.title}
-            onChange={(e) => handleBlockTitleInput(e.target.value)}
-          />
+      <Card style={{ boxShadow: "none" }}>
+        <Typography align="center" style={{ fontSize: 24 }}>
+          {props.formTitle}
+        </Typography>
+        <Grid container marginBottom={2}>
+          <Grid item xs={12}>
+            <TextField
+              size="small"
+              variant="filled"
+              margin="dense"
+              required
+              fullWidth
+              InputProps={{ classes: { underline: classes.underline } }}
+              label="Title"
+              name="title"
+              value={props.projects.title}
+              onChange={(e) => handleBlockTitleInput(e.target.value)}
+            />
+          </Grid>
         </Grid>
-      </Grid>
-      {props.projects.data.map((singleProject, index) => (
-        <div key={index}>
-          <Grid container>
-            <Grid item xs={11}>
-              <Grid container>
-                <Grid item xs={12}>
-                  <TextField
-                    size="small"
-                    variant="filled"
-                    margin="dense"
-                    required
-                    fullWidth
-                    InputProps={{ classes: { underline: classes.underline } }}
-                    label="Project Name"
-                    value={singleProject.projectName}
-                    onChange={(e) => handleProjectNameInput(e.target.value, index)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    size="small"
-                    variant="filled"
-                    margin="dense"
-                    required
-                    fullWidth
-                    InputProps={{ classes: { underline: classes.underline } }}
-                    label="Project Details & Used Technologies"
-                    value={singleProject.projectDetails.join("<nl>")}
-                    onChange={(e) => handleProjectDetailsInput(e.target.value, index)}
-                  />
+        {props.projects.data.map((singleProject, index) => (
+          <div key={index}>
+            <Grid container>
+              <Grid item xs={11}>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <TextField
+                      size="small"
+                      variant="filled"
+                      margin="dense"
+                      required
+                      fullWidth
+                      InputProps={{ classes: { underline: classes.underline } }}
+                      label="Project Name"
+                      value={singleProject.projectName}
+                      onChange={(e) => handleProjectNameInput(e.target.value, index)}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      size="small"
+                      variant="filled"
+                      margin="dense"
+                      required
+                      fullWidth
+                      InputProps={{ classes: { underline: classes.underline } }}
+                      label="Project Details & Used Technologies"
+                      value={singleProject.projectDetails.join("<nl>")}
+                      onChange={(e) => handleProjectDetailsInput(e.target.value, index)}
+                    />
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-            <Grid
-              item
-              xs={1}
-              style={{
-                display: "grid",
-                placeItems: "center",
-              }}
-            >
-              <IconButton
-                onClick={() => {
-                  handleRemoveFields(singleProject.id);
+              <Grid
+                item
+                xs={1}
+                style={{
+                  display: "grid",
+                  placeItems: "center",
                 }}
               >
-                <RemoveCircleOutlineRoundedIcon fontSize="large" />
-              </IconButton>
+                <IconButton
+                  onClick={() => {
+                    handleRemoveFields(singleProject.id);
+                  }}
+                >
+                  <RemoveCircleOutlineRoundedIcon fontSize="large" />
+                </IconButton>
+              </Grid>
             </Grid>
-          </Grid>
-        </div>
-      ))}
-      <Typography align="center">
-        <Button variant="contained" onClick={handleAddFields} style={{ marginTop: 8, backgroundColor: "#00ccc9" }}>
-          Add Another
-        </Button>
-      </Typography>
+          </div>
+        ))}
+        <Typography align="center">
+          <Button variant="contained" onClick={handleAddFields} style={{ marginTop: 8, backgroundColor: "#00ccc9" }}>
+            Add Another
+          </Button>
+        </Typography>
+        {/* THE EXTRA OPTIONS */}
+        <CardActions disableSpacing style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <IconButton
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show advanced options"
+            style={{ width: 100, borderRadius: 5, backgroundColor: expanded ? "#e0e0e0" : "#f0f0f0" }}
+          >
+            <ExpandMoreIcon
+              style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 200ms" }}
+            />
+          </IconButton>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent style={{ margin: 0, padding: 0 }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-evenly",
+                border: "1px solid #777",
+                borderRadius: 5,
+                padding: 8,
+                margin: "4px 0px",
+              }}
+            >
+              <div className={classes.colorPickerWrapper}>
+                Background Color &#9658;&nbsp;
+                <ColorPicker
+                  color={props.projects.style.bgColor ? props.projects.style.bgColor : "#123456"}
+                  height={36}
+                  handleColor={(newColor: string) => {
+                    props.setProjects({ ...props.projects, style: { ...props.projects.style, bgColor: newColor } });
+                  }}
+                />
+              </div>
+              <div className={classes.colorPickerWrapper}>
+                Text Color &#9658;&nbsp;
+                <ColorPicker
+                  color={props.projects.style.textColor ? props.projects.style.textColor : "#000000"}
+                  height={36}
+                  handleColor={(newColor: string) => {
+                    props.setProjects({ ...props.projects, style: { ...props.projects.style, textColor: newColor } });
+                  }}
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Collapse>
+      </Card>
     </>
   );
 });

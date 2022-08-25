@@ -23,6 +23,10 @@ const dummyRatings: Ratings = {
     { id: "3", ratingSubject: "Bengali", rateInPercentage: 100 },
     { id: "4", ratingSubject: "Milf", rateInPercentage: 100 },
   ],
+  style: {
+    bgColor: "#fff",
+    textColor: "#000",
+  },
 };
 
 interface RatingBlockProps {
@@ -39,60 +43,69 @@ export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
 
   return (
     <>
-      <div className={blockClasses.blockWrapper}>
-        {props.ratings.flipped ? (
-          <RemoveBlockButton
-            item={props.item}
-            removeItem={props.removeItem}
-            blockTitle={props.blockTitle}
-            flipped={props.ratings.flipped}
-          />
-        ) : null}
-        <div className={blockClasses.blockTitleDiv}>
-          <h2 className={blockClasses.blockTitleH2}>{toBeShownRatings.title}</h2>
-        </div>
-        {props.ratings.flipped ? null : (
-          <RemoveBlockButton
-            item={props.item}
-            removeItem={props.removeItem}
-            blockTitle={props.blockTitle}
-            flipped={props.ratings.flipped}
-          />
-        )}
-        <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500 }}>
-          {toBeShownRatings.data.map((eachRating, i) => {
-            return (
-              <div
-                key={eachRating.ratingSubject + i}
-                style={{
-                  display: "flex",
-                  flexDirection: props.ratings.flipped ? "row-reverse" : "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  margin: "4px 0px",
-                }}
-              >
-                <div style={{ margin: "0px 0px 2px 0px" /* for aligning with the starts */ }}>
-                  {eachRating.ratingSubject}
+      <div
+        style={{
+          backgroundColor: toBeShownRatings.style.bgColor,
+          color: toBeShownRatings.style.textColor,
+          height: "100%",
+          width: "100%",
+        }}
+      >
+        <div className={blockClasses.blockWrapper}>
+          {props.ratings.flipped ? (
+            <RemoveBlockButton
+              item={props.item}
+              removeItem={props.removeItem}
+              blockTitle={props.blockTitle}
+              flipped={props.ratings.flipped}
+            />
+          ) : null}
+          <div className={blockClasses.blockTitleDiv}>
+            <h2 className={blockClasses.blockTitleH2}>{toBeShownRatings.title}</h2>
+          </div>
+          {props.ratings.flipped ? null : (
+            <RemoveBlockButton
+              item={props.item}
+              removeItem={props.removeItem}
+              blockTitle={props.blockTitle}
+              flipped={props.ratings.flipped}
+            />
+          )}
+          <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500 }}>
+            {toBeShownRatings.data.map((eachRating, i) => {
+              return (
+                <div
+                  key={eachRating.ratingSubject + i}
+                  style={{
+                    display: "flex",
+                    flexDirection: props.ratings.flipped ? "row-reverse" : "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    margin: "4px 0px",
+                  }}
+                >
+                  <div style={{ margin: "0px 0px 2px 0px" /* for aligning with the starts */ }}>
+                    {eachRating.ratingSubject}
+                  </div>
+                  <div>
+                    {eachRating.rateInPercentage === undefined ? (
+                      eachRating.rateInPercentage
+                    ) : (
+                      <div>
+                        {getStarsArray(
+                          Math.round(eachRating.rateInPercentage / 20),
+                          props.ratings.icon,
+                          props.formStyles.accentColor,
+                          22,
+                          props.ratings.flipped
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  {eachRating.rateInPercentage === undefined ? (
-                    eachRating.rateInPercentage
-                  ) : (
-                    <div>
-                      {getStarsArray(
-                        Math.round(eachRating.rateInPercentage / 20),
-                        props.ratings.icon,
-                        props.formStyles.accentColor,
-                        22,
-                        props.ratings.flipped
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </>
@@ -106,53 +119,62 @@ export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
 
   return (
     <>
-      <div className={blockClasses.blockWrapper}>
-        <div style={{ display: "flex", flexDirection: props.ratings.flipped ? "row-reverse" : "row" }}>
-          <div className={blockClasses.blockTitleDiv}>
-            <h2 className={blockClasses.blockTitleH2}>{toBeShownRatings.title}</h2>
+      <div
+        style={{
+          backgroundColor: toBeShownRatings.style.bgColor,
+          color: toBeShownRatings.style.textColor,
+          height: "100%",
+          width: "100%",
+        }}
+      >
+        <div className={blockClasses.blockWrapper}>
+          <div style={{ display: "flex", flexDirection: props.ratings.flipped ? "row-reverse" : "row" }}>
+            <div className={blockClasses.blockTitleDiv}>
+              <h2 className={blockClasses.blockTitleH2}>{toBeShownRatings.title}</h2>
+            </div>
+            <RemoveBlockButton
+              item={props.item}
+              removeItem={props.removeItem}
+              blockTitle={props.blockTitle}
+              flipped={props.ratings.flipped}
+            />
           </div>
-          <RemoveBlockButton
-            item={props.item}
-            removeItem={props.removeItem}
-            blockTitle={props.blockTitle}
-            flipped={props.ratings.flipped}
-          />
-        </div>
 
-        <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500 }}>
-          {toBeShownRatings.data.map((eachRating, i) => {
-            return (
-              <div
-                key={eachRating.ratingSubject + i}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  alignItems: props.ratings.flipped ? "flex-end" : "flex-start",
-                  margin: "4px 0px",
-                }}
-              >
-                <div style={{ margin: "0px 0px 2px 0px" /* for aligning with the starts */ }}>
-                  {eachRating.ratingSubject}
+          <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500 }}>
+            {toBeShownRatings.data.map((eachRating, i) => {
+              return (
+                <div
+                  key={eachRating.ratingSubject + i}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    alignItems: props.ratings.flipped ? "flex-end" : "flex-start",
+                    margin: "4px 0px",
+                  }}
+                >
+                  <div style={{ margin: "0px 0px 2px 0px" /* for aligning with the starts */ }}>
+                    {eachRating.ratingSubject}
+                  </div>
+                  <div>
+                    {eachRating.rateInPercentage === undefined ? (
+                      eachRating.rateInPercentage
+                    ) : (
+                      <div>
+                        {getStarsArray(
+                          Math.round(eachRating.rateInPercentage / 20),
+                          props.ratings.icon,
+                          props.formStyles.accentColor,
+                          20,
+                          props.ratings.flipped
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  {eachRating.rateInPercentage === undefined ? (
-                    eachRating.rateInPercentage
-                  ) : (
-                    <div>
-                      {getStarsArray(
-                        Math.round(eachRating.rateInPercentage / 20),
-                        props.ratings.icon,
-                        props.formStyles.accentColor,
-                        20,
-                        props.ratings.flipped
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

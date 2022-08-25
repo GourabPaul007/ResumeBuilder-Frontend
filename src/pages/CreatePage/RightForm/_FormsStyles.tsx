@@ -12,4 +12,13 @@ export const useStyles = makeStyles((theme) => ({
       borderBottomColor: ["#ffffff", "!important"],
     },
   },
+  colorPickerWrapper: {
+    // height: "100%",
+    display: "flex",
+    justifyContent: "start",
+    alignItems: "center",
+    fontSize: 16,
+    fontWeight: 500,
+    fontFamily: "sans-serif",
+  },
 }));

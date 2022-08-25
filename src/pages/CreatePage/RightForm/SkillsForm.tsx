@@ -1,11 +1,27 @@
-import { Autocomplete, Button, ButtonGroup, Chip, Grid, Slider, Switch, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardActions,
+  CardContent,
+  Chip,
+  Collapse,
+  Grid,
+  IconButton,
+  Slider,
+  Switch,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { Dispatch, FC, useEffect, useState } from "react";
 import { Skills } from "../../../interfaces/Skills";
 import { useStyles } from "./_FormsStyles";
 import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
 import AlignHorizontalRightIcon from "@mui/icons-material/AlignHorizontalRight";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import "./SkillsForm.css";
+import { ColorPicker } from "../../../Components/ColorPicker";
 
 interface SkillsFormProps {
   formTitle: string;
@@ -15,6 +31,13 @@ interface SkillsFormProps {
 
 export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
   const classes = useStyles();
+
+  // Expand More Options
+  const [expanded, setExpanded] = React.useState(false);
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
   const [currentColor, setCurrentColor] = useState<string>(
     props.skills.color.length > 0
       ? props.skills.color
@@ -77,7 +100,7 @@ export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
 
   return (
     <>
-      <div style={{ fontFamily: "sans-serif", fontSize: 16 }}>
+      <Card style={{ boxShadow: "none" }}>
         <Typography align="center" style={{ fontSize: 24 }}>
           {props.formTitle}
         </Typography>
@@ -199,7 +222,55 @@ export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
             Chip Size
           </Grid>
         </Grid>
-      </div>
+        {/* THE EXTRA OPTIONS */}
+        <CardActions disableSpacing style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <IconButton
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show advanced options"
+            style={{ width: 100, borderRadius: 5, backgroundColor: expanded ? "#e0e0e0" : "#f0f0f0" }}
+          >
+            <ExpandMoreIcon
+              style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 200ms" }}
+            />
+          </IconButton>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent style={{ margin: 0, padding: 0 }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-evenly",
+                border: "1px solid #777",
+                borderRadius: 5,
+                padding: 8,
+                margin: "4px 0px",
+              }}
+            >
+              <div className={classes.colorPickerWrapper}>
+                Background Color &#9658;&nbsp;
+                <ColorPicker
+                  color={props.skills.style.bgColor ? props.skills.style.bgColor : "#123456"}
+                  height={36}
+                  handleColor={(newColor: string) => {
+                    props.setSkills({ ...props.skills, style: { ...props.skills.style, bgColor: newColor } });
+                  }}
+                />
+              </div>
+              <div className={classes.colorPickerWrapper}>
+                Text Color &#9658;&nbsp;
+                <ColorPicker
+                  color={props.skills.style.textColor ? props.skills.style.textColor : "#000000"}
+                  height={36}
+                  handleColor={(newColor: string) => {
+                    props.setSkills({ ...props.skills, style: { ...props.skills.style, textColor: newColor } });
+                  }}
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Collapse>
+      </Card>
     </>
   );
 });

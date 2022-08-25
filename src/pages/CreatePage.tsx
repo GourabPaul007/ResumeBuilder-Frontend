@@ -82,6 +82,10 @@ const CreatePage: React.FC = (props) => {
     filled: true,
     flipped: false,
     data: [],
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
   });
   const [skills2, setSkills2] = useState<Skills>({
     color: "#123456",
@@ -91,6 +95,10 @@ const CreatePage: React.FC = (props) => {
     filled: true,
     flipped: false,
     data: [],
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
   });
   const [educations1, setEducations1] = useState<Educations>({
     title: "Education Init",
@@ -115,12 +123,28 @@ const CreatePage: React.FC = (props) => {
   const [works1, setWorks1] = useState<Works>({
     title: "Works Init",
     data: [{ id: `work${Date.now()}`, workOrganizationName: "", workDetails: [""], workDuration: "" }],
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
   });
   const [projects1, setProjects1] = useState<Projects>({
     title: "Works Init",
     data: [{ id: `project${Date.now()}`, projectName: "", projectDetails: [""] }],
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
   });
-  const [others1, setOthers1] = useState<Others>({ title: "", bullet: -1, data: [""] });
+  const [others1, setOthers1] = useState<Others>({
+    title: "",
+    bullet: -1,
+    data: [""],
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
+  });
   const [ratings1, setRatings1] = useState<Ratings>({
     title: "Language",
     ratingType: "star",
@@ -131,6 +155,10 @@ const CreatePage: React.FC = (props) => {
       { id: `rating${Date.now()}`, ratingSubject: "Hindi", rateInPercentage: 75 },
       { id: `rating${Date.now()}`, ratingSubject: "Bengali", rateInPercentage: 100 },
     ],
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
   });
   const [ratings2, setRatings2] = useState<Ratings>({
     title: "Ratings #2",
@@ -142,6 +170,10 @@ const CreatePage: React.FC = (props) => {
       { id: `rating${Date.now()}`, ratingSubject: "Hindi", rateInPercentage: 75 },
       { id: `rating${Date.now()}`, ratingSubject: "Bengali", rateInPercentage: 100 },
     ],
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
   });
   const [formStyles, setFormStyles] = useState<FormStyles>({
     titleFilled: false,
@@ -282,6 +314,10 @@ const CreatePage: React.FC = (props) => {
         "officiis",
         "distinct",
       ],
+      style: {
+        bgColor: "#ffffff",
+        textColor: "#000000",
+      },
     });
     setWorks1({
       title: "Works UseEffect",
@@ -296,6 +332,10 @@ const CreatePage: React.FC = (props) => {
           workDuration: "2022 - 2023",
         },
       ],
+      style: {
+        bgColor: "#ffffff",
+        textColor: "#000000",
+      },
     });
     setProjects1({
       title: "Projects UseEffect",
@@ -317,6 +357,10 @@ const CreatePage: React.FC = (props) => {
           ],
         },
       ],
+      style: {
+        bgColor: "#ffffff",
+        textColor: "#000000",
+      },
     });
     setOthers1({
       title: "Others UseEffect",
@@ -327,6 +371,10 @@ const CreatePage: React.FC = (props) => {
         "officiis distinctio ipsa officia soluta.",
         "accusantium exercit ationem.",
       ],
+      style: {
+        bgColor: "#ffffff",
+        textColor: "#000000",
+      },
     });
     addItem(8, 8, "about1", true);
   }, []);

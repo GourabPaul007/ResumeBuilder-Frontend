@@ -1,3 +1,5 @@
+import { SingleBlockStyle } from "./_SingleBlockStyle";
+
 export interface Work {
   id: string;
   workDetails: string[];
@@ -8,4 +10,5 @@ export interface Work {
 export interface Works {
   title: string;
   data: Work[];
+  style: SingleBlockStyle;
 }
