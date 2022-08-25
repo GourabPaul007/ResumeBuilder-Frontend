@@ -10,6 +10,7 @@ import { GridItem } from "../../../interfaces/GridItem";
 import { Project, Projects } from "../../../interfaces/Projects";
 import { FormStyles } from "../../../interfaces/FormStyles";
 import { useBlockStyles } from "./_BlockStyles";
+import { BlockTitle } from "./_BlockTitle";
 
 const exampleProjects: Projects = {
   title: "ProjectsEx",
@@ -63,7 +64,7 @@ interface ProjectsBlockProps {
 }
 
 export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
+  const blockClasses = useBlockStyles();
 
   const isProjectsEmpty = (projects: Projects) => {
     return projects.data.every((value) => {
@@ -87,9 +88,7 @@ export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
       }}
     >
       <div className={blockClasses.blockWrapper}>
-        <div className={blockClasses.blockTitleDiv}>
-          <h2 className={blockClasses.blockTitleH2}>{props.projects.title}</h2>
-        </div>
+        <BlockTitle formStyles={props.formStyles} title={toBeShownProjects.title} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         {toBeShownProjects.data.map((eachProject: Project) => {
           return (

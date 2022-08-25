@@ -7,6 +7,7 @@ import { GridItem } from "../../../interfaces/GridItem";
 import { Work, Works } from "../../../interfaces/Works";
 import { FormStyles } from "../../../interfaces/FormStyles";
 import { useBlockStyles } from "./_BlockStyles";
+import { BlockTitle } from "./_BlockTitle";
 
 const dummyWorks: Works = {
   title: "Bruh Works",
@@ -45,7 +46,7 @@ interface WorksBlockProps {
 }
 
 export const WorksBlock1: React.FC<WorksBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
+  const blockClasses = useBlockStyles();
   const isEmptyObjArr = (arr: Work[]) => {
     return arr.every((value) => {
       // 1st -> checks if name is empty string, 2nd -> checks if all array members are empty strings
@@ -68,9 +69,7 @@ export const WorksBlock1: React.FC<WorksBlockProps> = (props) => {
       }}
     >
       <div className={blockClasses.blockWrapper}>
-        <div className={blockClasses.blockTitleDiv}>
-          <h2 className={blockClasses.blockTitleH2}>{props.works.title}</h2>
-        </div>
+        <BlockTitle formStyles={props.formStyles} title={toBeDisplayedWorks.title} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         {toBeDisplayedWorks.data.map((eachWork: Work) => {
           return (

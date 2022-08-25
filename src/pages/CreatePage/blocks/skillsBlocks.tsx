@@ -5,6 +5,7 @@ import { FormStyles } from "../../../interfaces/FormStyles";
 import { GridItem } from "../../../interfaces/GridItem";
 import { Skills } from "../../../interfaces/Skills";
 import { useBlockStyles } from "./_BlockStyles";
+import { BlockTitle } from "./_BlockTitle";
 
 const dummySkills: Skills = {
   color: "#ff5656",
@@ -29,7 +30,7 @@ interface SkillsBlockProps {
 }
 
 export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles, flipped: props.skills.flipped });
+  const blockClasses = useBlockStyles();
   const toBeShownSkills = props.skills.data.length === 0 && props.skills.title === "" ? dummySkills : props.skills;
   console.log(toBeShownSkills.chipSize);
 
@@ -44,9 +45,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
     >
       <div className={blockClasses.blockWrapper}>
         <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
-          <div className={blockClasses.blockTitleDiv}>
-            <h2 className={blockClasses.blockTitleH2}>{toBeShownSkills.title}</h2>
-          </div>
+          <BlockTitle formStyles={props.formStyles} title={toBeShownSkills.title} />
           <RemoveBlockButton
             item={props.item}
             removeItem={props.removeItem}
@@ -92,7 +91,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
 };
 
 export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles, flipped: props.skills.flipped });
+  const blockClasses = useBlockStyles();
   const toBeShownSkills = props.skills.data.length === 0 && props.skills.title === "" ? dummySkills : props.skills;
 
   return (
@@ -106,9 +105,7 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
     >
       <div className={blockClasses.blockWrapper}>
         <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
-          <div className={blockClasses.blockTitleDiv}>
-            <h2 className={blockClasses.blockTitleH2}>{toBeShownSkills.title}</h2>
-          </div>
+          <BlockTitle formStyles={props.formStyles} title={toBeShownSkills.title} />
           <RemoveBlockButton
             item={props.item}
             removeItem={props.removeItem}

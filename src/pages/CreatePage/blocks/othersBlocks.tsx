@@ -30,7 +30,7 @@ interface OthersBlockProps {
 }
 
 export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
+  const blockClasses = useBlockStyles();
 
   const toBeShownOthers = props.others.data.length === 0 ? dummyOthers : props.others;
 
@@ -44,7 +44,7 @@ export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
       }}
     >
       <div className={blockClasses.blockWrapper}>
-        <BlockTitle title={props.others.title} formStyles={props.formStyles} />
+        <BlockTitle title={toBeShownOthers.title} formStyles={props.formStyles} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div style={{ paddingLeft: 8, fontSize: 15 }}>
           {toBeShownOthers.data.map((eachLine: string) => {

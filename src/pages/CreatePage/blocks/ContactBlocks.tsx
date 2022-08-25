@@ -9,6 +9,7 @@ import { About } from "../../../interfaces/About";
 import { Contact, ContactBlock } from "../../../interfaces/Contact";
 import { getUrlDomainName } from "../../../helpers/getUrlDomainName";
 import { getIcon } from "../../../helpers/Icons";
+import { BlockTitle } from "./_BlockTitle";
 
 const dummyContact: ContactBlock = {
   title: "Dummy Contact",
@@ -39,7 +40,7 @@ interface ContactBlockProps {
 }
 
 export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles, flipped: props.contact.flipped });
+  const blockClasses = useBlockStyles();
   const toBeShownContact = isEmptyContact(props.contact.data) ? dummyContact : props.contact;
 
   return (
@@ -57,9 +58,7 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
           <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         ) : (
           <div style={{ display: "flex", flexDirection: toBeShownContact.flipped ? "row-reverse" : "row" }}>
-            <div className={blockClasses.blockTitleDiv}>
-              <h2 className={blockClasses.blockTitleH2}>{toBeShownContact.title}</h2>
-            </div>
+            <BlockTitle formStyles={props.formStyles} title={toBeShownContact.title} />
             <RemoveBlockButton
               item={props.item}
               removeItem={props.removeItem}
@@ -136,7 +135,7 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
 };
 
 export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles, flipped: props.contact.flipped });
+  const blockClasses = useBlockStyles();
   const toBeShownContact = isEmptyContact(props.contact.data) ? dummyContact : props.contact;
 
   return (
@@ -154,9 +153,7 @@ export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
           <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         ) : (
           <div style={{ display: "flex", flexDirection: toBeShownContact.flipped ? "row-reverse" : "row" }}>
-            <div className={blockClasses.blockTitleDiv}>
-              <h2 className={blockClasses.blockTitleH2}>{toBeShownContact.title}</h2>
-            </div>
+            <BlockTitle formStyles={props.formStyles} title={toBeShownContact.title} />
             <RemoveBlockButton
               item={props.item}
               removeItem={props.removeItem}

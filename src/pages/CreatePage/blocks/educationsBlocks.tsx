@@ -5,6 +5,7 @@ import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
 import { GridItem } from "../../../interfaces/GridItem";
 import { FormStyles } from "../../../interfaces/FormStyles";
 import { useBlockStyles } from "./_BlockStyles";
+import { BlockTitle } from "./_BlockTitle";
 
 const dummyEducations: Educations = {
   title: "Bruh Education",
@@ -48,7 +49,7 @@ interface EducationsBlockProps {
 }
 
 export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles });
+  const blockClasses = useBlockStyles();
   const toBeShownEducations = !isEmptyObjArr(props.educations.data) ? props.educations : dummyEducations;
 
   return (
@@ -61,9 +62,7 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
       }}
     >
       <div className={blockClasses.blockWrapper}>
-        <div className={blockClasses.blockTitleDiv}>
-          <h2 className={blockClasses.blockTitleH2}>{props.educations.title}</h2>
-        </div>
+        <BlockTitle formStyles={props.formStyles} title={toBeShownEducations.title} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div
           style={{
@@ -135,9 +134,7 @@ export const EducationsBlock2: React.FC<EducationsBlockProps> = (props) => {
       }}
     >
       <div className={blockClasses.blockWrapper}>
-        <div className={blockClasses.blockTitleDiv}>
-          <h2 className={blockClasses.blockTitleH2}>{props.educations.title}</h2>
-        </div>
+        <BlockTitle formStyles={props.formStyles} title={toBeShownEducations.title} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div
           style={{

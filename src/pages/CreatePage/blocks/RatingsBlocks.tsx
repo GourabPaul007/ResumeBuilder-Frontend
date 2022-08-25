@@ -11,6 +11,7 @@ import { useBlockStyles } from "./_BlockStyles";
 import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import StarOutlineRoundedIcon from "@mui/icons-material/StarOutlineRounded";
+import { BlockTitle } from "./_BlockTitle";
 
 const dummyRatings: Ratings = {
   title: "Language",
@@ -37,7 +38,7 @@ interface RatingBlockProps {
   formStyles: FormStyles;
 }
 export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles, flipped: props.ratings.flipped });
+  const blockClasses = useBlockStyles();
 
   const toBeShownRatings = props.ratings.data.length === 0 && props.ratings.title === "" ? dummyRatings : props.ratings;
 
@@ -60,9 +61,7 @@ export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
               flipped={props.ratings.flipped}
             />
           ) : null}
-          <div className={blockClasses.blockTitleDiv}>
-            <h2 className={blockClasses.blockTitleH2}>{toBeShownRatings.title}</h2>
-          </div>
+          <BlockTitle formStyles={props.formStyles} title={toBeShownRatings.title} />
           {props.ratings.flipped ? null : (
             <RemoveBlockButton
               item={props.item}
@@ -113,7 +112,7 @@ export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
 };
 
 export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
-  const blockClasses = useBlockStyles({ formStyles: props.formStyles, flipped: props.ratings.flipped });
+  const blockClasses = useBlockStyles();
 
   const toBeShownRatings = props.ratings.data.length === 0 && props.ratings.title === "" ? dummyRatings : props.ratings;
 
@@ -129,9 +128,7 @@ export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
       >
         <div className={blockClasses.blockWrapper}>
           <div style={{ display: "flex", flexDirection: props.ratings.flipped ? "row-reverse" : "row" }}>
-            <div className={blockClasses.blockTitleDiv}>
-              <h2 className={blockClasses.blockTitleH2}>{toBeShownRatings.title}</h2>
-            </div>
+            <BlockTitle formStyles={props.formStyles} title={toBeShownRatings.title} />
             <RemoveBlockButton
               item={props.item}
               removeItem={props.removeItem}
