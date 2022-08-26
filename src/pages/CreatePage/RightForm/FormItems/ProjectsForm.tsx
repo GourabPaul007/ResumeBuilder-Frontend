@@ -10,11 +10,11 @@ import {
   Typography,
 } from "@mui/material";
 import React, { Dispatch, FC } from "react";
-import { Project, Projects } from "../../../interfaces/Projects";
+import { Project, Projects } from "../../../../interfaces/Projects";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 import { useStyles } from "./_FormsStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { ColorPicker } from "../../../Components/ColorPicker";
+import { ColorPicker } from "../../../../Components/ColorPicker";
 
 interface ProjectsFormProps {
   formTitle: string;

@@ -7,7 +7,7 @@ import { ProjectsIcon1 } from "./LeftMenuIcons/ProjectIcons";
 import { OthersIcon1 } from "./LeftMenuIcons/OthersIcons";
 import { SkillsIcon1, SkillsIcon2 } from "./LeftMenuIcons/SkillsIcons";
 import { WorksIcon1 } from "./LeftMenuIcons/WorksIcons";
-import { GridItem } from "../../interfaces/GridItem";
+import { GridItem } from "../../../interfaces/GridItem";
 import { AboutIcon1 } from "./LeftMenuIcons/AboutIcons";
 import { ContactIcon1, ContactIcon2 } from "./LeftMenuIcons/ContactIcons";
 import { RatingsIcon1, RatingsIcon2 } from "./LeftMenuIcons/RatingsIcons";

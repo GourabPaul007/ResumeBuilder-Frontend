@@ -14,14 +14,14 @@ import {
   Typography,
 } from "@mui/material";
 import React, { Dispatch, FC, useEffect, useState } from "react";
-import { Skills } from "../../../interfaces/Skills";
+import { Skills } from "../../../../interfaces/Skills";
 import { useStyles } from "./_FormsStyles";
 import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
 import AlignHorizontalRightIcon from "@mui/icons-material/AlignHorizontalRight";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import "./SkillsForm.css";
-import { ColorPicker } from "../../../Components/ColorPicker";
+import { ColorPicker } from "../../../../Components/ColorPicker";
 
 interface SkillsFormProps {
   formTitle: string;

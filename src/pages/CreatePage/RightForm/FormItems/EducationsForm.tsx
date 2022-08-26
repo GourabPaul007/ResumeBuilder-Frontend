@@ -10,10 +10,10 @@ import {
   Typography,
 } from "@mui/material";
 import React, { Dispatch, FC } from "react";
-import { Course, Educations } from "../../../interfaces/Educations";
+import { Course, Educations } from "../../../../interfaces/Educations";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
 import { useStyles } from "./_FormsStyles";
-import { ColorPicker } from "../../../Components/ColorPicker";
+import { ColorPicker } from "../../../../Components/ColorPicker";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 interface EducationFormProps {

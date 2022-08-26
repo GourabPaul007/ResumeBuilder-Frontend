@@ -1,5 +1,5 @@
 import React from "react";
-import { FormStyles } from "../../../interfaces/FormStyles";
+import { FormStyles } from "../../../../interfaces/FormStyles";
 
 interface BlockTitleProps {
   title: string;

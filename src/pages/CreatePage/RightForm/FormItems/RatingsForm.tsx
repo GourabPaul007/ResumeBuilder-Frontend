@@ -1,6 +1,6 @@
 import Rating from "@mui/material/Rating";
 import React, { Dispatch, FC, useState } from "react";
-import { SingleRating, Ratings } from "../../../interfaces/Ratings";
+import { SingleRating, Ratings } from "../../../../interfaces/Ratings";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import StarOutlineRoundedIcon from "@mui/icons-material/StarOutlineRounded";
 import CircleIcon from "@mui/icons-material/Circle";
@@ -25,7 +25,7 @@ import {
 } from "@mui/material";
 import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
 import AlignHorizontalRightIcon from "@mui/icons-material/AlignHorizontalRight";
-import { ColorPicker } from "../../../Components/ColorPicker";
+import { ColorPicker } from "../../../../Components/ColorPicker";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 

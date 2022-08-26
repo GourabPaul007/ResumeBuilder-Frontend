@@ -1,34 +1,40 @@
 import {
+  Button,
+  ButtonGroup,
   Card,
   CardActions,
   CardContent,
   Collapse,
   Grid,
   IconButton,
-  styled,
   TextField,
   Typography,
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import React, { Dispatch, FC } from "react";
-import { ColorPicker } from "../../../Components/ColorPicker";
-import { About } from "../../../interfaces/About";
+import { Contact, ContactBlock } from "../../../../interfaces/Contact";
 import { useStyles } from "./_FormsStyles";
+import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
+import AlignHorizontalRightIcon from "@mui/icons-material/AlignHorizontalRight";
+import { ColorPicker } from "../../../../Components/ColorPicker";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-interface AboutFormProps {
+interface AboutWithContactFormProps {
   formTitle: string;
-  about: About;
-  setAbout: Dispatch<React.SetStateAction<About>>;
+  contact: ContactBlock;
+  setContact: Dispatch<React.SetStateAction<ContactBlock>>;
 }
 
-export const AboutForm: FC<AboutFormProps> = React.memo((props) => {
+export const ContactForm: FC<AboutWithContactFormProps> = React.memo((props) => {
   const classes = useStyles();
 
   const [expanded, setExpanded] = React.useState(false);
-
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const handleFlip = (flipped: boolean) => {
+    if (props.contact.flipped === flipped) return;
+    props.setContact({ ...props.contact, flipped: flipped });
   };
 
   return (
@@ -37,39 +43,33 @@ export const AboutForm: FC<AboutFormProps> = React.memo((props) => {
         <Typography align="center" style={{ fontSize: 24 }}>
           {props.formTitle}
         </Typography>
-        <Grid container rowSpacing={0} columnSpacing={2}>
-          <Grid item xs={6}>
-            <TextField
-              InputProps={{
-                classes: { underline: classes.underline },
-              }}
-              variant="filled"
-              size="small"
-              margin="dense"
-              required={true}
-              fullWidth={true}
-              label="Full Name"
-              value={props.about.name}
-              onChange={(e) => {
-                props.setAbout({ ...props.about, name: e.target.value });
-              }}
-            />
-          </Grid>
-          <Grid item xs={6}>
+        <Grid container columnSpacing={2}>
+          <Grid item xs={4}>
             <TextField
               variant="filled"
               size="small"
               margin="dense"
-              required={true}
               fullWidth={true}
               InputProps={{ classes: { underline: classes.underline } }}
-              label="Profession"
-              value={props.about.profession}
+              label="Title"
               onChange={(e) => {
-                props.setAbout({ ...props.about, profession: e.target.value });
+                props.setContact({ ...props.contact, title: e.target.value });
               }}
             />
           </Grid>
+          <Grid item xs={5}></Grid>
+          <Grid item xs={3} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <ButtonGroup variant="contained" size="small">
+              <Button disabled={props.contact.flipped ? false : true} onClick={() => handleFlip(false)}>
+                <AlignHorizontalLeftIcon />
+              </Button>
+              <Button disabled={props.contact.flipped ? true : false} onClick={() => handleFlip(true)}>
+                <AlignHorizontalRightIcon />
+              </Button>
+            </ButtonGroup>
+          </Grid>
+        </Grid>
+        <Grid container columnSpacing={2}>
           <Grid item xs={12}>
             <TextField
               variant="filled"
@@ -78,18 +78,50 @@ export const AboutForm: FC<AboutFormProps> = React.memo((props) => {
               required={true}
               fullWidth={true}
               InputProps={{ classes: { underline: classes.underline } }}
-              multiline
-              rows={3}
-              // maxRows={3}
-              label="Pitch about yourself"
-              value={props.about.about}
+              label="Emails Or Social media links (separate each link with comma ',')"
+              value={props.contact.data.emails.join(",")}
               onChange={(e) => {
-                props.setAbout({ ...props.about, about: e.target.value });
+                props.setContact({
+                  ...props.contact,
+                  data: { ...props.contact.data, emails: e.target.value.split(",") },
+                });
+              }}
+            />
+          </Grid>
+          <Grid item xs={8}>
+            <TextField
+              variant="filled"
+              size="small"
+              margin="dense"
+              required={true}
+              fullWidth={true}
+              InputProps={{ classes: { underline: classes.underline } }}
+              label="Address"
+              value={props.contact.data.address.join("<br>")}
+              onChange={(e) => {
+                props.setContact({
+                  ...props.contact,
+                  data: { ...props.contact.data, address: e.target.value.split("<br>") },
+                });
+              }}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              variant="filled"
+              size="small"
+              margin="dense"
+              required={true}
+              fullWidth={true}
+              InputProps={{ classes: { underline: classes.underline } }}
+              label="Phone Number"
+              value={props.contact.data.phno}
+              onChange={(e) => {
+                props.setContact({ ...props.contact, data: { ...props.contact.data, phno: e.target.value } });
               }}
             />
           </Grid>
         </Grid>
-
         <CardActions disableSpacing style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <IconButton
             onClick={handleExpandClick}
@@ -127,10 +159,10 @@ export const AboutForm: FC<AboutFormProps> = React.memo((props) => {
               >
                 Background Color &#9658;&nbsp;
                 <ColorPicker
-                  color={props.about.style.bgColor ? props.about.style.bgColor : "#123456"}
+                  color={props.contact.style.bgColor ? props.contact.style.bgColor : "#123456"}
                   height={36}
                   handleColor={(newColor: string) => {
-                    props.setAbout({ ...props.about, style: { ...props.about.style, bgColor: newColor } });
+                    props.setContact({ ...props.contact, style: { ...props.contact.style, bgColor: newColor } });
                   }}
                 />
               </div>
@@ -147,10 +179,10 @@ export const AboutForm: FC<AboutFormProps> = React.memo((props) => {
               >
                 Text Color &#9658;&nbsp;
                 <ColorPicker
-                  color={props.about.style.textColor ? props.about.style.textColor : "#000000"}
+                  color={props.contact.style.textColor ? props.contact.style.textColor : "#000000"}
                   height={36}
                   handleColor={(newColor: string) => {
-                    props.setAbout({ ...props.about, style: { ...props.about.style, textColor: newColor } });
+                    props.setContact({ ...props.contact, style: { ...props.contact.style, textColor: newColor } });
                   }}
                 />
               </div>

@@ -1,9 +1,9 @@
 import React from "react";
-import { Course, Educations } from "../../../interfaces/Educations";
+import { Course, Educations } from "../../../../interfaces/Educations";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
-import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
-import { GridItem } from "../../../interfaces/GridItem";
-import { FormStyles } from "../../../interfaces/FormStyles";
+import { RemoveBlockButton } from "../../../../Components/CustomPageComponents";
+import { GridItem } from "../../../../interfaces/GridItem";
+import { FormStyles } from "../../../../interfaces/FormStyles";
 import { useBlockStyles } from "./_BlockStyles";
 import { BlockTitle } from "./_BlockTitle";
 

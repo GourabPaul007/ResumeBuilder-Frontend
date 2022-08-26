@@ -3,14 +3,14 @@ import { v1 as uuidv1 } from "uuid";
 
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
-import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
-import { GridItem } from "../../../interfaces/GridItem";
-import { AboutWithContact } from "../../../interfaces/AboutWithContact";
-import { checkHyperlink } from "../../../helpers/checkHyperlink";
+import { RemoveBlockButton } from "../../../../Components/CustomPageComponents";
+import { GridItem } from "../../../../interfaces/GridItem";
+import { AboutWithContact } from "../../../../interfaces/AboutWithContact";
+import { checkHyperlink } from "../../../../helpers/checkHyperlink";
 import { useBlockStyles } from "./_BlockStyles";
-import { FormStyles } from "../../../interfaces/FormStyles";
-import { getUrlDomainName } from "../../../helpers/getUrlDomainName";
-import { getIcon } from "../../../helpers/Icons";
+import { FormStyles } from "../../../../interfaces/FormStyles";
+import { getUrlDomainName } from "../../../../helpers/getUrlDomainName";
+import { getIcon } from "../../../../helpers/Icons";
 
 const about = {
   name: "John Doe",

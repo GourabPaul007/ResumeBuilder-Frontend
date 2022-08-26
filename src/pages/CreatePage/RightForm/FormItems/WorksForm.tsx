@@ -11,10 +11,10 @@ import {
 } from "@mui/material";
 import React, { Dispatch, FC, useEffect, useState } from "react";
 import RemoveCircleOutlineRoundedIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
-import { Work, Works } from "../../../interfaces/Works";
+import { Work, Works } from "../../../../interfaces/Works";
 import { useStyles } from "./_FormsStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { ColorPicker } from "../../../Components/ColorPicker";
+import { ColorPicker } from "../../../../Components/ColorPicker";
 
 interface WorksFormProps {
   formTitle: string;

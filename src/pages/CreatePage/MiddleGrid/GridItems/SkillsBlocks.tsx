@@ -1,9 +1,9 @@
 import React, { Dispatch } from "react";
 import { v1 as uuidv1 } from "uuid";
-import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
-import { FormStyles } from "../../../interfaces/FormStyles";
-import { GridItem } from "../../../interfaces/GridItem";
-import { Skills } from "../../../interfaces/Skills";
+import { RemoveBlockButton } from "../../../../Components/CustomPageComponents";
+import { FormStyles } from "../../../../interfaces/FormStyles";
+import { GridItem } from "../../../../interfaces/GridItem";
+import { Skills } from "../../../../interfaces/Skills";
 import { useBlockStyles } from "./_BlockStyles";
 import { BlockTitle } from "./_BlockTitle";
 

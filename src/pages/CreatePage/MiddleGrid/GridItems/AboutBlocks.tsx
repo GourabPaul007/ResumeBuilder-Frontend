@@ -1,11 +1,11 @@
 import React from "react";
 import { v1 as uuidv1 } from "uuid";
-import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
-import { GridItem } from "../../../interfaces/GridItem";
-import { checkHyperlink } from "../../../helpers/checkHyperlink";
+import { RemoveBlockButton } from "../../../../Components/CustomPageComponents";
+import { GridItem } from "../../../../interfaces/GridItem";
+import { checkHyperlink } from "../../../../helpers/checkHyperlink";
 import { useBlockStyles } from "./_BlockStyles";
-import { FormStyles } from "../../../interfaces/FormStyles";
-import { About } from "../../../interfaces/About";
+import { FormStyles } from "../../../../interfaces/FormStyles";
+import { About } from "../../../../interfaces/About";
 
 const dummyAbout = {
   name: "John Doe",

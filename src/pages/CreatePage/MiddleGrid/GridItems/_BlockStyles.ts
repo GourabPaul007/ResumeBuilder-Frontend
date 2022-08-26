@@ -1,6 +1,6 @@
 import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { FormStyles } from "../../../interfaces/FormStyles";
+import { FormStyles } from "../../../../interfaces/FormStyles";
 
 export const useBlockStyles = makeStyles(() => ({
   blockWrapper: {

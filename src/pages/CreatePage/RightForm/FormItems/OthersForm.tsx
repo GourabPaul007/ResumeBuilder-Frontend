@@ -14,8 +14,8 @@ import {
   Typography,
 } from "@mui/material";
 import React, { Dispatch, FC, useState } from "react";
-import { ColorPicker } from "../../../Components/ColorPicker";
-import { Others } from "../../../interfaces/Others";
+import { ColorPicker } from "../../../../Components/ColorPicker";
+import { Others } from "../../../../interfaces/Others";
 import { useStyles } from "./_FormsStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 

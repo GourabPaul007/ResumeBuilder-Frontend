@@ -4,11 +4,11 @@ import { v1 as uuidv1 } from "uuid";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import PhoneIcon from "@mui/icons-material/Phone";
-import { checkHyperlink } from "../../../helpers/checkHyperlink";
-import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
-import { GridItem } from "../../../interfaces/GridItem";
-import { Project, Projects } from "../../../interfaces/Projects";
-import { FormStyles } from "../../../interfaces/FormStyles";
+import { checkHyperlink } from "../../../../helpers/checkHyperlink";
+import { RemoveBlockButton } from "../../../../Components/CustomPageComponents";
+import { GridItem } from "../../../../interfaces/GridItem";
+import { Project, Projects } from "../../../../interfaces/Projects";
+import { FormStyles } from "../../../../interfaces/FormStyles";
 import { useBlockStyles } from "./_BlockStyles";
 import { BlockTitle } from "./_BlockTitle";
 

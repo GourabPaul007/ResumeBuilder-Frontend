@@ -1,8 +1,8 @@
 import { Card, CardActions, CardContent, Collapse, Grid, IconButton, TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { Dispatch, FC } from "react";
-import { ColorPicker } from "../../../Components/ColorPicker";
-import { AboutWithContact } from "../../../interfaces/AboutWithContact";
+import { ColorPicker } from "../../../../Components/ColorPicker";
+import { AboutWithContact } from "../../../../interfaces/AboutWithContact";
 import { useStyles } from "./_FormsStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 

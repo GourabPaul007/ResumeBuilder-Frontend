@@ -1,9 +1,9 @@
 import { FormControlLabel, Switch, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { Dispatch, FC, useEffect, useState } from "react";
-import { ColorPicker } from "../../../Components/ColorPicker";
-import { accentColorList } from "../../../helpers/colorDatabase";
-import { FormStyles } from "../../../interfaces/FormStyles";
+import { ColorPicker } from "../../../../Components/ColorPicker";
+import { accentColorList } from "../../../../helpers/colorDatabase";
+import { FormStyles } from "../../../../interfaces/FormStyles";
 
 const useMiscellaneousStyles = makeStyles((theme: Theme) => ({
   miscellaneousWrapper: {

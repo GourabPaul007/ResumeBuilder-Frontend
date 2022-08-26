@@ -6,7 +6,7 @@ import { orange } from "@mui/material/colors";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DownloadPage from "./pages/DownloadPage";
 import LandingPage from "./pages/LandingPage";
-import CreatePage from "./pages/CreatePage";
+import CreatePage from "./pages/CreatePage/CreatePage";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebase";
 import AuthRoute from "./Components/AuthRoute";

@@ -1,11 +1,11 @@
 import React, { Dispatch } from "react";
 import { v1 as uuidv1 } from "uuid";
 
-import { checkHyperlink } from "../../../helpers/checkHyperlink";
-import { RemoveBlockButton } from "../../../Components/CustomPageComponents";
-import { GridItem } from "../../../interfaces/GridItem";
-import { Work, Works } from "../../../interfaces/Works";
-import { FormStyles } from "../../../interfaces/FormStyles";
+import { checkHyperlink } from "../../../../helpers/checkHyperlink";
+import { RemoveBlockButton } from "../../../../Components/CustomPageComponents";
+import { GridItem } from "../../../../interfaces/GridItem";
+import { Work, Works } from "../../../../interfaces/Works";
+import { FormStyles } from "../../../../interfaces/FormStyles";
 import { useBlockStyles } from "./_BlockStyles";
 import { BlockTitle } from "./_BlockTitle";
 
