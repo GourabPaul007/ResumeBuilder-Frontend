@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     overflow: "hidden",
   },
   gridLayoutWidth: {
-    margin: "0px 20px 20px 20px",
-    width: "250mm",
+    margin: "0px 0px 20px 0px",
+    width: "230mm",
     paddingLeft: "2rem",
     paddingRight: "2rem",
     [theme.breakpoints.down("xl")]: {

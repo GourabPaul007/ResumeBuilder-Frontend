@@ -56,7 +56,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
         <div
           style={{
             marginTop: 4,
-            paddingLeft: 8,
+            // paddingLeft: 8,
             fontWeight: 500,
             // for aligning to left or right
             display: "flex",
@@ -72,7 +72,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
                 style={{
                   display: "inline-block",
                   padding: `${toBeShownSkills.chipSize}px ${toBeShownSkills.chipSize * 2}px`,
-                  margin: 4,
+                  margin: "4px 0px 4px 4px",
                   border: toBeShownSkills.filled ? `1px solid transparent` : `1px solid ${toBeShownSkills.color}`,
                   borderRadius: toBeShownSkills.chipRadius,
                   color: toBeShownSkills.filled ? "#fff" : toBeShownSkills.color,
@@ -116,7 +116,7 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
         <div
           style={{
             marginTop: 4,
-            paddingLeft: 8,
+            // paddingLeft: 8,
             fontWeight: 500,
             // for aligning to left or right
             display: "flex",
@@ -132,7 +132,7 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
                 style={{
                   display: "inline-block",
                   padding: `${toBeShownSkills.chipSize}px ${toBeShownSkills.chipSize * 2}px`,
-                  margin: 4,
+                  margin: "4px 0px 4px 4px",
                   border: toBeShownSkills.filled ? `1px solid transparent` : `1px solid ${toBeShownSkills.color}`,
                   borderRadius: toBeShownSkills.chipRadius,
                   color: toBeShownSkills.filled ? "#fff" : toBeShownSkills.color,
