@@ -10,9 +10,10 @@ import { BlockTitle } from "./_BlockTitle";
 const dummyOthers = {
   title: "Others Title",
   data: [
-    "Lorem ipsum dolor sit amet consectetur.",
-    "Adipisicing Nulla repellat dolorum earum.",
-    "officiis distinctio ipsa officia soluta.",
+    "Lorem ipsum dolor sit amet.",
+    "C onsectetur adipisicing repellat",
+    "Dolorum earum officiis.",
+    "distinctio ipsa officia soluta.",
     "accusantium exercit ationem.",
   ],
   style: {
@@ -53,7 +54,6 @@ export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
                 key={eachLine + uuidv1}
                 style={{
                   display: "flex",
-                  flexDirection: "row",
                   justifyContent: "start",
                   alignItems: "start",
                   marginBottom: 8,

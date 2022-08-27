@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   gridLayoutWidth: {
     margin: "0px 0px 20px 0px",
-    width: "230mm",
+    width: "226mm",
     paddingLeft: "2rem",
     paddingRight: "2rem",
     [theme.breakpoints.down("xl")]: {
