@@ -28,6 +28,8 @@ import { getFirestore, addDoc, collection } from "firebase/firestore";
 import DownloadModal from "../DownloadModal";
 import { useNavigate } from "react-router-dom";
 
+import { v1 as uuidv1 } from "uuid";
+
 const useStyles = makeStyles(() => ({
   formWrapper: {
     boxShadow: "0px 1px 2px #d5d5d7",
@@ -156,7 +158,7 @@ export const RightForm: FC<RightFormProps> = (props) => {
             </Grid>
           </Grid>
 
-          <Button
+          {/* <Button
             variant="contained"
             size="large"
             fullWidth={true}
@@ -177,6 +179,23 @@ export const RightForm: FC<RightFormProps> = (props) => {
               }
               // setDownloadModalOpen(true);
               // navigate("/download/"+docRef.id);
+            }}
+          >
+            Get&nbsp;&nbsp;Resume
+          </Button> */}
+          <Button
+            variant="contained"
+            size="large"
+            fullWidth={true}
+            style={{ marginBottom: 36 }}
+            onClick={async (e: React.SyntheticEvent) => {
+              e.preventDefault();
+              props.makeItemsArray();
+              try {
+                navigate("/download/" + uuidv1);
+              } catch (e) {
+                console.error("Error adding document: ", e);
+              }
             }}
           >
             Get&nbsp;&nbsp;Resume

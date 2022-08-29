@@ -434,6 +434,8 @@ const CreatePage: React.FC = (props) => {
       });
     });
     console.log(finalItems);
+    localStorage.setItem("ItemsArray", JSON.stringify(finalItems));
+    localStorage.setItem("FormStyles", JSON.stringify(formStyles));
     return finalItems;
   };
 

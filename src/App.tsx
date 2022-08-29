@@ -4,8 +4,8 @@ import "./App.css";
 import { Button, createTheme, ThemeProvider } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DownloadPage from "./pages/DownloadPage";
-import LandingPage from "./pages/LandingPage";
+import DownloadPage from "./pages/DownloadPage/DownloadPage";
+import LandingPage from "./pages/LandingPage/LandingPage";
 import CreatePage from "./pages/CreatePage/CreatePage";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebase";
@@ -13,6 +13,7 @@ import AuthRoute from "./Components/AuthRoute";
 import LoginPage from "./pages/auth/LoginPage";
 import SignupPage from "./pages/auth/SignupPage";
 import ForgotPassword from "./pages/auth/ForgotPassword";
+import ClientDownloadPage from "./pages/DownloadPage/ClientDownloadPage";
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
@@ -92,7 +93,8 @@ const App: React.FC = () => {
             path="/download/:resumeID"
             element={
               <AuthRoute>
-                <DownloadPage />
+                {/* <DownloadPage /> */}
+                <ClientDownloadPage />
               </AuthRoute>
             }
           />

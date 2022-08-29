@@ -3,8 +3,8 @@ import { Box, Button, Card, CircularProgress, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import AppBarHeader from "../Components/AppBarHeader";
-import Footer from "../Components/Footer";
+import AppBarHeader from "../../Components/AppBarHeader";
+import Footer from "../../Components/Footer";
 import { getAuth } from "firebase/auth";
 
 const useStyles = makeStyles({
