@@ -11,6 +11,12 @@ import { FormStyles } from "../../interfaces/FormStyles";
 import { AboutBlueprint1 } from "./blueprints/aboutBlueprints";
 import { ContactBlueprint1, ContactBlueprint2 } from "./blueprints/ContactBlueprints";
 import { AboutWithContactBlueprint1, AboutWithContactBlueprint2 } from "./blueprints/AboutWithContactBlueprints";
+import { EducationsBlueprint1 } from "./blueprints/EducationBlueprints";
+import { ProjectsBlueprint1 } from "./blueprints/ProjectBlueprints";
+import { SkillsBlueprint1, SkillsBlueprint2 } from "./blueprints/SkillsBlueprints";
+import { WorksBlueprint1 } from "./blueprints/WorksBlueprints";
+import { RatingsBlueprint1, RatingsBlueprint2 } from "./blueprints/RatingsBlueprints";
+import { OthersBlueprint1 } from "./blueprints/OthersBlueprints";
 
 const useStyles = makeStyles({
   centerChildren: {
@@ -54,23 +60,23 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
       case "contact2":
         return <ContactBlueprint2 key={element.name} contact={element} formStyles={formStyles} />;
       case "educations1":
-      // return EducationsBlueprint1(element, formStyles);
+        return <EducationsBlueprint1 key={element.name} educations={element} formStyles={formStyles} />;
       case "educations2":
-      // return EducationsBlueprint2(element, formStyles);
+        return <EducationsBlueprint1 key={element.name} educations={element} formStyles={formStyles} />;
       case "skills1":
-      // return SkillsBlueprint1(element, formStyles);
+        return <SkillsBlueprint1 key={element.name} skills={element} formStyles={formStyles} />;
       case "skills2":
-      // return SkillsBlueprint2(element, formStyles);
+        return <SkillsBlueprint2 key={element.name} skills={element} formStyles={formStyles} />;
       case "works1":
-      // return WorksBlueprint1(element, formStyles);
+        return <WorksBlueprint1 key={element.name} works={element} formStyles={formStyles} />;
       case "projects1":
-      // return ProjectsBlueprint1(element, formStyles);
+        return <ProjectsBlueprint1 key={element.name} projects={element} formStyles={formStyles} />;
       case "ratings1":
-      // return RatingsBlueprint1(element, formStyles);
+        return <RatingsBlueprint1 key={element.name} ratings={element} formStyles={formStyles} />;
       case "ratings2":
-      // return RatingsBlueprint2(element, formStyles);
+        return <RatingsBlueprint2 key={element.name} ratings={element} formStyles={formStyles} />;
       case "others1":
-      // return OthersBlueprint1(element, formStyles);
+        return <OthersBlueprint1 key={element.name} others={element} formStyles={formStyles} />;
       default:
         break;
     }
@@ -82,7 +88,15 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
       &nbsp;
       <div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <div style={{ border: "1px solid #5b6be6", borderRadius: 5 }}>
+          <div
+            style={
+              {
+                // border: "1px solid #5b6be6",
+                // borderRadius: 5,
+                // boxShadow: "1px 2px 2px 2px #000",
+              }
+            }
+          >
             <div ref={componentRef} style={{ position: "relative", width: "210mm", height: "297mm", margin: 20 }}>
               {itemsArray.map((item: any) => {
                 return organizeData(item, formStyles);
@@ -92,7 +106,7 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
           &nbsp; &nbsp;
           <div>
             <Button variant="contained" size="large" onClick={handlePrint}>
-              Print this out!
+              Print Resume
             </Button>
           </div>
         </div>

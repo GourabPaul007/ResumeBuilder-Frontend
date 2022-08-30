@@ -1,27 +1,120 @@
-import React from "react";
+import React, { Dispatch } from "react";
+import { v1 as uuidv1 } from "uuid";
+import { FormStyles } from "../../../interfaces/FormStyles";
+import { Skills } from "../../../interfaces/Skills";
+import { useBlueprintStyles } from "./_BlueprintStyles";
+import { BlueprintTitle } from "./_BlueprintTitle";
 
-export const SkillsBlueprint1: React.FC = () => {
+interface SkillsBlueprintProps {
+  skills: {
+    name: string;
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+    data: Skills;
+  };
+  formStyles: FormStyles;
+}
+
+export const SkillsBlueprint1: React.FC<SkillsBlueprintProps> = (props) => {
+  const blueprintClasses = useBlueprintStyles({
+    h: props.skills.h,
+    x: props.skills.x,
+    y: props.skills.y,
+    w: props.skills.w,
+    bgColor: props.skills.data.style.bgColor,
+    textColor: props.skills.data.style.textColor,
+  });
+
   return (
-    <svg fill="none" viewBox="0 0 250 150">
-      {/* header */}
-      <text x={15} y={15} style={{ fontFamily: "sans-serif" }} fill="#123456">
-        Skills
-      </text>
-      {/* <rect x={25} y={20} width={90} height={20} rx={4} fill="#123456" /> */}
-      {/* first row */}
-      <rect x={40} y={50} width={90} height={15} rx={4} fill="#123456" />
-      <rect x={140} y={50} width={60} height={15} rx={4} fill="#123456" />
-      {/* 2nd row */}
-      <rect x={40} y={70} width={50} height={15} rx={4} fill="#123456" />
-      <rect x={100} y={70} width={40} height={15} rx={4} fill="#123456" />
-      <rect x={150} y={70} width={50} height={15} rx={4} fill="#123456" />
-      {/* 3rd row */}
-      <rect x={40} y={90} width={60} height={15} rx={4} fill="#123456" />
-      <rect x={110} y={90} width={40} height={15} rx={4} fill="#123456" />
-      <rect x={160} y={90} width={50} height={15} rx={4} fill="#123456" />
-      {/* 4th row */}
-      <rect x={40} y={110} width={70} height={15} rx={4} fill="#123456" />
-      <rect x={120} y={110} width={50} height={15} rx={4} fill="#123456" />
-    </svg>
+    <div className={blueprintClasses.blueprintWrapper}>
+      <BlueprintTitle
+        formStyles={props.formStyles}
+        title={props.skills.data.title}
+        flipped={props.skills.data.flipped}
+      />
+      <div
+        style={{
+          marginTop: 4,
+          // paddingLeft: 8,
+          fontWeight: 500,
+          // for aligning to left or right
+          display: "flex",
+          flexFlow: "wrap",
+          flexDirection: props.skills.data.flipped ? "row-reverse" : "row",
+        }}
+      >
+        {props.skills.data.data.map((eachSkill: string, index: number) => {
+          return (
+            <div
+              key={eachSkill + index}
+              style={{
+                display: "inline-blueprint",
+                padding: `${props.skills.data.chipSize}px ${props.skills.data.chipSize * 2}px`,
+                margin: "4px 0px 4px 4px",
+                border: props.skills.data.filled ? `1px solid transparent` : `1px solid ${props.skills.data.color}`,
+                borderRadius: props.skills.data.chipRadius,
+                color: props.skills.data.filled ? "#fff" : props.skills.data.color,
+                backgroundColor: props.skills.data.filled ? props.skills.data.color : "transparent",
+                fontSize: 15,
+              }}
+            >
+              {eachSkill}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export const SkillsBlueprint2: React.FC<SkillsBlueprintProps> = (props) => {
+  const blueprintClasses = useBlueprintStyles({
+    h: props.skills.h,
+    x: props.skills.x,
+    y: props.skills.y,
+    w: props.skills.w,
+    bgColor: props.skills.data.style.bgColor,
+    textColor: props.skills.data.style.textColor,
+  });
+
+  return (
+    <div className={blueprintClasses.blueprintWrapper}>
+      <div style={{ display: "flex", flexDirection: props.skills.data.flipped ? "row-reverse" : "row" }}>
+        <BlueprintTitle formStyles={props.formStyles} title={props.skills.data.title} />
+      </div>
+      <div
+        style={{
+          marginTop: 4,
+          // paddingLeft: 8,
+          fontWeight: 500,
+          // for aligning to left or right
+          display: "flex",
+          flexFlow: "wrap",
+          flexDirection: props.skills.data.flipped ? "row-reverse" : "row",
+        }}
+      >
+        {props.skills.data.data.map((eachSkill: string, index: number) => {
+          return (
+            <div
+              key={eachSkill + index}
+              style={{
+                display: "inline-blueprint",
+                padding: `${props.skills.data.chipSize}px ${props.skills.data.chipSize * 2}px`,
+                margin: "4px 0px 4px 4px",
+                border: props.skills.data.filled ? `1px solid transparent` : `1px solid ${props.skills.data.color}`,
+                borderRadius: props.skills.data.chipRadius,
+                color: props.skills.data.filled ? "#fff" : props.skills.data.color,
+                backgroundColor: props.skills.data.filled ? props.skills.data.color : "transparent",
+                fontSize: 15,
+              }}
+            >
+              {eachSkill}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 };

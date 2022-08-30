@@ -1,7 +1,43 @@
 import { makeStyles } from "@mui/styles";
 
-export const useBlueprintStyles = makeStyles(() => ({
-  blueprintWrapper: {
+// export const useBlueprintStyles = makeStyles(() => ({
+//   blueprintWrapper: {
+//     paddingLeft: 20,
+//     paddingRight: 20,
+//     paddingTop: 12,
+//     paddingBottom: 12,
+//     fontFamily: "sans-serif",
+//     overflow: "hidden",
+//     // fontSize: "15px !important",
+//   },
+// }));
+
+export const useBlueprintStyles = makeStyles((theme) => ({
+  blueprintWrapper: ({
+    x,
+    y,
+    w,
+    h,
+    bgColor,
+    textColor,
+  }: {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+    bgColor: string;
+    textColor: string;
+  }) => ({
+    position: "absolute",
+    left: `${x * 17.5}mm`,
+    top: `${y * 10 + (y - 1) * 10 + 10}px`,
+    // -3 is for the spacing between 2 horizontal cards
+    width: `${w * 17.5 - 3}mm`,
+    height: `${h * 10 + (h - 1) * 10}px`,
+    borderRadius: 5,
+    backgroundColor: bgColor,
+    color: textColor,
+    // Others
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 12,
@@ -9,41 +45,8 @@ export const useBlueprintStyles = makeStyles(() => ({
     fontFamily: "sans-serif",
     overflow: "hidden",
     // fontSize: "15px !important",
-  },
+  }),
 }));
-
-// export class SectionStyles {
-//   static sectionWrapper({
-//     x,
-//     y,
-//     w,
-//     h,
-//     sectionStyle,
-//   }: {
-//     x: number;
-//     y: number;
-//     w: number;
-//     h: number;
-//     sectionStyle: SingleBlockStyle;
-//   }): string {
-//     // added +10 to height to cover up the blank spaces between blocks(not anymore)
-//     // added +10 to top so that the card doesnt get cropped on top
-//     return `
-//       position: absolute;
-//       padding-left: 20px;
-//       padding-right: 20px;
-//       padding-top: 12px;
-//       padding-bottom: 12px;
-//       background-color: ${sectionStyle.bgColor ? sectionStyle.bgColor : "#6b5be6"};
-//       color: ${sectionStyle.textColor ? sectionStyle.textColor : "#000000"};
-//       overflow: hidden;
-//       left: ${x * 17.5}mm;
-//       top: ${y * 10 + (y - 1) * 10 + 10}px;
-//       width: ${w * 17.5 - 3}mm;
-//       height: ${h * 10 + (h - 1) * 10}px;
-//       border-radius: 5px;
-//     `;
-//   }
 
 //   // margin: ${getMargin(x, x - 12)}
 
