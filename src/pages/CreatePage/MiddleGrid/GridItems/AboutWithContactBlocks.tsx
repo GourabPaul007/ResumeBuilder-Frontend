@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { v1 as uuidv1 } from "uuid";
 
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
@@ -11,18 +11,6 @@ import { useBlockStyles } from "./_BlockStyles";
 import { FormStyles } from "../../../../interfaces/FormStyles";
 import { getUrlDomainName } from "../../../../helpers/getUrlDomainName";
 import { getIcon } from "../../../../helpers/Icons";
-
-const about = {
-  name: "John Doe",
-  profession: "Software Engineer",
-  about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
-};
-const contact = {
-  emails: ["johndoe@abc.com", "github.com/JohnDoe"],
-  phno: ["123-456-7890"],
-  address: "123 Main St, Los Angeles County",
-  cityZip: "Los Angeles CA 12345",
-};
 
 const dummyAboutAndContactData = {
   name: "Gourab Paul",
@@ -48,20 +36,24 @@ const isEmptyAandC = (about: AboutWithContact) => {
     about.profession === ""
   )
     return true;
-  else return false;
-  // return true;
+  return false;
 };
 interface AboutWithContactBlockProps {
   blockTitle: string;
   item: GridItem;
   removeItem: (i: GridItem) => void;
-  about: AboutWithContact;
+  aboutWithContact: AboutWithContact;
   formStyles: FormStyles;
 }
 export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (props) => {
   const blockClasses = useBlockStyles({ formStyles: props.formStyles });
 
-  const toBeShownAboutAndContact = isEmptyAandC(props.about) ? dummyAboutAndContactData : props.about;
+  // Check For Empty AboutWithContact
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isEmptyAandC(props.aboutWithContact));
+  }, [props.aboutWithContact]);
+  const toBeShownAboutAndContact = isEmpty ? dummyAboutAndContactData : props.aboutWithContact;
 
   return (
     <div
@@ -73,10 +65,23 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
       }}
     >
       <div className={blockClasses.blockWrapper}>
-        <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{toBeShownAboutAndContact.name}</h1>
-        <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{toBeShownAboutAndContact.profession}</p>
+        <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block", opacity: isEmpty ? 0.5 : 1 }}>
+          {toBeShownAboutAndContact.name}
+        </h1>
+        <p style={{ display: "inline-block", opacity: isEmpty ? 0.5 : 1 }}>
+          &nbsp;&nbsp;{toBeShownAboutAndContact.profession}
+        </p>
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
-        <div style={{ display: "flex", flexDirection: "row", fontWeight: 500, fontSize: 15, marginTop: 8 }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            fontWeight: 500,
+            fontSize: 15,
+            marginTop: 8,
+            opacity: isEmpty ? 0.5 : 1,
+          }}
+        >
           {/* the about extra */}
           <div style={{ paddingRight: 4, paddingLeft: 4, flex: "59%" }}>
             <p>{toBeShownAboutAndContact.about}</p>
@@ -124,7 +129,13 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
 
 export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (props) => {
   const blockClasses = useBlockStyles({ formStyles: props.formStyles });
-  const toBeShownAboutAndContact = isEmptyAandC(props.about) ? dummyAboutAndContactData : props.about;
+
+  // Check For Empty AboutWithContact
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isEmptyAandC(props.aboutWithContact));
+  }, [props.aboutWithContact]);
+  const toBeShownAboutAndContact = isEmpty ? dummyAboutAndContactData : props.aboutWithContact;
 
   const joinAddresses = (addresses: string[]) => {
     let joinedAddress = "";
@@ -146,7 +157,16 @@ export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (pro
         <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{toBeShownAboutAndContact.name}</h1>
         <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{toBeShownAboutAndContact.profession}</p>
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
-        <div style={{ display: "flex", flexDirection: "column", fontWeight: 500, fontSize: 15, marginTop: 8 }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            fontWeight: 500,
+            fontSize: 15,
+            marginTop: 8,
+            opacity: isEmpty ? 0.5 : 1,
+          }}
+        >
           <div style={{ paddingRight: 8, paddingLeft: 4 }}>
             <p>{toBeShownAboutAndContact.about}</p>
           </div>

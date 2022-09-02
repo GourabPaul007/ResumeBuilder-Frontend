@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import { v1 as uuidv1 } from "uuid";
 
 import { checkHyperlink } from "../../../../helpers/checkHyperlink";
@@ -37,6 +37,16 @@ const dummyWorks: Works = {
   },
 };
 
+const isEmptyWorks = (works: Works) => {
+  return works.data.every((value) => {
+    // 1st -> checks if name is empty string, 2nd -> checks if all array members are empty strings
+    if (value.workOrganizationName === "" && value.workDetails.join("").length === 0) {
+      return true;
+    }
+    return false;
+  });
+};
+
 interface WorksBlockProps {
   blockTitle: string;
   item: GridItem;
@@ -47,17 +57,16 @@ interface WorksBlockProps {
 
 export const WorksBlock1: React.FC<WorksBlockProps> = (props) => {
   const blockClasses = useBlockStyles();
-  const isEmptyObjArr = (arr: Work[]) => {
-    return arr.every((value) => {
-      // 1st -> checks if name is empty string, 2nd -> checks if all array members are empty strings
-      if (value.workOrganizationName === "" && value.workDetails.join("").length === 0) {
-        return true;
-      }
-      return false;
-    });
-  };
 
-  const toBeDisplayedWorks = !isEmptyObjArr(props.works.data) ? props.works : dummyWorks;
+  // const toBeDisplayedWorks = !isEmptyObjArr(props.works.data) ? props.works : dummyWorks;
+
+  // Check For Empty Ratings
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isEmptyWorks(props.works));
+  }, [props.works]);
+
+  const toBeDisplayedWorks = isEmpty ? dummyWorks : props.works;
 
   return (
     <div
@@ -69,7 +78,7 @@ export const WorksBlock1: React.FC<WorksBlockProps> = (props) => {
       }}
     >
       <div className={blockClasses.blockWrapper}>
-        <BlockTitle formStyles={props.formStyles} title={toBeDisplayedWorks.title} />
+        <BlockTitle formStyles={props.formStyles} title={toBeDisplayedWorks.title} isOpaque={isEmpty} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         {toBeDisplayedWorks.data.map((eachWork: Work) => {
           return (

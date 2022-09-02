@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { v1 as uuidv1 } from "uuid";
 import { RemoveBlockButton } from "../../../../Components/CustomPageComponents";
 import { GridItem } from "../../../../interfaces/GridItem";
@@ -25,10 +25,15 @@ const dummyContact: ContactBlock = {
   },
 };
 
-const isEmptyContact = (contact: Contact) => {
-  if (contact.address.join() === "" && contact.phno === "" && contact.emails.join() === "") return true;
-  else return false;
-  // return true;
+const isEmptyContact = (contact: ContactBlock) => {
+  if (
+    contact.data.address.join() === "" &&
+    contact.data.phno === "" &&
+    contact.data.emails.join() === "" &&
+    contact.title === ""
+  )
+    return true;
+  return false;
 };
 
 interface ContactBlockProps {
@@ -41,7 +46,14 @@ interface ContactBlockProps {
 
 export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
   const blockClasses = useBlockStyles();
-  const toBeShownContact = isEmptyContact(props.contact.data) ? dummyContact : props.contact;
+
+  // Check For Empty Contact
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isEmptyContact(props.contact));
+  }, [props.contact]);
+
+  const toBeShownContact = isEmpty ? dummyContact : props.contact;
 
   return (
     <div
@@ -58,7 +70,7 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
           <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         ) : (
           <div style={{ display: "flex", flexDirection: toBeShownContact.flipped ? "row-reverse" : "row" }}>
-            <BlockTitle formStyles={props.formStyles} title={toBeShownContact.title} />
+            <BlockTitle formStyles={props.formStyles} title={toBeShownContact.title} isOpaque={isEmpty} />
             <RemoveBlockButton
               item={props.item}
               removeItem={props.removeItem}
@@ -136,7 +148,14 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
 
 export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
   const blockClasses = useBlockStyles();
-  const toBeShownContact = isEmptyContact(props.contact.data) ? dummyContact : props.contact;
+
+  // Check For Empty Contact
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isEmptyContact(props.contact));
+  }, [props.contact]);
+
+  const toBeShownContact = isEmpty ? dummyContact : props.contact;
 
   return (
     <div
@@ -153,7 +172,7 @@ export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
           <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         ) : (
           <div style={{ display: "flex", flexDirection: toBeShownContact.flipped ? "row-reverse" : "row" }}>
-            <BlockTitle formStyles={props.formStyles} title={toBeShownContact.title} />
+            <BlockTitle formStyles={props.formStyles} title={toBeShownContact.title} isOpaque={isEmpty} />
             <RemoveBlockButton
               item={props.item}
               removeItem={props.removeItem}

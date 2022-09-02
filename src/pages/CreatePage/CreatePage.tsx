@@ -21,6 +21,12 @@ import { Ratings } from "../../interfaces/Ratings";
 // import "/node_modules/react-resizable/css/styles.css";
 
 const CreatePage: React.FC = (props) => {
+  const [layout, setLayout] = useState<GridItem[]>([]);
+  // The actual Items
+  const [items, setItems] = useState<GridItem[]>([]);
+  // The Forms corresponding to items in grid
+  const [forms, setForms] = useState<string[]>([]);
+
   const [aboutWithContact1, setAboutWithContact1] = useState<AboutWithContact>({
     name: "",
     profession: "",
@@ -101,7 +107,7 @@ const CreatePage: React.FC = (props) => {
     },
   });
   const [educations1, setEducations1] = useState<Educations>({
-    title: "Education Init",
+    title: "",
     data: [
       { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "", courseDuration: "" },
     ],
@@ -111,7 +117,7 @@ const CreatePage: React.FC = (props) => {
     },
   });
   const [educations2, setEducations2] = useState<Educations>({
-    title: "Education Init 2",
+    title: "",
     data: [
       { id: `education${Date.now()}`, courseName: "", courseResults: "", organizationName: "", courseDuration: "" },
     ],
@@ -121,7 +127,7 @@ const CreatePage: React.FC = (props) => {
     },
   });
   const [works1, setWorks1] = useState<Works>({
-    title: "Works Init",
+    title: "",
     data: [{ id: `work${Date.now()}`, workOrganizationName: "", workDetails: [""], workDuration: "" }],
     style: {
       bgColor: "#ffffff",
@@ -129,7 +135,7 @@ const CreatePage: React.FC = (props) => {
     },
   });
   const [projects1, setProjects1] = useState<Projects>({
-    title: "Works Init",
+    title: "",
     data: [{ id: `project${Date.now()}`, projectName: "", projectDetails: [""] }],
     style: {
       bgColor: "#ffffff",
@@ -185,205 +191,204 @@ const CreatePage: React.FC = (props) => {
   });
 
   useEffect(() => {
-    setAboutWithContact1({
-      name: "Gourab Paul",
-      profession: "Software Engineer",
-      address: ["Saktigarh, Railgate Rd.", "Bongaon WB 743235"],
-      cityZip: "Bangaon WB 743235",
-      phno: "+91 9064040525",
-      emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
-      about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
-      style: {
-        bgColor: "#123456",
-        textColor: "#ffffff",
-      },
-    });
-    setAboutWithContact2({
-      name: "John Doe Two",
-      profession: "Software Engineer",
-      address: ["Saktigarh, Railgate Rd.", "Bongaon WB 743235"],
-      cityZip: "Bangaon WB 743235",
-      phno: "+91 9064040525",
-      emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
-      about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
-      style: {
-        bgColor: "#123456",
-        textColor: "#ffffff",
-      },
-    });
-    setAbout1({
-      name: "Bruh Doe",
-      profession: "Bruhware Engineer",
-      about:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quod dolorem libero reprehenderit maxime maiores officiis? Beatae fuga, quia dolorum sequi accusamus omnis ab corrupti, atque architecto expedita ipsa inventore.",
-      style: {
-        bgColor: "#ffffff",
-        textColor: "#000000",
-      },
-    });
-    setContact1({
-      title: "",
-      flipped: true,
-      data: {
-        address: ["123 BV Rd, California"],
-        emails: ["abc@gmail.com", "Github.com/JohnDoe"],
-        phno: "123 456 7890",
-      },
-      style: {
-        bgColor: "#ffffff",
-        textColor: "#000000",
-      },
-    });
-    setContact2({
-      title: "",
-      flipped: false,
-      data: {
-        address: ["123 BV Rd, California"],
-        emails: ["abc@gmail.com", "Github.com/JohnDoe"],
-        phno: "123 456 7890",
-      },
-      style: {
-        bgColor: "#ffffff",
-        textColor: "#000000",
-      },
-    });
-    setEducations1({
-      title: "EducationsUE #1",
-      data: [
-        {
-          id: "education001",
-          courseName: "Bachelor of Science in Computer Science",
-          courseDuration: "2019 - 2022",
-          organizationName: "Dinabandhu Mahabidyalaya",
-          courseResults: "Cumulative CGPA 9.00",
-        },
-        {
-          id: "education002",
-          courseName: "Higher Secondary Science Stream",
-          courseDuration: "2017 - 2019",
-          organizationName: "Bangaon Higher Secondary School",
-          courseResults: "Result Percentage 72%",
-        },
-      ],
-      style: {
-        bgColor: "#ffffff",
-        textColor: "#000000",
-      },
-    });
-    setEducations2({
-      title: "EducationsUE #2",
-      data: [
-        {
-          id: "education001",
-          courseName: "Bachelor of Science in Computer Science",
-          courseDuration: "2019 - 2022",
-          organizationName: "Dinabandhu Mahabidyalaya",
-          courseResults: "Cumulative CGPA 9.00",
-        },
-        {
-          id: "education002",
-          courseName: "Higher Secondary Science Stream",
-          courseDuration: "2017 - 2019",
-          organizationName: "Bangaon Higher Secondary School",
-          courseResults: "Result Percentage 72%",
-        },
-      ],
-      style: {
-        bgColor: "#ffffff",
-        textColor: "#000000",
-      },
-    });
-    setSkills1({
-      color: "#ff5656",
-      title: "Skills UE",
-      chipRadius: 16,
-      chipSize: 5,
-      filled: true,
-      flipped: false,
-      data: [
-        "Lorem",
-        "ipsum",
-        "dolor sit",
-        "amet",
-        "consect",
-        "etur",
-        "Adipis",
-        "icing",
-        "Nulla",
-        "acusant",
-        "officiis",
-        "distinct",
-      ],
-      style: {
-        bgColor: "#ffffff",
-        textColor: "#000000",
-      },
-    });
-    setWorks1({
-      title: "Works UseEffect",
-      data: [
-        {
-          id: "work1",
-          workOrganizationName: "Company 1",
-          workDetails: [
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
-            "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
-          ],
-          workDuration: "2022 - 2023",
-        },
-      ],
-      style: {
-        bgColor: "#ffffff",
-        textColor: "#000000",
-      },
-    });
-    setProjects1({
-      title: "Projects UseEffect",
-      data: [
-        {
-          id: "projectWed Jan 12 2022 13:38:12 GMT+0530 (India Standard Time)",
-          projectName: "Resume Builder",
-          projectDetails: [
-            "Built a Full-Stack Application to generate pdf files according to Dynamic User Input. Github: FrontEnd(https://github.com/GourabPaul007/ResumeBuilder-Frontend), Backend(https://github.com/GourabPaul007/ResumeBuilder-Backend).",
-            "Used Technologies: ReactJS, TS, Material UI, React-Redux, NodeJS, ExpressJS, EJS, TypeScript.",
-          ],
-        },
-        {
-          id: "projectWed Jan 12 2022 13:36:24 GMT+0530 (India Standard Time)",
-          projectName: "WhatsNote",
-          projectDetails: [
-            "A WhatsApp like look and feel note taking app built with clean architechture which helps people take detailed notes. Github: Codebase(https://github.com/GourabPaul007/Notebook).",
-            "Used Technologies: Flutter, Riverpod.",
-          ],
-        },
-      ],
-      style: {
-        bgColor: "#ffffff",
-        textColor: "#000000",
-      },
-    });
-    setOthers1({
-      title: "Others UseEffect",
-      bullet: 9679,
-      data: [
-        "Lorem ipsum dolor sit amet consectetur.",
-        "Adipisicing Nulla repellat dolorum earum.",
-        "officiis distinctio ipsa officia soluta.",
-        "accusantium exercit ationem.",
-      ],
-      style: {
-        bgColor: "#ffffff",
-        textColor: "#000000",
-      },
-    });
-    addItem(8, 8, "about1", true);
+    const itemsArray = JSON.parse(localStorage.getItem("ItemsArray") as string);
+    if (itemsArray && itemsArray.length != 0) {
+      // console.log(itemsArray);
+      // itemsArray.forEach((item: GridItem) => addItem(item.name, item.x, item.y, item.w, item.h, item.data, true));
+    }
+    // setAboutWithContact1({
+    //   name: "Gourab Paul",
+    //   profession: "Software Engineer",
+    //   address: ["Saktigarh, Railgate Rd.", "Bongaon WB 743235"],
+    //   cityZip: "Bangaon WB 743235",
+    //   phno: "+91 9064040525",
+    //   emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
+    //   about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
+    //   style: {
+    //     bgColor: "#123456",
+    //     textColor: "#ffffff",
+    //   },
+    // });
+    // setAboutWithContact2({
+    //   name: "John Doe Two",
+    //   profession: "Software Engineer",
+    //   address: ["Saktigarh, Railgate Rd.", "Bongaon WB 743235"],
+    //   cityZip: "Bangaon WB 743235",
+    //   phno: "+91 9064040525",
+    //   emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
+    //   about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
+    //   style: {
+    //     bgColor: "#123456",
+    //     textColor: "#ffffff",
+    //   },
+    // });
+    // setAbout1({
+    //   name: "Bruh Doe",
+    //   profession: "Bruhware Engineer",
+    //   about:
+    //     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quod dolorem libero reprehenderit maxime maiores officiis? Beatae fuga, quia dolorum sequi accusamus omnis ab corrupti, atque architecto expedita ipsa inventore.",
+    //   style: {
+    //     bgColor: "#ffffff",
+    //     textColor: "#000000",
+    //   },
+    // });
+    // setContact1({
+    //   title: "",
+    //   flipped: true,
+    //   data: {
+    //     address: ["123 BV Rd, California"],
+    //     emails: ["abc@gmail.com", "Github.com/JohnDoe"],
+    //     phno: "123 456 7890",
+    //   },
+    //   style: {
+    //     bgColor: "#ffffff",
+    //     textColor: "#000000",
+    //   },
+    // });
+    // setContact2({
+    //   title: "",
+    //   flipped: false,
+    //   data: {
+    //     address: ["123 BV Rd, California"],
+    //     emails: ["abc@gmail.com", "Github.com/JohnDoe"],
+    //     phno: "123 456 7890",
+    //   },
+    //   style: {
+    //     bgColor: "#ffffff",
+    //     textColor: "#000000",
+    //   },
+    // });
+    // setEducations1({
+    //   title: "EducationsUE #1",
+    //   data: [
+    //     {
+    //       id: "education001",
+    //       courseName: "Bachelor of Science in Computer Science",
+    //       courseDuration: "2019 - 2022",
+    //       organizationName: "Dinabandhu Mahabidyalaya",
+    //       courseResults: "Cumulative CGPA 9.00",
+    //     },
+    //     {
+    //       id: "education002",
+    //       courseName: "Higher Secondary Science Stream",
+    //       courseDuration: "2017 - 2019",
+    //       organizationName: "Bangaon Higher Secondary School",
+    //       courseResults: "Result Percentage 72%",
+    //     },
+    //   ],
+    //   style: {
+    //     bgColor: "#ffffff",
+    //     textColor: "#000000",
+    //   },
+    // });
+    // setEducations2({
+    //   title: "EducationsUE #2",
+    //   data: [
+    //     {
+    //       id: "education001",
+    //       courseName: "Bachelor of Science in Computer Science",
+    //       courseDuration: "2019 - 2022",
+    //       organizationName: "Dinabandhu Mahabidyalaya",
+    //       courseResults: "Cumulative CGPA 9.00",
+    //     },
+    //     {
+    //       id: "education002",
+    //       courseName: "Higher Secondary Science Stream",
+    //       courseDuration: "2017 - 2019",
+    //       organizationName: "Bangaon Higher Secondary School",
+    //       courseResults: "Result Percentage 72%",
+    //     },
+    //   ],
+    //   style: {
+    //     bgColor: "#ffffff",
+    //     textColor: "#000000",
+    //   },
+    // });
+    // setSkills1({
+    //   color: "#ff5656",
+    //   title: "Skills UE",
+    //   chipRadius: 16,
+    //   chipSize: 5,
+    //   filled: true,
+    //   flipped: false,
+    //   data: [
+    //     "Lorem",
+    //     "ipsum",
+    //     "dolor sit",
+    //     "amet",
+    //     "consect",
+    //     "etur",
+    //     "Adipis",
+    //     "icing",
+    //     "Nulla",
+    //     "acusant",
+    //     "officiis",
+    //     "distinct",
+    //   ],
+    //   style: {
+    //     bgColor: "#ffffff",
+    //     textColor: "#000000",
+    //   },
+    // });
+    // setWorks1({
+    //   title: "Works UseEffect",
+    //   data: [
+    //     {
+    //       id: "work1",
+    //       workOrganizationName: "Company 1",
+    //       workDetails: [
+    //         "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
+    //         "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
+    //       ],
+    //       workDuration: "2022 - 2023",
+    //     },
+    //   ],
+    //   style: {
+    //     bgColor: "#ffffff",
+    //     textColor: "#000000",
+    //   },
+    // });
+    // setProjects1({
+    //   title: "Projects UseEffect",
+    //   data: [
+    //     {
+    //       id: "projectWed Jan 12 2022 13:38:12 GMT+0530 (India Standard Time)",
+    //       projectName: "Resume Builder",
+    //       projectDetails: [
+    //         "Built a Full-Stack Application to generate pdf files according to Dynamic User Input. Github: FrontEnd(https://github.com/GourabPaul007/ResumeBuilder-Frontend), Backend(https://github.com/GourabPaul007/ResumeBuilder-Backend).",
+    //         "Used Technologies: ReactJS, TS, Material UI, React-Redux, NodeJS, ExpressJS, EJS, TypeScript.",
+    //       ],
+    //     },
+    //     {
+    //       id: "projectWed Jan 12 2022 13:36:24 GMT+0530 (India Standard Time)",
+    //       projectName: "WhatsNote",
+    //       projectDetails: [
+    //         "A WhatsApp like look and feel note taking app built with clean architechture which helps people take detailed notes. Github: Codebase(https://github.com/GourabPaul007/Notebook).",
+    //         "Used Technologies: Flutter, Riverpod.",
+    //       ],
+    //     },
+    //   ],
+    //   style: {
+    //     bgColor: "#ffffff",
+    //     textColor: "#000000",
+    //   },
+    // });
+    // setOthers1({
+    //   title: "Others UseEffect",
+    //   bullet: 9679,
+    //   data: [
+    //     "Lorem ipsum dolor sit amet consectetur.",
+    //     "Adipisicing Nulla repellat dolorum earum.",
+    //     "officiis distinctio ipsa officia soluta.",
+    //     "accusantium exercit ationem.",
+    //   ],
+    //   style: {
+    //     bgColor: "#ffffff",
+    //     textColor: "#000000",
+    //   },
+    // });
+    // addItem(Infinity, Infinity, 8, 8, "about1", true);
   }, []);
-
-  const [layout, setLayout] = useState<GridItem[]>([]);
-  // The actual Items
-  const [items, setItems] = useState<GridItem[]>([]);
-  // The Forms corresponding to items in grid
-  const [forms, setForms] = useState<string[]>([]);
 
   // MAKE A COPY OF LAYOUT FOR STUFFS
   const makeItemsArray = () => {
@@ -444,38 +449,67 @@ const CreatePage: React.FC = (props) => {
     // console.log(layout);
   }
 
-  function addItem(width: number = 1, height: number = 1, itemName: string, isResizable?: boolean) {
+  function addItem(
+    name: string,
+    x: number = Infinity,
+    y: number = Infinity,
+    width: number = 1,
+    height: number = 1,
+    data: any,
+    isResizable: boolean
+  ) {
     // add to Items
     for (let i = 0; i < items.length; i++) {
       const element = items[i];
-      if (element.i === itemName) {
-        // console.log(element.i, itemName, "this item already exists");
-        itemName = "";
+      if (element.i === name) {
+        console.log(element.i, name, "this item already exists");
+        name = "";
         return;
       }
     }
-    setItems(
-      items.concat({
-        i: itemName,
-        x: Infinity,
-        y: Infinity,
+    let newItems = items;
+    // FINALLY AAAAAAAAAAAAAAAAAAAAAAAAAAA
+    newItems = [
+      ...items,
+      {
+        name: name,
+        i: name,
+        x: x,
+        y: y,
         w: width,
         h: height,
         isResizable: isResizable ? true : false,
-      })
+        data: data ? data : {},
+      },
+    ];
+    setItems(
+      newItems
+      // items.concat({
+      //   name: name,
+      //   i: name,
+      //   x: x,
+      //   y: y,
+      //   w: width,
+      //   h: height,
+      //   isResizable: isResizable ? true : false,
+      //   data: data ? data : {},
+      // })
     );
+    console.log("items", items);
 
     // Add to Form
     const newFormsArray = forms;
-    const newFormName = itemName;
+    const newFormName = name;
     if (newFormsArray.includes(newFormName)) {
       // console.log("Form Item already exists", newFormName, forms);
       return;
     }
     newFormsArray.push(newFormName);
     setForms(newFormsArray);
+    // console.log("forms", forms);
     // console.log("pushed", items, itemName, forms);
   }
+
   function removeItem(toBeRemovedItem: GridItem) {
     console.log("removing", toBeRemovedItem);
     for (let i = 0; i < items.length; i++) {
@@ -488,7 +522,7 @@ const CreatePage: React.FC = (props) => {
         // remove From Forms Array
         const newItemsNameArray = newItems.map((item) => item.i);
         if (newItemsNameArray.includes(toBeRemovedItem.i)) {
-          console.log("Another item with same form exists", newItemsNameArray);
+          // console.log("Another item with same form exists", newItemsNameArray);
         } else {
           console.log("Removing Form", toBeRemovedItem.i);
           setForms(forms.filter((formItem) => formItem != toBeRemovedItem.i)); // remove from form array where matches the `toBeRemovedItemName`

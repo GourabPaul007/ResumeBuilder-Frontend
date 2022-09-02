@@ -1,7 +1,6 @@
 import { Button, Container, CssBaseline, Grid, Modal, TextField, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { Dispatch } from "react";
-import { useState, FC } from "react";
 import { AboutWithContact } from "../../../interfaces/AboutWithContact";
 import { Course, Educations } from "../../../interfaces/Educations";
 import { FormStyles } from "../../../interfaces/FormStyles";
@@ -76,7 +75,7 @@ interface RightFormProps {
   forms: string[];
 }
 
-export const RightForm: FC<RightFormProps> = (props) => {
+export const RightForm: React.FC<RightFormProps> = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
 

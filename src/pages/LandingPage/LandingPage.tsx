@@ -7,7 +7,6 @@ import template_1 from "../../static/template_1.png";
 import couchLaptop from "../../static/background/couchLaptop.png";
 import peopleCouchLaptop from "../../static/background/peopleCouchLaptop.png";
 import interview from "../static/background/interview.png";
-import { Example } from "../../services/PdfService";
 
 interface LandingPageProps {}
 
@@ -42,7 +41,6 @@ const LandingPage: React.FC<LandingPageProps> = () => {
   return (
     <>
       <AppBarHeader />
-      <Example />
       {/* <!-- Landing Section --> */}
       <section className="landing" id="welcome-section">
         <div className="container">

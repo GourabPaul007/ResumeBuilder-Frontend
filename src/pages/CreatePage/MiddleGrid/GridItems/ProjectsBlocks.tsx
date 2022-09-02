@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { v1 as uuidv1 } from "uuid";
 
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
@@ -55,6 +55,19 @@ const exampleProjects: Projects = {
   },
 };
 
+const isProjectsEmpty = (projects: Projects): boolean => {
+  return projects.data.every((value) => {
+    // 1st -> checks if name is empty string, 2nd -> checks if all array members are empty strings
+    if (value.projectName === "" && value.projectDetails.join("").length === 0 && projects.title === "") {
+      console.log("true");
+
+      return true;
+    }
+    console.log("false");
+    return false;
+  });
+};
+
 interface ProjectsBlockProps {
   blockTitle: string;
   item: GridItem;
@@ -66,17 +79,13 @@ interface ProjectsBlockProps {
 export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
   const blockClasses = useBlockStyles();
 
-  const isProjectsEmpty = (projects: Projects) => {
-    return projects.data.every((value) => {
-      // 1st -> checks if name is empty string, 2nd -> checks if all array members are empty strings
-      if (value.projectName === "" && value.projectDetails.join("").length === 0) {
-        return true;
-      }
-      return false;
-    });
-  };
+  // Check For Empty Projects
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isProjectsEmpty(props.projects));
+  }, [props.projects]);
 
-  const toBeShownProjects = isProjectsEmpty(props.projects) ? exampleProjects : props.projects;
+  const toBeShownProjects = isEmpty ? exampleProjects : props.projects;
 
   return (
     <div
@@ -88,37 +97,39 @@ export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
       }}
     >
       <div className={blockClasses.blockWrapper}>
-        <BlockTitle formStyles={props.formStyles} title={toBeShownProjects.title} />
+        <BlockTitle formStyles={props.formStyles} title={toBeShownProjects.title} isOpaque={isEmpty} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
-        {toBeShownProjects.data.map((eachProject: Project) => {
-          return (
-            <div key={eachProject.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 14 }}>
-              {/* Project Name */}
-              <h4 style={{ fontSize: 20, fontWeight: 600, marginLeft: 8, marginBottom: 8, marginTop: 12 }}>
-                {eachProject.projectName}
-              </h4>
-              {/* Project Details */}
-              <div style={{ margin: "4px 0px 4px 16px", fontWeight: 500 }}>
-                {eachProject.projectDetails.map((detail: string) => {
-                  return (
-                    <div
-                      key={detail}
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "start",
-                        alignItems: "start",
-                        // marginBottom: 4,
-                      }}
-                    >
-                      {checkHyperlink(detail)}
-                    </div>
-                  );
-                })}
+        <div style={{ opacity: isEmpty ? 0.5 : 1 }}>
+          {toBeShownProjects.data.map((eachProject: Project) => {
+            return (
+              <div key={eachProject.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 14 }}>
+                {/* Project Name */}
+                <h4 style={{ fontSize: 20, fontWeight: 600, marginLeft: 8, marginBottom: 8, marginTop: 12 }}>
+                  {eachProject.projectName}
+                </h4>
+                {/* Project Details */}
+                <div style={{ margin: "4px 0px 4px 16px", fontWeight: 500 }}>
+                  {eachProject.projectDetails.map((detail: string) => {
+                    return (
+                      <div
+                        key={detail}
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "start",
+                          alignItems: "start",
+                          // marginBottom: 4,
+                        }}
+                      >
+                        {checkHyperlink(detail)}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );

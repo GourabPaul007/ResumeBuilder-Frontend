@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import { v1 as uuidv1 } from "uuid";
 import { RemoveBlockButton } from "../../../../Components/CustomPageComponents";
 import { FormStyles } from "../../../../interfaces/FormStyles";
@@ -22,6 +22,11 @@ const dummyOthers = {
   },
 };
 
+const isEmptyOthers = (others: Others) => {
+  if (others.data.join("") === "" && others.title === "") return true;
+  return false;
+};
+
 interface OthersBlockProps {
   blockTitle: string;
   item: GridItem;
@@ -33,7 +38,13 @@ interface OthersBlockProps {
 export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
   const blockClasses = useBlockStyles();
 
-  const toBeShownOthers = props.others.data.length === 0 ? dummyOthers : props.others;
+  // Check For Empty Others
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isEmptyOthers(props.others));
+  }, [props.others]);
+
+  const toBeShownOthers = isEmpty ? dummyOthers : props.others;
 
   return (
     <div
@@ -45,7 +56,7 @@ export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
       }}
     >
       <div className={blockClasses.blockWrapper}>
-        <BlockTitle title={toBeShownOthers.title} formStyles={props.formStyles} />
+        <BlockTitle title={toBeShownOthers.title} formStyles={props.formStyles} isOpaque={isEmpty} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div style={{ paddingLeft: 8, fontSize: 15 }}>
           {toBeShownOthers.data.map((eachLine: string) => {

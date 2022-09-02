@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface MiddleGridProps {
-  items: any;
+  items: GridItem[];
   onLayoutChange: any;
   removeItem: (item: GridItem) => void;
   aboutWithContact1: AboutWithContact;
@@ -78,16 +78,15 @@ interface MiddleGridProps {
 const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
   const classes = useStyles();
 
-  function getItemBlueprint(item: GridItem): React.ReactNode {
-    let name = item.i;
-    switch (name) {
+  function getItemBlock(item: GridItem): React.ReactNode {
+    switch (item.name) {
       case "aboutwithcontact1":
         return (
           <AboutWithContactBlock1
             blockTitle={"About & Contact #1"}
             removeItem={props.removeItem}
             item={item}
-            about={props.aboutWithContact1}
+            aboutWithContact={props.aboutWithContact1}
             formStyles={props.formStyles}
           />
         );
@@ -97,7 +96,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             blockTitle={"About & Contact #2"}
             removeItem={props.removeItem}
             item={item}
-            about={props.aboutWithContact2}
+            aboutWithContact={props.aboutWithContact2}
             formStyles={props.formStyles}
           />
         );
@@ -237,10 +236,14 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
           cols={{ lg: 12, md: 12, sm: 12, xs: 12, xxs: 12 }}
         >
-          {props.items.map((item: GridItem) => {
+          {props.items.map((item: GridItem, index: number) => {
             return (
-              <div className={classes.blocks} data-grid={item} key={item.i + uuidv1}>
-                {getItemBlueprint(item)}
+              <div
+                key={item.name + index + uuidv1}
+                className={classes.blocks}
+                data-grid={{ x: item.x, y: item.y, w: item.w, h: item.h }}
+              >
+                {getItemBlock(item)}
               </div>
             );
           })}

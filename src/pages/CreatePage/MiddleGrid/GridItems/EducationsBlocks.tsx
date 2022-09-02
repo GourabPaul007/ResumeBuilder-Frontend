@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Course, Educations } from "../../../../interfaces/Educations";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import { RemoveBlockButton } from "../../../../Components/CustomPageComponents";
@@ -31,9 +31,14 @@ const dummyEducations: Educations = {
   },
 };
 
-const isEmptyObjArr = (arr: Course[]) => {
-  return arr.every((value) => {
-    if (value.courseName === "" && value.courseResults === "" && value.organizationName === "") {
+const isEmptyEducations = (educations: Educations) => {
+  return educations.data.every((value) => {
+    if (
+      value.courseName === "" &&
+      value.courseResults === "" &&
+      value.organizationName === "" &&
+      educations.title === ""
+    ) {
       return true;
     }
     return false;
@@ -50,7 +55,14 @@ interface EducationsBlockProps {
 
 export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
   const blockClasses = useBlockStyles();
-  const toBeShownEducations = !isEmptyObjArr(props.educations.data) ? props.educations : dummyEducations;
+
+  // Check For Empty Educations
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isEmptyEducations(props.educations));
+  }, [props.educations]);
+
+  const toBeShownEducations = isEmpty ? dummyEducations : props.educations;
 
   return (
     <div
@@ -62,13 +74,14 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
       }}
     >
       <div className={blockClasses.blockWrapper}>
-        <BlockTitle formStyles={props.formStyles} title={toBeShownEducations.title} />
+        <BlockTitle formStyles={props.formStyles} title={toBeShownEducations.title} isOpaque={isEmpty} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div
           style={{
             fontSize: 14,
             display: "flex",
             flexDirection: "column",
+            opacity: isEmpty ? 0.5 : 1,
           }}
         >
           {toBeShownEducations.data.map((course: Course) => {
@@ -122,7 +135,14 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
 
 export const EducationsBlock2: React.FC<EducationsBlockProps> = (props) => {
   const blockClasses = useBlockStyles({ formStyles: props.formStyles });
-  const toBeShownEducations = !isEmptyObjArr(props.educations.data) ? props.educations : dummyEducations;
+
+  // Check For Empty Educations
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isEmptyEducations(props.educations));
+  }, [props.educations]);
+
+  const toBeShownEducations = isEmpty ? dummyEducations : props.educations;
 
   return (
     <div
@@ -134,7 +154,7 @@ export const EducationsBlock2: React.FC<EducationsBlockProps> = (props) => {
       }}
     >
       <div className={blockClasses.blockWrapper}>
-        <BlockTitle formStyles={props.formStyles} title={toBeShownEducations.title} />
+        <BlockTitle formStyles={props.formStyles} title={toBeShownEducations.title} isOpaque={isEmpty} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div
           style={{
@@ -144,6 +164,7 @@ export const EducationsBlock2: React.FC<EducationsBlockProps> = (props) => {
             alignItems: "center",
             margin: "0px 4px",
             width: "100%",
+            opacity: isEmpty ? 0.5 : 1,
           }}
         >
           {toBeShownEducations.data.map((course: Course) => {

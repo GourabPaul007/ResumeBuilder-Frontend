@@ -1,10 +1,10 @@
 export interface GridItem {
-  name?: string;
+  name: string;
   i: string;
   x: number;
   y: number;
   w: number;
   h: number;
   isResizable: boolean;
-  data?: any;
+  data: any;
 }

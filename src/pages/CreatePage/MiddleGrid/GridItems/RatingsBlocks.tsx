@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Rating from "@mui/material/Rating";
 import CircleIcon from "@mui/icons-material/Circle";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
@@ -30,6 +30,11 @@ const dummyRatings: Ratings = {
   },
 };
 
+const isEmptyRatings = (ratings: Ratings) => {
+  if (ratings.data.length === 0 && ratings.title === "") return true;
+  return false;
+};
+
 interface RatingBlockProps {
   blockTitle: string;
   item: GridItem;
@@ -40,7 +45,13 @@ interface RatingBlockProps {
 export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
   const blockClasses = useBlockStyles();
 
-  const toBeShownRatings = props.ratings.data.length === 0 && props.ratings.title === "" ? dummyRatings : props.ratings;
+  // Check For Empty Ratings
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isEmptyRatings(props.ratings));
+  }, [props.ratings]);
+
+  const toBeShownRatings = isEmpty ? dummyRatings : props.ratings;
 
   return (
     <>
@@ -61,7 +72,7 @@ export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
               flipped={props.ratings.flipped}
             />
           ) : null}
-          <BlockTitle formStyles={props.formStyles} title={toBeShownRatings.title} />
+          <BlockTitle formStyles={props.formStyles} title={toBeShownRatings.title} isOpaque={isEmpty} />
           {props.ratings.flipped ? null : (
             <RemoveBlockButton
               item={props.item}
@@ -114,7 +125,14 @@ export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
 export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
   const blockClasses = useBlockStyles();
 
-  const toBeShownRatings = props.ratings.data.length === 0 && props.ratings.title === "" ? dummyRatings : props.ratings;
+  // Check For Empty Ratings
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isEmptyRatings(props.ratings));
+  }, [props.ratings]);
+
+  const toBeShownRatings = isEmpty ? dummyRatings : props.ratings;
+  // const toBeShownRatings = props.ratings.data.length === 0 && props.ratings.title === "" ? dummyRatings : props.ratings;
 
   return (
     <>
@@ -128,7 +146,7 @@ export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
       >
         <div className={blockClasses.blockWrapper}>
           <div style={{ display: "flex", flexDirection: props.ratings.flipped ? "row-reverse" : "row" }}>
-            <BlockTitle formStyles={props.formStyles} title={toBeShownRatings.title} />
+            <BlockTitle formStyles={props.formStyles} title={toBeShownRatings.title} isOpaque={isEmpty} />
             <RemoveBlockButton
               item={props.item}
               removeItem={props.removeItem}
@@ -188,19 +206,19 @@ function getStarsArray(
   return flipped ? (
     <div>
       {[...Array(5 - numberOfRatesInStar)].map((e, i) => {
-        return <>{chooseIcon(type + "_empty", i, color, size)}</>;
+        return <span key={i}>{chooseIcon(type + "_empty", i, color, size)}</span>;
       })}
       {[...Array(numberOfRatesInStar)].map((e, i) => {
-        return <>{chooseIcon(type + "_fill", i, color, size)}</>;
+        return <span key={i}>{chooseIcon(type + "_fill", i, color, size)}</span>;
       })}
     </div>
   ) : (
     <div>
       {[...Array(numberOfRatesInStar)].map((e, i) => {
-        return <>{chooseIcon(type + "_fill", i, color, size)}</>;
+        return <span key={i}>{chooseIcon(type + "_fill", i, color, size)}</span>;
       })}
       {[...Array(5 - numberOfRatesInStar)].map((e, i) => {
-        return <>{chooseIcon(type + "_empty", i, color, size)}</>;
+        return <span key={i}>{chooseIcon(type + "_empty", i, color, size)}</span>;
       })}
     </div>
   );

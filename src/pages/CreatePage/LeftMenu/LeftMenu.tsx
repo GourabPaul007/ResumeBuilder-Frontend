@@ -57,7 +57,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface LeftMenuProps {
-  addBlock: (width: number, height: number, name: string, isResizable?: boolean) => void;
+  addBlock: (
+    name: string,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    data: any,
+    isResizable: boolean
+  ) => void;
   items: GridItem[];
 }
 
@@ -85,13 +93,57 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         </div>
         <div
           className={inItemsArray("aboutwithcontact1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(12, 10, "aboutwithcontact1", true)}
+          onClick={() =>
+            props.addBlock(
+              "aboutwithcontact1",
+              Infinity,
+              Infinity,
+              12,
+              10,
+              {
+                name: "Gourab Paul",
+                profession: "Software Engineer",
+                address: ["Saktigarh, Railgate Rd.", "Bongaon WB 743235"],
+                cityZip: "Bangaon WB 743235",
+                phno: "+91 9064040525",
+                emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
+                about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
+                style: {
+                  bgColor: "#123456",
+                  textColor: "#ffffff",
+                },
+              },
+              true
+            )
+          }
         >
           <AboutAndContactIcon1 />
         </div>
         <div
           className={inItemsArray("aboutwithcontact2") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(12, 10, "aboutwithcontact2", true)}
+          onClick={() =>
+            props.addBlock(
+              "aboutwithcontact2",
+              Infinity,
+              Infinity,
+              12,
+              10,
+              {
+                name: "Gourab Paul 2",
+                profession: "Software Engineer",
+                address: ["Saktigarh, Railgate Rd.", "Bongaon WB 743235"],
+                cityZip: "Bangaon WB 743235",
+                phno: "+91 9064040525",
+                emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
+                about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
+                style: {
+                  bgColor: "#123456",
+                  textColor: "#ffffff",
+                },
+              },
+              true
+            )
+          }
         >
           <AboutAndContactIcon2 />
         </div>
@@ -101,7 +153,26 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>About</div>
         <div
           className={inItemsArray("about1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(8, 8, "about1", true)}
+          onClick={() =>
+            props.addBlock(
+              "about1",
+              Infinity,
+              Infinity,
+              8,
+              8,
+              {
+                name: "Bruh Doe",
+                profession: "Bruhware Engineer",
+                about:
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quod dolorem libero reprehenderit maxime maiores officiis? Beatae fuga, quia dolorum sequi accusamus omnis ab corrupti, atque architecto expedita ipsa inventore.",
+                style: {
+                  bgColor: "#ffffff",
+                  textColor: "#000000",
+                },
+              },
+              true
+            )
+          }
         >
           <AboutIcon1 />
         </div>
@@ -111,13 +182,57 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Contact</div>
         <div
           className={inItemsArray("contact1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(4, 8, "contact1", true)}
+          onClick={() =>
+            props.addBlock(
+              "contact1",
+              Infinity,
+              Infinity,
+              4,
+              8,
+              {
+                title: "",
+                flipped: true,
+                data: {
+                  address: ["123 BV Rd, California"],
+                  emails: ["abc@gmail.com", "Github.com/JohnDoe"],
+                  phno: "123 456 7890",
+                },
+                style: {
+                  bgColor: "#ffffff",
+                  textColor: "#000000",
+                },
+              },
+              true
+            )
+          }
         >
           <ContactIcon1 />
         </div>
         <div
           className={inItemsArray("contact2") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(4, 8, "contact2", true)}
+          onClick={() =>
+            props.addBlock(
+              "contact2",
+              Infinity,
+              Infinity,
+              4,
+              8,
+              {
+                title: "",
+                flipped: false,
+                data: {
+                  address: ["123 BV Rd, California"],
+                  emails: ["abc@gmail.com", "Github.com/JohnDoe"],
+                  phno: "123 456 7890",
+                },
+                style: {
+                  bgColor: "#ffffff",
+                  textColor: "#000000",
+                },
+              },
+              true
+            )
+          }
         >
           <ContactIcon2 />
         </div>
@@ -127,13 +242,77 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Education</div>
         <div
           className={inItemsArray("educations1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(6, 10, "educations1", true)}
+          onClick={() =>
+            props.addBlock(
+              "educations1",
+              Infinity,
+              Infinity,
+              6,
+              10,
+              {
+                title: "Educations1",
+                data: [
+                  {
+                    id: "education001",
+                    courseName: "Bachelor of Science in Computer Science",
+                    courseDuration: "2019 - 2022",
+                    organizationName: "Dinabandhu Mahabidyalaya",
+                    courseResults: "Cumulative CGPA 9.00",
+                  },
+                  {
+                    id: "education002",
+                    courseName: "Higher Secondary Science Stream",
+                    courseDuration: "2017 - 2019",
+                    organizationName: "Bangaon Higher Secondary School",
+                    courseResults: "Result Percentage 72%",
+                  },
+                ],
+                style: {
+                  bgColor: "#ffffff",
+                  textColor: "#000000",
+                },
+              },
+              true
+            )
+          }
         >
           <EducationIcon1 />
         </div>
         <div
           className={inItemsArray("educations2") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(12, 9, "educations2", true)}
+          onClick={() =>
+            props.addBlock(
+              "educations2",
+              Infinity,
+              Infinity,
+              12,
+              9,
+              {
+                title: "Educations2",
+                data: [
+                  {
+                    id: "education001",
+                    courseName: "Bachelor of Science in Computer Science",
+                    courseDuration: "2019 - 2022",
+                    organizationName: "Dinabandhu Mahabidyalaya",
+                    courseResults: "Cumulative CGPA 9.00",
+                  },
+                  {
+                    id: "education002",
+                    courseName: "Higher Secondary Science Stream",
+                    courseDuration: "2017 - 2019",
+                    organizationName: "Bangaon Higher Secondary School",
+                    courseResults: "Result Percentage 72%",
+                  },
+                ],
+                style: {
+                  bgColor: "#ffffff",
+                  textColor: "#000000",
+                },
+              },
+              true
+            )
+          }
         >
           <EducationIcon2 />
         </div>
@@ -143,13 +322,83 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Skills</div>
         <div
           className={inItemsArray("skills1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(5, 11, "skills1", true)}
+          onClick={() =>
+            props.addBlock(
+              "skills1",
+              Infinity,
+              Infinity,
+              5,
+              11,
+              {
+                color: "#ff5656",
+                title: "Skills UE",
+                chipRadius: 16,
+                chipSize: 5,
+                filled: true,
+                flipped: false,
+                data: [
+                  "Lorem",
+                  "ipsum",
+                  "dolor sit",
+                  "amet",
+                  "consect",
+                  "etur",
+                  "Adipis",
+                  "icing",
+                  "Nulla",
+                  "acusant",
+                  "officiis",
+                  "distinct",
+                ],
+                style: {
+                  bgColor: "#ffffff",
+                  textColor: "#000000",
+                },
+              },
+              true
+            )
+          }
         >
           <SkillsIcon1 />
         </div>
         <div
           className={inItemsArray("skills2") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(5, 11, "skills2", true)}
+          onClick={() =>
+            props.addBlock(
+              "skills2",
+              Infinity,
+              Infinity,
+              5,
+              11,
+              {
+                color: "#ff5656",
+                title: "Skills UE",
+                chipRadius: 16,
+                chipSize: 5,
+                filled: true,
+                flipped: false,
+                data: [
+                  "Lorem",
+                  "ipsum",
+                  "dolor sit",
+                  "amet",
+                  "consect",
+                  "etur",
+                  "Adipis",
+                  "icing",
+                  "Nulla",
+                  "acusant",
+                  "officiis",
+                  "distinct",
+                ],
+                style: {
+                  bgColor: "#ffffff",
+                  textColor: "#000000",
+                },
+              },
+              true
+            )
+          }
         >
           <SkillsIcon2 />
         </div>
@@ -159,7 +408,34 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Work History</div>
         <div
           className={inItemsArray("works1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(7, 10, "works1", true)}
+          onClick={() =>
+            props.addBlock(
+              "works1",
+              Infinity,
+              Infinity,
+              7,
+              10,
+              {
+                title: "Works UseEffect",
+                data: [
+                  {
+                    id: "work1",
+                    workOrganizationName: "Company 1",
+                    workDetails: [
+                      "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
+                      "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
+                    ],
+                    workDuration: "2022 - 2023",
+                  },
+                ],
+                style: {
+                  bgColor: "#ffffff",
+                  textColor: "#000000",
+                },
+              },
+              true
+            )
+          }
         >
           <WorksIcon1 />
         </div>
@@ -169,7 +445,41 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Projects</div>
         <div
           className={inItemsArray("projects1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(7, 16, "projects1", true)}
+          onClick={() =>
+            props.addBlock(
+              "projects1",
+              Infinity,
+              Infinity,
+              7,
+              16,
+              {
+                title: "Projects UseEffect",
+                data: [
+                  {
+                    id: "projectWed Jan 12 2022 13:38:12 GMT+0530 (India Standard Time)",
+                    projectName: "Resume Builder",
+                    projectDetails: [
+                      "Built a Full-Stack Application to generate pdf files according to Dynamic User Input. Github: FrontEnd(https://github.com/GourabPaul007/ResumeBuilder-Frontend), Backend(https://github.com/GourabPaul007/ResumeBuilder-Backend).",
+                      "Used Technologies: ReactJS, TS, Material UI, React-Redux, NodeJS, ExpressJS, EJS, TypeScript.",
+                    ],
+                  },
+                  {
+                    id: "projectWed Jan 12 2022 13:36:24 GMT+0530 (India Standard Time)",
+                    projectName: "WhatsNote",
+                    projectDetails: [
+                      "A WhatsApp like look and feel note taking app built with clean architechture which helps people take detailed notes. Github: Codebase(https://github.com/GourabPaul007/Notebook).",
+                      "Used Technologies: Flutter, Riverpod.",
+                    ],
+                  },
+                ],
+                style: {
+                  bgColor: "#ffffff",
+                  textColor: "#000000",
+                },
+              },
+              true
+            )
+          }
         >
           <ProjectsIcon1 />
         </div>
@@ -179,13 +489,61 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Ratings</div>
         <div
           className={inItemsArray("ratings1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(5, 10, "ratings1", true)}
+          onClick={() =>
+            props.addBlock(
+              "ratings1",
+              Infinity,
+              Infinity,
+              5,
+              10,
+              {
+                title: "Language1",
+                ratingType: "star",
+                icon: "star",
+                flipped: false,
+                data: [
+                  { id: `rating${Date.now()}`, ratingSubject: "English", rateInPercentage: 75 },
+                  { id: `rating${Date.now()}`, ratingSubject: "Hindi", rateInPercentage: 75 },
+                  { id: `rating${Date.now()}`, ratingSubject: "Bengali", rateInPercentage: 100 },
+                ],
+                style: {
+                  bgColor: "#ffffff",
+                  textColor: "#000000",
+                },
+              },
+              true
+            )
+          }
         >
           <RatingsIcon1 />
         </div>
         <div
           className={inItemsArray("ratings2") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(4, 11, "ratings2", true)}
+          onClick={() =>
+            props.addBlock(
+              "ratings2",
+              Infinity,
+              Infinity,
+              4,
+              11,
+              {
+                title: "Ratings2",
+                ratingType: "star",
+                icon: "star",
+                flipped: false,
+                data: [
+                  { id: `rating${Date.now()}`, ratingSubject: "English", rateInPercentage: 75 },
+                  { id: `rating${Date.now()}`, ratingSubject: "Hindi", rateInPercentage: 75 },
+                  { id: `rating${Date.now()}`, ratingSubject: "Bengali", rateInPercentage: 100 },
+                ],
+                style: {
+                  bgColor: "#ffffff",
+                  textColor: "#000000",
+                },
+              },
+              true
+            )
+          }
         >
           <RatingsIcon2 />
         </div>
@@ -195,7 +553,30 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Others</div>
         <div
           className={inItemsArray("others1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock(6, 10, "others1", true)}
+          onClick={() =>
+            props.addBlock(
+              "others1",
+              Infinity,
+              Infinity,
+              6,
+              10,
+              {
+                title: "Others UseEffect",
+                bullet: 9679,
+                data: [
+                  "Lorem ipsum dolor sit amet consectetur.",
+                  "Adipisicing Nulla repellat dolorum earum.",
+                  "officiis distinctio ipsa officia soluta.",
+                  "accusantium exercit ationem.",
+                ],
+                style: {
+                  bgColor: "#ffffff",
+                  textColor: "#000000",
+                },
+              },
+              true
+            )
+          }
         >
           <OthersIcon1 />
         </div>

@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import { v1 as uuidv1 } from "uuid";
 import { RemoveBlockButton } from "../../../../Components/CustomPageComponents";
 import { FormStyles } from "../../../../interfaces/FormStyles";
@@ -21,6 +21,11 @@ const dummySkills: Skills = {
   },
 };
 
+const isSkillsEmpty = (skills: Skills): boolean => {
+  if (skills.data.length === 0 && skills.title === "") return true;
+  return false;
+};
+
 interface SkillsBlockProps {
   blockTitle: string;
   item: GridItem;
@@ -31,8 +36,14 @@ interface SkillsBlockProps {
 
 export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
   const blockClasses = useBlockStyles();
-  const toBeShownSkills = props.skills.data.length === 0 && props.skills.title === "" ? dummySkills : props.skills;
-  console.log(toBeShownSkills.chipSize);
+
+  // Check For Empty Skills
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isSkillsEmpty(props.skills));
+  }, [props.skills]);
+
+  const toBeShownSkills = isEmpty ? dummySkills : props.skills;
 
   return (
     <div
@@ -45,7 +56,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
     >
       <div className={blockClasses.blockWrapper}>
         <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
-          <BlockTitle formStyles={props.formStyles} title={toBeShownSkills.title} />
+          <BlockTitle formStyles={props.formStyles} title={toBeShownSkills.title} isOpaque={isEmpty} />
           <RemoveBlockButton
             item={props.item}
             removeItem={props.removeItem}
@@ -92,7 +103,14 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
 
 export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
   const blockClasses = useBlockStyles();
-  const toBeShownSkills = props.skills.data.length === 0 && props.skills.title === "" ? dummySkills : props.skills;
+
+  // Check For Empty Skills
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isSkillsEmpty(props.skills));
+  }, [props.skills]);
+
+  const toBeShownSkills = isEmpty ? dummySkills : props.skills;
 
   return (
     <div
@@ -105,7 +123,7 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
     >
       <div className={blockClasses.blockWrapper}>
         <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
-          <BlockTitle formStyles={props.formStyles} title={toBeShownSkills.title} />
+          <BlockTitle formStyles={props.formStyles} title={toBeShownSkills.title} isOpaque={isEmpty} />
           <RemoveBlockButton
             item={props.item}
             removeItem={props.removeItem}

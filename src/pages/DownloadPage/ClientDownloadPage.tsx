@@ -87,15 +87,14 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
       <AppBarHeader />
       &nbsp;
       <div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
           <div
-            style={
-              {
-                // border: "1px solid #5b6be6",
-                // borderRadius: 5,
-                // boxShadow: "1px 2px 2px 2px #000",
-              }
-            }
+            style={{
+              border: "1px solid #5b6be6",
+              borderRadius: 5,
+              width: "218mm",
+              // boxShadow: "1px 2px 2px 2px #000",
+            }}
           >
             <div ref={componentRef} style={{ position: "relative", width: "210mm", height: "297mm", margin: 20 }}>
               {itemsArray.map((item: any) => {

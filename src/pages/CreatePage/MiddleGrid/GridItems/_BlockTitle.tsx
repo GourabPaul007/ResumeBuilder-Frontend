@@ -4,6 +4,7 @@ import { FormStyles } from "../../../../interfaces/FormStyles";
 interface BlockTitleProps {
   title: string;
   formStyles: FormStyles;
+  isOpaque: boolean;
   flipped?: boolean;
 }
 
@@ -23,6 +24,7 @@ export const BlockTitle: React.FC<BlockTitleProps> = (props) => {
           marginBottom: 4,
           marginLeft: props.flipped ? "auto" : "0px",
           borderRadius: props.formStyles.titleFilled ? 5 : 0,
+          opacity: props.isOpaque ? 0.5 : 1,
         }}
       >
         <h2
