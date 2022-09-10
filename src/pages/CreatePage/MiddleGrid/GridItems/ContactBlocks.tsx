@@ -12,10 +12,10 @@ import { getIcon } from "../../../../helpers/Icons";
 import { BlockTitle } from "./_BlockTitle";
 
 const dummyContact: ContactBlock = {
-  title: "Dummy Contact",
+  title: "Contact Title",
   flipped: false,
   data: {
-    address: ["123 Main Rd, Address State"],
+    address: ["123 Rd, City, State"],
     emails: ["abc@example.com", "github.com/JohnDoe"],
     phno: "+00 1234567890",
   },
@@ -27,9 +27,9 @@ const dummyContact: ContactBlock = {
 
 const isEmptyContact = (contact: ContactBlock) => {
   if (
-    contact.data.address.join() === "" &&
+    contact.data.address.join("") === "" &&
     contact.data.phno === "" &&
-    contact.data.emails.join() === "" &&
+    contact.data.emails.join("") === "" &&
     contact.title === ""
   )
     return true;
@@ -62,6 +62,7 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
         color: toBeShownContact.style.textColor,
         height: "100%",
         width: "100%",
+        opacity: isEmpty ? 0.5 : 1,
       }}
     >
       <div className={blockClasses.blockWrapper}>
@@ -70,7 +71,12 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
           <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         ) : (
           <div style={{ display: "flex", flexDirection: toBeShownContact.flipped ? "row-reverse" : "row" }}>
-            <BlockTitle formStyles={props.formStyles} title={toBeShownContact.title} isOpaque={isEmpty} />
+            {/* Need to check props.contact.title because toBeShownContact will always have a title */}
+            {props.contact.title === "" ? (
+              <BlockTitle formStyles={props.formStyles} title={""} isOpaque={isEmpty} />
+            ) : (
+              <BlockTitle formStyles={props.formStyles} title={toBeShownContact.title} isOpaque={isEmpty} />
+            )}
             <RemoveBlockButton
               item={props.item}
               removeItem={props.removeItem}
@@ -164,6 +170,7 @@ export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
         color: toBeShownContact.style.textColor,
         height: "100%",
         width: "100%",
+        opacity: isEmpty ? 0.5 : 1,
       }}
     >
       <div className={blockClasses.blockWrapper}>
@@ -172,7 +179,12 @@ export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
           <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         ) : (
           <div style={{ display: "flex", flexDirection: toBeShownContact.flipped ? "row-reverse" : "row" }}>
-            <BlockTitle formStyles={props.formStyles} title={toBeShownContact.title} isOpaque={isEmpty} />
+            {/* Need to check props.contact.title because toBeShownContact will always have a title */}
+            {props.contact.title === "" ? (
+              <BlockTitle formStyles={props.formStyles} title={""} isOpaque={isEmpty} />
+            ) : (
+              <BlockTitle formStyles={props.formStyles} title={toBeShownContact.title} isOpaque={isEmpty} />
+            )}
             <RemoveBlockButton
               item={props.item}
               removeItem={props.removeItem}

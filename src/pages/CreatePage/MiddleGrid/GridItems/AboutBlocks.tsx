@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { v1 as uuidv1 } from "uuid";
 import { RemoveBlockButton } from "../../../../Components/CustomPageComponents";
 import { GridItem } from "../../../../interfaces/GridItem";
@@ -20,8 +20,7 @@ const dummyAbout = {
 
 const isEmptyAbout = (about: About) => {
   if (about.about === "" && about.name === "" && about.profession === "") return true;
-  else return false;
-  // return true;
+  return false;
 };
 
 interface AboutProps {
@@ -34,6 +33,12 @@ interface AboutProps {
 export const AboutBlock1: React.FC<AboutProps> = (props) => {
   const blockClasses = useBlockStyles({ formStyles: props.formStyles });
 
+  // Check For Empty About
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isEmptyAbout(props.about));
+  }, [props.about]);
+
   const toBeShownAbout = isEmptyAbout(props.about) ? dummyAbout : props.about;
 
   return (
@@ -43,6 +48,7 @@ export const AboutBlock1: React.FC<AboutProps> = (props) => {
         color: toBeShownAbout.style.textColor,
         height: "100%",
         width: "100%",
+        opacity: isEmpty ? 0.5 : 1,
       }}
     >
       <div className={blockClasses.blockWrapper}>

@@ -8,19 +8,19 @@ import { useBlockStyles } from "./_BlockStyles";
 import { BlockTitle } from "./_BlockTitle";
 
 const dummyEducations: Educations = {
-  title: "Bruh Education",
+  title: "Education Title",
   data: [
     {
       id: "education001",
       courseName: "Bachelor of Science in Computer Science",
-      organizationName: "Dinabandhu Mahabidyalaya",
+      organizationName: "Stanford University",
       courseDuration: "2019 - 2022",
       courseResults: "Cumulative CGPA 9.00",
     },
     {
       id: "education002",
       courseName: "Higher Secondary Science Stream",
-      organizationName: "Bangaon Higher Secondary School",
+      organizationName: "Palo Alto High School",
       courseDuration: "2017 - 2019",
       courseResults: "Result Percentage 72%",
     },

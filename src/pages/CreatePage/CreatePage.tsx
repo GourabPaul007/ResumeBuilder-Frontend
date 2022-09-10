@@ -63,7 +63,7 @@ const CreatePage: React.FC = (props) => {
     },
   });
   const [contact1, setContact1] = useState<ContactBlock>({
-    title: "Contact1",
+    title: "",
     flipped: false,
     data: { address: [""], emails: [""], phno: "" },
     style: {
@@ -72,7 +72,7 @@ const CreatePage: React.FC = (props) => {
     },
   });
   const [contact2, setContact2] = useState<ContactBlock>({
-    title: "Contact1",
+    title: "",
     flipped: false,
     data: { address: [""], emails: [""], phno: "" },
     style: {
