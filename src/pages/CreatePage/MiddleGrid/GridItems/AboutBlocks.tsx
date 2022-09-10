@@ -48,14 +48,15 @@ export const AboutBlock1: React.FC<AboutProps> = (props) => {
         color: toBeShownAbout.style.textColor,
         height: "100%",
         width: "100%",
-        opacity: isEmpty ? 0.5 : 1,
       }}
     >
       <div className={blockClasses.blockWrapper}>
-        <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{toBeShownAbout.name}</h1>
-        <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{toBeShownAbout.profession}</p>
+        <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block", opacity: isEmpty ? 0.5 : 1 }}>
+          {toBeShownAbout.name}
+        </h1>
+        <p style={{ display: "inline-block", opacity: isEmpty ? 0.5 : 1 }}>&nbsp;&nbsp;{toBeShownAbout.profession}</p>
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
-        <div style={{ fontWeight: 500, fontSize: 15, marginTop: 8 }}>
+        <div style={{ fontWeight: 500, fontSize: 15, marginTop: 8, opacity: isEmpty ? 0.5 : 1 }}>
           {/* the about extra */}
           <div style={{ paddingRight: 4, paddingLeft: 4 }}>
             <p>{toBeShownAbout.about}</p>

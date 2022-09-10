@@ -62,7 +62,6 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
         color: toBeShownContact.style.textColor,
         height: "100%",
         width: "100%",
-        opacity: isEmpty ? 0.5 : 1,
       }}
     >
       <div className={blockClasses.blockWrapper}>
@@ -94,6 +93,7 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
             fontWeight: 500,
             fontSize: 15,
             marginTop: toBeShownContact.title === "" ? 24 : 0,
+            opacity: isEmpty ? 0.5 : 1,
           }}
         >
           <div
@@ -170,7 +170,6 @@ export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
         color: toBeShownContact.style.textColor,
         height: "100%",
         width: "100%",
-        opacity: isEmpty ? 0.5 : 1,
       }}
     >
       <div className={blockClasses.blockWrapper}>
@@ -202,6 +201,7 @@ export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
             fontWeight: 500,
             fontSize: 15,
             marginTop: toBeShownContact.title === "" ? 24 : 0,
+            opacity: isEmpty ? 0.5 : 1,
           }}
         >
           <div
