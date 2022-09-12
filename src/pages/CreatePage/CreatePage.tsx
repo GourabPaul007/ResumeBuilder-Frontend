@@ -185,8 +185,17 @@ const CreatePage: React.FC = (props) => {
   useEffect(() => {
     const itemsArray = JSON.parse(localStorage.getItem("ItemsArray") as string);
     if (itemsArray && itemsArray.length != 0) {
-      // console.log(itemsArray);
-      // itemsArray.forEach((item: GridItem) => addItem(item.name, item.x, item.y, item.w, item.h, item.data, true));
+      // remove already existing items if any
+      if (items.length > 0 || layout.length > 0) {
+        items.forEach((singleItem) => {
+          removeItem(singleItem);
+        });
+      }
+      console.log("localStorage itemsArray: ", itemsArray);
+      itemsArray.forEach((item: GridItem) => {
+        console.log(item);
+        addItem(item.name, item.x, item.y, item.w, item.h, item.data, true);
+      });
     }
     // setAboutWithContact1({
     //   name: "Gourab Paul",
@@ -450,8 +459,6 @@ const CreatePage: React.FC = (props) => {
     data: any,
     isResizable: boolean
   ) {
-    console.log("NAME", name);
-
     // add to Items
     for (let i = 0; i < items.length; i++) {
       const element = items[i];
@@ -461,11 +468,9 @@ const CreatePage: React.FC = (props) => {
         return;
       }
     }
-    let newItems = items;
     // FINALLY AAAAAAAAAAAAAAAAAAAAAAAAAAA
-    newItems = [
-      ...items,
-      {
+    setItems((oldItems) =>
+      oldItems.concat({
         name: name,
         i: name,
         x: x,
@@ -474,22 +479,8 @@ const CreatePage: React.FC = (props) => {
         h: height,
         isResizable: isResizable ? true : false,
         data: data ? data : {},
-      },
-    ];
-    setItems(
-      newItems
-      // items.concat({
-      //   name: name,
-      //   i: name,
-      //   x: x,
-      //   y: y,
-      //   w: width,
-      //   h: height,
-      //   isResizable: isResizable ? true : false,
-      //   data: data ? data : {},
-      // })
+      })
     );
-    console.log("newItems", newItems);
 
     // Add to Form
     const newFormsArray = forms;
@@ -516,7 +507,7 @@ const CreatePage: React.FC = (props) => {
         // remove From Forms Array
         const newItemsNameArray = newItems.map((item) => item.i);
         if (newItemsNameArray.includes(toBeRemovedItem.i)) {
-          // console.log("Another item with same form exists", newItemsNameArray);
+          console.log("Another item with same form exists", newItemsNameArray);
         } else {
           console.log("Removing Form", toBeRemovedItem.i);
           setForms(forms.filter((formItem) => formItem != toBeRemovedItem.i)); // remove from form array where matches the `toBeRemovedItemName`
