@@ -22,7 +22,7 @@ const dummySkills: Skills = {
 };
 
 const isSkillsEmpty = (skills: Skills): boolean => {
-  if (skills.data.length === 0 && skills.title === "") return true;
+  if (skills.data.join("") === "" && skills.title === "") return true;
   return false;
 };
 
@@ -73,7 +73,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
             display: "flex",
             flexFlow: "wrap",
             flexDirection: props.skills.flipped ? "row-reverse" : "row",
-            // opacity: props.skills.data.length == 0 ? 0.1 : 1,
+            opacity: isEmpty ? 0.5 : 1,
           }}
         >
           {toBeShownSkills.data.map((eachSkill: string, index: number) => {
@@ -140,7 +140,7 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
             display: "flex",
             flexFlow: "wrap",
             flexDirection: props.skills.flipped ? "row-reverse" : "row",
-            // opacity: props.skills.data.length == 0 ? 0.1 : 1,
+            opacity: isEmpty ? 0.5 : 1,
           }}
         >
           {toBeShownSkills.data.map((eachSkill: string, index: number) => {

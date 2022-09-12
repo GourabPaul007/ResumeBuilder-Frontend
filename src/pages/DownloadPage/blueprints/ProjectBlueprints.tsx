@@ -40,11 +40,9 @@ export const ProjectsBlueprint1: React.FC<ProjectsBlueprintProps> = (props) => {
         return (
           <div key={eachProject.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 14 }}>
             {/* Project Name */}
-            <h4 style={{ fontSize: 20, fontWeight: 600, marginLeft: 8, marginBottom: 8, marginTop: 12 }}>
-              {eachProject.projectName}
-            </h4>
+            <h4 style={{ fontSize: 20 }}>{eachProject.projectName}</h4>
             {/* Project Details */}
-            <div style={{ margin: "4px 0px 4px 16px", fontWeight: 500 }}>
+            <div style={{ margin: "4px 0px 8px 16px", fontWeight: 500 }}>
               {eachProject.projectDetails.map((detail: string) => {
                 return (
                   <div

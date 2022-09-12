@@ -394,7 +394,7 @@ const CreatePage: React.FC = (props) => {
   const makeItemsArray = () => {
     const finalItems: { name: string; x: number; y: number; w: number; h: number; data: any }[] = [];
     layout.forEach((element: any) => {
-      const elementName = element.i.substring(0, element.i.indexOf("function"));
+      const elementName = element.i.substring(0, element.i.indexOf("function") - 1);
 
       finalItems.push({
         name: elementName,
@@ -458,6 +458,8 @@ const CreatePage: React.FC = (props) => {
     data: any,
     isResizable: boolean
   ) {
+    console.log("NAME", name);
+
     // add to Items
     for (let i = 0; i < items.length; i++) {
       const element = items[i];
@@ -495,7 +497,7 @@ const CreatePage: React.FC = (props) => {
       //   data: data ? data : {},
       // })
     );
-    console.log("items", items);
+    console.log("newItems", newItems);
 
     // Add to Form
     const newFormsArray = forms;
