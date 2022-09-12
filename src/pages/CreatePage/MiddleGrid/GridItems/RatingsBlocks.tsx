@@ -22,7 +22,6 @@ const dummyRatings: Ratings = {
     { id: "1", ratingSubject: "English", rateInPercentage: 75 },
     { id: "2", ratingSubject: "Hindi", rateInPercentage: 75 },
     { id: "3", ratingSubject: "Bengali", rateInPercentage: 100 },
-    { id: "4", ratingSubject: "Milf", rateInPercentage: 100 },
   ],
   style: {
     bgColor: "#fff",
@@ -81,7 +80,7 @@ export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
               flipped={props.ratings.flipped}
             />
           )}
-          <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500 }}>
+          <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500, opacity: isEmpty ? 0.5 : 1 }}>
             {toBeShownRatings.data.map((eachRating, i) => {
               return (
                 <div
@@ -155,7 +154,7 @@ export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
             />
           </div>
 
-          <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500 }}>
+          <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500, opacity: isEmpty ? 0.5 : 1 }}>
             {toBeShownRatings.data.map((eachRating, i) => {
               return (
                 <div

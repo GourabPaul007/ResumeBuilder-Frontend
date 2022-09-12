@@ -152,30 +152,22 @@ const CreatePage: React.FC = (props) => {
     },
   });
   const [ratings1, setRatings1] = useState<Ratings>({
-    title: "Language",
+    title: "",
     ratingType: "star",
     icon: "star",
     flipped: false,
-    data: [
-      { id: `rating${Date.now()}`, ratingSubject: "English", rateInPercentage: 75 },
-      { id: `rating${Date.now()}`, ratingSubject: "Hindi", rateInPercentage: 75 },
-      { id: `rating${Date.now()}`, ratingSubject: "Bengali", rateInPercentage: 100 },
-    ],
+    data: [],
     style: {
       bgColor: "#ffffff",
       textColor: "#000000",
     },
   });
   const [ratings2, setRatings2] = useState<Ratings>({
-    title: "Ratings #2",
+    title: "",
     ratingType: "star",
     icon: "circle",
     flipped: false,
-    data: [
-      { id: `rating${Date.now()}`, ratingSubject: "English", rateInPercentage: 75 },
-      { id: `rating${Date.now()}`, ratingSubject: "Hindi", rateInPercentage: 75 },
-      { id: `rating${Date.now()}`, ratingSubject: "Bengali", rateInPercentage: 100 },
-    ],
+    data: [],
     style: {
       bgColor: "#ffffff",
       textColor: "#000000",
