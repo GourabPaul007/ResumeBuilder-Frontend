@@ -37,7 +37,13 @@ export const WorksBlueprint1: React.FC<WorksBlueprintProps> = (props) => {
           <div key={eachWork.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 15 }}>
             {/* Work Name & Duration*/}
             <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "start" }}>
-              <h4 style={{ fontSize: 20 }}>{eachWork.workOrganizationName}</h4>
+              <span style={{ fontSize: 20 }}>
+                <h4 style={{ display: "inline" }}>{eachWork.workOrganizationName}</h4>
+                {/* <p style={{ display: "inline", fontSize: 14, fontWeight: "normal" }}>,{eachWork.workLocation}</p> */}
+                {eachWork.jobTitle !== "" ? (
+                  <h4 style={{ display: "inline", fontWeight: 500, fontStyle: "italic" }}> — {eachWork.jobTitle}</h4>
+                ) : null}
+              </span>
               <p style={{ color: props.formStyles.accentColor, fontSize: 12, flexShrink: 0, paddingTop: 3 }}>
                 {eachWork.workDuration}
               </p>
@@ -51,6 +57,59 @@ export const WorksBlueprint1: React.FC<WorksBlueprintProps> = (props) => {
                     style={{ display: "flex", flexDirection: "row", justifyContent: "start", alignItems: "start" }}
                   >
                     &bull;&nbsp;{checkHyperlink(detail)}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export const WorksBlueprint2: React.FC<WorksBlueprintProps> = (props) => {
+  const blueprintClasses = useBlueprintStyles({
+    h: props.works.h,
+    x: props.works.x,
+    y: props.works.y,
+    w: props.works.w,
+    bgColor: props.works.data.style.bgColor,
+    textColor: props.works.data.style.textColor,
+  });
+
+  return (
+    <div className={blueprintClasses.blueprintWrapper}>
+      <BlueprintTitle formStyles={props.formStyles} title={props.works.data.title} />
+      {props.works.data.data.map((eachWork: Work) => {
+        return (
+          <div key={eachWork.id} style={{ margin: "12px 0px 8px 8px", fontSize: 15 }}>
+            {/* Work Name & Duration*/}
+            <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "start" }}>
+              <span style={{ display: "inline", fontSize: 18 }}>
+                <h4 style={{ display: "inline" }}>{eachWork.workOrganizationName}</h4>
+                {eachWork.workLocation !== "" ? (
+                  <h4 style={{ display: "inline", fontWeight: 500 }}> , {eachWork.workLocation}</h4>
+                ) : null}
+                {eachWork.jobTitle !== "" ? (
+                  <h4 style={{ display: "inline", fontWeight: 500, fontStyle: "italic" }}>
+                    &nbsp;—&nbsp;{eachWork.jobTitle}
+                  </h4>
+                ) : null}
+              </span>
+            </div>
+            <p style={{ color: props.formStyles.accentColor, fontSize: 12, flexShrink: 0, paddingTop: 3 }}>
+              {eachWork.workDuration}
+            </p>
+            {/* Work Details */}
+            <div style={{ marginBottom: 4, fontWeight: 500 }}>
+              {eachWork.workDetails.map((detail) => {
+                return (
+                  <div
+                    key={detail}
+                    style={{ display: "flex", flexDirection: "row", justifyContent: "start", alignItems: "start" }}
+                  >
+                    {checkHyperlink(detail)}
                   </div>
                 );
               })}

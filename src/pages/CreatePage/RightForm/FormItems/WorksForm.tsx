@@ -40,6 +40,8 @@ export const WorksForm: FC<WorksFormProps> = React.memo((props) => {
         {
           id: `work${Date.now()}`,
           workOrganizationName: "",
+          workLocation: "",
+          jobTitle: "",
           workDetails: [""],
           workDuration: "",
         },
@@ -65,6 +67,24 @@ export const WorksForm: FC<WorksFormProps> = React.memo((props) => {
     const newWorks = props.works.data.map((singleWork: Work, index) => {
       if (pos === index) {
         singleWork.workOrganizationName = organizationName;
+      }
+      return singleWork;
+    });
+    props.setWorks({ ...props.works, data: newWorks });
+  };
+  const handleWorkLocationInput = (workLocation: string, pos: number): void => {
+    const newWorks = props.works.data.map((singleWork: Work, index) => {
+      if (pos === index) {
+        singleWork.workLocation = workLocation;
+      }
+      return singleWork;
+    });
+    props.setWorks({ ...props.works, data: newWorks });
+  };
+  const handleJobTitleInput = (jobTitle: string, pos: number): void => {
+    const newWorks = props.works.data.map((singleWork: Work, index) => {
+      if (pos === index) {
+        singleWork.jobTitle = jobTitle;
       }
       return singleWork;
     });
@@ -116,7 +136,7 @@ export const WorksForm: FC<WorksFormProps> = React.memo((props) => {
             <Grid container>
               <Grid item xs={11}>
                 <Grid container rowSpacing={0} columnSpacing={2}>
-                  <Grid item xs={7}>
+                  <Grid item xs={6}>
                     <TextField
                       size="small"
                       variant="filled"
@@ -130,7 +150,33 @@ export const WorksForm: FC<WorksFormProps> = React.memo((props) => {
                       onChange={(e) => handleWorkOrganizationNameInput(e.target.value, index)}
                     />
                   </Grid>
-                  <Grid item xs={5}>
+                  <Grid item xs={6}>
+                    <TextField
+                      size="small"
+                      variant="filled"
+                      margin="dense"
+                      fullWidth
+                      InputProps={{ classes: { underline: classes.underline } }}
+                      label="Location e.g. New York"
+                      name="location"
+                      value={singleWork.workLocation}
+                      onChange={(e) => handleWorkLocationInput(e.target.value, index)}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      size="small"
+                      variant="filled"
+                      margin="dense"
+                      fullWidth
+                      InputProps={{ classes: { underline: classes.underline } }}
+                      label="Job Title"
+                      name="jobTitle"
+                      value={singleWork.jobTitle}
+                      onChange={(e) => handleJobTitleInput(e.target.value, index)}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
                     <TextField
                       size="small"
                       variant="filled"

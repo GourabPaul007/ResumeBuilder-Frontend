@@ -6,7 +6,7 @@ import { EducationIcon1, EducationIcon2 } from "./LeftMenuIcons/EducationsIcons"
 import { ProjectsIcon1 } from "./LeftMenuIcons/ProjectIcons";
 import { OthersIcon1 } from "./LeftMenuIcons/OthersIcons";
 import { SkillsIcon1, SkillsIcon2 } from "./LeftMenuIcons/SkillsIcons";
-import { WorksIcon1 } from "./LeftMenuIcons/WorksIcons";
+import { WorksIcon1, WorksIcon2 } from "./LeftMenuIcons/WorksIcons";
 import { GridItem } from "../../../interfaces/GridItem";
 import { AboutIcon1 } from "./LeftMenuIcons/AboutIcons";
 import { ContactIcon1, ContactIcon2 } from "./LeftMenuIcons/ContactIcons";
@@ -248,7 +248,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
               Infinity,
               Infinity,
               7,
-              10,
+              11,
               {
                 title: "Educations1",
                 data: [
@@ -438,6 +438,12 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
           }
         >
           <WorksIcon1 />
+        </div>
+        <div
+          className={inItemsArray("works2") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock("works2", Infinity, Infinity, 7, 15, {}, true)}
+        >
+          <WorksIcon2 />
         </div>
         {/* ======================================================================================================= */}
         {/* Projects */}

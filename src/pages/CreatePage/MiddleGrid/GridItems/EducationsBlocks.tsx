@@ -91,7 +91,7 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
                   display: "flex",
                   justifyContent: "start",
                   alignItems: "center",
-                  margin: "0px 0px 8px 0px",
+                  margin: "8px 0px 4px 0px",
                   width: "100%",
                 }}
                 key={course.id}
@@ -109,20 +109,18 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
                   }}
                 >
                   <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "start" }}>
-                    <p style={{ fontWeight: 600, color: toBeShownEducations.style.textColor, marginRight: 30 }}>
+                    <h4 style={{ fontWeight: 600, color: toBeShownEducations.style.textColor, marginRight: 30 }}>
                       {course.organizationName}
-                    </p>
-                    <p style={{ color: props.formStyles.accentColor, fontSize: 12, flexShrink: 0, paddingTop: 3 }}>
+                    </h4>
+                    <p style={{ color: props.formStyles.accentColor, fontSize: 12, flexShrink: 0, paddingTop: 2 }}>
                       {course.courseDuration}
                     </p>
                   </div>
 
-                  <p style={{ fontWeight: 500, color: toBeShownEducations.style.textColor, margin: 0, fontSize: 13 }}>
+                  <p style={{ fontWeight: 500, color: toBeShownEducations.style.textColor, margin: 0 }}>
                     {course.courseName}
                   </p>
-                  <p style={{ fontWeight: 500, color: toBeShownEducations.style.textColor, fontSize: 13 }}>
-                    {course.courseResults}
-                  </p>
+                  <p style={{ fontWeight: 500, color: toBeShownEducations.style.textColor }}>{course.courseResults}</p>
                 </div>
               </div>
             );

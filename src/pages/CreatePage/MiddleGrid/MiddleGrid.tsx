@@ -24,7 +24,7 @@ import { Theme } from "@mui/material/styles";
 import { SkillsBlock1, SkillsBlock2 } from "./GridItems/SkillsBlocks";
 import { EducationsBlock1, EducationsBlock2 } from "./GridItems/EducationsBlocks";
 import { AboutWithContactBlock1, AboutWithContactBlock2 } from "./GridItems/AboutWithContactBlocks";
-import { WorksBlock1 } from "./GridItems/WorksBlocks";
+import { WorksBlock1, WorksBlock2 } from "./GridItems/WorksBlocks";
 import { OthersBlock1 } from "./GridItems/OthersBlocks";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -68,6 +68,7 @@ interface MiddleGridProps {
   educations1: Educations;
   educations2: Educations;
   works1: Works;
+  works2: Works;
   projects1: Projects;
   ratings1: Ratings;
   ratings2: Ratings;
@@ -177,6 +178,16 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             removeItem={props.removeItem}
             item={item}
             works={props.works1}
+            formStyles={props.formStyles}
+          />
+        );
+      case "works2":
+        return (
+          <WorksBlock2
+            blockTitle={"Work #2"}
+            removeItem={props.removeItem}
+            item={item}
+            works={props.works2}
             formStyles={props.formStyles}
           />
         );

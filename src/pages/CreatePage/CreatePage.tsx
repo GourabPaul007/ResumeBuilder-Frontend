@@ -84,7 +84,7 @@ const CreatePage: React.FC = (props) => {
     color: "#123456",
     title: "",
     chipRadius: 10,
-    chipSize: 5,
+    chipSize: 4,
     filled: true,
     flipped: false,
     data: [],
@@ -97,8 +97,8 @@ const CreatePage: React.FC = (props) => {
     color: "#123456",
     title: "",
     chipRadius: 10,
-    chipSize: 5,
-    filled: true,
+    chipSize: 4,
+    filled: false,
     flipped: false,
     data: [],
     style: {
@@ -128,7 +128,33 @@ const CreatePage: React.FC = (props) => {
   });
   const [works1, setWorks1] = useState<Works>({
     title: "",
-    data: [{ id: `work${Date.now()}`, workOrganizationName: "", workDetails: [""], workDuration: "" }],
+    data: [
+      {
+        id: `work${Date.now()}`,
+        workOrganizationName: "",
+        workLocation: "",
+        jobTitle: "",
+        workDetails: [""],
+        workDuration: "",
+      },
+    ],
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
+  });
+  const [works2, setWorks2] = useState<Works>({
+    title: "",
+    data: [
+      {
+        id: `work${Date.now()}`,
+        workOrganizationName: "",
+        workLocation: "",
+        jobTitle: "",
+        workDetails: [""],
+        workDuration: "",
+      },
+    ],
     style: {
       bgColor: "#ffffff",
       textColor: "#000000",
@@ -425,6 +451,8 @@ const CreatePage: React.FC = (props) => {
               return skills2;
             case "works1":
               return works1;
+            case "works2":
+              return works2;
             case "projects1":
               return projects1;
             case "ratings1":
@@ -539,6 +567,7 @@ const CreatePage: React.FC = (props) => {
             educations1={educations1}
             educations2={educations2}
             works1={works1}
+            works2={works2}
             projects1={projects1}
             ratings1={ratings1}
             ratings2={ratings2}
@@ -572,6 +601,8 @@ const CreatePage: React.FC = (props) => {
             setEducations2={setEducations2}
             works1={works1}
             setWorks1={setWorks1}
+            works2={works2}
+            setWorks2={setWorks2}
             projects1={projects1}
             setProjects1={setProjects1}
             others1={others1}

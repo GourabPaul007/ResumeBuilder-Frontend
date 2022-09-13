@@ -7,11 +7,39 @@ import { Skills } from "../../../../interfaces/Skills";
 import { useBlockStyles } from "./_BlockStyles";
 import { BlockTitle } from "./_BlockTitle";
 
-const dummySkills: Skills = {
+const dummySkills1: Skills = {
+  color: "#123456",
+  title: "Skills Title",
+  chipRadius: 10,
+  chipSize: 4,
+  filled: true,
+  flipped: false,
+  data: ["HTML/CSS/JSS", "TypeScript", "ReactJS", "Flutter", "NodeJS", "ExpressJS", "MySql", "MongoDB", "Sqlite"],
+  style: {
+    bgColor: "#ffffff",
+    textColor: "#000000",
+  },
+};
+
+const dummySkills2: Skills = {
+  color: "#ff5656",
+  title: "Skills Title",
+  chipRadius: 16,
+  chipSize: 4,
+  filled: false,
+  flipped: false,
+  data: ["HTML/CSS/JSS", "TypeScript", "ReactJS", "Flutter", "NodeJS", "ExpressJS", "MySql", "MongoDB", "Sqlite"],
+  style: {
+    bgColor: "#ffffff",
+    textColor: "#000000",
+  },
+};
+
+const dummySkills3: Skills = {
   color: "#ff5656",
   title: "Skills Title",
   chipRadius: 10,
-  chipSize: 5,
+  chipSize: 4,
   filled: true,
   flipped: false,
   data: ["HTML/CSS/JSS", "TypeScript", "ReactJS", "Flutter", "NodeJS", "ExpressJS", "MySql", "MongoDB", "Sqlite"],
@@ -43,7 +71,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
     setIsEmpty(isSkillsEmpty(props.skills));
   }, [props.skills]);
 
-  const toBeShownSkills = isEmpty ? dummySkills : props.skills;
+  const toBeShownSkills = isEmpty ? dummySkills1 : props.skills;
 
   return (
     <div
@@ -110,7 +138,7 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
     setIsEmpty(isSkillsEmpty(props.skills));
   }, [props.skills]);
 
-  const toBeShownSkills = isEmpty ? dummySkills : props.skills;
+  const toBeShownSkills = isEmpty ? dummySkills2 : props.skills;
 
   return (
     <div
