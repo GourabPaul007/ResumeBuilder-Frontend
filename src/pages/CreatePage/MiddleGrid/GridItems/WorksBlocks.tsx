@@ -94,9 +94,11 @@ export const WorksBlock1: React.FC<WorksBlockProps> = (props) => {
               <div key={eachWork.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 15 }}>
                 {/* Work Name & Duration*/}
                 <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "start" }}>
-                  <span style={{ fontSize: 20 }}>
+                  <span style={{ fontSize: 18 }}>
                     <h4 style={{ display: "inline" }}>{eachWork.workOrganizationName}</h4>
-                    {/* <p style={{ display: "inline", fontSize: 14, fontWeight: "normal" }}>,{eachWork.workLocation}</p> */}
+                    {eachWork.workLocation !== "" ? (
+                      <h4 style={{ display: "inline", fontWeight: 500 }}> , {eachWork.workLocation}</h4>
+                    ) : null}
                     {eachWork.jobTitle !== "" ? (
                       <h4 style={{ display: "inline", fontWeight: 500, fontStyle: "italic" }}>
                         {" "}

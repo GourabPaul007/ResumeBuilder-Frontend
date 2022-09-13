@@ -408,34 +408,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Work History</div>
         <div
           className={inItemsArray("works1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() =>
-            props.addBlock(
-              "works1",
-              Infinity,
-              Infinity,
-              7,
-              10,
-              {
-                title: "Works UseEffect",
-                data: [
-                  {
-                    id: "work1",
-                    workOrganizationName: "Company 1",
-                    workDetails: [
-                      "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
-                      "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
-                    ],
-                    workDuration: "2022 - 2023",
-                  },
-                ],
-                style: {
-                  bgColor: "#ffffff",
-                  textColor: "#000000",
-                },
-              },
-              true
-            )
-          }
+          onClick={() => props.addBlock("works1", Infinity, Infinity, 8, 12, {}, true)}
         >
           <WorksIcon1 />
         </div>
