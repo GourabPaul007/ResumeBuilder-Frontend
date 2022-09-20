@@ -14,6 +14,7 @@ import LoginPage from "./pages/auth/LoginPage";
 import SignupPage from "./pages/auth/SignupPage";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ClientDownloadPage from "./pages/DownloadPage/ClientDownloadPage";
+import ContactPage from "./pages/ContactPage/ContactPage";
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
@@ -100,6 +101,7 @@ const App: React.FC = () => {
           />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
       </BrowserRouter>

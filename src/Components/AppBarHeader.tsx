@@ -52,7 +52,7 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
             <a style={{ fontWeight: 700 }} href="/create" className="fill">
               create
             </a>
-            <a style={{ fontWeight: 700 }} href="/#contact" className="fill">
+            <a style={{ fontWeight: 700 }} href="/contact" className="fill">
               contact
             </a>
             {/* <p style={{ width: "24px" }}></p> */}
