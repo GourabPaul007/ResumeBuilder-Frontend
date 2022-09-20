@@ -9,7 +9,7 @@ import { makeStyles } from "@mui/styles";
 import { AboutWithContact } from "../../../interfaces/AboutWithContact";
 import { Educations } from "../../../interfaces/Educations";
 import { Works } from "../../../interfaces/Works";
-import { ProjectsBlock1 } from "./GridItems/ProjectsBlocks";
+import { ProjectsBlock1, ProjectsBlock2 } from "./GridItems/ProjectsBlocks";
 import { Projects } from "../../../interfaces/Projects";
 import { Skills } from "../../../interfaces/Skills";
 import { FormStyles } from "../../../interfaces/FormStyles";
@@ -70,6 +70,7 @@ interface MiddleGridProps {
   works1: Works;
   works2: Works;
   projects1: Projects;
+  projects2: Projects;
   ratings1: Ratings;
   ratings2: Ratings;
   others1: Others;
@@ -198,6 +199,16 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             removeItem={props.removeItem}
             item={item}
             projects={props.projects1}
+            formStyles={props.formStyles}
+          />
+        );
+      case "projects2":
+        return (
+          <ProjectsBlock2
+            blockTitle={"Projects #2"}
+            removeItem={props.removeItem}
+            item={item}
+            projects={props.projects2}
             formStyles={props.formStyles}
           />
         );

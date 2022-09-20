@@ -168,6 +168,14 @@ const CreatePage: React.FC = (props) => {
       textColor: "#000000",
     },
   });
+  const [projects2, setProjects2] = useState<Projects>({
+    title: "",
+    data: [{ id: `project${Date.now()}`, projectName: "", projectDetails: [""] }],
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
+  });
   const [others1, setOthers1] = useState<Others>({
     title: "",
     bullet: -1,
@@ -455,6 +463,8 @@ const CreatePage: React.FC = (props) => {
               return works2;
             case "projects1":
               return projects1;
+            case "projects2":
+              return projects2;
             case "ratings1":
               return ratings1;
             case "ratings2":
@@ -569,6 +579,7 @@ const CreatePage: React.FC = (props) => {
             works1={works1}
             works2={works2}
             projects1={projects1}
+            projects2={projects2}
             ratings1={ratings1}
             ratings2={ratings2}
             others1={others1}
@@ -605,6 +616,8 @@ const CreatePage: React.FC = (props) => {
             setWorks2={setWorks2}
             projects1={projects1}
             setProjects1={setProjects1}
+            projects2={projects2}
+            setProjects2={setProjects2}
             others1={others1}
             setOthers1={setOthers1}
             ratings1={ratings1}

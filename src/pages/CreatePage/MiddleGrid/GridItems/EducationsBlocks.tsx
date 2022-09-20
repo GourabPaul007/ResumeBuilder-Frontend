@@ -34,10 +34,11 @@ const dummyEducations: Educations = {
 const isEmptyEducations = (educations: Educations) => {
   return educations.data.every((value) => {
     if (
+      educations.title === "" &&
       value.courseName === "" &&
+      value.courseDuration === "" &&
       value.courseResults === "" &&
-      value.organizationName === "" &&
-      educations.title === ""
+      value.organizationName === ""
     ) {
       return true;
     }

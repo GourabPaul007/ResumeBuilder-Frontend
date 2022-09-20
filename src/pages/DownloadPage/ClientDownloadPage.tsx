@@ -12,7 +12,7 @@ import { AboutBlueprint1 } from "./blueprints/aboutBlueprints";
 import { ContactBlueprint1, ContactBlueprint2 } from "./blueprints/ContactBlueprints";
 import { AboutWithContactBlueprint1, AboutWithContactBlueprint2 } from "./blueprints/AboutWithContactBlueprints";
 import { EducationsBlueprint1 } from "./blueprints/EducationBlueprints";
-import { ProjectsBlueprint1 } from "./blueprints/ProjectBlueprints";
+import { ProjectsBlueprint1, ProjectsBlueprint2 } from "./blueprints/ProjectBlueprints";
 import { SkillsBlueprint1, SkillsBlueprint2 } from "./blueprints/SkillsBlueprints";
 import { WorksBlueprint1, WorksBlueprint2 } from "./blueprints/WorksBlueprints";
 import { RatingsBlueprint1, RatingsBlueprint2 } from "./blueprints/RatingsBlueprints";
@@ -73,6 +73,8 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
         return <WorksBlueprint2 key={element.name} works={element} formStyles={formStyles} />;
       case "projects1":
         return <ProjectsBlueprint1 key={element.name} projects={element} formStyles={formStyles} />;
+      case "projects2":
+        return <ProjectsBlueprint2 key={element.name} projects={element} formStyles={formStyles} />;
       case "ratings1":
         return <RatingsBlueprint1 key={element.name} ratings={element} formStyles={formStyles} />;
       case "ratings2":
