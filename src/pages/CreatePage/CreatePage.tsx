@@ -231,198 +231,6 @@ const CreatePage: React.FC = (props) => {
         addItem(item.name, item.x, item.y, item.w, item.h, item.data, true);
       });
     }
-    // setAboutWithContact1({
-    //   name: "Gourab Paul",
-    //   profession: "Software Engineer",
-    //   address: ["Saktigarh, Railgate Rd.", "Bongaon WB 743235"],
-    //   cityZip: "Bangaon WB 743235",
-    //   phno: "+91 9064040525",
-    //   emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
-    //   about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
-    //   style: {
-    //     bgColor: "#123456",
-    //     textColor: "#ffffff",
-    //   },
-    // });
-    // setAboutWithContact2({
-    //   name: "John Doe Two",
-    //   profession: "Software Engineer",
-    //   address: ["Saktigarh, Railgate Rd.", "Bongaon WB 743235"],
-    //   cityZip: "Bangaon WB 743235",
-    //   phno: "+91 9064040525",
-    //   emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
-    //   about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
-    //   style: {
-    //     bgColor: "#123456",
-    //     textColor: "#ffffff",
-    //   },
-    // });
-    // setAbout1({
-    //   name: "Bruh Doe",
-    //   profession: "Bruhware Engineer",
-    //   about:
-    //     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quod dolorem libero reprehenderit maxime maiores officiis? Beatae fuga, quia dolorum sequi accusamus omnis ab corrupti, atque architecto expedita ipsa inventore.",
-    //   style: {
-    //     bgColor: "#ffffff",
-    //     textColor: "#000000",
-    //   },
-    // });
-    // setContact1({
-    //   title: "",
-    //   flipped: true,
-    //   data: {
-    //     address: ["123 BV Rd, California"],
-    //     emails: ["abc@gmail.com", "Github.com/JohnDoe"],
-    //     phno: "123 456 7890",
-    //   },
-    //   style: {
-    //     bgColor: "#ffffff",
-    //     textColor: "#000000",
-    //   },
-    // });
-    // setContact2({
-    //   title: "",
-    //   flipped: false,
-    //   data: {
-    //     address: ["123 BV Rd, California"],
-    //     emails: ["abc@gmail.com", "Github.com/JohnDoe"],
-    //     phno: "123 456 7890",
-    //   },
-    //   style: {
-    //     bgColor: "#ffffff",
-    //     textColor: "#000000",
-    //   },
-    // });
-    // setEducations1({
-    //   title: "EducationsUE #1",
-    //   data: [
-    //     {
-    //       id: "education001",
-    //       courseName: "Bachelor of Science in Computer Science",
-    //       courseDuration: "2019 - 2022",
-    //       organizationName: "Dinabandhu Mahabidyalaya",
-    //       courseResults: "Cumulative CGPA 9.00",
-    //     },
-    //     {
-    //       id: "education002",
-    //       courseName: "Higher Secondary Science Stream",
-    //       courseDuration: "2017 - 2019",
-    //       organizationName: "Bangaon Higher Secondary School",
-    //       courseResults: "Result Percentage 72%",
-    //     },
-    //   ],
-    //   style: {
-    //     bgColor: "#ffffff",
-    //     textColor: "#000000",
-    //   },
-    // });
-    // setEducations2({
-    //   title: "EducationsUE #2",
-    //   data: [
-    //     {
-    //       id: "education001",
-    //       courseName: "Bachelor of Science in Computer Science",
-    //       courseDuration: "2019 - 2022",
-    //       organizationName: "Dinabandhu Mahabidyalaya",
-    //       courseResults: "Cumulative CGPA 9.00",
-    //     },
-    //     {
-    //       id: "education002",
-    //       courseName: "Higher Secondary Science Stream",
-    //       courseDuration: "2017 - 2019",
-    //       organizationName: "Bangaon Higher Secondary School",
-    //       courseResults: "Result Percentage 72%",
-    //     },
-    //   ],
-    //   style: {
-    //     bgColor: "#ffffff",
-    //     textColor: "#000000",
-    //   },
-    // });
-    // setSkills1({
-    //   color: "#ff5656",
-    //   title: "Skills UE",
-    //   chipRadius: 16,
-    //   chipSize: 5,
-    //   filled: true,
-    //   flipped: false,
-    //   data: [
-    //     "Lorem",
-    //     "ipsum",
-    //     "dolor sit",
-    //     "amet",
-    //     "consect",
-    //     "etur",
-    //     "Adipis",
-    //     "icing",
-    //     "Nulla",
-    //     "acusant",
-    //     "officiis",
-    //     "distinct",
-    //   ],
-    //   style: {
-    //     bgColor: "#ffffff",
-    //     textColor: "#000000",
-    //   },
-    // });
-    // setWorks1({
-    //   title: "Works UseEffect",
-    //   data: [
-    //     {
-    //       id: "work1",
-    //       workOrganizationName: "Company 1",
-    //       workDetails: [
-    //         "Lorem ipsum dolor sit amet consectetur adipisicing elit adipisci labore minima doloribus animi.",
-    //         "Excepturi, beatae reprehenderit at doloremque sunt eaque cum aperiam quod exercitationem ipsam quam minus inventore non qui.",
-    //       ],
-    //       workDuration: "2022 - 2023",
-    //     },
-    //   ],
-    //   style: {
-    //     bgColor: "#ffffff",
-    //     textColor: "#000000",
-    //   },
-    // });
-    // setProjects1({
-    //   title: "Projects UseEffect",
-    //   data: [
-    //     {
-    //       id: "projectWed Jan 12 2022 13:38:12 GMT+0530 (India Standard Time)",
-    //       projectName: "Resume Builder",
-    //       projectDetails: [
-    //         "Built a Full-Stack Application to generate pdf files according to Dynamic User Input. Github: FrontEnd(https://github.com/GourabPaul007/ResumeBuilder-Frontend), Backend(https://github.com/GourabPaul007/ResumeBuilder-Backend).",
-    //         "Used Technologies: ReactJS, TS, Material UI, React-Redux, NodeJS, ExpressJS, EJS, TypeScript.",
-    //       ],
-    //     },
-    //     {
-    //       id: "projectWed Jan 12 2022 13:36:24 GMT+0530 (India Standard Time)",
-    //       projectName: "WhatsNote",
-    //       projectDetails: [
-    //         "A WhatsApp like look and feel note taking app built with clean architechture which helps people take detailed notes. Github: Codebase(https://github.com/GourabPaul007/Notebook).",
-    //         "Used Technologies: Flutter, Riverpod.",
-    //       ],
-    //     },
-    //   ],
-    //   style: {
-    //     bgColor: "#ffffff",
-    //     textColor: "#000000",
-    //   },
-    // });
-    // setOthers1({
-    //   title: "Others UseEffect",
-    //   bullet: 9679,
-    //   data: [
-    //     "Lorem ipsum dolor sit amet consectetur.",
-    //     "Adipisicing Nulla repellat dolorum earum.",
-    //     "officiis distinctio ipsa officia soluta.",
-    //     "accusantium exercit ationem.",
-    //   ],
-    //   style: {
-    //     bgColor: "#ffffff",
-    //     textColor: "#000000",
-    //   },
-    // });
-    // addItem(Infinity, Infinity, 8, 8, "about1", true);
   }, []);
 
   // MAKE A COPY OF LAYOUT FOR STUFFS
@@ -529,8 +337,9 @@ const CreatePage: React.FC = (props) => {
     }
     newFormsArray.push(newFormName);
     setForms(newFormsArray);
-    // console.log("forms", forms);
-    // console.log("pushed", items, itemName, forms);
+
+    //Making itemsArray & Saving to localStorage after adding an item
+    makeItemsArray();
   }
 
   function removeItem(toBeRemovedItem: GridItem) {
@@ -552,6 +361,9 @@ const CreatePage: React.FC = (props) => {
         }
       }
     }
+
+    //Making itemsArray & Saving to localStorage after removing an item
+    makeItemsArray();
   }
 
   return (
