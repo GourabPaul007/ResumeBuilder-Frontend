@@ -9,7 +9,7 @@ import { SkillsIcon1, SkillsIcon2 } from "./LeftMenuIcons/SkillsIcons";
 import { WorksIcon1, WorksIcon2 } from "./LeftMenuIcons/WorksIcons";
 import { GridItem } from "../../../interfaces/GridItem";
 import { AboutIcon1 } from "./LeftMenuIcons/AboutIcons";
-import { ContactIcon1, ContactIcon2 } from "./LeftMenuIcons/ContactIcons";
+import { ContactIcon1, ContactIcon2, ContactIcon3 } from "./LeftMenuIcons/ContactIcons";
 import { RatingsIcon1, RatingsIcon2 } from "./LeftMenuIcons/RatingsIcons";
 
 const useStyles = makeStyles((theme) => ({
@@ -182,59 +182,21 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Contact</div>
         <div
           className={inItemsArray("contact1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() =>
-            props.addBlock(
-              "contact1",
-              Infinity,
-              Infinity,
-              4,
-              8,
-              {
-                title: "",
-                flipped: true,
-                data: {
-                  address: ["123 BV Rd, California"],
-                  emails: ["abc@gmail.com", "Github.com/JohnDoe"],
-                  phno: "123 456 7890",
-                },
-                style: {
-                  bgColor: "#ffffff",
-                  textColor: "#000000",
-                },
-              },
-              true
-            )
-          }
+          onClick={() => props.addBlock("contact1", Infinity, Infinity, 4, 8, {}, true)}
         >
           <ContactIcon1 />
         </div>
         <div
           className={inItemsArray("contact2") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() =>
-            props.addBlock(
-              "contact2",
-              Infinity,
-              Infinity,
-              4,
-              8,
-              {
-                title: "",
-                flipped: false,
-                data: {
-                  address: ["123 BV Rd, California"],
-                  emails: ["abc@gmail.com", "Github.com/JohnDoe"],
-                  phno: "123 456 7890",
-                },
-                style: {
-                  bgColor: "#ffffff",
-                  textColor: "#000000",
-                },
-              },
-              true
-            )
-          }
+          onClick={() => props.addBlock("contact2", Infinity, Infinity, 4, 8, {}, true)}
         >
           <ContactIcon2 />
+        </div>
+        <div
+          className={inItemsArray("contact3") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock("contact3", Infinity, Infinity, 4, 8, {}, true)}
+        >
+          <ContactIcon3 />
         </div>
         {/* ======================================================================================================= */}
         {/* Educations */}
@@ -242,77 +204,13 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Education</div>
         <div
           className={inItemsArray("educations1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() =>
-            props.addBlock(
-              "educations1",
-              Infinity,
-              Infinity,
-              7,
-              11,
-              {
-                title: "Educations1",
-                data: [
-                  {
-                    id: "education001",
-                    courseName: "Bachelor of Science in Computer Science",
-                    courseDuration: "2019 - 2022",
-                    organizationName: "Stanford University",
-                    courseResults: "Cumulative CGPA 9.00",
-                  },
-                  {
-                    id: "education002",
-                    courseName: "Higher Secondary Science Stream",
-                    courseDuration: "2017 - 2019",
-                    organizationName: "Palo Alto High School",
-                    courseResults: "Result Percentage 72%",
-                  },
-                ],
-                style: {
-                  bgColor: "#ffffff",
-                  textColor: "#000000",
-                },
-              },
-              true
-            )
-          }
+          onClick={() => props.addBlock("educations1", Infinity, Infinity, 7, 11, {}, true)}
         >
           <EducationIcon1 />
         </div>
         <div
           className={inItemsArray("educations2") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() =>
-            props.addBlock(
-              "educations2",
-              Infinity,
-              Infinity,
-              12,
-              9,
-              {
-                title: "Educations2",
-                data: [
-                  {
-                    id: "education001",
-                    courseName: "Bachelor of Science in Computer Science",
-                    courseDuration: "2019 - 2022",
-                    organizationName: "Stanford University",
-                    courseResults: "Cumulative CGPA 9.00",
-                  },
-                  {
-                    id: "education002",
-                    courseName: "Higher Secondary Science Stream",
-                    courseDuration: "2017 - 2019",
-                    organizationName: "Palo Alto High School",
-                    courseResults: "Result Percentage 72%",
-                  },
-                ],
-                style: {
-                  bgColor: "#ffffff",
-                  textColor: "#000000",
-                },
-              },
-              true
-            )
-          }
+          onClick={() => props.addBlock("educations2", Infinity, Infinity, 12, 9, {}, true)}
         >
           <EducationIcon2 />
         </div>
@@ -440,61 +338,13 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Ratings</div>
         <div
           className={inItemsArray("ratings1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() =>
-            props.addBlock(
-              "ratings1",
-              Infinity,
-              Infinity,
-              5,
-              10,
-              {
-                title: "Language1",
-                ratingType: "star",
-                icon: "star",
-                flipped: false,
-                data: [
-                  { id: `rating${Date.now()}`, ratingSubject: "English", rateInPercentage: 75 },
-                  { id: `rating${Date.now()}`, ratingSubject: "Hindi", rateInPercentage: 75 },
-                  { id: `rating${Date.now()}`, ratingSubject: "Bengali", rateInPercentage: 100 },
-                ],
-                style: {
-                  bgColor: "#ffffff",
-                  textColor: "#000000",
-                },
-              },
-              true
-            )
-          }
+          onClick={() => props.addBlock("ratings1", Infinity, Infinity, 5, 10, {}, true)}
         >
           <RatingsIcon1 />
         </div>
         <div
           className={inItemsArray("ratings2") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() =>
-            props.addBlock(
-              "ratings2",
-              Infinity,
-              Infinity,
-              4,
-              11,
-              {
-                title: "Ratings2",
-                ratingType: "star",
-                icon: "star",
-                flipped: false,
-                data: [
-                  { id: `rating${Date.now()}`, ratingSubject: "English", rateInPercentage: 75 },
-                  { id: `rating${Date.now()}`, ratingSubject: "Hindi", rateInPercentage: 75 },
-                  { id: `rating${Date.now()}`, ratingSubject: "Bengali", rateInPercentage: 100 },
-                ],
-                style: {
-                  bgColor: "#ffffff",
-                  textColor: "#000000",
-                },
-              },
-              true
-            )
-          }
+          onClick={() => props.addBlock("ratings2", Infinity, Infinity, 4, 11, {}, true)}
         >
           <RatingsIcon2 />
         </div>
@@ -504,30 +354,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Others</div>
         <div
           className={inItemsArray("others1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() =>
-            props.addBlock(
-              "others1",
-              Infinity,
-              Infinity,
-              6,
-              10,
-              {
-                title: "Others UseEffect",
-                bullet: 9679,
-                data: [
-                  "Lorem ipsum dolor sit amet consectetur.",
-                  "Adipisicing Nulla repellat dolorum earum.",
-                  "officiis distinctio ipsa officia soluta.",
-                  "accusantium exercit ationem.",
-                ],
-                style: {
-                  bgColor: "#ffffff",
-                  textColor: "#000000",
-                },
-              },
-              true
-            )
-          }
+          onClick={() => props.addBlock("others1", Infinity, Infinity, 6, 10, {}, true)}
         >
           <OthersIcon1 />
         </div>

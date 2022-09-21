@@ -35,3 +35,14 @@ export const ContactIcon2: React.FC = () => {
     </svg>
   );
 };
+
+export const ContactIcon3: React.FC = () => {
+  return (
+    <svg fill="none" viewBox="0 0 250 150">
+      <rect x={70} y={50} width={110} height={5} rx={2} fill="#646464" />
+      <rect x={80} y={65} width={90} height={5} rx={2} fill="#646464" />
+      <rect x={70} y={80} width={110} height={5} rx={2} fill="#646464" />
+      <rect x={65} y={95} width={120} height={5} rx={2} fill="#646464" />
+    </svg>
+  );
+};

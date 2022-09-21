@@ -80,6 +80,15 @@ const CreatePage: React.FC = (props) => {
       textColor: "#000000",
     },
   });
+  const [contact3, setContact3] = useState<ContactBlock>({
+    title: "",
+    flipped: false,
+    data: { address: [""], emails: [""], phno: "" },
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
+  });
   const [skills1, setSkills1] = useState<Skills>({
     color: "#123456",
     title: "",
@@ -257,6 +266,8 @@ const CreatePage: React.FC = (props) => {
               return contact1;
             case "contact2":
               return contact2;
+            case "contact3":
+              return contact3;
             case "educations1":
               return educations1;
             case "educations2":
@@ -384,6 +395,7 @@ const CreatePage: React.FC = (props) => {
             about1={about1}
             contact1={contact1}
             contact2={contact2}
+            contact3={contact3}
             skills1={skills1}
             skills2={skills2}
             educations1={educations1}
@@ -414,6 +426,8 @@ const CreatePage: React.FC = (props) => {
             setContact1={setContact1}
             contact2={contact2}
             setContact2={setContact2}
+            contact3={contact3}
+            setContact3={setContact3}
             skills1={skills1}
             setSkills1={setSkills1}
             skills2={skills2}

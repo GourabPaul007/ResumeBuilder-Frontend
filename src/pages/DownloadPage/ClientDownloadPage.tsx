@@ -9,7 +9,7 @@ import { getAuth } from "firebase/auth";
 import { useReactToPrint } from "react-to-print";
 import { FormStyles } from "../../interfaces/FormStyles";
 import { AboutBlueprint1 } from "./blueprints/aboutBlueprints";
-import { ContactBlueprint1, ContactBlueprint2 } from "./blueprints/ContactBlueprints";
+import { ContactBlueprint1, ContactBlueprint2, ContactBlueprint3 } from "./blueprints/ContactBlueprints";
 import { AboutWithContactBlueprint1, AboutWithContactBlueprint2 } from "./blueprints/AboutWithContactBlueprints";
 import { EducationsBlueprint1 } from "./blueprints/EducationBlueprints";
 import { ProjectsBlueprint1, ProjectsBlueprint2 } from "./blueprints/ProjectBlueprints";
@@ -59,6 +59,8 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
         return <ContactBlueprint1 key={element.name} contact={element} formStyles={formStyles} />;
       case "contact2":
         return <ContactBlueprint2 key={element.name} contact={element} formStyles={formStyles} />;
+      case "contact3":
+        return <ContactBlueprint3 key={element.name} contact={element} formStyles={formStyles} />;
       case "educations1":
         return <EducationsBlueprint1 key={element.name} educations={element} formStyles={formStyles} />;
       case "educations2":

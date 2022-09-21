@@ -52,6 +52,8 @@ interface RightFormProps {
   setContact1: Dispatch<React.SetStateAction<ContactBlock>>;
   contact2: ContactBlock;
   setContact2: Dispatch<React.SetStateAction<ContactBlock>>;
+  contact3: ContactBlock;
+  setContact3: Dispatch<React.SetStateAction<ContactBlock>>;
   educations1: Educations;
   setEducations1: Dispatch<React.SetStateAction<Educations>>;
   educations2: Educations;
@@ -108,6 +110,8 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
         return <ContactForm contact={props.contact1} setContact={props.setContact1} formTitle={"Contact #1"} />;
       case "contact2":
         return <ContactForm contact={props.contact2} setContact={props.setContact2} formTitle={"Contact #2"} />;
+      case "contact3":
+        return <ContactForm contact={props.contact3} setContact={props.setContact3} formTitle={"Contact #3"} />;
       case "skills1":
         return <SkillsForm skills={props.skills1} setSkills={props.setSkills1} formTitle={"Skills #1"} />;
       case "skills2":

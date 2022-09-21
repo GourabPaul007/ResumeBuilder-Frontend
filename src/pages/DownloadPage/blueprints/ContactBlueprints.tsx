@@ -185,3 +185,71 @@ export const ContactBlueprint2: React.FC<ContactBlueprintProps> = (props) => {
     </div>
   );
 };
+
+export const ContactBlueprint3: React.FC<ContactBlueprintProps> = (props) => {
+  const blueprintClasses = useBlueprintStyles({
+    h: props.contact.h,
+    x: props.contact.x,
+    y: props.contact.y,
+    w: props.contact.w,
+    bgColor: props.contact.data.style.bgColor,
+    textColor: props.contact.data.style.textColor,
+  });
+
+  return (
+    <div className={blueprintClasses.blueprintWrapper}>
+      {/* The Title */}
+      <BlueprintTitle
+        title={props.contact.data.title}
+        formStyles={props.formStyles}
+        flipped={props.contact.data.flipped}
+        center={true}
+      />
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          fontWeight: 500,
+          fontSize: 15,
+          marginTop: 0,
+          lineHeight: 1,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            margin: 4,
+          }}
+        >
+          {props.contact.data.data.address}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            margin: 4,
+          }}
+        >
+          {props.contact.data.data.phno}
+        </div>
+        {props.contact.data.data.emails.map((eachLink) => {
+          return (
+            <div
+              key={eachLink}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                margin: 4,
+              }}
+            >
+              {eachLink}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};

@@ -259,3 +259,99 @@ export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
     </div>
   );
 };
+
+export const ContactBlock3: React.FC<ContactBlockProps> = (props) => {
+  const blockClasses = useBlockStyles();
+
+  // Check For Empty Contact
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setIsEmpty(isEmptyContact(props.contact));
+  }, [props.contact]);
+
+  const toBeShownContact = isEmpty ? dummyContact : props.contact;
+
+  return (
+    <div
+      style={{
+        backgroundColor: toBeShownContact.style.bgColor,
+        color: toBeShownContact.style.textColor,
+        height: "100%",
+        width: "100%",
+      }}
+    >
+      <div className={blockClasses.blockWrapper}>
+        {/* The Title */}
+        {toBeShownContact.title === "" ? (
+          <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+        ) : (
+          <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
+            {/* Need to check props.contact.title because toBeShownContact will always have a title */}
+            {props.contact.title === "" ? (
+              <BlockTitle formStyles={props.formStyles} title={""} isOpaque={isEmpty} />
+            ) : (
+              <BlockTitle
+                formStyles={props.formStyles}
+                title={toBeShownContact.title}
+                isOpaque={isEmpty}
+                center={true}
+              />
+            )}
+            <RemoveBlockButton
+              item={props.item}
+              removeItem={props.removeItem}
+              blockTitle={props.blockTitle}
+              flipped={toBeShownContact.flipped}
+            />
+          </div>
+        )}
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            fontWeight: 500,
+            fontSize: 15,
+            marginTop: 0,
+            opacity: isEmpty ? 0.5 : 1,
+            lineHeight: 1,
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              margin: 4,
+            }}
+          >
+            {toBeShownContact.data.address}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              margin: 4,
+            }}
+          >
+            {toBeShownContact.data.phno}
+          </div>
+          {toBeShownContact.data.emails.map((eachLink) => {
+            return (
+              <div
+                key={eachLink}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  margin: 4,
+                }}
+              >
+                {eachLink}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
