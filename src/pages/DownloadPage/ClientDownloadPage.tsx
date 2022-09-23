@@ -102,7 +102,7 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
               // boxShadow: "1px 2px 2px 2px #000",
             }}
           >
-            <div ref={componentRef} style={{ position: "relative", width: "210mm", height: "297mm", margin: 20 }}>
+            <div ref={componentRef} style={{ position: "relative", width: "211mm", height: "297mm", margin: 20 }}>
               {itemsArray.map((item: any) => {
                 return organizeData(item, formStyles);
               })}

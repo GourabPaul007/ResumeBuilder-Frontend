@@ -8,13 +8,25 @@ import { useBlockStyles } from "./_BlockStyles";
 import { BlockTitle } from "./_BlockTitle";
 
 const dummySkills1: Skills = {
-  color: "#123456",
-  title: "Skills Title",
+  color: "#ff6565",
+  title: "Skills",
   chipRadius: 10,
   chipSize: 4,
   filled: true,
   flipped: false,
-  data: ["HTML/CSS/JSS", "TypeScript", "ReactJS", "Flutter", "NodeJS", "ExpressJS", "MySql", "MongoDB", "Sqlite"],
+  data: [
+    "HTML/CSS/JSS",
+    "TypeScript",
+    "ReactJS",
+    "NextJS",
+    "Flutter",
+    "NodeJS",
+    "ExpressJS",
+    "Python",
+    "MySql",
+    "MongoDB",
+    "Sqlite",
+  ],
   style: {
     bgColor: "#ffffff",
     textColor: "#000000",

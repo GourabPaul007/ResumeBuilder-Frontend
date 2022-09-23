@@ -13,12 +13,12 @@ import { getUrlDomainName } from "../../../../helpers/getUrlDomainName";
 import { getIcon } from "../../../../helpers/Icons";
 
 const dummyAboutAndContactData = {
-  name: "Gourab Paul",
+  name: "John Doe",
   profession: "Software Engineer",
-  address: ["Saktigarh, Bongaon WB 743235"],
+  address: ["123 Street, City, State"],
   cityZip: "Bangaon WB 743235",
-  phno: "+91 9064040525",
-  emails: ["gourabpaul900@gmail.com", "Github.com/GourabPaul007(https://github.com/GourabPaul007)"],
+  phno: "+00 1234567890",
+  emails: ["abc@example.com", "Github.com/LoremIpsum(https://github.com/GourabPaul007)"],
   about: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.`,
   style: {
     bgColor: "#ffffff",

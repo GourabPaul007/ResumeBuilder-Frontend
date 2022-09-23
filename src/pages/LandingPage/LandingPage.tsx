@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { ReactNode, useState } from "react";
 import AppBarHeader from "../../Components/AppBarHeader";
 import Footer from "../../Components/Footer";
 import "./LandingPage.css";
@@ -8,12 +8,20 @@ import couchLaptop from "../../static/background/couchLaptop.png";
 import peopleCouchLaptop from "../../static/background/peopleCouchLaptop.png";
 import interview from "../static/background/interview.png";
 
+import resumez3 from "../../static/images/steps/resumez3.png";
+import resumez4 from "../../static/images/steps/resumez4.png";
+import resumez6 from "../../static/images/steps/resumez6.png";
+
+import StepButton from "@mui/material/StepButton";
+import { Step, StepLabel, Stepper } from "@mui/material";
+
 interface LandingPageProps {}
 
 const LandingPage: React.FC<LandingPageProps> = () => {
-  /*
-    Global Variables
-*/
+  // ************************************************************
+  // IDK WHAT THESE ARE AND HOW IT GOT HERE
+  // ************************************************************
+  /* Global Variables */
   const toggleMenu = document.querySelectorAll(".navbar .toggle-menu") as NodeListOf<Element>;
   const navLinks = document.querySelector(".nav-links") as Element;
   const links = document.querySelectorAll(".nav-links a") as NodeListOf<Element>;
@@ -37,6 +45,44 @@ const LandingPage: React.FC<LandingPageProps> = () => {
 
   toggleLinks(toggleMenu, toggleNavLinks);
   toggleLinks(links, toggleNavLinks);
+  // ************************************************************
+  // ************************************************************
+  // ************************************************************
+
+  const [activeStep, setActiveStep] = useState(0);
+
+  const handleStep = (step: number) => {
+    setActiveStep(step);
+    // setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const chooseSlideToShow = (): ReactNode => {
+    switch (activeStep) {
+      case 0:
+        return (
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <img src={resumez3} alt="" style={{ borderRadius: 12 }} />
+          </div>
+        );
+
+      case 1:
+        return (
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <img src={resumez4} alt="" style={{ borderRadius: 12 }} />
+          </div>
+        );
+
+      case 2:
+        return (
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <img src={resumez6} alt="" style={{ borderRadius: 12 }} />
+          </div>
+        );
+
+      default:
+        return <div>Something Went Wrong</div>;
+    }
+  };
 
   return (
     <>
@@ -78,8 +124,26 @@ const LandingPage: React.FC<LandingPageProps> = () => {
         </div>
       </section>
 
+      {/* activeStep={activeStep} */}
+      {/* active={true} */}
       {/* Middle Section */}
       <section className="container">
+        <Stepper nonLinear alternativeLabel>
+          {[
+            "Click on the blocks you like and resize & rearrange them to liking",
+            "Fill resume information and Click on \n'GET YOUR RESUME'",
+            "Preview and download your resume with default pdf downloader",
+          ].map((label, index) => (
+            <Step active={true} key={label}>
+              <StepButton onClick={() => handleStep(index)}>{label}</StepButton>
+            </Step>
+          ))}
+        </Stepper>
+        <div style={{ margin: "36px 0px 0px 0px" }}>{chooseSlideToShow()}</div>
+      </section>
+
+      <section style={{ height: 48 }}>&nbsp;</section>
+      {/* <section className="container">
         <div
           style={{
             display: "flex",
@@ -90,14 +154,11 @@ const LandingPage: React.FC<LandingPageProps> = () => {
             margin: "0px 0px 28rem 0px",
           }}
         >
-          {/* <div> */}
           <img
             src={peopleCouchLaptop}
             alt="someone saying to someone how resume builder works"
             style={{ marginRight: "auto", width: "40%" }}
           />
-          {/* <div style={{ width: "24px" }}>&nbsp;</div> */}
-          {/* </div> */}
           <div style={{ width: "50%", fontSize: 20, lineHeight: 1.7, color: "#6b5be6" }}>
             Create your own custom resume using our drag & drop resume builder Or Choose a template from many of our
             prebuilt resume templates.
@@ -112,7 +173,7 @@ const LandingPage: React.FC<LandingPageProps> = () => {
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* <!-- Projects Section --> */}
       <section className="projects" id="templates">

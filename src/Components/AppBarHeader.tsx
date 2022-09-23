@@ -39,7 +39,7 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
       <nav className="navbar" id="navbar">
         <div className="container">
           <a href="/" className="logo">
-            <h1>JohnDoe's Resume Builder</h1>
+            <h1>Resumez - A Free Resume Builder</h1>
           </a>
 
           <div className="nav-links">
