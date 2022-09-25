@@ -11,10 +11,10 @@ const dummyOthers = {
   title: "Others Title",
   data: [
     "Lorem ipsum dolor sit amet.",
-    "C onsectetur adipisicing repellat",
+    "Consectetur adipisicing",
     "Dolorum earum officiis.",
     "distinctio ipsa officia soluta.",
-    "accusantium exercit ationem.",
+    "accusantium ationem.",
   ],
   style: {
     bgColor: "#fff",
