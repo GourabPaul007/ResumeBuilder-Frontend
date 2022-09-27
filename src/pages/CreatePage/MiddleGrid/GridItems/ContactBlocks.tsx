@@ -27,10 +27,10 @@ const dummyContact: ContactBlock = {
 
 const isEmptyContact = (contact: ContactBlock) => {
   if (
+    contact.title === "" &&
     contact.data.address.join("") === "" &&
     contact.data.phno === "" &&
-    contact.data.emails.join("") === "" &&
-    contact.title === ""
+    contact.data.emails.join("") === ""
   )
     return true;
   return false;

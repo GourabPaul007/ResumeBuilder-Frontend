@@ -18,7 +18,9 @@ export const BlockTitle: React.FC<BlockTitleProps> = (props) => {
           // [FOR CENTERED ITEMS FOR EXAMPLE - CONTACT 3]
           justifyContent: props.center ? "center" : props.flipped ? "flex-end" : "flex-start",
           borderTop: `2px solid ${props.formStyles.titleUnderline ? "transparent" : "transparent"}`,
-          borderBottom: `2px solid ${props.formStyles.titleUnderline ? props.formStyles.titleColor : "transparent"}`,
+          borderBottom: `2px solid ${
+            props.title !== "" && props.formStyles.titleUnderline ? props.formStyles.titleColor : "transparent"
+          }`,
           // borderLeft: `2px solid ${props.formStyles.titleUnderline ? "transparent" : "transparent"}`,
           // borderRight: `2px solid ${props.formStyles.titleUnderline ? "transparent" : "transparent"}`,
           backgroundColor: props.formStyles.titleFilled ? props.formStyles.titleFillColor : "transparent",
