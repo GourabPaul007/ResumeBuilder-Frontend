@@ -54,7 +54,7 @@ export const OthersBlueprint1: React.FC<OthersBlueprintProps> = (props) => {
     >
       <div className={blueprintClasses.blueprintWrapper}>
         <BlueprintTitle title={props.others.data.title} formStyles={props.formStyles} />
-        <div style={{ paddingLeft: 8, fontSize: 15 }}>
+        <div style={{ paddingLeft: 8, fontSize: 15, marginTop: "8px" }}>
           {props.others.data.data.map((eachLine: string) => {
             return (
               <div

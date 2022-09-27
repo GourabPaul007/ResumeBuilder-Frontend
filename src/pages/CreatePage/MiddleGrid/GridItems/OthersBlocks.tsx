@@ -58,7 +58,7 @@ export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
       <div className={blockClasses.blockWrapper}>
         <BlockTitle title={toBeShownOthers.title} formStyles={props.formStyles} isOpaque={isEmpty} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
-        <div style={{ paddingLeft: 8, fontSize: 15, opacity: isEmpty ? 0.5 : 1 }}>
+        <div style={{ paddingLeft: 8, fontSize: 15, opacity: isEmpty ? 0.5 : 1, marginTop: "8px" }}>
           {toBeShownOthers.data.map((eachLine: string) => {
             return (
               <div
