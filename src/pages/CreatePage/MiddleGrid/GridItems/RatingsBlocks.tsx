@@ -80,7 +80,7 @@ export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
               flipped={props.ratings.flipped}
             />
           )}
-          <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500, opacity: isEmpty ? 0.5 : 1, marginTop: "8px" }}>
+          <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 600, opacity: isEmpty ? 0.5 : 1, marginTop: "8px" }}>
             {toBeShownRatings.data.map((eachRating, i) => {
               return (
                 <div
@@ -154,7 +154,7 @@ export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
             />
           </div>
 
-          <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500, opacity: isEmpty ? 0.5 : 1, marginTop: "8px" }}>
+          <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 600, opacity: isEmpty ? 0.5 : 1, marginTop: "8px" }}>
             {toBeShownRatings.data.map((eachRating, i) => {
               return (
                 <div

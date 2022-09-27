@@ -41,7 +41,7 @@ export const RatingsBlueprint1: FC<RatingBlueprintProps> = (props) => {
           title={props.ratings.data.title}
           flipped={props.ratings.data.flipped}
         />
-        <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500, marginTop: "8px" }}>
+        <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 600, marginTop: "8px" }}>
           {props.ratings.data.data.map((eachRating, i) => {
             return (
               <div
@@ -100,7 +100,7 @@ export const RatingsBlueprint2: FC<RatingBlueprintProps> = (props) => {
           flipped={props.ratings.data.flipped}
         />
 
-        <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 500, marginTop: "8px" }}>
+        <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 600, marginTop: "8px" }}>
           {props.ratings.data.data.map((eachRating, i) => {
             return (
               <div
