@@ -106,7 +106,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
         </div>
         <div
           style={{
-            marginTop: 4,
+            marginTop: 8,
             // paddingLeft: 8,
             fontWeight: 500,
             // for aligning to left or right
@@ -173,7 +173,7 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
         </div>
         <div
           style={{
-            marginTop: 4,
+            marginTop: 8,
             // paddingLeft: 8,
             fontWeight: 500,
             // for aligning to left or right

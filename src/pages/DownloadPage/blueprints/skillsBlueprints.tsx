@@ -36,7 +36,7 @@ export const SkillsBlueprint1: React.FC<SkillsBlueprintProps> = (props) => {
       />
       <div
         style={{
-          marginTop: 4,
+          marginTop: 8,
           // paddingLeft: 8,
           fontWeight: 500,
           // for aligning to left or right
@@ -86,7 +86,7 @@ export const SkillsBlueprint2: React.FC<SkillsBlueprintProps> = (props) => {
       </div>
       <div
         style={{
-          marginTop: 4,
+          marginTop: 8,
           // paddingLeft: 8,
           fontWeight: 500,
           // for aligning to left or right
