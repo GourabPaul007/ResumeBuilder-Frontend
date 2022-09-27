@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import template_1 from "../../static/template_1.png";
+import template_1 from "../../static/images/templates/template_1.png";
+import template_2 from "../../static/images/templates/template_2.png";
 
 const template2 = [
   {
@@ -170,7 +171,7 @@ const templates = [
   },
   {
     templateTitle: "Template Two",
-    templateImage: template_1,
+    templateImage: template_2,
     templateData: template2,
   },
   {
@@ -192,9 +193,14 @@ const TemplateSection: FC<TemplateSectionProps> = () => {
           <div className="templatesSectionContent">
             {templates.map((eachTemplate) => {
               return (
-                <div className="eachTemplate">
+                <div key={eachTemplate.templateTitle} className="eachTemplate">
                   <div className="templateImage">
-                    <img src={eachTemplate.templateImage} alt={`${eachTemplate.templateTitle} Image`} />
+                    <img
+                      height={297}
+                      width={210}
+                      src={eachTemplate.templateImage}
+                      alt={`${eachTemplate.templateTitle} Image`}
+                    />
                   </div>
                   <div className="templateDetails">
                     <h3 className="templateTitle">{eachTemplate.templateTitle}</h3>
