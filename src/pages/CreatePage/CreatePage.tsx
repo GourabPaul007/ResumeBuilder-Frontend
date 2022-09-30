@@ -17,6 +17,7 @@ import { Others } from "../../interfaces/Others";
 import { About } from "../../interfaces/About";
 import { Contact, ContactBlock } from "../../interfaces/Contact";
 import { Ratings } from "../../interfaces/Ratings";
+import { LocalStorageItem } from "../../interfaces/LocalStorageItem";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -227,26 +228,164 @@ const CreatePage: React.FC = (props) => {
 
   useEffect(() => {
     const itemsArray = JSON.parse(localStorage.getItem("ItemsArray") as string);
+    console.log(itemsArray);
+
     if (itemsArray && itemsArray.length != 0) {
       // remove already existing items if any
-      if (items.length > 0 || layout.length > 0) {
-        items.forEach((singleItem) => {
-          removeItem(singleItem);
-        });
-      }
+      // if (items.length > 0 || layout.length > 0) {
+      //   items.forEach((singleItem) => {
+      //     removeItem(singleItem);
+      //   });
+      // }
       console.log("localStorage itemsArray: ", itemsArray);
       itemsArray.forEach((item: GridItem) => {
         console.log(item);
+        // Add Item to itemsArray
         addItem(item.name, item.x, item.y, item.w, item.h, item.data, true);
+        // Set The Data
+        switch (item.name) {
+          case "aboutWithContact1":
+            setAboutWithContact1(item.data);
+            break;
+          case "aboutWithContact2":
+            setAboutWithContact2(item.data);
+            break;
+          case "about1":
+            setAbout1(item.data);
+            break;
+          case "contact1":
+            setContact1(item.data);
+            break;
+          case "contact2":
+            setContact2(item.data);
+            break;
+          case "contact3":
+            setContact3(item.data);
+            break;
+          case "educations1":
+            setEducations1(item.data);
+            break;
+          case "educations2":
+            setEducations2(item.data);
+            break;
+          case "skills1":
+            setSkills1(item.data);
+            break;
+          case "skills2":
+            setSkills2(item.data);
+            break;
+          case "works1":
+            setWorks1(item.data);
+            break;
+          case "works2":
+            setWorks2(item.data);
+            break;
+          case "projects1":
+            setProjects1(item.data);
+            break;
+          case "projects1":
+            setProjects2(item.data);
+            break;
+          case "ratings1":
+            setRatings1(item.data);
+            break;
+          case "ratings2":
+            setRatings2(item.data);
+            break;
+          case "others1":
+            setOthers1(item.data);
+            break;
+
+          default:
+            break;
+        }
       });
     }
   }, []);
 
-  // MAKE A COPY OF LAYOUT FOR STUFFS
+  function onLayoutChange(layout: GridItem[]) {
+    setLayout(layout);
+  }
+
+  function addItem(
+    name: string,
+    x: number = Infinity,
+    y: number = Infinity,
+    width: number = 1,
+    height: number = 1,
+    data: any,
+    isResizable: boolean
+  ) {
+    // add to Items
+    for (let i = 0; i < items.length; i++) {
+      const element = items[i];
+      if (element.i === name) {
+        console.log(element.i, name, "this item already exists");
+        name = "";
+        return;
+      }
+    }
+    // FINALLY AAAAAAAAAAAAAAAAAAAAAAAAAAA
+    setItems((oldItems) =>
+      oldItems.concat({
+        name: name,
+        i: name,
+        x: x,
+        y: y,
+        w: width,
+        h: height,
+        isResizable: isResizable ? true : false,
+        data: data ? data : {},
+      })
+    );
+
+    // Add to Form
+    const newFormsArray = forms;
+    const newFormName = name;
+    if (newFormsArray.includes(newFormName)) {
+      console.log("Form Item already exists", newFormName, forms);
+      return;
+    }
+    newFormsArray.push(newFormName);
+    setForms(newFormsArray);
+  }
+
+  function removeItem(toBeRemovedItem: GridItem) {
+    console.log("removing", toBeRemovedItem);
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].i === toBeRemovedItem.i) {
+        const newItems = items.filter(function (el) {
+          return el != toBeRemovedItem;
+        });
+        setItems(newItems);
+
+        // remove From Forms Array
+        const newItemsNameArray = newItems.map((item) => item.i);
+        if (newItemsNameArray.includes(toBeRemovedItem.i)) {
+          console.log("Another item with same form exists", newItemsNameArray);
+        } else {
+          console.log("Removing Form", toBeRemovedItem.i);
+          setForms(forms.filter((formItem) => formItem != toBeRemovedItem.i)); // remove from form array where matches the `toBeRemovedItemName`
+        }
+      }
+    }
+
+    //Making itemsArray & Saving to localStorage after removing an item
+    // makeItemsArray();
+  }
+
+  // MAKE A COPY OF LAYOUT FOR DOWNLOAD PAGE
   const makeItemsArray = () => {
-    const finalItems: { name: string; x: number; y: number; w: number; h: number; data: any }[] = [];
+    const finalItems: LocalStorageItem[] = [];
     layout.forEach((element: any) => {
       const elementName = element.i.substring(0, element.i.indexOf("function") - 1);
+
+      // // If exists in finalItems/localStorage then return
+      // finalItems.forEach((item) => {
+      //   if (elementName === item.name) {
+      //     return;
+      //   }
+      // });
 
       finalItems.push({
         name: elementName,
@@ -301,81 +440,6 @@ const CreatePage: React.FC = (props) => {
     localStorage.setItem("FormStyles", JSON.stringify(formStyles));
     return finalItems;
   };
-
-  function onLayoutChange(layout: GridItem[]) {
-    setLayout(layout);
-    // console.log(layout);
-  }
-
-  function addItem(
-    name: string,
-    x: number = Infinity,
-    y: number = Infinity,
-    width: number = 1,
-    height: number = 1,
-    data: any,
-    isResizable: boolean
-  ) {
-    // add to Items
-    for (let i = 0; i < items.length; i++) {
-      const element = items[i];
-      if (element.i === name) {
-        console.log(element.i, name, "this item already exists");
-        name = "";
-        return;
-      }
-    }
-    // FINALLY AAAAAAAAAAAAAAAAAAAAAAAAAAA
-    setItems((oldItems) =>
-      oldItems.concat({
-        name: name,
-        i: name,
-        x: x,
-        y: y,
-        w: width,
-        h: height,
-        isResizable: isResizable ? true : false,
-        data: data ? data : {},
-      })
-    );
-
-    // Add to Form
-    const newFormsArray = forms;
-    const newFormName = name;
-    if (newFormsArray.includes(newFormName)) {
-      // console.log("Form Item already exists", newFormName, forms);
-      return;
-    }
-    newFormsArray.push(newFormName);
-    setForms(newFormsArray);
-
-    //Making itemsArray & Saving to localStorage after adding an item
-    makeItemsArray();
-  }
-
-  function removeItem(toBeRemovedItem: GridItem) {
-    console.log("removing", toBeRemovedItem);
-    for (let i = 0; i < items.length; i++) {
-      if (items[i].i === toBeRemovedItem.i) {
-        const newItems = items.filter(function (el) {
-          return el != toBeRemovedItem;
-        });
-        setItems(newItems);
-
-        // remove From Forms Array
-        const newItemsNameArray = newItems.map((item) => item.i);
-        if (newItemsNameArray.includes(toBeRemovedItem.i)) {
-          console.log("Another item with same form exists", newItemsNameArray);
-        } else {
-          console.log("Removing Form", toBeRemovedItem.i);
-          setForms(forms.filter((formItem) => formItem != toBeRemovedItem.i)); // remove from form array where matches the `toBeRemovedItemName`
-        }
-      }
-    }
-
-    //Making itemsArray & Saving to localStorage after removing an item
-    makeItemsArray();
-  }
 
   return (
     <>
