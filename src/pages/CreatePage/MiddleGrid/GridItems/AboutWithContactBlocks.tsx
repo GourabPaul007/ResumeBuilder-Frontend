@@ -154,8 +154,12 @@ export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (pro
       }}
     >
       <div className={blockClasses.blockWrapper}>
-        <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{toBeShownAboutAndContact.name}</h1>
-        <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{toBeShownAboutAndContact.profession}</p>
+        <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block", opacity: isEmpty ? 0.5 : 1 }}>
+          {toBeShownAboutAndContact.name}
+        </h1>
+        <p style={{ display: "inline-block", opacity: isEmpty ? 0.5 : 1 }}>
+          &nbsp;&nbsp;{toBeShownAboutAndContact.profession}
+        </p>
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div
           style={{

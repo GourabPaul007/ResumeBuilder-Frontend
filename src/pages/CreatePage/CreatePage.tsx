@@ -244,10 +244,10 @@ const CreatePage: React.FC = (props) => {
         addItem(item.name, item.x, item.y, item.w, item.h, item.data, true);
         // Set The Data
         switch (item.name) {
-          case "aboutWithContact1":
+          case "aboutwithcontact1":
             setAboutWithContact1(item.data);
             break;
-          case "aboutWithContact2":
+          case "aboutwithcontact2":
             setAboutWithContact2(item.data);
             break;
           case "about1":
@@ -348,6 +348,14 @@ const CreatePage: React.FC = (props) => {
     }
     newFormsArray.push(newFormName);
     setForms(newFormsArray);
+
+    // Saving to LocalStorage
+    makeItemsArray();
+    // let localStorageItems: LocalStorageItem[] = JSON.parse(localStorage.getItem("ItemsArray") as string)
+    //   ? JSON.parse(localStorage.getItem("ItemsArray") as string)
+    //   : [];
+    // localStorageItems.push({ name: name, x: x, y: y, w: width, h: height, data: data });
+    // localStorage.setItem("ItemsArray", JSON.stringify(localStorageItems));
   }
 
   function removeItem(toBeRemovedItem: GridItem) {
@@ -371,12 +379,17 @@ const CreatePage: React.FC = (props) => {
     }
 
     //Making itemsArray & Saving to localStorage after removing an item
-    // makeItemsArray();
+    makeItemsArray();
   }
 
   // MAKE A COPY OF LAYOUT FOR DOWNLOAD PAGE
   const makeItemsArray = () => {
     const finalItems: LocalStorageItem[] = [];
+    // (localStorage.getItem("ItemsArray") as string)
+    //   ? JSON.parse(localStorage.getItem("ItemsArray") as string)
+    //   : [];
+    console.log(layout);
+
     layout.forEach((element: any) => {
       const elementName = element.i.substring(0, element.i.indexOf("function") - 1);
 
@@ -435,7 +448,7 @@ const CreatePage: React.FC = (props) => {
         })(elementName),
       });
     });
-    console.log(finalItems);
+    console.log("finalItems", finalItems);
     localStorage.setItem("ItemsArray", JSON.stringify(finalItems));
     localStorage.setItem("FormStyles", JSON.stringify(formStyles));
     return finalItems;
