@@ -178,7 +178,7 @@ export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (pro
             style={{
               display: "flex",
               justifyContent: "space-evenly",
-              color: props.formStyles.accentColor,
+              // color: props.formStyles.accentColor,
               marginTop: 8,
             }}
           >

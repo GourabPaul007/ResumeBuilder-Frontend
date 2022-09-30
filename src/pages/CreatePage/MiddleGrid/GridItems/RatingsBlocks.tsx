@@ -63,23 +63,19 @@ export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
         }}
       >
         <div className={blockClasses.blockWrapper}>
-          {props.ratings.flipped ? (
-            <RemoveBlockButton
-              item={props.item}
-              removeItem={props.removeItem}
-              blockTitle={props.blockTitle}
-              flipped={props.ratings.flipped}
-            />
-          ) : null}
-          <BlockTitle formStyles={props.formStyles} title={toBeShownRatings.title} isOpaque={isEmpty} />
-          {props.ratings.flipped ? null : (
-            <RemoveBlockButton
-              item={props.item}
-              removeItem={props.removeItem}
-              blockTitle={props.blockTitle}
-              flipped={props.ratings.flipped}
-            />
-          )}
+          <BlockTitle
+            formStyles={props.formStyles}
+            title={toBeShownRatings.title}
+            isOpaque={isEmpty}
+            flipped={props.ratings.flipped}
+          />
+
+          <RemoveBlockButton
+            item={props.item}
+            removeItem={props.removeItem}
+            blockTitle={props.blockTitle}
+            flipped={props.ratings.flipped}
+          />
           <div style={{ paddingLeft: 8, fontSize: 15, fontWeight: 600, opacity: isEmpty ? 0.5 : 1, marginTop: "8px" }}>
             {toBeShownRatings.data.map((eachRating, i) => {
               return (
@@ -145,7 +141,12 @@ export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
       >
         <div className={blockClasses.blockWrapper}>
           <div style={{ display: "flex", flexDirection: props.ratings.flipped ? "row-reverse" : "row" }}>
-            <BlockTitle formStyles={props.formStyles} title={toBeShownRatings.title} isOpaque={isEmpty} />
+            <BlockTitle
+              formStyles={props.formStyles}
+              title={toBeShownRatings.title}
+              isOpaque={isEmpty}
+              flipped={props.ratings.flipped}
+            />
             <RemoveBlockButton
               item={props.item}
               removeItem={props.removeItem}

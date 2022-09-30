@@ -111,7 +111,7 @@ export const AboutWithContactBlueprint2: React.FC<AboutWithContactBlueprintProps
           style={{
             display: "flex",
             justifyContent: "space-evenly",
-            color: props.formStyles.accentColor,
+            // color: props.formStyles.accentColor,
             marginTop: 8,
           }}
         >

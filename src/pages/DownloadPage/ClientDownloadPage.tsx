@@ -11,7 +11,7 @@ import { FormStyles } from "../../interfaces/FormStyles";
 import { AboutBlueprint1 } from "./blueprints/aboutBlueprints";
 import { ContactBlueprint1, ContactBlueprint2, ContactBlueprint3 } from "./blueprints/ContactBlueprints";
 import { AboutWithContactBlueprint1, AboutWithContactBlueprint2 } from "./blueprints/AboutWithContactBlueprints";
-import { EducationsBlueprint1 } from "./blueprints/EducationBlueprints";
+import { EducationsBlueprint1, EducationsBlueprint2 } from "./blueprints/EducationBlueprints";
 import { ProjectsBlueprint1, ProjectsBlueprint2 } from "./blueprints/ProjectBlueprints";
 import { SkillsBlueprint1, SkillsBlueprint2 } from "./blueprints/SkillsBlueprints";
 import { WorksBlueprint1, WorksBlueprint2 } from "./blueprints/WorksBlueprints";
@@ -64,7 +64,7 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
       case "educations1":
         return <EducationsBlueprint1 key={element.name} educations={element} formStyles={formStyles} />;
       case "educations2":
-        return <EducationsBlueprint1 key={element.name} educations={element} formStyles={formStyles} />;
+        return <EducationsBlueprint2 key={element.name} educations={element} formStyles={formStyles} />;
       case "skills1":
         return <SkillsBlueprint1 key={element.name} skills={element} formStyles={formStyles} />;
       case "skills2":
