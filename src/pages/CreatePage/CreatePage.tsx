@@ -277,7 +277,7 @@ const CreatePage: React.FC = (props) => {
           case "projects1":
             setProjects1(item.data);
             break;
-          case "projects1":
+          case "projects2":
             setProjects2(item.data);
             break;
           case "ratings1":

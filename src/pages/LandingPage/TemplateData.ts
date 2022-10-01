@@ -6,14 +6,13 @@ export const template1 = [
     w: 12,
     h: 9,
     data: {
-      name: "John Doe",
-      profession: "Software Engineer",
-      address: ["123 Street, City, State"],
+      name: "",
+      profession: "",
+      address: [""],
       cityZip: "",
-      phno: "+00 1234567890",
-      emails: ["abc@example.com", "Github.com/LoremIpsum"],
-      about:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quae expedita architecto, doloribus recusandae iste harum fugit, maxime ipsa nemo magnam provident amet voluptate eveniet unde illo! Dolores, alias porro.",
+      phno: "",
+      emails: [],
+      about: "",
       style: { bgColor: "#ffffff", textColor: "#000000" },
     },
   },
@@ -24,23 +23,8 @@ export const template1 = [
     w: 12,
     h: 11,
     data: {
-      title: "Education",
-      data: [
-        {
-          id: "education1663996298146",
-          courseName: "Bachelor of Science in Computer Science",
-          courseResults: "Cumulative CGPA 9.00",
-          organizationName: "Stanford University",
-          courseDuration: "2019 - 2022",
-        },
-        {
-          id: "education1664606805271",
-          courseName: "Computer Science Engineering",
-          courseDuration: "2017 - 2019",
-          organizationName: "Harvard University",
-          courseResults: "Cumulative CGPA 8.00",
-        },
-      ],
+      title: "",
+      data: [],
       style: { bgColor: "#ffffff", textColor: "#000000" },
     },
   },
@@ -51,31 +35,8 @@ export const template1 = [
     w: 12,
     h: 14,
     data: {
-      title: "Work Experience",
-      data: [
-        {
-          id: "work1664605987139",
-          workOrganizationName: "Company",
-          workLocation: "Location",
-          jobTitle: "Job Title",
-          workDetails: [
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh. ",
-            "Excepturi, reprehenderit at doloremque eaque aperiam.",
-          ],
-          workDuration: "MAR 2020 - PRESENT",
-        },
-        {
-          id: "work1664606615919",
-          workOrganizationName: "Company",
-          workLocation: "Location",
-          jobTitle: "Job Title",
-          workDetails: [
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh. ",
-            "Excepturi, reprehenderit at doloremque eaque aperiam.",
-          ],
-          workDuration: "APR 2018 - MAR 2020",
-        },
-      ],
+      title: "",
+      data: [],
       style: { bgColor: "#ffffff", textColor: "#000000" },
     },
   },
@@ -86,23 +47,8 @@ export const template1 = [
     w: 12,
     h: 12,
     data: {
-      title: "Projects",
-      data: [
-        {
-          id: "project1664607423657",
-          projectName: "Project Name",
-          projectDetails: [
-            "orem ipsum dolor sit amet, consectetur adipisicing elit quidem veniam. Used Technologies: ReactJS, TS, Material UI, React-Redux, NodeJS, ExpressJS, EJS, TypeScript.",
-          ],
-        },
-        {
-          id: "project1664607495696",
-          projectName: "Project Name",
-          projectDetails: [
-            "orem ipsum dolor sit amet, consectetur adipisicing elit quidem veniam. Used Technologies: ReactJS, TS, Material UI, React-Redux, NodeJS, ExpressJS, EJS, TypeScript.",
-          ],
-        },
-      ],
+      title: "",
+      data: [],
       style: { bgColor: "#ffffff", textColor: "#000000" },
     },
   },
@@ -113,13 +59,9 @@ export const template1 = [
     w: 12,
     h: 8,
     data: {
-      title: "Other Skills & Activities",
-      bullet: 9679,
-      data: [
-        "Leverage agile frameworks to provide a robust synopsis for high level overviews.",
-        "Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.",
-        "Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.",
-      ],
+      title: "",
+      bullet: -1,
+      data: [],
       style: { bgColor: "#ffffff", textColor: "#000000" },
     },
   },

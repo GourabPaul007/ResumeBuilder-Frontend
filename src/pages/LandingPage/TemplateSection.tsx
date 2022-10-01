@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import template_1 from "../../static/images/templates/template_1.png";
-import template_2 from "../../static/images/templates/template_2.png";
+import template_1 from "../../static/images/templates/template_1.jpg";
+import template_2 from "../../static/images/templates/template_2.jpg";
 import template_3 from "../../static/images/templates/template_3.jpg";
-import { template1, template2, template3 } from "./TemplateData";
+import { template1, template2, template3, templateN } from "./TemplateData";
 
 const templates = [
   {
