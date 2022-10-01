@@ -22,7 +22,7 @@ import { LocalStorageItem } from "../../interfaces/LocalStorageItem";
 // import "/node_modules/react-resizable/css/styles.css";
 
 const CreatePage: React.FC = (props) => {
-  const [layout, setLayout] = useState<GridItem[]>([]);
+  const [layout, setLayout] = useState<GridItem[]>(getFromLS() || []);
   // The actual Items
   const [items, setItems] = useState<GridItem[]>([]);
   // The Forms corresponding to items in grid
@@ -227,18 +227,12 @@ const CreatePage: React.FC = (props) => {
   });
 
   useEffect(() => {
-    const itemsArray = JSON.parse(localStorage.getItem("ItemsArray") as string);
-    console.log(itemsArray);
-
-    if (itemsArray && itemsArray.length != 0) {
-      // remove already existing items if any
-      // if (items.length > 0 || layout.length > 0) {
-      //   items.forEach((singleItem) => {
-      //     removeItem(singleItem);
-      //   });
-      // }
-      console.log("localStorage itemsArray: ", itemsArray);
-      itemsArray.forEach((item: GridItem) => {
+    const oldLayout = JSON.parse(localStorage.getItem("ItemsArray") as string);
+    console.log(oldLayout);
+    setLayout(oldLayout);
+    if (oldLayout && oldLayout.length != 0) {
+      console.log("localStorage itemsArray: ", oldLayout);
+      layout.forEach((item: GridItem) => {
         console.log(item);
         // Add Item to itemsArray
         addItem(item.name, item.x, item.y, item.w, item.h, item.data, true);
@@ -304,6 +298,7 @@ const CreatePage: React.FC = (props) => {
   }, []);
 
   function onLayoutChange(layout: GridItem[]) {
+    saveToLS(layout);
     setLayout(layout);
   }
 
@@ -348,14 +343,6 @@ const CreatePage: React.FC = (props) => {
     }
     newFormsArray.push(newFormName);
     setForms(newFormsArray);
-
-    // Saving to LocalStorage
-    makeItemsArray();
-    // let localStorageItems: LocalStorageItem[] = JSON.parse(localStorage.getItem("ItemsArray") as string)
-    //   ? JSON.parse(localStorage.getItem("ItemsArray") as string)
-    //   : [];
-    // localStorageItems.push({ name: name, x: x, y: y, w: width, h: height, data: data });
-    // localStorage.setItem("ItemsArray", JSON.stringify(localStorageItems));
   }
 
   function removeItem(toBeRemovedItem: GridItem) {
@@ -377,28 +364,28 @@ const CreatePage: React.FC = (props) => {
         }
       }
     }
+  }
 
-    //Making itemsArray & Saving to localStorage after removing an item
-    makeItemsArray();
+  function getFromLS() {
+    let ls = [];
+    if (global.localStorage) {
+      try {
+        ls = JSON.parse(localStorage.getItem("ItemsArray") as string) || [];
+      } catch (e) {
+        /*Ignore*/
+      }
+    }
+    return ls;
   }
 
   // MAKE A COPY OF LAYOUT FOR DOWNLOAD PAGE
-  const makeItemsArray = () => {
+  const saveToLS = (layout: GridItem[]) => {
     const finalItems: LocalStorageItem[] = [];
-    // (localStorage.getItem("ItemsArray") as string)
-    //   ? JSON.parse(localStorage.getItem("ItemsArray") as string)
-    //   : [];
     console.log(layout);
 
-    layout.forEach((element: any) => {
+    for (let i = 0; i < layout.length; i++) {
+      const element = layout[i];
       const elementName = element.i.substring(0, element.i.indexOf("function") - 1);
-
-      // // If exists in finalItems/localStorage then return
-      // finalItems.forEach((item) => {
-      //   if (elementName === item.name) {
-      //     return;
-      //   }
-      // });
 
       finalItems.push({
         name: elementName,
@@ -447,7 +434,7 @@ const CreatePage: React.FC = (props) => {
           }
         })(elementName),
       });
-    });
+    }
     console.log("finalItems", finalItems);
     localStorage.setItem("ItemsArray", JSON.stringify(finalItems));
     localStorage.setItem("FormStyles", JSON.stringify(formStyles));
@@ -490,7 +477,7 @@ const CreatePage: React.FC = (props) => {
         <div className="divider"></div>
         <div className="rightForm">
           <RightForm
-            makeItemsArray={makeItemsArray}
+            makeItemsArray={saveToLS}
             items={items}
             forms={forms}
             aboutWithContact1={aboutWithContact1}
@@ -529,6 +516,7 @@ const CreatePage: React.FC = (props) => {
             setRatings2={setRatings2}
             formStyles={formStyles}
             setFormStyles={setFormStyles}
+            layout={layout}
           />
         </div>
       </div>

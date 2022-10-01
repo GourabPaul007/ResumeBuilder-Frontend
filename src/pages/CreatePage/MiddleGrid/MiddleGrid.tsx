@@ -1,6 +1,6 @@
 import * as React from "react";
 import { v1 as uuidv1 } from "uuid";
-import { WidthProvider, Responsive } from "react-grid-layout";
+import RGL, { WidthProvider, Responsive } from "react-grid-layout";
 
 // Required by react-grid-layout to function properly
 import "./MiddleGrid.css";
@@ -27,7 +27,9 @@ import { AboutWithContactBlock1, AboutWithContactBlock2 } from "./GridItems/Abou
 import { WorksBlock1, WorksBlock2 } from "./GridItems/WorksBlocks";
 import { OthersBlock1 } from "./GridItems/OthersBlocks";
 // import ResponsiveReactGridLayout from "react-grid-layout";
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
+
+// const ResponsiveReactGridLayout = WidthProvider(Responsive);
+const ReactGridLayout = WidthProvider(RGL);
 
 const useStyles = makeStyles((theme: Theme) => ({
   blocks: {
@@ -261,13 +263,14 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
   return (
     <>
       <div className={classes.gridLayoutWidth}>
-        <ResponsiveReactGridLayout
+        <ReactGridLayout
           className="layout"
           onLayoutChange={props.onLayoutChange}
           autoSize={false}
           rowHeight={10}
-          breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-          cols={{ lg: 12, md: 12, sm: 12, xs: 12, xxs: 12 }}
+          cols={12}
+          // breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+          // cols={{ lg: 12, md: 12, sm: 12, xs: 12, xxs: 12 }}
         >
           {props.items.map((item: GridItem, index: number) => {
             return (
@@ -280,7 +283,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
               </div>
             );
           })}
-        </ResponsiveReactGridLayout>
+        </ReactGridLayout>
       </div>
     </>
   );

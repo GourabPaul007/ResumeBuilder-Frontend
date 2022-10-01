@@ -40,7 +40,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface RightFormProps {
-  makeItemsArray: () => void;
+  makeItemsArray: (layouts: GridItem[]) => void;
   items: GridItem[];
   aboutWithContact1: AboutWithContact;
   setAboutWithContact1: Dispatch<React.SetStateAction<AboutWithContact>>;
@@ -79,6 +79,7 @@ interface RightFormProps {
   formStyles: FormStyles;
   setFormStyles: Dispatch<React.SetStateAction<FormStyles>>;
   forms: string[];
+  layout: GridItem[];
 }
 
 export const RightForm: React.FC<RightFormProps> = (props) => {
@@ -201,7 +202,7 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
             style={{ marginBottom: 36 }}
             onClick={async (e: React.SyntheticEvent) => {
               e.preventDefault();
-              props.makeItemsArray();
+              props.makeItemsArray(props.layout);
               try {
                 navigate("/download/" + uuidv1);
               } catch (e) {
