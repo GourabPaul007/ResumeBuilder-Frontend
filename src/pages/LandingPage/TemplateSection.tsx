@@ -51,7 +51,8 @@ const TemplateSection: FC<TemplateSectionProps> = () => {
                     <button
                       className="useTemplateButton"
                       onClick={() => {
-                        localStorage.setItem("ItemsArray", JSON.stringify(eachTemplate.templateData));
+                        localStorage.setItem("ItemsArray", JSON.stringify(eachTemplate.templateData.layout));
+                        localStorage.setItem("FormStyles", JSON.stringify(eachTemplate.templateData.formStyles));
                         window.open("/create", "_self");
                       }}
                     >

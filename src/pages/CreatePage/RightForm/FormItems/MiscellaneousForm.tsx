@@ -31,13 +31,13 @@ export const Miscellaneous: FC<MiscellaneousProps> = React.memo((props) => {
   const classes = useMiscellaneousStyles();
 
   const [currentTitleColor, setCurrentTitleColor] = useState(
-    accentColorList[Math.floor(Math.random() * accentColorList.length)]
+    props.formStyles.titleColor || accentColorList[Math.floor(Math.random() * accentColorList.length)]
   );
   const [currentTitleFillColor, setCurrentTitleFillColor] = useState(
-    accentColorList[Math.floor(Math.random() * accentColorList.length)]
+    props.formStyles.titleFillColor || accentColorList[Math.floor(Math.random() * accentColorList.length)]
   );
   const [currentAccentColor, setCurrentAccentColor] = useState(
-    accentColorList[Math.floor(Math.random() * accentColorList.length)]
+    props.formStyles.accentColor || accentColorList[Math.floor(Math.random() * accentColorList.length)]
   );
 
   // Handling Color Pickers

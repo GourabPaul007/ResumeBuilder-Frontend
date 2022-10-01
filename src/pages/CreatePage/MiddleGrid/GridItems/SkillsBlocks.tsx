@@ -96,7 +96,12 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
     >
       <div className={blockClasses.blockWrapper}>
         <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
-          <BlockTitle formStyles={props.formStyles} title={toBeShownSkills.title} isOpaque={isEmpty} />
+          <BlockTitle
+            formStyles={props.formStyles}
+            title={toBeShownSkills.title}
+            isOpaque={isEmpty}
+            flipped={props.skills.flipped}
+          />
           <RemoveBlockButton
             item={props.item}
             removeItem={props.removeItem}
@@ -163,7 +168,12 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
     >
       <div className={blockClasses.blockWrapper}>
         <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
-          <BlockTitle formStyles={props.formStyles} title={toBeShownSkills.title} isOpaque={isEmpty} />
+          <BlockTitle
+            formStyles={props.formStyles}
+            title={toBeShownSkills.title}
+            isOpaque={isEmpty}
+            flipped={props.skills.flipped}
+          />
           <RemoveBlockButton
             item={props.item}
             removeItem={props.removeItem}

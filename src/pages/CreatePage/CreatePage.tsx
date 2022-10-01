@@ -217,23 +217,33 @@ const CreatePage: React.FC = (props) => {
       textColor: "#000000",
     },
   });
-  const [formStyles, setFormStyles] = useState<FormStyles>({
-    titleFilled: false,
-    titleFullWidth: false,
-    titleUnderline: false,
-    titleColor: "#000000",
-    titleFillColor: "#ccffcc",
-    accentColor: "#0000ff",
-  });
+  const [formStyles, setFormStyles] = useState<FormStyles>(
+    JSON.parse(localStorage.getItem("FormStyles") as string) || {
+      titleFilled: false,
+      titleFullWidth: false,
+      titleUnderline: false,
+      titleColor: "#000000",
+      titleFillColor: "#ccffcc",
+      accentColor: "#0000ff",
+    }
+  );
 
   useEffect(() => {
+    // const oldFormStyles: FormStyles = JSON.parse(localStorage.getItem("FormStyles") as string) || {
+    //   titleFilled: false,
+    //   titleFullWidth: false,
+    //   titleUnderline: false,
+    //   titleColor: "#000000",
+    //   titleFillColor: "#ccffcc",
+    //   accentColor: "#0000ff",
+    // };
+    // setFormStyles(oldFormStyles);
+
     const oldLayout = JSON.parse(localStorage.getItem("ItemsArray") as string);
-    console.log(oldLayout);
     setLayout(oldLayout);
+    // SET LAYOUT AND ITS DATA
     if (oldLayout && oldLayout.length != 0) {
-      console.log("localStorage itemsArray: ", oldLayout);
       layout.forEach((item: GridItem) => {
-        console.log(item);
         // Add Item to itemsArray
         addItem(item.name, item.x, item.y, item.w, item.h, item.data, true);
         // Set The Data
@@ -438,7 +448,6 @@ const CreatePage: React.FC = (props) => {
     console.log("finalItems", finalItems);
     localStorage.setItem("ItemsArray", JSON.stringify(finalItems));
     localStorage.setItem("FormStyles", JSON.stringify(formStyles));
-    return finalItems;
   };
 
   return (
