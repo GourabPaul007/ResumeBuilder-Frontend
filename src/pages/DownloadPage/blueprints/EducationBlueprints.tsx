@@ -29,7 +29,7 @@ export const EducationsBlueprint1: React.FC<EducationsBlueprintProps> = (props) 
   });
 
   return (
-    <div className={blueprintClasses.blueprintWrapper}>
+    <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
       <BlueprintTitle formStyles={props.formStyles} title={props.educations.data.title} />
       <div
         style={{
@@ -95,7 +95,7 @@ export const EducationsBlueprint2: React.FC<EducationsBlueprintProps> = (props) 
   });
 
   return (
-    <div className={blueprintClasses.blueprintWrapper}>
+    <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
       <BlueprintTitle formStyles={props.formStyles} title={props.educations.data.title} />
       <div
         style={{

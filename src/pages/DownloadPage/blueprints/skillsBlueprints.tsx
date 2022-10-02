@@ -28,7 +28,7 @@ export const SkillsBlueprint1: React.FC<SkillsBlueprintProps> = (props) => {
   });
 
   return (
-    <div className={blueprintClasses.blueprintWrapper}>
+    <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
       <BlueprintTitle
         formStyles={props.formStyles}
         title={props.skills.data.title}
@@ -80,7 +80,7 @@ export const SkillsBlueprint2: React.FC<SkillsBlueprintProps> = (props) => {
   });
 
   return (
-    <div className={blueprintClasses.blueprintWrapper}>
+    <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
       <div style={{ display: "flex", flexDirection: props.skills.data.flipped ? "row-reverse" : "row" }}>
         <BlueprintTitle formStyles={props.formStyles} title={props.skills.data.title} />
       </div>

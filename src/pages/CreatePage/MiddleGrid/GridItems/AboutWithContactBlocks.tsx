@@ -64,7 +64,7 @@ export const AboutWithContactBlock1: React.FC<AboutWithContactBlockProps> = (pro
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block", opacity: isEmpty ? 0.5 : 1 }}>
           {toBeShownAboutAndContact.name}
         </h1>
@@ -153,7 +153,7 @@ export const AboutWithContactBlock2: React.FC<AboutWithContactBlockProps> = (pro
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block", opacity: isEmpty ? 0.5 : 1 }}>
           {toBeShownAboutAndContact.name}
         </h1>

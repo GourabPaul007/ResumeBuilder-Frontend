@@ -74,7 +74,7 @@ export const EducationsBlock1: React.FC<EducationsBlockProps> = (props) => {
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <BlockTitle formStyles={props.formStyles} title={toBeShownEducations.title} isOpaque={isEmpty} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div
@@ -152,7 +152,7 @@ export const EducationsBlock2: React.FC<EducationsBlockProps> = (props) => {
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <BlockTitle formStyles={props.formStyles} title={toBeShownEducations.title} isOpaque={isEmpty} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div

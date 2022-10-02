@@ -6,4 +6,5 @@ export interface FormStyles {
   titleFillColor: string;
   // titleUnderlineColor: string;
   accentColor: string;
+  fontFamily: string;
 }

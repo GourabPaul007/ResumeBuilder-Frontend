@@ -64,7 +64,7 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         {/* The Title */}
         {toBeShownContact.title === "" ? (
           <RemoveBlockButton
@@ -182,7 +182,7 @@ export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         {/* The Title */}
         {toBeShownContact.title === "" ? (
           <RemoveBlockButton
@@ -300,7 +300,7 @@ export const ContactBlock3: React.FC<ContactBlockProps> = (props) => {
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         {/* The Title */}
         {toBeShownContact.title === "" ? (
           <RemoveBlockButton

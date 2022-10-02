@@ -34,7 +34,7 @@ export const ProjectsBlueprint1: React.FC<ProjectsBlueprintProps> = (props) => {
   });
 
   return (
-    <div className={blueprintClasses.blueprintWrapper}>
+    <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
       <BlueprintTitle formStyles={props.formStyles} title={props.projects.data.title} />
       {props.projects.data.data.map((eachProject: Project) => {
         return (
@@ -79,7 +79,7 @@ export const ProjectsBlueprint2: React.FC<ProjectsBlueprintProps> = (props) => {
   console.log(props.projects.data);
 
   return (
-    <div className={blueprintClasses.blueprintWrapper}>
+    <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
       <BlueprintTitle formStyles={props.formStyles} title={props.projects.data.title} />
       {props.projects.data.data.map((eachProject: Project) => {
         return (

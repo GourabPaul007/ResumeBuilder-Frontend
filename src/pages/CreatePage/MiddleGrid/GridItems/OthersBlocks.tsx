@@ -55,7 +55,7 @@ export const OthersBlock1: React.FC<OthersBlockProps> = (props) => {
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <BlockTitle title={toBeShownOthers.title} formStyles={props.formStyles} isOpaque={isEmpty} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div style={{ paddingLeft: 8, fontSize: 15, opacity: isEmpty ? 0.5 : 1, marginTop: "8px" }}>

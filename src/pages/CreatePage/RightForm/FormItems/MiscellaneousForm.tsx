@@ -1,4 +1,4 @@
-import { FormControlLabel, Switch, Theme, Typography } from "@mui/material";
+import { FormControlLabel, MenuItem, Select, Switch, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { Dispatch, FC, useEffect, useState } from "react";
 import { ColorPicker } from "../../../../Components/ColorPicker";
@@ -8,6 +8,7 @@ import { FormStyles } from "../../../../interfaces/FormStyles";
 const useMiscellaneousStyles = makeStyles((theme: Theme) => ({
   miscellaneousWrapper: {
     display: "flex",
+    flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
   },
@@ -19,6 +20,21 @@ const useMiscellaneousStyles = makeStyles((theme: Theme) => ({
     fontSize: 16,
     fontWeight: 500,
     fontFamily: "sans-serif",
+    margin: "8px 0px",
+  },
+  eachSection: {
+    // color: "#333",
+    margin: "24px",
+    fontWeight: 400,
+    width: "40rem",
+    height: "14rem",
+    border: "2px solid #aaa",
+    borderRadius: 8,
+    padding: 24,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 }));
 
@@ -62,6 +78,11 @@ export const Miscellaneous: FC<MiscellaneousProps> = React.memo((props) => {
     props.setFormStyles({ ...props.formStyles, titleFullWidth: checkedStatus });
   };
 
+  // Handle Font Family Selection
+  const handleFontFamily = (selectedFontFamily: string) => {
+    props.setFormStyles({ ...props.formStyles, fontFamily: selectedFontFamily });
+  };
+
   useEffect(() => {
     const lastRequest = setTimeout(() => {
       props.setFormStyles({ ...props.formStyles, titleColor: currentTitleColor });
@@ -91,11 +112,18 @@ export const Miscellaneous: FC<MiscellaneousProps> = React.memo((props) => {
 
   return (
     <div className={classes.miscellaneousWrapper}>
-      <section>
+      <section className={classes.eachSection}>
         <Typography align="center" style={{ fontSize: 24 }}>
           Block Titles
         </Typography>
-        <div style={{ border: "2px solid #aaa", borderRadius: 8, padding: 24, display: "flex" }}>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+          }}
+        >
           <div
             style={{
               display: "flex",
@@ -149,14 +177,45 @@ export const Miscellaneous: FC<MiscellaneousProps> = React.memo((props) => {
       </section>
 
       {/* the accent color */}
-      <section>
+      <section className={classes.eachSection} style={{ height: "10rem" }}>
         <Typography align="center" style={{ fontSize: 24 }}>
           Other Styles
         </Typography>
-        <div style={{ border: "2px solid #aaa", borderRadius: 8, padding: 24, display: "flex" }}>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+          }}
+        >
           <div className={classes.colorPickerDiv}>
             Accent Color &#9658;&nbsp;
             <ColorPicker color={props.formStyles.accentColor} handleColor={handleChangeAccentColor} />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "#333",
+            }}
+          >
+            Font Family &#9658;&nbsp;
+            <Select
+              id="fontFamilySelect"
+              style={{ marginTop: 8 }}
+              size="small"
+              value={props.formStyles.fontFamily}
+              label="FontFamily"
+              onChange={(e) => handleFontFamily(e.target.value)}
+            >
+              <MenuItem value={"sans-serif"}>Sans Serif</MenuItem>
+              <MenuItem value={"monospace"}>Monospace</MenuItem>
+              <MenuItem value={"cursive"}>Cursive</MenuItem>
+              <MenuItem value={"times new roman"}>Times New Roman</MenuItem>
+            </Select>
           </div>
         </div>
       </section>

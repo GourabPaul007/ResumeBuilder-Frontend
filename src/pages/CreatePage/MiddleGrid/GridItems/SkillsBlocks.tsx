@@ -94,7 +94,7 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
           <BlockTitle
             formStyles={props.formStyles}
@@ -166,7 +166,7 @@ export const SkillsBlock2: React.FC<SkillsBlockProps> = (props) => {
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <div style={{ display: "flex", flexDirection: props.skills.flipped ? "row-reverse" : "row" }}>
           <BlockTitle
             formStyles={props.formStyles}

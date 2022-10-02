@@ -29,7 +29,7 @@ export const ContactBlueprint1: React.FC<ContactBlueprintProps> = (props) => {
   });
 
   return (
-    <div className={blueprintClasses.blueprintWrapper}>
+    <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
       {/* The Title */}
       <BlueprintTitle
         title={props.contact.data.title}
@@ -113,7 +113,7 @@ export const ContactBlueprint2: React.FC<ContactBlueprintProps> = (props) => {
   });
 
   return (
-    <div className={blueprintClasses.blueprintWrapper}>
+    <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
       {/* The Title */}
       <BlueprintTitle
         title={props.contact.data.title}
@@ -197,7 +197,7 @@ export const ContactBlueprint3: React.FC<ContactBlueprintProps> = (props) => {
   });
 
   return (
-    <div className={blueprintClasses.blueprintWrapper}>
+    <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
       {/* The Title */}
       <BlueprintTitle
         title={props.contact.data.title}

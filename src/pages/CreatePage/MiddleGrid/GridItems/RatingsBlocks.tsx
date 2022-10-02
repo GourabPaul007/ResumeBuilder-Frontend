@@ -62,7 +62,7 @@ export const RatingsBlock1: FC<RatingBlockProps> = (props) => {
           width: "100%",
         }}
       >
-        <div className={blockClasses.blockWrapper}>
+        <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
           <BlockTitle
             formStyles={props.formStyles}
             title={toBeShownRatings.title}
@@ -139,7 +139,7 @@ export const RatingsBlock2: FC<RatingBlockProps> = (props) => {
           width: "100%",
         }}
       >
-        <div className={blockClasses.blockWrapper}>
+        <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
           <div style={{ display: "flex", flexDirection: props.ratings.flipped ? "row-reverse" : "row" }}>
             <BlockTitle
               formStyles={props.formStyles}

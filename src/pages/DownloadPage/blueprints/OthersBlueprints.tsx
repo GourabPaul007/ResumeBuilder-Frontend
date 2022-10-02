@@ -52,7 +52,7 @@ export const OthersBlueprint1: React.FC<OthersBlueprintProps> = (props) => {
         width: "100%",
       }}
     >
-      <div className={blueprintClasses.blueprintWrapper}>
+      <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <BlueprintTitle title={props.others.data.title} formStyles={props.formStyles} />
         <div style={{ paddingLeft: 8, fontSize: 15, marginTop: "8px" }}>
           {props.others.data.data.map((eachLine: string) => {

@@ -29,7 +29,7 @@ export const AboutBlueprint1: React.FC<AboutBlueprintProps> = (props) => {
 
   // blueprintWrapper
   return (
-    <div className={blueprintClasses.blueprintWrapper}>
+    <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
       <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{props.about.data.name}</h1>
       <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{props.about.data.profession}</p>
       <div style={{ fontWeight: 500, fontSize: 15, marginTop: 8 }}>

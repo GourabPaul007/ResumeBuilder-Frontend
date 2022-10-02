@@ -85,13 +85,13 @@ export const WorksBlock1: React.FC<WorksBlockProps> = (props) => {
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <BlockTitle formStyles={props.formStyles} title={toBeDisplayedWorks.title} isOpaque={isEmpty} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div style={{ opacity: isEmpty ? 0.5 : 1 }}>
           {toBeDisplayedWorks.data.map((eachWork: Work) => {
             return (
-              <div key={eachWork.id} style={{ marginLeft: 12, marginTop: 4, fontSize: 15 }}>
+              <div key={eachWork.id} style={{ margin: "12px 0px 8px 8px", fontSize: 15 }}>
                 {/* Work Name & Duration*/}
                 <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "start" }}>
                   <span style={{ fontSize: 18 }}>
@@ -154,7 +154,7 @@ export const WorksBlock2: React.FC<WorksBlockProps> = (props) => {
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <BlockTitle formStyles={props.formStyles} title={toBeDisplayedWorks.title} isOpaque={isEmpty} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div style={{ opacity: isEmpty ? 0.5 : 1 }}>

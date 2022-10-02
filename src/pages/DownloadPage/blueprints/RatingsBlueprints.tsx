@@ -35,7 +35,7 @@ export const RatingsBlueprint1: FC<RatingBlueprintProps> = (props) => {
 
   return (
     <>
-      <div className={blueprintClasses.blueprintWrapper}>
+      <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <BlueprintTitle
           formStyles={props.formStyles}
           title={props.ratings.data.title}
@@ -93,7 +93,7 @@ export const RatingsBlueprint2: FC<RatingBlueprintProps> = (props) => {
 
   return (
     <>
-      <div className={blueprintClasses.blueprintWrapper}>
+      <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <BlueprintTitle
           formStyles={props.formStyles}
           title={props.ratings.data.title}

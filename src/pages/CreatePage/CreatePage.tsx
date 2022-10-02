@@ -225,6 +225,7 @@ const CreatePage: React.FC = (props) => {
       titleColor: "#000000",
       titleFillColor: "#ccffcc",
       accentColor: "#0000ff",
+      fontFamily: "sans-serif",
     }
   );
 

@@ -76,7 +76,7 @@ export const ProjectsBlock1: React.FC<ProjectsBlockProps> = (props) => {
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <BlockTitle formStyles={props.formStyles} title={toBeShownProjects.title} isOpaque={isEmpty} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div style={{ opacity: isEmpty ? 0.5 : 1 }}>
@@ -133,7 +133,7 @@ export const ProjectsBlock2: React.FC<ProjectsBlockProps> = (props) => {
         width: "100%",
       }}
     >
-      <div className={blockClasses.blockWrapper}>
+      <div className={blockClasses.blockWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
         <BlockTitle formStyles={props.formStyles} title={toBeShownProjects.title} isOpaque={isEmpty} />
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
         <div style={{ opacity: isEmpty ? 0.5 : 1 }}>

@@ -34,7 +34,7 @@ export const AboutWithContactBlueprint1: React.FC<AboutWithContactBlueprintProps
   });
 
   return (
-    <div className={blueprintClasses.blueprintWrapper}>
+    <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
       <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{props.aboutWithContact.data.name}</h1>
       <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{props.aboutWithContact.data.profession}</p>
       <div style={{ display: "flex", flexDirection: "row", fontWeight: 500, fontSize: 15, marginTop: 8 }}>
@@ -100,7 +100,7 @@ export const AboutWithContactBlueprint2: React.FC<AboutWithContactBlueprintProps
     return joinedAddress;
   };
   return (
-    <div className={blueprintClasses.blueprintWrapper}>
+    <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
       <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block" }}>{props.aboutWithContact.data.name}</h1>
       <p style={{ display: "inline-block" }}>&nbsp;&nbsp;{props.aboutWithContact.data.profession}</p>
       <div style={{ display: "flex", flexDirection: "column", fontWeight: 500, fontSize: 15, marginTop: 8 }}>
