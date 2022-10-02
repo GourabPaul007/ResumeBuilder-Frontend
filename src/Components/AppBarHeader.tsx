@@ -43,22 +43,22 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
           </a>
 
           <div className="nav-links">
-            <a style={{ fontWeight: 700 }} href="/" className="fill">
+            <a style={{ fontWeight: 500 }} href="/" className="fill">
               Home
             </a>
-            {/* <a style={{ fontWeight: 700 }} href="/form" className="fill">
+            {/* <a style={{ fontWeight: 500 }} href="/form" className="fill">
               Form
             </a> */}
-            <a style={{ fontWeight: 700 }} href="/create" className="fill">
+            <a style={{ fontWeight: 500 }} href="/create" className="fill">
               create
             </a>
-            <a style={{ fontWeight: 700 }} href="/contact" className="fill">
+            <a style={{ fontWeight: 500 }} href="/contact" className="fill">
               contact
             </a>
             {/* <p style={{ width: "24px" }}></p> */}
             {userExists ? (
               <a
-                style={{ fontWeight: 700, marginLeft: "24px" }}
+                style={{ fontWeight: 500, marginLeft: "24px" }}
                 className="fill"
                 onClick={() => {
                   signOut(auth);
@@ -68,7 +68,7 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
               </a>
             ) : (
               <a
-                style={{ fontWeight: 700, marginLeft: "24px" }}
+                style={{ fontWeight: 500, marginLeft: "24px" }}
                 className="fill"
                 onClick={() => {
                   navigate("/login");

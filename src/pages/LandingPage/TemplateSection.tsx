@@ -1,22 +1,25 @@
+import "./TemplateSection.css";
+
 import React, { FC } from "react";
 import template_1 from "../../static/images/templates/template_1.jpg";
 import template_2 from "../../static/images/templates/template_2.jpg";
 import template_3 from "../../static/images/templates/template_3.jpg";
 import { template1, template2, template3, templateN } from "./TemplateData";
+import SectionHeader from "./SectionHeader";
 
 const templates = [
   {
-    templateTitle: "Template one",
+    templateTitle: "Simple",
     templateImage: template_1,
     templateData: template1,
   },
   {
-    templateTitle: "Template Two",
+    templateTitle: "Compact",
     templateImage: template_2,
     templateData: template2,
   },
   {
-    templateTitle: "Template Three",
+    templateTitle: "Professional",
     templateImage: template_3,
     templateData: template3,
   },
@@ -30,6 +33,10 @@ const TemplateSection: FC<TemplateSectionProps> = () => {
       {/* <!-- Projects Section --> */}
       <section className="templates" id="templatesSection">
         <h2 className="section-title fill">Templates</h2>
+        <SectionHeader
+          supportHeader="DON'T WORRY, YOU CAN CUSTOMIZE THEM TOO."
+          mainHeader="Choose an unique template for your Resume"
+        />
         <div className="container">
           <div className="templatesSectionContent">
             {templates.map((eachTemplate) => {

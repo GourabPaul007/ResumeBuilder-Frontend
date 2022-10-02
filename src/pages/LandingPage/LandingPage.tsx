@@ -9,6 +9,7 @@ import interview from "../static/background/interview.png";
 
 import TemplateSection from "./TemplateSection";
 import HowToSection from "./HowToSection";
+import BenefitsSection from "./BenefitsSection";
 
 interface LandingPageProps {}
 
@@ -50,43 +51,54 @@ const LandingPage: React.FC<LandingPageProps> = () => {
       {/* <!-- Landing Section --> */}
       <section className="landing" id="welcome-section">
         <div className="container">
-          <div className="text">
-            <h1 id="welcomeHeader">
-              Free Drag & Drop <br />
-              Resume Builder.
-            </h1>
-            <span id="welcomeSubheader">build your resume now, Its free!</span>
-            <p id="welcomeText">
-              I made this resume builder for getting my resume built the way I wanted. Your feedbacks will make this
-              site much more elegant & better.
-            </p>
-            <div className="btns-group">
-              <a href="/create" className="button-secondary">
-                Build Your Resume
-              </a>
+          <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div className="text">
+              <h1 id="welcomeHeader">
+                Free Drag & <br />
+                Drop Resume <br />
+                Builder.
+              </h1>
+              <span id="welcomeSubheader">build your resume now, Its free!</span>
+              <p id="welcomeText">
+                An excellent tool to help you create a professional resume.
+                {/* I made this resume builder for getting my resume built the way I wanted. Your feedbacks will make this
+                site much more elegant & better. */}
+              </p>
+              <div className="btns-group">
+                <a href="#templatesSection" className="button-secondary">
+                  Choose a template
+                </a>
+                <a href="/create" className="button-primary">
+                  Build Your Resume
+                </a>
+              </div>
             </div>
-          </div>
-          <div className="image">
-            <img
-              src={couchLaptop}
-              alt="Guy building resume with resume builder"
-              style={{
-                // width: "90%",
-                transform: "scale(1)",
-                marginLeft: "auto",
-              }}
-            />
-            {/* <img
+            <div className="image">
+              <img
+                src={couchLaptop}
+                alt="Guy building resume with resume builder"
+                style={{
+                  // width: "90%",
+                  transform: "scale(1)",
+                  marginLeft: "auto",
+                }}
+              />
+              {/* <img
               src="https://image.freepik.com/free-vector/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-template-engineer-programming-software-application-design-cartoon-illustration_107791-3863.jpg"
               alt="Coding Illsturation"
             /> */}
+            </div>
           </div>
         </div>
       </section>
 
+      <BenefitsSection />
+
+      <section style={{ height: 256 }}>&nbsp;</section>
+
       <HowToSection />
 
-      <section style={{ height: 48 }}>&nbsp;</section>
+      <section style={{ height: 128 }}>&nbsp;</section>
 
       <TemplateSection />
 

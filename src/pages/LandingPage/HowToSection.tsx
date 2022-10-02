@@ -5,6 +5,7 @@ import resumez6 from "../../static/images/steps/resumez6.png";
 
 import StepButton from "@mui/material/StepButton";
 import { Step, Stepper } from "@mui/material";
+import SectionHeader from "./SectionHeader";
 
 interface HowToSectionProps {}
 
@@ -49,18 +50,7 @@ const HowToSection: FC<HowToSectionProps> = () => {
       {/* active={true} */}
       {/* Middle Section */}
       <section className="container">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: 36,
-          }}
-        >
-          <div style={{ color: "#6b5be6", fontSize: 15, fontWeight: 600, margin: 4 }}>3 STEPS IS ALL IT TAKES</div>
-          <div style={{ color: "#000", fontSize: 24, fontWeight: 500 }}>How to make custom resume with Resumez?</div>
-        </div>
+        <SectionHeader supportHeader="3 STEPS IS ALL IT TAKES" mainHeader="How to make custom resume with Resumez?" />
 
         <Stepper nonLinear alternativeLabel>
           {[
@@ -69,7 +59,9 @@ const HowToSection: FC<HowToSectionProps> = () => {
             "Preview and download your resume with default pdf downloader",
           ].map((label, index) => (
             <Step active={true} key={label}>
-              <StepButton onClick={() => handleStep(index)}>{label}</StepButton>
+              <StepButton style={{ fontSize: "1rem", fontWeight: 500 }} onClick={() => handleStep(index)}>
+                {label}
+              </StepButton>
             </Step>
           ))}
         </Stepper>
