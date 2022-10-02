@@ -67,20 +67,30 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
       <div className={blockClasses.blockWrapper}>
         {/* The Title */}
         {toBeShownContact.title === "" ? (
-          <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+          <RemoveBlockButton
+            item={props.item}
+            removeItem={props.removeItem}
+            blockTitle={props.blockTitle}
+            flipped={props.contact.flipped}
+          />
         ) : (
           <div style={{ display: "flex", flexDirection: toBeShownContact.flipped ? "row-reverse" : "row" }}>
             {/* Need to check props.contact.title because toBeShownContact will always have a title */}
             {props.contact.title === "" ? (
-              <BlockTitle formStyles={props.formStyles} title={""} isOpaque={isEmpty} />
+              <BlockTitle formStyles={props.formStyles} title={""} isOpaque={isEmpty} flipped={props.contact.flipped} />
             ) : (
-              <BlockTitle formStyles={props.formStyles} title={toBeShownContact.title} isOpaque={isEmpty} />
+              <BlockTitle
+                formStyles={props.formStyles}
+                title={toBeShownContact.title}
+                isOpaque={isEmpty}
+                flipped={props.contact.flipped}
+              />
             )}
             <RemoveBlockButton
               item={props.item}
               removeItem={props.removeItem}
               blockTitle={props.blockTitle}
-              flipped={toBeShownContact.flipped}
+              flipped={props.contact.flipped}
             />
           </div>
         )}
@@ -175,20 +185,30 @@ export const ContactBlock2: React.FC<ContactBlockProps> = (props) => {
       <div className={blockClasses.blockWrapper}>
         {/* The Title */}
         {toBeShownContact.title === "" ? (
-          <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+          <RemoveBlockButton
+            item={props.item}
+            removeItem={props.removeItem}
+            blockTitle={props.blockTitle}
+            flipped={props.contact.flipped}
+          />
         ) : (
           <div style={{ display: "flex", flexDirection: toBeShownContact.flipped ? "row-reverse" : "row" }}>
             {/* Need to check props.contact.title because toBeShownContact will always have a title */}
             {props.contact.title === "" ? (
-              <BlockTitle formStyles={props.formStyles} title={""} isOpaque={isEmpty} />
+              <BlockTitle formStyles={props.formStyles} title={""} isOpaque={isEmpty} flipped={props.contact.flipped} />
             ) : (
-              <BlockTitle formStyles={props.formStyles} title={toBeShownContact.title} isOpaque={isEmpty} />
+              <BlockTitle
+                formStyles={props.formStyles}
+                title={toBeShownContact.title}
+                isOpaque={isEmpty}
+                flipped={props.contact.flipped}
+              />
             )}
             <RemoveBlockButton
               item={props.item}
               removeItem={props.removeItem}
               blockTitle={props.blockTitle}
-              flipped={toBeShownContact.flipped}
+              flipped={props.contact.flipped}
             />
           </div>
         )}
@@ -283,12 +303,17 @@ export const ContactBlock3: React.FC<ContactBlockProps> = (props) => {
       <div className={blockClasses.blockWrapper}>
         {/* The Title */}
         {toBeShownContact.title === "" ? (
-          <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
+          <RemoveBlockButton
+            item={props.item}
+            removeItem={props.removeItem}
+            blockTitle={props.blockTitle}
+            flipped={props.contact.flipped}
+          />
         ) : (
           <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
             {/* Need to check props.contact.title because toBeShownContact will always have a title */}
             {props.contact.title === "" ? (
-              <BlockTitle formStyles={props.formStyles} title={""} isOpaque={isEmpty} />
+              <BlockTitle formStyles={props.formStyles} title={""} isOpaque={isEmpty} flipped={props.contact.flipped} />
             ) : (
               <BlockTitle
                 formStyles={props.formStyles}
@@ -301,7 +326,7 @@ export const ContactBlock3: React.FC<ContactBlockProps> = (props) => {
               item={props.item}
               removeItem={props.removeItem}
               blockTitle={props.blockTitle}
-              flipped={toBeShownContact.flipped}
+              flipped={props.contact.flipped}
             />
           </div>
         )}
