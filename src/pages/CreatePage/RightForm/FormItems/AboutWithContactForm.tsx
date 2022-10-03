@@ -70,7 +70,7 @@ export const AboutWithContactForm: FC<AboutWithContactFormProps> = React.memo((p
               required={true}
               fullWidth={true}
               InputProps={{ classes: { underline: classes.underline } }}
-              label="Emails"
+              label="Emails (Separate each email with <br>)"
               value={props.aboutWithContact.emails.join("<br>")}
               onChange={(e) => {
                 props.setAboutWithContact({ ...props.aboutWithContact, emails: e.target.value.split("<br>") });

@@ -94,7 +94,7 @@ const LandingPage: React.FC<LandingPageProps> = () => {
 
       <BenefitsSection />
 
-      <section style={{ height: 256 }}>&nbsp;</section>
+      <section style={{ height: 312 }}>&nbsp;</section>
 
       <HowToSection />
 

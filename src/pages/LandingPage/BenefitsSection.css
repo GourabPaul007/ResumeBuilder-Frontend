@@ -1,0 +1,29 @@
+.card {
+  height: 230px;
+  width: 420px;
+  padding: 24px;
+}
+.cardHeaderText {
+  font-size: 24px;
+  color: #333;
+  margin-left: 0px;
+}
+.cardHeaderEmoji {
+  font-size: 28px;
+  margin-right: 4px;
+}
+.cardMainText {
+  font-size: 1.125rem;
+  color: #555;
+  margin-top: 8px;
+  margin-left: 8px;
+  line-height: 1.75rem;
+}
+.cardBottomLine {
+  font-size: 1.125rem;
+  color: #6b5be6;
+  margin-top: 8px;
+  margin-left: 8px;
+  line-height: 1.75rem;
+  letter-spacing: 0.08rem;
+}

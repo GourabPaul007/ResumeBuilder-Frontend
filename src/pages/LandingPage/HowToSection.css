@@ -1,0 +1,44 @@
+.stepButtonGroup {
+  display: flex;
+  justify-content: center;
+  border: 1px solid transparent;
+  /* border-bottom: 2px solid #6b5be6; */
+}
+
+.stepButton {
+  font-size: 1.05rem;
+  font-weight: 500;
+  padding: 8px 24px;
+  background-color: transparent;
+  border-radius: 5px 5px 0px 0px;
+  border: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  letter-spacing: 0.1rem;
+  border-bottom: 2px solid #ddd;
+}
+
+.stepButtonActive {
+  transition: 200ms;
+  color: #000;
+  background-color: #f0eeff;
+  border-bottom: 2px solid #6b5be6;
+}
+
+.stepButton:hover {
+  transition: 100ms;
+  cursor: pointer;
+  /* background-color: #ddd; */
+}
+
+.buttonEmoji {
+  font-size: 20px;
+}
+
+.howToSectionImageHeader {
+  margin: 12px 0px 24px 0px;
+  color: #444;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}

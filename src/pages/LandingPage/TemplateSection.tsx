@@ -70,11 +70,11 @@ const TemplateSection: FC<TemplateSectionProps> = () => {
               );
             })}
           </div>
-          <div className="moreTemplates">
+          {/* <div className="moreTemplates">
             <a href="https://codepen.io/FedLover/" target="_blank" className="button-secondary" id="profile-link">
               Show More <i className="fas fa-chevron-right"></i>
             </a>
-          </div>
+          </div> */}
         </div>
         <div style={{ height: "24px" }}>&nbsp;</div>
       </section>
