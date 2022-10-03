@@ -189,7 +189,7 @@ export const SkillsForm: FC<SkillsFormProps> = React.memo((props) => {
               required={true}
               fullWidth={true}
               InputProps={{ classes: { underline: classes.underline } }}
-              label="Skills"
+              label="Skills (Separate each skill with comma ',' i.e. Html,Css)"
               value={props.skills.data.join(",")}
               onChange={(e) => {
                 props.setSkills({ ...props.skills, data: e.target.value.split(",") });

@@ -72,7 +72,7 @@ export const ProjectsForm: FC<ProjectsFormProps> = React.memo((props) => {
   const handleProjectDetailsInput = (projectDetails: string, pos: number): void => {
     const newProjects = props.projects.data.map((singleProject: Project, index) => {
       if (pos === index) {
-        singleProject.projectDetails = projectDetails.split("<nl>");
+        singleProject.projectDetails = projectDetails.split("<br>");
       }
       return singleProject;
     });
@@ -124,11 +124,13 @@ export const ProjectsForm: FC<ProjectsFormProps> = React.memo((props) => {
                       size="small"
                       variant="filled"
                       margin="dense"
-                      required
-                      fullWidth
+                      required={true}
+                      fullWidth={true}
+                      multiline={true}
+                      rows={4}
                       InputProps={{ classes: { underline: classes.underline } }}
-                      label="Project Details & Used Technologies"
-                      value={singleProject.projectDetails.join("<nl>")}
+                      label="Project Details (Separate each point by adding <br> at the end)"
+                      value={singleProject.projectDetails.join("<br>")}
                       onChange={(e) => handleProjectDetailsInput(e.target.value, index)}
                     />
                   </Grid>

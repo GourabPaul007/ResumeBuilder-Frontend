@@ -42,7 +42,7 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
             <h1>Resumez - A Free Resume Builder</h1>
           </a>
 
-          <div className="nav-links">
+          <div className="navLinks">
             <a style={{ fontWeight: 500 }} href="/" className="fill">
               Home
             </a>

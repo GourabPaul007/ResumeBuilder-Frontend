@@ -94,11 +94,13 @@ export const OthersForm: FC<OthersFormProps> = React.memo((props) => {
               margin="dense"
               required={true}
               fullWidth={true}
+              multiline={true}
+              rows={4}
               InputProps={{ classes: { underline: classes.underline } }}
-              label="Other Skills & Activities"
-              value={props.others.data.join("<np>")}
+              label="Other Skills & Activities (Separate each point by adding <br> at the end)"
+              value={props.others.data.join("<br>")}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                props.setOthers({ ...props.others, data: e.target.value.split("<np>") });
+                props.setOthers({ ...props.others, data: e.target.value.split("<br>") });
               }}
             />
           </Grid>

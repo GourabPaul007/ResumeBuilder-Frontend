@@ -204,6 +204,7 @@ export const Miscellaneous: FC<MiscellaneousProps> = React.memo((props) => {
           >
             Font Family &#9658;&nbsp;
             <Select
+              variant="outlined"
               id="fontFamilySelect"
               style={{ marginTop: 8 }}
               size="small"
