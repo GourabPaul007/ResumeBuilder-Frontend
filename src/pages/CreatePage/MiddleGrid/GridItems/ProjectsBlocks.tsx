@@ -16,7 +16,7 @@ const exampleProjects: Projects = {
       id: "projectWed Jan 12 2022 13:38:12 GMT+0530 (India Standard Time)",
       projectName: "Project Name",
       projectDetails: [
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit quidem veniam. Github: FrontEnd(https://github.com/GourabPaul007/ResumeBuilder-Frontend), Backend(https://github.com/GourabPaul007/ResumeBuilder-Backend).",
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit recusandae quidem veniam.",
         "Used Technologies: ReactJS, TS, Material UI, React-Redux, NodeJS, ExpressJS, EJS, TypeScript.",
       ],
     },
@@ -24,8 +24,8 @@ const exampleProjects: Projects = {
       id: "projectWed Jan 12 2022 13:36:24 GMT+0530 (India Standard Time)",
       projectName: "Project Name",
       projectDetails: [
-        "A WhatsApp like look and feel note taking app built with clean architechture which helps people take detailed notes. Github: Codebase(https://github.com/GourabPaul007/Notebook).",
-        "Used Technologies: Flutter, Riverpod.",
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum debitis, omnis eos sed recusandae ea.",
+        "Tempore explicabo quaerat dolorum dolores totam alias. Vitae at quod blanditiis autem magni porro non.",
       ],
     },
   ],
