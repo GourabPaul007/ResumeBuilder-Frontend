@@ -1,7 +1,7 @@
 /* Start Footer */
 .footer {
   background: aliceblue;
-  padding: 15px 0;
+  padding: 24px 0px;
   text-transform: capitalize;
   text-align: center;
   color: var(--primary-color);
@@ -10,5 +10,18 @@
 .footer a {
   font-weight: 500;
   color: var(--secondary-color);
+}
+
+.footerContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.footerColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 /* End Footer */

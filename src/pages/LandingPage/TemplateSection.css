@@ -2,7 +2,7 @@
 #templatesSection {
   padding-top: var(--sections-padding);
   padding-bottom: var(--sections-padding);
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
 }
 .templatesSectionContent {
   display: flex;
