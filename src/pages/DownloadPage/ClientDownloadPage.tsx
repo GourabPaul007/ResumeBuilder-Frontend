@@ -38,6 +38,7 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
   // Build PDF
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
+    documentTitle: "Resume",
   });
 
   /**
@@ -106,6 +107,19 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
               {itemsArray.map((item: any) => {
                 return organizeData(item, formStyles);
               })}
+              {/* WATERMARK */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "0px",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  fontSize: "12px",
+                  fontWeight: 400,
+                }}
+              >
+                made with resumez
+              </div>
             </div>
           </div>
           &nbsp; &nbsp;
