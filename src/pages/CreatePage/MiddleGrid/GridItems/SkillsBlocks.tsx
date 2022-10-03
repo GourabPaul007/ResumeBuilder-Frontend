@@ -85,6 +85,12 @@ export const SkillsBlock1: React.FC<SkillsBlockProps> = (props) => {
 
   const toBeShownSkills = isEmpty ? dummySkills1 : props.skills;
 
+  // Change back some property so use can preview styles without typing data
+  toBeShownSkills.color = props.skills.color;
+  toBeShownSkills.filled = props.skills.filled;
+  toBeShownSkills.chipSize = props.skills.chipSize;
+  toBeShownSkills.chipRadius = props.skills.chipRadius;
+
   return (
     <div
       style={{
