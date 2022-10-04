@@ -17,21 +17,6 @@ const Footer: React.FC<FooterProps> = () => {
 
   return (
     <>
-      {/* <footer className="footer" id="contact">
-        <div className="container">
-          <p>Thank You For Visiting This Site.</p>
-          <p>
-            Contact Information:&nbsp;
-            <a href="mailto:gourabpaul900@google.com?subject=Came%20From%20the%20ResumeBuilder%20Site">
-              Email
-            </a>{" "}
-            &{" "}
-            <a href="https://github.com/GourabPaul007" target="_blank">
-              Github
-            </a>
-          </p>
-        </div>
-      </footer> */}
       <footer className="footer" id="contact">
         <div className="footerContent">
           <div className="footerColumn">
@@ -90,6 +75,11 @@ const Footer: React.FC<FooterProps> = () => {
                 </svg>
               </IconButton>
             </div>
+          </div>
+          <div className="footerColumn">
+            <a className="donateButton" href="https://pages.razorpay.com/pl_KPbZJYaYTTTAJB/view" target="_blank">
+              Donate to Resumez
+            </a>
           </div>
           <div className="footerColumn">
             <p style={{ fontSize: "2rem", marginBottom: "8px" }}>Resumez</p>

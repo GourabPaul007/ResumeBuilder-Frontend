@@ -18,14 +18,6 @@ import { WorksBlueprint1, WorksBlueprint2 } from "./blueprints/WorksBlueprints";
 import { RatingsBlueprint1, RatingsBlueprint2 } from "./blueprints/RatingsBlueprints";
 import { OthersBlueprint1 } from "./blueprints/OthersBlueprints";
 
-const useStyles = makeStyles({
-  centerChildren: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
-
 interface ClientDownloadPageProps {}
 
 const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
@@ -103,7 +95,10 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
               // boxShadow: "1px 2px 2px 2px #000",
             }}
           >
-            <div ref={componentRef} style={{ position: "relative", width: "211mm", height: "297mm", margin: 20 }}>
+            <div
+              ref={componentRef}
+              style={{ position: "relative", width: "211mm", height: "297mm", margin: "20px 20px 0px 20px" }}
+            >
               {itemsArray.map((item: any) => {
                 return organizeData(item, formStyles);
               })}
@@ -115,10 +110,10 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
                   left: "50%",
                   transform: "translate(-50%, -50%)",
                   fontSize: "12px",
-                  fontWeight: 400,
+                  fontWeight: 300,
                 }}
               >
-                made with resumez
+                made with <span style={{ fontWeight: 600 }}>Resumez</span>
               </div>
             </div>
           </div>
