@@ -7,6 +7,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { IconButton } from "@mui/material";
+import { RAZORPAY_DONATION_SITE_PROD, RAZORPAY_DONATION_SITE_TEST, _isProd } from "../constants";
 
 interface FooterProps {}
 
@@ -77,7 +78,11 @@ const Footer: React.FC<FooterProps> = () => {
             </div>
           </div>
           <div className="footerColumn">
-            <a className="donateButton" href="https://pages.razorpay.com/pl_KPbZJYaYTTTAJB/view" target="_blank">
+            <a
+              className="donateButton"
+              href={_isProd ? RAZORPAY_DONATION_SITE_PROD : RAZORPAY_DONATION_SITE_TEST}
+              target="_blank"
+            >
               Donate to Resumez
             </a>
           </div>
