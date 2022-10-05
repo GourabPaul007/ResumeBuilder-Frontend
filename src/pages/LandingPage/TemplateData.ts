@@ -401,7 +401,7 @@ export const template3 = {
 };
 
 export const templateN = {
-  formStyle: {
+  formStyles: {
     titleFilled: false,
     titleFullWidth: true,
     titleUnderline: true,
