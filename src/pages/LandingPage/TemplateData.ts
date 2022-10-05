@@ -156,7 +156,7 @@ export const template2 = {
       w: 4,
       h: 13,
       data: {
-        color: "",
+        color: "#123456",
         title: "",
         chipRadius: 10,
         chipSize: 3,
