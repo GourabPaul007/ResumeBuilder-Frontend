@@ -11,7 +11,7 @@
   /* background: #fff; */
   background-color: #6b5be6;
   z-index: 99;
-  border-bottom: 1px solid rgb(228, 243, 255);
+  /* border-bottom: 1px solid rgb(228, 243, 255); */
 }
 .navbar .container {
   display: flex;

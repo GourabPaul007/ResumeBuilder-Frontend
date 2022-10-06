@@ -6,6 +6,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Footer from "../../Components/Footer";
+import { EMAIL_LINK } from "../../constants";
 
 interface ContactPageProps {}
 
@@ -109,7 +110,7 @@ const ContactPage: React.FC<ContactPageProps> = () => {
               <TwitterIcon fontSize="large" />
             </IconButton>
             <IconButton
-              onClick={() => gotoLink("mailto:gourabpaul900@gmail.com")}
+              onClick={() => gotoLink(`mailto:${EMAIL_LINK}.com`)}
               size="large"
               style={{ padding: 16, margin: 8, borderRadius: 8, color: "#EA4335" }}
             >

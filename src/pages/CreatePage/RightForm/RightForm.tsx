@@ -1,4 +1,15 @@
-import { Button, Container, CssBaseline, Grid, Modal, TextField, Theme, Typography } from "@mui/material";
+import {
+  Backdrop,
+  Button,
+  CircularProgress,
+  Container,
+  CssBaseline,
+  Grid,
+  Modal,
+  TextField,
+  Theme,
+  Typography,
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { Dispatch } from "react";
 import { AboutWithContact } from "../../../interfaces/AboutWithContact";
@@ -85,6 +96,12 @@ interface RightFormProps {
 export const RightForm: React.FC<RightFormProps> = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
+
+  // Backdrop/Loading when clicking "GET RESUME"
+  const [loading, setLoading] = React.useState(false);
+  const handleClose = () => {
+    setLoading(false);
+  };
 
   // Return the specific form from passed parameter
   const chooseFormToShow = (form: string): React.ReactNode => {
@@ -202,18 +219,29 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
             style={{ marginBottom: 36 }}
             onClick={async (e: React.SyntheticEvent) => {
               e.preventDefault();
-              props.makeItemsArray(props.layout);
-              try {
-                navigate("/download");
-              } catch (e) {
-                console.error("Error adding document: ", e);
-              }
+              setLoading(true);
+              setTimeout(() => {
+                setLoading(false);
+                try {
+                  props.makeItemsArray(props.layout);
+                  navigate("/download");
+                } catch (e) {
+                  console.error("Error adding document: ", e);
+                }
+              }, Math.floor(Math.random() * (2000 - 1500)) + 1500);
             }}
           >
             Get&nbsp;&nbsp;Resume
           </Button>
         </div>
       </div>
+      <Backdrop
+        sx={{ color: "#123", zIndex: (theme) => theme.zIndex.drawer + 10 }}
+        open={loading}
+        // onClick={handleClose}
+      >
+        <CircularProgress color="secondary" />
+      </Backdrop>
     </>
   );
 };

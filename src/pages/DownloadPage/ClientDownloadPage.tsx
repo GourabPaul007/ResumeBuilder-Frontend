@@ -1,11 +1,7 @@
-import React, { useRef } from "react";
-import { Box, Button, Card, CircularProgress, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Button, CircularProgress } from "@mui/material";
 import AppBarHeader from "../../Components/AppBarHeader";
 import Footer from "../../Components/Footer";
-import { getAuth } from "firebase/auth";
 import { useReactToPrint } from "react-to-print";
 import { FormStyles } from "../../interfaces/FormStyles";
 import { AboutBlueprint1 } from "./blueprints/aboutBlueprints";
@@ -18,6 +14,8 @@ import { WorksBlueprint1, WorksBlueprint2 } from "./blueprints/WorksBlueprints";
 import { RatingsBlueprint1, RatingsBlueprint2 } from "./blueprints/RatingsBlueprints";
 import { OthersBlueprint1 } from "./blueprints/OthersBlueprints";
 
+import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
+
 interface ClientDownloadPageProps {}
 
 const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
@@ -27,11 +25,21 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
   const formStyles = JSON.parse(formStylesString);
   const componentRef = useRef(null);
 
+  const [loading, setLoading] = useState(false);
+
   // Build PDF
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "Resume",
   });
+
+  const handleClick = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    handlePrint();
+  };
 
   /**
    * Gets block name and returns section according to the name
@@ -119,8 +127,9 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
           </div>
           &nbsp; &nbsp;
           <div>
-            <Button variant="contained" size="large" onClick={handlePrint}>
-              Print Resume
+            <Button disabled={loading} variant="contained" size="large" onClick={handleClick}>
+              Print Resume&nbsp;&nbsp;
+              {loading ? <CircularProgress size={24} color="inherit" /> : <DownloadRoundedIcon fontSize="medium" />}
             </Button>
           </div>
         </div>
