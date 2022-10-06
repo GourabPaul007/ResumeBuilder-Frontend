@@ -204,7 +204,7 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
               e.preventDefault();
               props.makeItemsArray(props.layout);
               try {
-                navigate("/download/" + uuidv1);
+                navigate("/download");
               } catch (e) {
                 console.error("Error adding document: ", e);
               }

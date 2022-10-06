@@ -91,7 +91,7 @@ const App: React.FC = () => {
             }
           />
           <Route
-            path="/download/:resumeID"
+            path="/download"
             element={
               <AuthRoute>
                 {/* <DownloadPage /> */}
