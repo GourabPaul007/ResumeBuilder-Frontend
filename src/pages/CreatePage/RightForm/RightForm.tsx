@@ -1,25 +1,16 @@
-import {
-  Backdrop,
-  Button,
-  CircularProgress,
-  Container,
-  CssBaseline,
-  Grid,
-  Modal,
-  TextField,
-  Theme,
-  Typography,
-} from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import "./RightForm.css";
+
 import React, { Dispatch } from "react";
+
+import { Backdrop, Button, CircularProgress, Grid } from "@mui/material";
 import { AboutWithContact } from "../../../interfaces/AboutWithContact";
-import { Course, Educations } from "../../../interfaces/Educations";
+import { Educations } from "../../../interfaces/Educations";
 import { FormStyles } from "../../../interfaces/FormStyles";
 import { GridItem } from "../../../interfaces/GridItem";
 import { Others } from "../../../interfaces/Others";
-import { Project, Projects } from "../../../interfaces/Projects";
+import { Projects } from "../../../interfaces/Projects";
 import { Skills } from "../../../interfaces/Skills";
-import { Work, Works } from "../../../interfaces/Works";
+import { Works } from "../../../interfaces/Works";
 import { AboutWithContactForm } from "./FormItems/AboutWithContactForm";
 import { EducationForm } from "./FormItems/EducationsForm";
 import { Miscellaneous } from "./FormItems/MiscellaneousForm";
@@ -27,28 +18,14 @@ import { OthersForm } from "./FormItems/OthersForm";
 import { ProjectsForm } from "./FormItems/ProjectsForm";
 import { SkillsForm } from "./FormItems/SkillsForm";
 import { WorksForm } from "./FormItems/WorksForm";
-import { Contact, ContactBlock } from "../../../interfaces/Contact";
+import { ContactBlock } from "../../../interfaces/Contact";
 import { About } from "../../../interfaces/About";
 import { AboutForm } from "./FormItems/AboutForm";
 import { ContactForm } from "./FormItems/ContactForm";
 import { Ratings } from "../../../interfaces/Ratings";
 import { RatingsForm } from "./FormItems/RatingsForm";
 
-import { getFirestore, addDoc, collection } from "firebase/firestore";
-import DownloadModal from "../DownloadModal";
 import { useNavigate } from "react-router-dom";
-
-import { v1 as uuidv1 } from "uuid";
-
-const useStyles = makeStyles(() => ({
-  formWrapper: {
-    boxShadow: "0px 1px 2px #d5d5d7",
-    padding: 16,
-    marginBottom: 16,
-    borderRadius: 8,
-    backgroundColor: "#ffffff",
-  },
-}));
 
 interface RightFormProps {
   makeItemsArray: (layouts: GridItem[]) => void;
@@ -94,7 +71,6 @@ interface RightFormProps {
 }
 
 export const RightForm: React.FC<RightFormProps> = (props) => {
-  const classes = useStyles();
   const navigate = useNavigate();
 
   // Backdrop/Loading when clicking "GET RESUME"
@@ -173,19 +149,19 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
     <>
       <div style={{ paddingBottom: 36, minHeight: "100vh" }}>
         <div>
-          <Grid container>
+          <div>
             <div style={{ height: 10 }}>&nbsp;</div>
             {props.forms.map((eachForm) => {
               return (
-                <Grid item xs={12} key={eachForm} className={classes.formWrapper}>
+                <div key={eachForm} className="formWrapper">
                   {chooseFormToShow(eachForm)}
-                </Grid>
+                </div>
               );
             })}
-            <Grid item xs={12} className={classes.formWrapper}>
+            <Grid item xs={12} className="formWrapper">
               <Miscellaneous formStyles={props.formStyles} setFormStyles={props.setFormStyles} />
             </Grid>
-          </Grid>
+          </div>
 
           {/* <Button
             variant="contained"

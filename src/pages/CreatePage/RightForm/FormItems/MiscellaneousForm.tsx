@@ -24,13 +24,13 @@ const useMiscellaneousStyles = makeStyles((theme: Theme) => ({
   },
   eachSection: {
     // color: "#333",
-    margin: "24px",
+    margin: "12px 24px",
     fontWeight: 400,
-    width: "40rem",
-    height: "14rem",
+    width: "100%",
+    // height: "14rem",
     border: "2px solid #aaa",
     borderRadius: 8,
-    padding: 24,
+    padding: "12px 24px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -130,7 +130,7 @@ export const Miscellaneous: FC<MiscellaneousProps> = React.memo((props) => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "start",
-              padding: 12,
+              padding: 0,
             }}
           >
             <FormControlLabel
@@ -177,7 +177,7 @@ export const Miscellaneous: FC<MiscellaneousProps> = React.memo((props) => {
       </section>
 
       {/* the accent color */}
-      <section className={classes.eachSection} style={{ height: "10rem" }}>
+      <section className={classes.eachSection} style={{ height: "8rem" }}>
         <Typography align="center" style={{ fontSize: 24 }}>
           Other Styles
         </Typography>
