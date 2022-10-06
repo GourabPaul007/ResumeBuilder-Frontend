@@ -90,6 +90,9 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                 required
                 fullWidth
                 label="Email Address"
+                type="email"
+                error={!email.includes("@") || !email.includes(".")}
+                helperText="Use a valid email address."
                 onChange={(e) => setEmail(e.target.value)}
                 autoFocus
               />
@@ -102,7 +105,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
                 label="Password"
                 type="password"
                 error={password.length < 6}
-                helperText="Password should be atleast 6 characters long."
+                helperText="Password should be atleast 6 characters long. Use a combination of letters, numbers, and symbols."
                 onChange={(e) => setPassword(e.target.value)}
               />
               <div style={{ height: "12px" }}>&nbsp;</div>
