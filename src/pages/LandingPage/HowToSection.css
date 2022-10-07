@@ -42,3 +42,22 @@
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
+
+@media (max-width: 900px) {
+  .stepButtonGroup {
+    width: 30rem;
+    flex-wrap: wrap;
+  }
+  .stepButton {
+    flex: 50%;
+  }
+}
+
+@media (max-width: 400px) {
+  .stepButtonGroup {
+    flex-wrap: wrap;
+  }
+  .stepButton {
+    flex: 100%;
+  }
+}

@@ -33,3 +33,12 @@
   padding: 12px 24px;
   border-radius: 5px;
 }
+
+@media (max-width: 900px) {
+  .footerContent {
+    flex-direction: column;
+  }
+  .footerColumn {
+    margin-bottom: 2rem;
+  }
+}

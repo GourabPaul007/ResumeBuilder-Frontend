@@ -1,0 +1,112 @@
+.welcomeWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcomeText {
+  text-align: start;
+  flex: 1;
+}
+
+#welcomeHeader {
+  font-size: 5rem;
+  line-height: 1.3;
+  text-transform: capitalize;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--primary-color);
+}
+
+#welcomeSubheader {
+  font-size: 24px;
+  text-transform: capitalize;
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
+#welcomeSubText {
+  margin-top: 14px;
+  max-width: 600px;
+  line-height: 1.7;
+  font-size: 24px;
+}
+
+.chooseTemplateButton {
+  /* background-color: var(--secondary-color); */
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color) !important;
+  border-radius: 4px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 12px 30px;
+}
+.chooseTemplateButton:hover {
+  background-color: var(--dark-secondary-color);
+  color: #ffffff !important;
+  transition: 300ms;
+}
+
+.buildResumeButton {
+  background-color: var(--primary-color);
+  color: #fff !important;
+  border-radius: 4px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 12px 30px;
+}
+.buildResumeButton:hover {
+  background: var(--dark-primary-color);
+  color: #ffffff !important;
+  transition: 300ms;
+}
+
+@media (max-width: 1200px) {
+  /* .welcomeWrapper {
+    flex-direction: column-reverse;
+  } */
+  #welcomeHeader {
+    font-size: 3rem;
+  }
+  #welcomeSubheader {
+    font-size: 1rem;
+  }
+  #welcomeSubText {
+    font-size: 1rem;
+  }
+  .chooseTemplateButton {
+    font-size: 1rem;
+  }
+  .buildResumeButton {
+    font-size: 1rem;
+  }
+  .welcomeImage {
+    /* display: none; */
+  }
+}
+
+@media (max-width: 900px) {
+  /* .welcomeWrapper {
+    flex-direction: column-reverse;
+  } */
+  #welcomeHeader {
+    font-size: 3rem;
+  }
+  #welcomeSubheader {
+    font-size: 1rem;
+  }
+  #welcomeSubText {
+    font-size: 1rem;
+  }
+  .chooseTemplateButton {
+    font-size: 0.8rem;
+  }
+  .buildResumeButton {
+    font-size: 0.8rem;
+  }
+  .welcomeImage {
+    display: none;
+  }
+}

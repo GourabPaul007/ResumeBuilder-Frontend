@@ -12,7 +12,7 @@ const BenefitsSection: FC<BenefitsSectionProps> = () => {
       <div className="container">
         <SectionHeader supportHeader="THE BEST RESUME BUILDER." mainHeader="The Features of Resumez" />
 
-        <section style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <section className="benefitsCardsWrapper">
           <Card className="card">
             <h3 className="cardHeaderText">
               <span style={{ fontSize: 28, marginRight: 4, color: "transparent", textShadow: "0 0 0 #ff9800" }}>

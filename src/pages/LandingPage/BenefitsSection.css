@@ -1,3 +1,10 @@
+.benefitsCardsWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .card {
   height: 230px;
   width: 420px;
@@ -26,4 +33,24 @@
   margin-left: 8px;
   line-height: 1.75rem;
   letter-spacing: 0.08rem;
+}
+
+@media (max-width: 1200px) {
+  .benefitsCardsWrapper {
+    flex-direction: column;
+  }
+  .card {
+    margin-bottom: 36px;
+  }
+}
+
+@media (max-width: 900px) {
+  .benefitsCardsWrapper {
+    flex-direction: column;
+  }
+  .card {
+    height: 250px;
+    width: 22rem;
+    padding: 24px;
+  }
 }

@@ -83,3 +83,12 @@
 }
 
 /* End Templates */
+
+@media (max-width: 900px) {
+  .templatesSectionContent {
+    flex-direction: column;
+  }
+  .eachTemplate {
+    margin-bottom: 2rem;
+  }
+}
