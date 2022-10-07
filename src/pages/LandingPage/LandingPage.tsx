@@ -4,8 +4,6 @@ import Footer from "../../Components/Footer";
 import "./LandingPage.css";
 
 import couchLaptop from "../../static/background/couchLaptop.png";
-import peopleCouchLaptop from "../../static/background/peopleCouchLaptop.png";
-import interview from "../static/background/interview.png";
 
 import TemplateSection from "./TemplateSection";
 import HowToSection from "./HowToSection";
