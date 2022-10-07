@@ -96,3 +96,15 @@
   }
 }
 /* End Header */
+
+@media (max-width: 992px) {
+  .navbar .logo {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar .logo {
+    font-size: 0.8rem;
+  }
+}
