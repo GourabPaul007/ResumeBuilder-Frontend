@@ -26,6 +26,7 @@ import { Ratings } from "../../../interfaces/Ratings";
 import { RatingsForm } from "./FormItems/RatingsForm";
 
 import { useNavigate } from "react-router-dom";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 interface RightFormProps {
   makeItemsArray: (layouts: GridItem[]) => void;
@@ -72,6 +73,8 @@ interface RightFormProps {
 
 export const RightForm: React.FC<RightFormProps> = (props) => {
   const navigate = useNavigate();
+
+  const analytics = getAnalytics();
 
   // Backdrop/Loading when clicking "GET RESUME"
   const [loading, setLoading] = React.useState(false);
@@ -200,6 +203,7 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
                 setLoading(false);
                 try {
                   props.makeItemsArray(props.layout);
+                  logEvent(analytics, "made_resume");
                   navigate("/download");
                 } catch (e) {
                   console.error("Error adding document: ", e);

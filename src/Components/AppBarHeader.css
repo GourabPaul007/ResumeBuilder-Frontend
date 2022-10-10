@@ -36,24 +36,6 @@
   visibility: visible;
   transform: translatey(0);
 }
-@media (max-width: 992px) {
-  .navLinks {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: aliceblue;
-    z-index: 9999999;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transform: translatex(100%);
-    opacity: 0;
-    visibility: hidden;
-  }
-}
 .navLinks a {
   position: relative;
   display: inline-block;
@@ -65,13 +47,6 @@
   font-weight: 500;
   font-size: 0.9rem;
   cursor: pointer;
-}
-@media (max-width: 992px) {
-  .navLinks a {
-    margin-right: 0;
-    margin-bottom: 25px;
-    font-size: 0.9rem;
-  }
 }
 .navLinks .toggle-menu {
   position: absolute;
@@ -90,14 +65,38 @@
   display: none;
   transition: var(--main-transition);
 }
+.drawerButtons {
+  padding: 6px 24px !important;
+  margin-top: 16px !important;
+  text-transform: none !important;
+  color: #fff !important;
+}
+
 @media (max-width: 992px) {
+  .navLinks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: aliceblue;
+    z-index: 9999999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translatex(100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  .navLinks a {
+    margin-right: 0;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+  }
   .navbar .toggle-menu {
     display: block;
   }
-}
-/* End Header */
-
-@media (max-width: 992px) {
   .navbar .logo {
     font-size: 1rem;
   }

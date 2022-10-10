@@ -19,25 +19,21 @@ const LandingPage: React.FC<LandingPageProps> = () => {
   const navLinks = document.querySelector(".nav-links") as Element;
   const links = document.querySelectorAll(".nav-links a") as NodeListOf<Element>;
 
-  /*
-    Main Function
-*/
-  function toggleLinks(ourArray: any, ourFubction: any) {
-    ourArray.forEach((element: any) => {
-      element.addEventListener("click", () => {
-        ourFubction();
-      });
-    });
-  }
-  /*
-    Show & Hide Links Sidebar
-*/
-  function toggleNavLinks(): void {
-    navLinks.classList.toggle("active");
-  }
+  // Main Function
+  // function toggleLinks(ourArray: any, ourFubction: any) {
+  //   ourArray.forEach((element: any) => {
+  //     element.addEventListener("click", () => {
+  //       ourFubction();
+  //     });
+  //   });
+  // }
+  //Show & Hide Links Sidebar
+  // function toggleNavLinks(): void {
+  //   navLinks.classList.toggle("active");
+  // }
 
-  toggleLinks(toggleMenu, toggleNavLinks);
-  toggleLinks(links, toggleNavLinks);
+  // toggleLinks(toggleMenu, toggleNavLinks);
+  // toggleLinks(links, toggleNavLinks);
   // ************************************************************
   // ************************************************************
   // ************************************************************

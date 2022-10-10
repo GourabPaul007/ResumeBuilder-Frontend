@@ -15,6 +15,7 @@ import { RatingsBlueprint1, RatingsBlueprint2 } from "./blueprints/RatingsBluepr
 import { OthersBlueprint1 } from "./blueprints/OthersBlueprints";
 
 import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 interface ClientDownloadPageProps {}
 
@@ -25,12 +26,18 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
   const formStyles = JSON.parse(formStylesString);
   const componentRef = useRef(null);
 
+  // Get Google Analytics
+  const analytics = getAnalytics();
+
   const [loading, setLoading] = useState(false);
 
   // Build PDF
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "Resume",
+    onAfterPrint: () => {
+      logEvent(analytics, "made_resume");
+    },
   });
 
   const handleClick = () => {

@@ -1,9 +1,17 @@
+import "./AppBarHeader.css";
+
 import React, { useEffect, useState } from "react";
 
 import { Avatar, Button, Drawer, List } from "@mui/material";
-import "./AppBarHeader.css";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+
+import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 
 interface AppBarHeaderProps {}
 
@@ -24,9 +32,8 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
 
   return (
     <>
-      <header>
+      {/* <header>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* <!-- Font Awesome Icons Libariy --> */}
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
@@ -34,7 +41,7 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-      </header>
+      </header> */}
       {/* <!-- Start Header --> */}
       <nav className="navbar" id="navbar">
         <div className="container">
@@ -83,12 +90,21 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
           </div>
 
           <div className="toggle-menu scale-effect">
-            <i
-              className="fas fa-bars"
+            <Button
+              style={{
+                padding: "6px 12px",
+                margin: "0px 48px",
+                textTransform: "none",
+                color: "#fff",
+              }}
+              variant="outlined"
+              color="secondary"
               onClick={() => {
                 setOpenDrawer(true);
               }}
-            ></i>
+            >
+              <MenuOpenRoundedIcon />
+            </Button>
           </div>
         </div>
         <>
@@ -99,59 +115,47 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
             onClose={() => {
               setOpenDrawer(false);
             }}
-            // onClose={setOpenDrawer(false)}
           >
             <div style={{ width: 250, display: "grid", placeContent: "center" }}>
               <Button
-                style={{
-                  paddingRight: 48,
-                  paddingLeft: 48,
-                  marginTop: 24,
-                  textTransform: "none",
-                }}
+                className="drawerButtons"
                 variant="contained"
-                // fullWidth
-                href="/"
+                fullWidth
+                onClick={() => {
+                  navigate("/");
+                }}
               >
-                <i className="fas fa-home"></i>&nbsp; Home
+                <HomeRoundedIcon />
+                &nbsp;&nbsp;Home&nbsp;
               </Button>
 
               <Button
-                style={{
-                  paddingRight: 48,
-                  paddingLeft: 48,
-                  marginTop: 24,
-                  textTransform: "none",
-                }}
+                className="drawerButtons"
                 variant="contained"
                 fullWidth
-                href="/create"
+                onClick={() => {
+                  navigate("/create");
+                }}
               >
-                <i className="fas fa-align-center"></i>&nbsp; Create
+                <AddCircleRoundedIcon />
+                &nbsp;&nbsp;Create&nbsp;
               </Button>
 
               <Button
-                style={{
-                  paddingRight: 48,
-                  paddingLeft: 48,
-                  marginTop: 24,
-                  textTransform: "none",
-                }}
+                className="drawerButtons"
                 variant="contained"
                 fullWidth
-                href="/"
+                onClick={() => {
+                  navigate("/contact");
+                }}
               >
-                Home
+                <EmailRoundedIcon />
+                &nbsp;&nbsp;Contact&nbsp;
               </Button>
 
               {userExists ? (
                 <Button
-                  style={{
-                    paddingRight: 48,
-                    paddingLeft: 48,
-                    marginTop: 24,
-                    textTransform: "none",
-                  }}
+                  className="drawerButtons"
                   variant="contained"
                   fullWidth
                   onClick={() => {
@@ -159,23 +163,20 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
                     navigate("/login");
                   }}
                 >
-                  Sign out
+                  <LogoutRoundedIcon />
+                  &nbsp;&nbsp;Sign out&nbsp;
                 </Button>
               ) : (
                 <Button
-                  style={{
-                    paddingRight: 48,
-                    paddingLeft: 48,
-                    marginTop: 24,
-                    textTransform: "none",
-                  }}
+                  className="drawerButtons"
                   variant="contained"
                   fullWidth
                   onClick={() => {
                     navigate("/login");
                   }}
                 >
-                  Login / Sign up
+                  <LoginRoundedIcon />
+                  &nbsp;&nbsp;Login / Sign up&nbsp;
                 </Button>
               )}
             </div>
