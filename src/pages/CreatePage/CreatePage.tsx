@@ -18,6 +18,7 @@ import { About } from "../../interfaces/About";
 import { Contact, ContactBlock } from "../../interfaces/Contact";
 import { Ratings } from "../../interfaces/Ratings";
 import { LocalStorageItem } from "../../interfaces/LocalStorageItem";
+import { log } from "../../helpers/logger";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -326,7 +327,7 @@ const CreatePage: React.FC = (props) => {
     for (let i = 0; i < items.length; i++) {
       const element = items[i];
       if (element.i === name) {
-        console.log(element.i, name, "this item already exists");
+        log(element.i, name, "this item already exists");
         name = "";
         return;
       }
@@ -349,7 +350,7 @@ const CreatePage: React.FC = (props) => {
     const newFormsArray = forms;
     const newFormName = name;
     if (newFormsArray.includes(newFormName)) {
-      console.log("Form Item already exists", newFormName, forms);
+      log("Form Item already exists", newFormName, forms);
       return;
     }
     newFormsArray.push(newFormName);
@@ -357,7 +358,7 @@ const CreatePage: React.FC = (props) => {
   }
 
   function removeItem(toBeRemovedItem: GridItem) {
-    console.log("removing", toBeRemovedItem);
+    log("removing", toBeRemovedItem);
     for (let i = 0; i < items.length; i++) {
       if (items[i].i === toBeRemovedItem.i) {
         const newItems = items.filter(function (el) {
@@ -368,9 +369,9 @@ const CreatePage: React.FC = (props) => {
         // remove From Forms Array
         const newItemsNameArray = newItems.map((item) => item.i);
         if (newItemsNameArray.includes(toBeRemovedItem.i)) {
-          console.log("Another item with same form exists", newItemsNameArray);
+          log("Another item with same form exists", newItemsNameArray);
         } else {
-          console.log("Removing Form", toBeRemovedItem.i);
+          log("Removing Form", toBeRemovedItem.i);
           setForms(forms.filter((formItem) => formItem != toBeRemovedItem.i)); // remove from form array where matches the `toBeRemovedItemName`
         }
       }
@@ -392,7 +393,7 @@ const CreatePage: React.FC = (props) => {
   // MAKE A COPY OF LAYOUT FOR DOWNLOAD PAGE
   const saveToLS = (layout: GridItem[]) => {
     const finalItems: LocalStorageItem[] = [];
-    console.log(layout);
+    log("layout", layout);
 
     for (let i = 0; i < layout.length; i++) {
       const element = layout[i];
@@ -446,7 +447,7 @@ const CreatePage: React.FC = (props) => {
         })(elementName),
       });
     }
-    console.log("finalItems", finalItems);
+    log("finalItems", finalItems);
     localStorage.setItem("ItemsArray", JSON.stringify(finalItems));
     localStorage.setItem("FormStyles", JSON.stringify(formStyles));
   };

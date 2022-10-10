@@ -15,9 +15,11 @@ import SignupPage from "./pages/auth/SignupPage";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ClientDownloadPage from "./pages/DownloadPage/ClientDownloadPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
+import { initializeAnalytics } from "firebase/analytics";
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
+initializeAnalytics(firebaseApp);
 
 // async function makePDF() {
 //   // var s = '<div id="myDiv"></div>';

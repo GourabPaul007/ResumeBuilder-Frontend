@@ -16,6 +16,7 @@ import { OthersBlueprint1 } from "./blueprints/OthersBlueprints";
 
 import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import { log } from "../../helpers/logger";
 
 interface ClientDownloadPageProps {}
 
@@ -36,7 +37,7 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
     content: () => componentRef.current,
     documentTitle: "Resume",
     onAfterPrint: () => {
-      logEvent(analytics, "made_resume");
+      logEvent(analytics, "downloaded_resume");
     },
   });
 
@@ -55,7 +56,7 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
    * @returns single section of resume
    */
   const organizeData = (element: any, formStyles: FormStyles) => {
-    console.log("element", element);
+    log("element", element);
     switch (element.name) {
       case "aboutwithcontact1":
         return <AboutWithContactBlueprint1 key={element.name} aboutWithContact={element} formStyles={formStyles} />;
