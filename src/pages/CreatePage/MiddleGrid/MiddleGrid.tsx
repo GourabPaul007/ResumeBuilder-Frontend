@@ -26,6 +26,7 @@ import { EducationsBlock1, EducationsBlock2 } from "./GridItems/EducationsBlocks
 import { AboutWithContactBlock1, AboutWithContactBlock2 } from "./GridItems/AboutWithContactBlocks";
 import { WorksBlock1, WorksBlock2 } from "./GridItems/WorksBlocks";
 import { OthersBlock1 } from "./GridItems/OthersBlocks";
+import { SpacerBlock1, SpacerBlock2, SpacerBlock3 } from "./GridItems/SpacerBlocks";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 
 // const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -255,6 +256,13 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             formStyles={props.formStyles}
           />
         );
+
+      case "spacer1":
+        return <SpacerBlock1 blockTitle={"Spacer #1"} removeItem={props.removeItem} item={item} />;
+      case "spacer2":
+        return <SpacerBlock2 blockTitle={"Spacer #2"} removeItem={props.removeItem} item={item} />;
+      case "spacer3":
+        return <SpacerBlock3 blockTitle={"Spacer #3"} removeItem={props.removeItem} item={item} />;
       default:
         break;
     }

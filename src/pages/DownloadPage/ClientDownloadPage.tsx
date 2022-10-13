@@ -37,7 +37,11 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
     content: () => componentRef.current,
     documentTitle: "Resume",
     onAfterPrint: () => {
-      logEvent(analytics, "downloaded_resume");
+      try {
+        logEvent(analytics, "downloaded_resume");
+      } catch (e) {
+        console.error(e);
+      }
     },
   });
 

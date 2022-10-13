@@ -231,16 +231,6 @@ const CreatePage: React.FC = (props) => {
   );
 
   useEffect(() => {
-    // const oldFormStyles: FormStyles = JSON.parse(localStorage.getItem("FormStyles") as string) || {
-    //   titleFilled: false,
-    //   titleFullWidth: false,
-    //   titleUnderline: false,
-    //   titleColor: "#000000",
-    //   titleFillColor: "#ccffcc",
-    //   accentColor: "#0000ff",
-    // };
-    // setFormStyles(oldFormStyles);
-
     const oldLayout = JSON.parse(localStorage.getItem("ItemsArray") as string);
     setLayout(oldLayout);
     // SET LAYOUT AND ITS DATA
@@ -349,10 +339,17 @@ const CreatePage: React.FC = (props) => {
     // Add to Form
     const newFormsArray = forms;
     const newFormName = name;
+    // If the item already exist then dont add to form
     if (newFormsArray.includes(newFormName)) {
       log("Form Item already exists", newFormName, forms);
       return;
     }
+    // If the item is an spacer then dont add to form
+    if (newFormName === "spacer1" || newFormName === "spacer2" || newFormName === "spacer3") {
+      log("Form Item is spacer", newFormName, forms);
+      return;
+    }
+    // Add item to form and update [forms] state.
     newFormsArray.push(newFormName);
     setForms(newFormsArray);
   }
@@ -441,6 +438,13 @@ const CreatePage: React.FC = (props) => {
               return ratings2;
             case "others1":
               return others1;
+            case "spacer1":
+              return "spacer1";
+            case "spacer2":
+              return "spacer2";
+            case "spacer3":
+              return "spacer3";
+
             default:
               return "bruh";
           }

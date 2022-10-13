@@ -16,10 +16,13 @@ import OAuthCard from "./OAuthCard";
 import makeStyles from "@mui/styles/makeStyles";
 
 import "./AuthPagesStyles.css";
+import { log } from "../../helpers/logger";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 export interface ILoginPageProps {}
 
 const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
+  const analytics = getAnalytics();
   const auth = getAuth();
   const navigate = useNavigate();
   const [authing, setAuthing] = useState(false);
@@ -30,11 +33,12 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 
   const logInWithUsernameAndPassword = async (email: string, password: string) => {
     setAuthing(true);
-    console.log(email, password);
+    log(email, password);
 
     signInWithEmailAndPassword(auth, email, password)
       .then((response) => {
         console.log(response.user);
+        logEvent(analytics, "logged_in");
         navigate("/");
       })
       .catch((e) => {

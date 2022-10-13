@@ -11,6 +11,7 @@ import { GridItem } from "../../../interfaces/GridItem";
 import { AboutIcon1 } from "./LeftMenuIcons/AboutIcons";
 import { ContactIcon1, ContactIcon2, ContactIcon3 } from "./LeftMenuIcons/ContactIcons";
 import { RatingsIcon1, RatingsIcon2 } from "./LeftMenuIcons/RatingsIcons";
+import { SpacersIcon1, SpacersIcon2, SpacersIcon3 } from "./LeftMenuIcons/SpacersIcons";
 
 const useStyles = makeStyles((theme) => ({
   eachIcon: {
@@ -357,6 +358,28 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
           onClick={() => props.addBlock("others1", Infinity, Infinity, 6, 10, {}, true)}
         >
           <OthersIcon1 />
+        </div>
+        {/* ======================================================================================================= */}
+        {/* Spacers */}
+        {/* ======================================================================================================= */}
+        <div className={styles.categoryTitle}>Spacers</div>
+        <div
+          className={inItemsArray("spacer1") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock("spacer1", Infinity, Infinity, 3, 5, {}, true)}
+        >
+          <SpacersIcon1 />
+        </div>
+        <div
+          className={inItemsArray("spacer2") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock("spacer2", Infinity, Infinity, 6, 5, {}, true)}
+        >
+          <SpacersIcon2 />
+        </div>
+        <div
+          className={inItemsArray("spacer3") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock("spacer3", Infinity, Infinity, 9, 5, {}, true)}
+        >
+          <SpacersIcon3 />
         </div>
       </div>
     </>

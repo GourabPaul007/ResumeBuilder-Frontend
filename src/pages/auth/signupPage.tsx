@@ -17,10 +17,12 @@ import OAuthCard from "./OAuthCard";
 import { getErrorMessage } from "./errorMessages";
 
 import "./AuthPagesStyles.css";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 export interface ILoginPageProps {}
 
 const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
+  const analytics = getAnalytics();
   const auth = getAuth();
   const navigate = useNavigate();
   const [authing, setAuthing] = useState(false);
@@ -34,6 +36,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((response) => {
         console.log(response.user);
+        logEvent(analytics, "signed_up");
         navigate("/");
       })
       .catch((e) => {
