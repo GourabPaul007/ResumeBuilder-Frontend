@@ -27,6 +27,7 @@ import { RatingsForm } from "./FormItems/RatingsForm";
 
 import { useNavigate } from "react-router-dom";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import { MADE_RESUME } from "../../../constants";
 
 interface RightFormProps {
   makeItemsArray: (layouts: GridItem[]) => void;
@@ -165,32 +166,7 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
               <Miscellaneous formStyles={props.formStyles} setFormStyles={props.setFormStyles} />
             </Grid>
           </div>
-
-          {/* <Button
-            variant="contained"
-            size="large"
-            fullWidth={true}
-            style={{ marginBottom: 36 }}
-            onClick={async (e: React.SyntheticEvent) => {
-              e.preventDefault();
-              props.makeItemsArray();
-
-              const db = getFirestore();
-              try {
-                const docRef = await addDoc(collection(db, "resumes"), {
-                  resumeData: { blocks: props.makeItemsArray(), formStyles: props.formStyles },
-                });
-                console.log("Document written with ID: ", docRef.id);
-                navigate("/download/" + docRef.id);
-              } catch (e) {
-                console.error("Error adding document: ", e);
-              }
-              // setDownloadModalOpen(true);
-              // navigate("/download/"+docRef.id);
-            }}
-          >
-            Get&nbsp;&nbsp;Resume
-          </Button> */}
+          {/* Button to go to ClientDownloadPage */}
           <Button
             variant="contained"
             size="large"
@@ -203,7 +179,7 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
                 setLoading(false);
                 try {
                   props.makeItemsArray(props.layout);
-                  logEvent(analytics, "made_resume");
+                  logEvent(analytics, MADE_RESUME);
                   navigate("/download");
                 } catch (e) {
                   console.error("Error adding document: ", e);

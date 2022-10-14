@@ -1,4 +1,9 @@
+import "./ClientDownloadPage.css";
+
 import React, { useRef, useState } from "react";
+
+import { getAnalytics, logEvent } from "firebase/analytics";
+
 import { Button, CircularProgress } from "@mui/material";
 import AppBarHeader from "../../Components/AppBarHeader";
 import Footer from "../../Components/Footer";
@@ -15,12 +20,15 @@ import { RatingsBlueprint1, RatingsBlueprint2 } from "./blueprints/RatingsBluepr
 import { OthersBlueprint1 } from "./blueprints/OthersBlueprints";
 
 import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
-import { getAnalytics, logEvent } from "firebase/analytics";
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { log } from "../../helpers/logger";
+import { useNavigate } from "react-router-dom";
+import { DOWNLOADED_RESUME, EDITED_RESUME } from "../../constants";
 
 interface ClientDownloadPageProps {}
 
 const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
+  const navigate = useNavigate();
   const itemsArrayString = localStorage.getItem("ItemsArray") as string;
   const formStylesString = localStorage.getItem("FormStyles") as string;
   const itemsArray = JSON.parse(itemsArrayString);
@@ -32,13 +40,23 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
 
   const [loading, setLoading] = useState(false);
 
+  // Go Back Editing
+  const handleGoBack = () => {
+    try {
+      logEvent(analytics, EDITED_RESUME);
+      navigate("/create");
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   // Build PDF
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "Resume",
     onAfterPrint: () => {
       try {
-        logEvent(analytics, "downloaded_resume");
+        logEvent(analytics, DOWNLOADED_RESUME);
       } catch (e) {
         console.error(e);
       }
@@ -105,45 +123,29 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
     <>
       <AppBarHeader />
       &nbsp;
-      <div>
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-          <div
-            style={{
-              border: "1px solid #5b6be6",
-              borderRadius: 5,
-              width: "218mm",
-              // boxShadow: "1px 2px 2px 2px #000",
-            }}
-          >
-            <div
-              ref={componentRef}
-              style={{ position: "relative", width: "211mm", height: "297mm", margin: "20px 20px 0px 20px" }}
-            >
-              {itemsArray.map((item: any) => {
-                return organizeData(item, formStyles);
-              })}
-              {/* WATERMARK */}
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "0px",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  fontSize: "12px",
-                  fontWeight: 300,
-                }}
-              >
-                made with <span style={{ fontWeight: 600 }}>Resumez</span>
-              </div>
+      <div className="pageWrapper">
+        <div className="pdfOuterDiv">
+          <div ref={componentRef} className="pdfInnerDiv">
+            {itemsArray.map((item: any) => {
+              return organizeData(item, formStyles);
+            })}
+            {/* WATERMARK */}
+            <div className="pdfWatermark">
+              made with <span style={{ fontWeight: 600 }}>Resumez</span>
             </div>
           </div>
-          &nbsp; &nbsp;
-          <div>
-            <Button disabled={loading} variant="contained" size="large" onClick={handleClick}>
-              Print Resume&nbsp;&nbsp;
-              {loading ? <CircularProgress size={24} color="inherit" /> : <DownloadRoundedIcon fontSize="medium" />}
-            </Button>
-          </div>
+        </div>
+        &nbsp; &nbsp;
+        <div>
+          <Button variant="contained" size="large" onClick={handleGoBack} style={{ backgroundColor: "#00ccc9" }}>
+            <ArrowBackRoundedIcon fontSize="medium" />
+            &nbsp;&nbsp;Edit Resume
+          </Button>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <Button disabled={loading} variant="contained" size="large" onClick={handleClick}>
+            Print Resume&nbsp;&nbsp;
+            {loading ? <CircularProgress size={24} color="inherit" /> : <DownloadRoundedIcon fontSize="medium" />}
+          </Button>
         </div>
       </div>
       &nbsp;

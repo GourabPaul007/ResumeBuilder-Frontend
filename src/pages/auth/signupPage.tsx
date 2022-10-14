@@ -18,6 +18,7 @@ import { getErrorMessage } from "./errorMessages";
 
 import "./AuthPagesStyles.css";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import { SIGNED_UP } from "../../constants";
 
 export interface ILoginPageProps {}
 
@@ -36,7 +37,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((response) => {
         console.log(response.user);
-        logEvent(analytics, "signed_up");
+        logEvent(analytics, SIGNED_UP);
         navigate("/");
       })
       .catch((e) => {

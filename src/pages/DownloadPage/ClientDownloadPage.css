@@ -1,0 +1,30 @@
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pdfOuterDiv {
+  border: 1px solid #5b6be6;
+  border-radius: 5px;
+  width: 218mm;
+  transform: TranslateX(-10px);
+  /* boxShadow: 1px 2px 2px 2px #000; */
+}
+
+.pdfInnerDiv {
+  position: relative;
+  width: 211mm;
+  height: 297mm;
+  margin: 20px 20px 0px 20px;
+}
+
+.pdfWatermark {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 300;
+}

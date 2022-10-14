@@ -18,6 +18,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import "./AuthPagesStyles.css";
 import { log } from "../../helpers/logger";
 import { getAnalytics, logEvent } from "firebase/analytics";
+import { LOGGED_IN } from "../../constants";
 
 export interface ILoginPageProps {}
 
@@ -38,7 +39,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((response) => {
         console.log(response.user);
-        logEvent(analytics, "logged_in");
+        logEvent(analytics, LOGGED_IN);
         navigate("/");
       })
       .catch((e) => {

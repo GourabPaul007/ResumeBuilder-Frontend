@@ -5,10 +5,13 @@ import { googleSvg } from "../../Components/Icons";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import { LOGGED_IN } from "../../constants";
 
 interface OAuthCardProps {}
 
 const OAuthCard: React.FC<OAuthCardProps> = () => {
+  const analytics = getAnalytics();
   const auth = getAuth();
   const navigate = useNavigate();
   const [authing, setAuthing] = useState(false);
@@ -17,6 +20,7 @@ const OAuthCard: React.FC<OAuthCardProps> = () => {
     setAuthing(true);
     signInWithPopup(auth, new GoogleAuthProvider())
       .then((response) => {
+        logEvent(analytics, LOGGED_IN);
         console.log(response.user.uid);
         navigate("/");
       })
