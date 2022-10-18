@@ -1,4 +1,4 @@
-export const _isProd = true;
+export const _isProd = false;
 
 export const siteName = "Resumez";
 export const siteSubname = "Free Drag & Drop Resume Builder";

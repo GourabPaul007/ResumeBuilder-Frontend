@@ -19,6 +19,7 @@ import { Contact, ContactBlock } from "../../interfaces/Contact";
 import { Ratings } from "../../interfaces/Ratings";
 import { LocalStorageItem } from "../../interfaces/LocalStorageItem";
 import { log } from "../../helpers/logger";
+import { Name } from "../../interfaces/Name";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -55,6 +56,14 @@ const CreatePage: React.FC = (props) => {
       textColor: "#000000",
     },
   });
+  const [name1, setName1] = useState<Name>({
+    name: "",
+    profession: "",
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
+  });
   const [about1, setAbout1] = useState<About>({
     name: "",
     profession: "",
@@ -66,7 +75,7 @@ const CreatePage: React.FC = (props) => {
   });
   const [contact1, setContact1] = useState<ContactBlock>({
     title: "",
-    flipped: false,
+    flipped: true,
     data: { address: [""], emails: [""], phno: "" },
     style: {
       bgColor: "#ffffff",
@@ -249,6 +258,9 @@ const CreatePage: React.FC = (props) => {
           case "about1":
             setAbout1(item.data);
             break;
+          case "name1":
+            setName1(item.data);
+            break;
           case "contact1":
             setContact1(item.data);
             break;
@@ -410,6 +422,8 @@ const CreatePage: React.FC = (props) => {
               return aboutWithContact2;
             case "about1":
               return about1;
+            case "name1":
+              return name1;
             case "contact1":
               return contact1;
             case "contact2":
@@ -446,7 +460,7 @@ const CreatePage: React.FC = (props) => {
               return "spacer3";
 
             default:
-              return "bruh";
+              return "elementName does not exist in (switch case) in saveToLS() in CreatePage.tsx";
           }
         })(elementName),
       });
@@ -472,6 +486,7 @@ const CreatePage: React.FC = (props) => {
             aboutWithContact1={aboutWithContact1}
             aboutWithContact2={aboutWithContact2}
             about1={about1}
+            name1={name1}
             contact1={contact1}
             contact2={contact2}
             contact3={contact3}

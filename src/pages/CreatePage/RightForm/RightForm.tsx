@@ -166,6 +166,7 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
               <Miscellaneous formStyles={props.formStyles} setFormStyles={props.setFormStyles} />
             </Grid>
           </div>
+          &nbsp;
           {/* Button to go to ClientDownloadPage */}
           <Button
             variant="contained"

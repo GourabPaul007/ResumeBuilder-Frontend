@@ -27,6 +27,8 @@ import { AboutWithContactBlock1, AboutWithContactBlock2 } from "./GridItems/Abou
 import { WorksBlock1, WorksBlock2 } from "./GridItems/WorksBlocks";
 import { OthersBlock1 } from "./GridItems/OthersBlocks";
 import { SpacerBlock1, SpacerBlock2, SpacerBlock3 } from "./GridItems/SpacerBlocks";
+import { Name } from "../../../interfaces/Name";
+import { NameBlock1 } from "./GridItems/NameBlocks";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 
 // const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -64,6 +66,7 @@ interface MiddleGridProps {
   aboutWithContact1: AboutWithContact;
   aboutWithContact2: AboutWithContact;
   about1: About;
+  name1: Name;
   contact1: ContactBlock;
   contact2: ContactBlock;
   contact3: ContactBlock;
@@ -113,6 +116,16 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             removeItem={props.removeItem}
             item={item}
             about={props.about1}
+            formStyles={props.formStyles}
+          />
+        );
+      case "name1":
+        return (
+          <NameBlock1
+            blockTitle={"Name #1"}
+            removeItem={props.removeItem}
+            item={item}
+            name={props.name1}
             formStyles={props.formStyles}
           />
         );
@@ -264,7 +277,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
       case "spacer3":
         return <SpacerBlock3 blockTitle={"Spacer #3"} removeItem={props.removeItem} item={item} />;
       default:
-        break;
+        return <>elementName does not exist in getItemBlock() in MiddleGrid.tsx`</>;
     }
   }
 

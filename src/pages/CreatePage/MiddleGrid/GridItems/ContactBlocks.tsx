@@ -74,7 +74,7 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
             flipped={props.contact.flipped}
           />
         ) : (
-          <div style={{ display: "flex", flexDirection: toBeShownContact.flipped ? "row-reverse" : "row" }}>
+          <div style={{ display: "flex", flexDirection: props.contact.flipped ? "row-reverse" : "row" }}>
             {/* Need to check props.contact.title because toBeShownContact will always have a title */}
             {props.contact.title === "" ? (
               <BlockTitle formStyles={props.formStyles} title={""} isOpaque={isEmpty} flipped={props.contact.flipped} />
@@ -99,7 +99,7 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: toBeShownContact.flipped ? "flex-end" : "flex-start",
+            alignItems: props.contact.flipped ? "flex-end" : "flex-start",
             fontWeight: 500,
             fontSize: 15,
             marginTop: toBeShownContact.title === "" ? 24 : 0,
@@ -111,14 +111,14 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
               display: "flex",
               alignItems: "center",
               margin: 4,
-              flexDirection: toBeShownContact.flipped ? "row" : "row-reverse",
+              flexDirection: props.contact.flipped ? "row" : "row-reverse",
             }}
           >
             {toBeShownContact.data.address}
             {getIcon({
               name: "address",
               color: props.formStyles.accentColor,
-              margin: toBeShownContact.flipped ? "0px 0px 0px 8px" : "0px 8px 0px 0px",
+              margin: props.contact.flipped ? "0px 0px 0px 8px" : "0px 8px 0px 0px",
             })}
           </div>
           <div
@@ -126,14 +126,14 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
               display: "flex",
               alignItems: "center",
               margin: 4,
-              flexDirection: toBeShownContact.flipped ? "row" : "row-reverse",
+              flexDirection: props.contact.flipped ? "row" : "row-reverse",
             }}
           >
             {toBeShownContact.data.phno}
             {getIcon({
               name: "phone",
               color: props.formStyles.accentColor,
-              margin: toBeShownContact.flipped ? "0px 0px 0px 8px" : "0px 8px 0px 0px",
+              margin: props.contact.flipped ? "0px 0px 0px 8px" : "0px 8px 0px 0px",
             })}
           </div>
           {toBeShownContact.data.emails.map((eachLink) => {
@@ -144,14 +144,14 @@ export const ContactBlock1: React.FC<ContactBlockProps> = (props) => {
                   display: "flex",
                   alignItems: "center",
                   margin: 4,
-                  flexDirection: toBeShownContact.flipped ? "row" : "row-reverse",
+                  flexDirection: props.contact.flipped ? "row" : "row-reverse",
                 }}
               >
                 {eachLink}
                 {getIcon({
                   name: getUrlDomainName(eachLink),
                   color: props.formStyles.accentColor,
-                  margin: toBeShownContact.flipped ? "0px 0px 0px 8px" : "0px 8px 0px 0px",
+                  margin: props.contact.flipped ? "0px 0px 0px 8px" : "0px 8px 0px 0px",
                 })}
               </div>
             );
