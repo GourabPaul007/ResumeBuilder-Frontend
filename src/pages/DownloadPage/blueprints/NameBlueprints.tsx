@@ -1,8 +1,5 @@
 import React from "react";
-import { v1 as uuidv1 } from "uuid";
-import { checkHyperlink } from "../../../helpers/checkHyperlink";
 import { FormStyles } from "../../../interfaces/FormStyles";
-import { About } from "../../../interfaces/About";
 import { useBlueprintStyles } from "./_BlueprintStyles";
 import { Name } from "../../../interfaces/Name";
 
