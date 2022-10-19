@@ -53,15 +53,27 @@ export const NameBlock1: React.FC<NameProps> = (props) => {
         className={blockClasses.blockWrapper}
         style={{
           fontFamily: props.formStyles.fontFamily,
+          height: "100%",
+          width: "100%",
           display: "flex",
-          justifyContent: "center",
+          justifyContent: props.name.align,
           alignItems: "center",
         }}
       >
-        <h1 style={{ fontWeight: 600, marginBottom: 0, display: "inline-block", opacity: isEmpty ? 0.5 : 1 }}>
+        <h1
+          style={{
+            fontSize: props.name.fontSize || 36,
+            fontWeight: 600,
+            marginBottom: 0,
+            display: "inline-block",
+            opacity: isEmpty ? 0.5 : 1,
+          }}
+        >
           {toBeShownName.name}
         </h1>
-        <p style={{ display: "inline-block", opacity: isEmpty ? 0.5 : 1 }}>&nbsp;&nbsp;{toBeShownName.profession}</p>
+        <p style={{ marginTop: props.name.fontSize - 22, display: "inline-block", opacity: isEmpty ? 0.5 : 1 }}>
+          &nbsp;&nbsp;{toBeShownName.profession}
+        </p>
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
       </div>
     </div>

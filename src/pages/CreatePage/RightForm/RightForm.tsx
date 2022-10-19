@@ -28,6 +28,8 @@ import { RatingsForm } from "./FormItems/RatingsForm";
 import { useNavigate } from "react-router-dom";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import { MADE_RESUME } from "../../../constants";
+import { NameForm } from "./FormItems/NameForm";
+import { Name } from "../../../interfaces/Name";
 
 interface RightFormProps {
   makeItemsArray: (layouts: GridItem[]) => void;
@@ -38,6 +40,8 @@ interface RightFormProps {
   setAboutWithContact2: Dispatch<React.SetStateAction<AboutWithContact>>;
   about1: About;
   setAbout1: Dispatch<React.SetStateAction<About>>;
+  name1: Name;
+  setName1: Dispatch<React.SetStateAction<Name>>;
   contact1: ContactBlock;
   setContact1: Dispatch<React.SetStateAction<ContactBlock>>;
   contact2: ContactBlock;
@@ -104,6 +108,8 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
         );
       case "about1":
         return <AboutForm about={props.about1} setAbout={props.setAbout1} formTitle={"About #1"} />;
+      case "name1":
+        return <NameForm name={props.name1} setName={props.setName1} formTitle={"Name #1"} />;
       case "contact1":
         return <ContactForm contact={props.contact1} setContact={props.setContact1} formTitle={"Contact #1"} />;
       case "contact2":
@@ -145,7 +151,7 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
       case "others1":
         return <OthersForm others={props.others1} setOthers={props.setOthers1} formTitle={"Others #1"} />;
       default:
-        return null;
+        return <>chooseFormToShow() does not have {form} in switch case in RightForm.tsx</>;
     }
   };
 

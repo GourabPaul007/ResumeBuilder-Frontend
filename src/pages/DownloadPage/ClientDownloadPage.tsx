@@ -24,6 +24,7 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { log } from "../../helpers/logger";
 import { useNavigate } from "react-router-dom";
 import { DOWNLOADED_RESUME, EDITED_RESUME } from "../../constants";
+import { NameBlueprint1 } from "./blueprints/NameBlueprints";
 
 interface ClientDownloadPageProps {}
 
@@ -86,6 +87,8 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
         return <AboutWithContactBlueprint2 key={element.name} aboutWithContact={element} formStyles={formStyles} />;
       case "about1":
         return <AboutBlueprint1 key={element.name} about={element} formStyles={formStyles} />;
+      case "name1":
+        return <NameBlueprint1 key={element.name} name={element} formStyles={formStyles} />;
       case "contact1":
         return <ContactBlueprint1 key={element.name} contact={element} formStyles={formStyles} />;
       case "contact2":
@@ -115,7 +118,7 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
       case "others1":
         return <OthersBlueprint1 key={element.name} others={element} formStyles={formStyles} />;
       default:
-        break;
+        return <>{element.name} case does not exist in DownloadPage.tsx switch case</>;
     }
   };
 

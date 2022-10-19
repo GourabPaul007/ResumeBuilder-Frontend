@@ -184,7 +184,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div className={styles.categoryTitle}>Name</div>
         <div
           className={inItemsArray("name1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock("name1", Infinity, Infinity, 4, 8, {}, true)}
+          onClick={() => props.addBlock("name1", Infinity, Infinity, 8, 4, {}, true)}
         >
           <NameIcon1 />
         </div>

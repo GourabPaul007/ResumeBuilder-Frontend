@@ -59,6 +59,8 @@ const CreatePage: React.FC = (props) => {
   const [name1, setName1] = useState<Name>({
     name: "",
     profession: "",
+    fontSize: 32,
+    align: "flex-start",
     style: {
       bgColor: "#ffffff",
       textColor: "#000000",
@@ -516,6 +518,8 @@ const CreatePage: React.FC = (props) => {
             setAboutWithContact2={setAboutWithContact2}
             about1={about1}
             setAbout1={setAbout1}
+            name1={name1}
+            setName1={setName1}
             contact1={contact1}
             setContact1={setContact1}
             contact2={contact2}
