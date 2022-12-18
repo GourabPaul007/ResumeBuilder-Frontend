@@ -16,6 +16,7 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import ClientDownloadPage from "./pages/DownloadPage/ClientDownloadPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import { initializeAnalytics } from "firebase/analytics";
+import Resume from "./pages/Resume/Resume";
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
@@ -105,6 +106,7 @@ const App: React.FC = () => {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/*" element={<Resume />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
