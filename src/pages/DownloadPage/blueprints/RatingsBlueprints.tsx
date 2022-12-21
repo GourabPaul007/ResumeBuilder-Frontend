@@ -11,6 +11,7 @@ import { useBlueprintStyles } from "./_BlueprintStyles";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import StarOutlineRoundedIcon from "@mui/icons-material/StarOutlineRounded";
 import { BlueprintTitle } from "./_BlueprintTitle";
+import { v1 as uuidv1 } from "uuid";
 
 interface RatingBlueprintProps {
   ratings: {
@@ -150,19 +151,19 @@ function getStarsArray(
   return flipped ? (
     <div>
       {[...Array(5 - numberOfRatesInStar)].map((e, i) => {
-        return <>{chooseIcon(type + "_empty", i, color, size)}</>;
+        return <React.Fragment key={uuidv1()}>{chooseIcon(type + "_empty", i, color, size)}</React.Fragment>;
       })}
       {[...Array(numberOfRatesInStar)].map((e, i) => {
-        return <>{chooseIcon(type + "_fill", i, color, size)}</>;
+        return <React.Fragment key={uuidv1()}>{chooseIcon(type + "_fill", i, color, size)}</React.Fragment>;
       })}
     </div>
   ) : (
     <div>
       {[...Array(numberOfRatesInStar)].map((e, i) => {
-        return <>{chooseIcon(type + "_fill", i, color, size)}</>;
+        return <React.Fragment key={uuidv1()}>{chooseIcon(type + "_fill", i, color, size)}</React.Fragment>;
       })}
       {[...Array(5 - numberOfRatesInStar)].map((e, i) => {
-        return <>{chooseIcon(type + "_empty", i, color, size)}</>;
+        return <React.Fragment key={uuidv1()}>{chooseIcon(type + "_empty", i, color, size)}</React.Fragment>;
       })}
     </div>
   );
