@@ -87,7 +87,9 @@ const Footer: React.FC<FooterProps> = () => {
             </a>
           </div>
           <div className="footerColumn">
-            <p style={{ fontSize: "2rem", marginBottom: "8px" }}>Resumez</p>
+            <a style={{ fontSize: "2rem", marginBottom: "8px", fontWeight: "600" }} href="/">
+              Resumez
+            </a>
             <p style={{ color: "#333", fontSize: "0.8rem" }}>©{new Date().getFullYear()} Copyright: Resumez</p>
             <p style={{ color: "#333", fontSize: "0.8rem" }}>All rights reserved</p>
           </div>

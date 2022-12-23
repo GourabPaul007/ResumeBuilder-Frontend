@@ -1,6 +1,6 @@
 import { Alert, Dialog, DialogTitle, IconButton } from "@mui/material";
 import { getAnalytics, logEvent } from "firebase/analytics";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useReactToPrint } from "react-to-print";
 import { DOWNLOADED_RESUME } from "../../constants";
 import { getBlueprint } from "../../helpers/chooseBlueprint";
@@ -10,14 +10,23 @@ import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
 import { log } from "../../helpers/logger";
 
 import "./ResumePage.css";
+import Footer from "../../Components/Footer";
+import { useParams } from "react-router-dom";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 interface ResumePageProps {}
 
 const ResumePage: React.FC<ResumePageProps> = () => {
+  const { resumeName } = useParams();
+  console.log(resumeName);
+
+  const [itemsArray, setItemsArray] = useState<any>();
+  const [formStyles, setFormStyles] = useState<any>();
+
   const itemsArrayString = localStorage.getItem("ItemsArray") as string;
   const formStylesString = localStorage.getItem("FormStyles") as string;
-  const itemsArray = templateN.layout || JSON.parse(itemsArrayString);
-  const formStyles = templateN.formStyles || JSON.parse(formStylesString);
+  // const itemsArray = templateN.layout || JSON.parse(itemsArrayString);
+  // const formStyles = templateN.formStyles || JSON.parse(formStylesString);
   const componentRef = useRef(null);
 
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -26,6 +35,30 @@ const ResumePage: React.FC<ResumePageProps> = () => {
 
   // Get Google Analytics
   const analytics = getAnalytics();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const resumeData = await getResumeData();
+        console.log(resumeData);
+        if (resumeData) {
+          setItemsArray(resumeData.layout);
+          setFormStyles(resumeData.formStyles);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, []);
+
+  const getResumeData = async () => {
+    if (!resumeName) return;
+    const db = getFirestore();
+    const docRef = doc(db, "resumes", resumeName);
+    const docSnap = await getDoc(docRef);
+    const data = docSnap.data();
+    return data;
+  };
 
   // Build PDF
   const handlePrint = useReactToPrint({
@@ -49,7 +82,7 @@ const ResumePage: React.FC<ResumePageProps> = () => {
             padding: "0x 5px 0px 5px",
             marginTop: "20px",
             boxShadow: "3.6px 3.6px 7px #CDCDCD, -3.6px -3.6px 7px #FFFFFF",
-            borderRadius: "15px",
+            borderRadius: "10px",
           }}
         >
           <div
@@ -62,9 +95,11 @@ const ResumePage: React.FC<ResumePageProps> = () => {
             //   margin: "20px 5px 0px 20px",
             // }}
           >
-            {itemsArray.map((item: any) => {
-              return getBlueprint(item, formStyles);
-            })}
+            {itemsArray &&
+              formStyles &&
+              itemsArray.map((item: any) => {
+                return getBlueprint(item, formStyles);
+              })}
             {/* WATERMARK */}
             <div className="pdfWatermark">
               made with <span style={{ fontWeight: 600 }}>Resumez</span>
@@ -79,7 +114,6 @@ const ResumePage: React.FC<ResumePageProps> = () => {
               background: "#fff",
               boxShadow: "3.6px 3.6px 7px #CDCDCD, -3.6px -3.6px 7px #FFFFFF",
               margin: "0px 6px 12px 6px",
-              // boxShadow: "3px 3px 8px #DDDDDD, -3px -3px 8px #FFFFFF",
             }}
             onClick={async (e) => {
               // DOESNT WORK FOR FIREFOX
@@ -132,6 +166,10 @@ const ResumePage: React.FC<ResumePageProps> = () => {
           </Button> */}
         </div>
       </div>
+      <div style={{ height: "60px", backgroundColor: "#fafafa" }}>&nbsp;</div>
+      <Footer />
+      {/* <div style={{ width: "100%", display: "flex", justifyContent: "center", padding: "24px" }}>Resumez</div> */}
+
       <Dialog open={dialogOpen} onClose={handleClose}>
         <DialogTitle>Set backup account</DialogTitle>
       </Dialog>

@@ -9,8 +9,6 @@ interface BlueprintTitleProps {
 }
 
 export const BlueprintTitle: React.FC<BlueprintTitleProps> = (props) => {
-  console.log(props.center);
-
   return (
     <>
       <div

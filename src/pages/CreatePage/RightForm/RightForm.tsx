@@ -26,6 +26,7 @@ import { Ratings } from "../../../interfaces/Ratings";
 import { RatingsForm } from "./FormItems/RatingsForm";
 
 import { useNavigate } from "react-router-dom";
+import { addDoc, collection, doc, getFirestore, setDoc } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import { MADE_RESUME } from "../../../constants";
 import { NameForm } from "./FormItems/NameForm";
@@ -195,6 +196,36 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
             }}
           >
             Get&nbsp;&nbsp;Resume
+          </Button>
+          <Button
+            variant="contained"
+            size="large"
+            fullWidth={true}
+            style={{ marginBottom: 36 }}
+            onClick={async (e: React.SyntheticEvent) => {
+              e.preventDefault();
+              setLoading(true);
+              setTimeout(async () => {
+                setLoading(false);
+                try {
+                  props.makeItemsArray(props.layout);
+                  // logEvent(analytics, SAVE_RESUME);
+                  const db = getFirestore();
+                  const docRef = await setDoc(doc(db, "resumes", "name"), {
+                    formStyles: props.formStyles,
+                    layout: props.items,
+                  });
+
+                  console.log("Document written with ID: ", docRef);
+                } catch (e) {
+                  console.error("Error adding document: ", e);
+                } finally {
+                  navigate("/download");
+                }
+              }, Math.floor(Math.random() * (2000 - 1500)) + 1500);
+            }}
+          >
+            Save&nbsp;&nbsp;Resume
           </Button>
         </div>
       </div>

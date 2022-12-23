@@ -106,7 +106,7 @@ const App: React.FC = () => {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/:name" element={<ResumePage />} />
+          <Route path="/:resumeName" element={<ResumePage />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

@@ -29,10 +29,15 @@ export const useBlueprintStyles = makeStyles((theme) => ({
     textColor: string;
   }) => ({
     position: "absolute",
-    left: `${x * 4}rem`,
-    top: `${y * 0.62 + (y - 1) * 0.62 + 0.62}rem`,
+    // left: `${x * 4}rem`,
+    // top: `${y * 0.62 + (y - 1) * 0.62 + 0.62}rem`,
+    // // -3 is for the spacing between 2 horizontal cards
+    // width: `${w * 4 - 0.8}rem`,
+    // height: `${h * 0.6 + (h - 0.6) * 0.6}rem`,
+    left: `${x * 17.5}mm`,
+    top: `${y * 10 + (y - 1) * 10 + 10}px`,
     // -3 is for the spacing between 2 horizontal cards
-    width: `${w * 4 - 0.2}rem`,
+    width: `${w * 17.5 - 3}mm`,
     height: `${h * 10 + (h - 1) * 10}px`,
     borderRadius: 5,
     backgroundColor: bgColor,

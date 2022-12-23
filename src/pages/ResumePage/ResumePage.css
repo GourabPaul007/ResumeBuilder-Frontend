@@ -1,15 +1,15 @@
 #resumePageWrapper {
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   background-color: #fafafa;
 }
 
 #resumeWrapper {
   position: relative;
-  width: 48.8rem;
+  width: 49.8rem;
   aspect-ratio: 1 / 1.414;
-  /* height: 70mm; */
+  /* height: 297mm; */
   /* size: a4 !important; */
   margin: 20px 5px 0px 20px;
 }
