@@ -1,7 +1,6 @@
-import { Alert, IconButton } from "@mui/material";
-import Button from "@mui/material/Button";
+import { Alert, Dialog, DialogTitle, IconButton } from "@mui/material";
 import { getAnalytics, logEvent } from "firebase/analytics";
-import React, { useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { DOWNLOADED_RESUME } from "../../constants";
 import { getBlueprint } from "../../helpers/chooseBlueprint";
@@ -10,23 +9,23 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
 import { log } from "../../helpers/logger";
 
-interface ResumeProps {}
+import "./ResumePage.css";
 
-const Resume: React.FC<ResumeProps> = () => {
+interface ResumePageProps {}
+
+const ResumePage: React.FC<ResumePageProps> = () => {
   const itemsArrayString = localStorage.getItem("ItemsArray") as string;
   const formStylesString = localStorage.getItem("FormStyles") as string;
   const itemsArray = templateN.layout || JSON.parse(itemsArrayString);
   const formStyles = templateN.formStyles || JSON.parse(formStylesString);
   const componentRef = useRef(null);
 
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const handleOpen = () => setDialogOpen(true);
+  const handleClose = () => setDialogOpen(false);
+
   // Get Google Analytics
   const analytics = getAnalytics();
-
-  // CHECK IF NAVIGATOR.SHARE EXISTS ON BROWSER
-  const [canShare, setCanShare] = React.useState<any | undefined>(undefined);
-  useEffect(() => {
-    setCanShare(navigator.share);
-  }, []);
 
   // Build PDF
   const handlePrint = useReactToPrint({
@@ -43,31 +42,25 @@ const Resume: React.FC<ResumeProps> = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "start",
-          backgroundColor: "#fafafa",
-        }}
-      >
+      <div id="resumePageWrapper">
         <div
           style={{
             backgroundColor: "#fff",
             padding: "0x 5px 0px 5px",
             marginTop: "20px",
-            // boxShadow: "3px 3px 4px #d5d5d7, -3px -3px 8px #FFFFFF",
-            // background: "#fafafa";
-            // boxShadow: "9.91px 9.91px 20px #D7D7D7, -9.91px -9.91px 20px #FFFFFF",
-            // boxShadow: "16.52px 16.52px 24px #CECECE, -16.52px -16.52px 24px #FFFFFF",
             boxShadow: "3.6px 3.6px 7px #CDCDCD, -3.6px -3.6px 7px #FFFFFF",
-            // border: "1px solid #6b5be6",
             borderRadius: "15px",
           }}
         >
           <div
             ref={componentRef}
-            style={{ position: "relative", width: "211mm", height: "297mm", margin: "20px 5px 0px 20px" }}
+            id="resumeWrapper"
+            // style={{
+            //   position: "relative",
+            //   width: "211mm",
+            //   height: "297mm",
+            //   margin: "20px 5px 0px 20px",
+            // }}
           >
             {itemsArray.map((item: any) => {
               return getBlueprint(item, formStyles);
@@ -79,54 +72,54 @@ const Resume: React.FC<ResumeProps> = () => {
           </div>
         </div>
         &nbsp;&nbsp;
-        <div style={{ margin: "20px", display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "12px" }}>
-            <IconButton
-              size="large"
-              style={{
-                background: "#fff",
-                boxShadow: "3.6px 3.6px 7px #CDCDCD, -3.6px -3.6px 7px #FFFFFF",
-                // boxShadow: "3px 3px 8px #DDDDDD, -3px -3px 8px #FFFFFF",
-              }}
-              onClick={async (e) => {
-                // DOESNT WORK FOR FIREFOX
-                e.preventDefault();
-                const title = "MDN";
-                const text = "Learn web development on MDN!";
-                const url = "https://resumezin.netlify.app";
-                const shareData = {
-                  title: title,
-                  text: text,
-                  url: url,
-                };
-                try {
-                  if (canShare) {
-                    await navigator.share(shareData);
-                    log("MDN shared successfully");
-                  } else {
-                    navigator.clipboard.writeText(url);
-                  }
-                } catch (err) {
-                  log(`Error: ${err}`);
-                }
-              }}
-            >
-              <IosShareRoundedIcon fontSize="medium" htmlColor="#6b5be6" />
-            </IconButton>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Alert severity="success">This is a success alert — check it out!</Alert>
-          </div>
+        <div id="resumeOptions">
+          <IconButton
+            size="large"
+            style={{
+              background: "#fff",
+              boxShadow: "3.6px 3.6px 7px #CDCDCD, -3.6px -3.6px 7px #FFFFFF",
+              margin: "0px 6px 12px 6px",
+              // boxShadow: "3px 3px 8px #DDDDDD, -3px -3px 8px #FFFFFF",
+            }}
+            onClick={async (e) => {
+              // DOESNT WORK FOR FIREFOX
+              e.preventDefault();
+              const title = "MDN";
+              const text = "Learn web development on MDN!";
+              const url = "https://resumezin.netlify.app";
+              const shareData = {
+                title: title,
+                text: text,
+                url: url,
+              };
+              try {
+                await navigator.share(shareData);
+                log("MDN shared successfully");
+                navigator.clipboard.writeText(url);
+              } catch (err) {
+                log(`Error: ${err}`);
+              }
+            }}
+          >
+            <IosShareRoundedIcon fontSize="medium" htmlColor="#6b5be6" />
+          </IconButton>
 
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <IconButton
-              size="large"
-              style={{ background: "#fff", boxShadow: "3.6px 3.6px 7px #CDCDCD, -3.6px -3.6px 7px #FFFFFF" }}
-            >
-              <DownloadRoundedIcon fontSize="medium" htmlColor="#6b5be6" />
-            </IconButton>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Alert severity="success">This is a success alert — check it out!</Alert>
-          </div>
+          <IconButton
+            size="large"
+            style={{
+              background: "#fff",
+              boxShadow: "3.6px 3.6px 7px #CDCDCD, -3.6px -3.6px 7px #FFFFFF",
+              margin: "0px 6px 12px 6px",
+            }}
+            onClick={() => {
+              handlePrint();
+              // setDialogOpen(true);
+            }}
+          >
+            <DownloadRoundedIcon fontSize="medium" htmlColor="#6b5be6" />
+          </IconButton>
+          {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <Alert severity="success">This is a success alert — check it out!</Alert> */}
           {/* <Button
             variant="contained"
             fullWidth
@@ -139,11 +132,14 @@ const Resume: React.FC<ResumeProps> = () => {
           </Button> */}
         </div>
       </div>
+      <Dialog open={dialogOpen} onClose={handleClose}>
+        <DialogTitle>Set backup account</DialogTitle>
+      </Dialog>
     </>
   );
 };
 
-export default Resume;
+export default ResumePage;
 
 export const templateN = {
   formStyles: {

@@ -1,0 +1,30 @@
+#resumePageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  background-color: #fafafa;
+}
+
+#resumeWrapper {
+  position: relative;
+  width: 48.8rem;
+  aspect-ratio: 1 / 1.414;
+  /* height: 70mm; */
+  /* size: a4 !important; */
+  margin: 20px 5px 0px 20px;
+}
+
+#resumeOptions {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 1200px) {
+  #resumePageWrapper {
+    display: block;
+  }
+  #resumeOptions {
+    flex-direction: row;
+  }
+}
