@@ -1,4 +1,4 @@
-import { Alert, Dialog, DialogTitle, IconButton } from "@mui/material";
+import { Dialog, IconButton } from "@mui/material";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import React, { useState, useRef, useEffect } from "react";
 import { useReactToPrint } from "react-to-print";
@@ -13,6 +13,14 @@ import "./ResumePage.css";
 import Footer from "../../Components/Footer";
 import { useParams } from "react-router-dom";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
+
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 interface ResumePageProps {}
 
@@ -29,9 +37,8 @@ const ResumePage: React.FC<ResumePageProps> = () => {
   // const formStyles = templateN.formStyles || JSON.parse(formStylesString);
   const componentRef = useRef(null);
 
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const handleOpen = () => setDialogOpen(true);
-  const handleClose = () => setDialogOpen(false);
+  // THE SHARE MODAL WITH DIFFERENT SHARE OPTIONS
+  const [shareModalOpen, setShareModalOpen] = useState(false);
 
   // Get Google Analytics
   const analytics = getAnalytics();
@@ -118,6 +125,7 @@ const ResumePage: React.FC<ResumePageProps> = () => {
             onClick={async (e) => {
               // DOESNT WORK FOR FIREFOX
               e.preventDefault();
+              setShareModalOpen(true);
               const title = "MDN";
               const text = "Learn web development on MDN!";
               const url = "https://resumezin.netlify.app";
@@ -147,31 +155,88 @@ const ResumePage: React.FC<ResumePageProps> = () => {
             }}
             onClick={() => {
               handlePrint();
-              // setDialogOpen(true);
             }}
           >
             <DownloadRoundedIcon fontSize="medium" htmlColor="#6b5be6" />
           </IconButton>
-          {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Alert severity="success">This is a success alert — check it out!</Alert> */}
-          {/* <Button
-            variant="contained"
-            fullWidth
-            // style={{ backgroundColor: "#5b6be6" }}
-            onClick={() => {
-              // Download PDF
-            }}
-          >
-            Download
-          </Button> */}
         </div>
       </div>
       <div style={{ height: "60px", backgroundColor: "#fafafa" }}>&nbsp;</div>
       <Footer />
       {/* <div style={{ width: "100%", display: "flex", justifyContent: "center", padding: "24px" }}>Resumez</div> */}
 
-      <Dialog open={dialogOpen} onClose={handleClose}>
-        <DialogTitle>Set backup account</DialogTitle>
+      <Dialog
+        open={shareModalOpen}
+        onClose={() => {
+          setShareModalOpen(false);
+        }}
+        PaperProps={{
+          style: { borderRadius: 16 },
+        }}
+      >
+        <div id="shareModal">
+          <div id="shareModalHeader">
+            <p>Share This Resume</p>
+            <IconButton style={{ marginLeft: "auto", alignSelf: "end" }} onClick={() => setShareModalOpen(false)}>
+              <CloseRoundedIcon />
+            </IconButton>
+          </div>
+          <div
+            className="shareListItem"
+            onClick={() => {
+              const url = `mailto:?subject=Check out this resume!&body=Check out this resume! - ${window.location.href}.`;
+              window.open(url, "_blank");
+            }}
+          >
+            <EmailRoundedIcon />
+            &nbsp; &nbsp; Share On Email
+            <ArrowForwardIosRoundedIcon style={{ marginLeft: "auto" }} />
+          </div>
+          <div
+            className="shareListItem"
+            onClick={() => {
+              const url = `https://www.facebook.com/sharer.php?u=${window.location.href}`;
+              window.open(url, "_blank");
+            }}
+          >
+            <FacebookIcon />
+            &nbsp; &nbsp; Share On Facebook
+            <ArrowForwardIosRoundedIcon style={{ marginLeft: "auto" }} />
+          </div>
+          <div
+            className="shareListItem"
+            onClick={() => {
+              const url = `https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`;
+              window.open(url, "_blank");
+            }}
+          >
+            <LinkedInIcon />
+            &nbsp; &nbsp; Share On LinkedIn
+            <ArrowForwardIosRoundedIcon style={{ marginLeft: "auto" }} />
+          </div>
+          <div
+            className="shareListItem"
+            onClick={() => {
+              const url = `https://wa.me/?text=Check%20out%20this%20Resume!%20-%20${window.location.href}`;
+              window.open(url, "_blank");
+            }}
+          >
+            <WhatsAppIcon />
+            &nbsp; &nbsp; Share On WhatsApp
+            <ArrowForwardIosRoundedIcon style={{ marginLeft: "auto" }} />
+          </div>
+          <div
+            className="shareListItem"
+            onClick={() => {
+              const url = `https://twitter.com/intent/tweet?text=Check%20out%20this%20Resume!%20-%20${window.location.href}`;
+              window.open(url, "_blank");
+            }}
+          >
+            <TwitterIcon />
+            &nbsp; &nbsp; Share On Twitter
+            <ArrowForwardIosRoundedIcon style={{ marginLeft: "auto" }} />
+          </div>
+        </div>
       </Dialog>
     </>
   );
