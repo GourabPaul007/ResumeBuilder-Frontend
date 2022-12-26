@@ -12,6 +12,7 @@ import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 interface AppBarHeaderProps {}
 
@@ -19,11 +20,38 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
   const navigate = useNavigate();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [userExists, setUserExists] = useState(false);
+  const [userId, setUserId] = useState("");
+  const db = getFirestore();
   const auth = getAuth();
+  let resumeName = "";
 
   useEffect(() => {
     checkAuthChange();
   }, [userExists]);
+
+  // useEffect(() => {
+
+  // }, []);
+
+  const getResumeName = async () => {
+    const user = auth.currentUser;
+    if (user !== null) {
+      setUserId(user.uid);
+      console.log(user.uid);
+    }
+
+    const docRef = doc(db, "userResumes", "falsudgfasjkbf");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      resumeName = data.resumeNames[0];
+      console.log("Document data:", resumeName);
+      console.log(userId);
+    } else {
+      console.log("No such document!");
+    }
+  };
 
   const checkAuthChange = onAuthStateChanged(auth, (user) => {
     if (user) setUserExists(true);
@@ -58,6 +86,18 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
             </a> */}
             <a style={{ fontWeight: 500 }} href="/create" className="fill">
               create
+            </a>
+            <a
+              style={{ fontWeight: 500 }}
+              // href={`/${userId}`}
+              className="fill"
+              onClick={async (e) => {
+                e.preventDefault();
+                await getResumeName();
+                navigate(`/${resumeName}`);
+              }}
+            >
+              Your Resume
             </a>
             <a style={{ fontWeight: 500 }} href="/contact" className="fill">
               contact

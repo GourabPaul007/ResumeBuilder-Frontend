@@ -2,7 +2,18 @@ import "./RightForm.css";
 
 import React, { Dispatch } from "react";
 
-import { Backdrop, Button, CircularProgress, Grid } from "@mui/material";
+import {
+  Backdrop,
+  Button,
+  CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Grid,
+  TextField,
+} from "@mui/material";
 import { AboutWithContact } from "../../../interfaces/AboutWithContact";
 import { Educations } from "../../../interfaces/Educations";
 import { FormStyles } from "../../../interfaces/FormStyles";
@@ -26,7 +37,7 @@ import { Ratings } from "../../../interfaces/Ratings";
 import { RatingsForm } from "./FormItems/RatingsForm";
 
 import { useNavigate } from "react-router-dom";
-import { addDoc, collection, doc, getFirestore, setDoc } from "firebase/firestore";
+import { getDoc, collection, doc, getFirestore, setDoc } from "firebase/firestore";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import { MADE_RESUME } from "../../../constants";
 import { NameForm } from "./FormItems/NameForm";
@@ -84,6 +95,8 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
 
   // Backdrop/Loading when clicking "GET RESUME"
   const [loading, setLoading] = React.useState(false);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [resumeName, setResumeName] = React.useState("");
   const handleClose = () => {
     setLoading(false);
   };
@@ -179,7 +192,7 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
             variant="contained"
             size="large"
             fullWidth={true}
-            style={{ marginBottom: 36 }}
+            style={{ marginBottom: 12 }}
             onClick={async (e: React.SyntheticEvent) => {
               e.preventDefault();
               setLoading(true);
@@ -198,31 +211,14 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
             Get&nbsp;&nbsp;Resume
           </Button>
           <Button
+            color="warning"
             variant="contained"
             size="large"
             fullWidth={true}
-            style={{ marginBottom: 36 }}
+            style={{ marginBottom: 36, backgroundColor: "#00ccc9" }}
             onClick={async (e: React.SyntheticEvent) => {
               e.preventDefault();
-              setLoading(true);
-              setTimeout(async () => {
-                setLoading(false);
-                try {
-                  props.makeItemsArray(props.layout);
-                  // logEvent(analytics, SAVE_RESUME);
-                  const db = getFirestore();
-                  const docRef = await setDoc(doc(db, "resumes", "name"), {
-                    formStyles: props.formStyles,
-                    layout: props.items,
-                  });
-
-                  console.log("Document written with ID: ", docRef);
-                } catch (e) {
-                  console.error("Error adding document: ", e);
-                } finally {
-                  navigate("/download");
-                }
-              }, Math.floor(Math.random() * (2000 - 1500)) + 1500);
+              setDialogOpen(true);
             }}
           >
             Save&nbsp;&nbsp;Resume
@@ -236,6 +232,54 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
       >
         <CircularProgress color="secondary" />
       </Backdrop>
+      <Dialog open={dialogOpen}>
+        <DialogTitle>Save Resume</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Resume Name"
+            fullWidth
+            variant="filled"
+            onChange={(e) => setResumeName(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDialogOpen(false)}>Cancel</Button>
+          <Button
+            variant="contained"
+            disabled={resumeName.length === 0}
+            onClick={() => {
+              setTimeout(async () => {
+                setLoading(false);
+                try {
+                  props.makeItemsArray(props.layout);
+                  // logEvent(analytics, SAVE_RESUME);
+                  const db = getFirestore();
+                  const resumeNameRef = doc(db, "resumes", resumeName);
+                  const resumeNameSnap = await getDoc(resumeNameRef);
+                  if (resumeNameSnap.exists()) {
+                    // console.log("Document data:", resumeNameSnap.data());
+                  } else {
+                    const docRef = await setDoc(doc(db, "resumes", "name"), {
+                      formStyles: props.formStyles,
+                      layout: props.items,
+                    });
+                    console.log("Document written with ID: ", docRef);
+                  }
+                } catch (e) {
+                  console.error("Error adding document: ", e);
+                } finally {
+                  navigate("/" + resumeName);
+                }
+              }, Math.floor(Math.random() * (2000 - 1500)) + 1500);
+            }}
+          >
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };
