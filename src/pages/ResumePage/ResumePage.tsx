@@ -39,6 +39,7 @@ const ResumePage: React.FC<ResumePageProps> = () => {
 
   // THE SHARE MODAL WITH DIFFERENT SHARE OPTIONS
   const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   // Get Google Analytics
   const analytics = getAnalytics();
@@ -235,6 +236,20 @@ const ResumePage: React.FC<ResumePageProps> = () => {
             <TwitterIcon />
             &nbsp; &nbsp; Share On Twitter
             <ArrowForwardIosRoundedIcon style={{ marginLeft: "auto" }} />
+          </div>
+          <div
+            id="shareCopyUrl"
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+              setIsCopied(true);
+              setTimeout(() => {
+                setIsCopied(false);
+              }, 2000);
+            }}
+          >
+            <p style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "clip" }}>{window.location.href}</p>
+            ...
+            {isCopied ? <p style={{ color: "#5b6be6" }}>&nbsp;&nbsp;Copied!</p> : <p>&nbsp;&nbsp;&nbsp;&nbsp;Copy</p>}
           </div>
         </div>
       </Dialog>

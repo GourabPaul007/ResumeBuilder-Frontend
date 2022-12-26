@@ -25,7 +25,7 @@
   padding: 12px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 #shareModalHeader {
@@ -43,11 +43,27 @@
   padding: 16px 16px 16px 24px;
   border-radius: 5px;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   color: #454545;
 }
 .shareListItem:hover {
+  transition: 200ms;
+  cursor: pointer;
+  background-color: #eee;
+}
+
+#shareCopyUrl {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 340px;
+  margin: 16px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#shareCopyUrl:hover {
   transition: 200ms;
   cursor: pointer;
   background-color: #eee;
