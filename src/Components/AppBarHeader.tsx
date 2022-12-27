@@ -38,18 +38,18 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
     if (user !== null) {
       setUserId(user.uid);
       console.log(user.uid);
-    }
 
-    const docRef = doc(db, "userResumes", "falsudgfasjkbf");
-    const docSnap = await getDoc(docRef);
+      const docRef = doc(db, "userResumes", user.uid);
+      const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      const data = docSnap.data();
-      resumeName = data.resumeNames[0];
-      console.log("Document data:", resumeName);
-      console.log(userId);
-    } else {
-      console.log("No such document!");
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        resumeName = data.resumeNames[0];
+        navigate(`/${resumeName}`);
+      } else {
+        console.log("No such document!");
+        navigate("/create");
+      }
     }
   };
 
@@ -94,7 +94,6 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
               onClick={async (e) => {
                 e.preventDefault();
                 await getResumeName();
-                navigate(`/${resumeName}`);
               }}
             >
               Your Resume

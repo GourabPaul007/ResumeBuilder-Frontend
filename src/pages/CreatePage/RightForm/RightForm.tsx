@@ -42,6 +42,7 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 import { MADE_RESUME } from "../../../constants";
 import { NameForm } from "./FormItems/NameForm";
 import { Name } from "../../../interfaces/Name";
+import { getResumeName, resumeExists, saveResume, saveResumeName } from "../../../services/ResumeService";
 
 interface RightFormProps {
   makeItemsArray: (layouts: GridItem[]) => void;
@@ -196,7 +197,7 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
             onClick={async (e: React.SyntheticEvent) => {
               e.preventDefault();
               setLoading(true);
-              setTimeout(() => {
+              setTimeout(async () => {
                 setLoading(false);
                 try {
                   props.makeItemsArray(props.layout);
@@ -210,6 +211,7 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
           >
             Get&nbsp;&nbsp;Resume
           </Button>
+          {/* SAVE THE RESUME */}
           <Button
             color="warning"
             variant="contained"
@@ -218,7 +220,15 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
             style={{ marginBottom: 36, backgroundColor: "#00ccc9" }}
             onClick={async (e: React.SyntheticEvent) => {
               e.preventDefault();
-              setDialogOpen(true);
+              try {
+                if (await resumeExists()) {
+                  props.makeItemsArray(props.layout);
+                  const resumeName = await getResumeName();
+                  await saveResume(props.formStyles, props.items, resumeName);
+                } else {
+                  setDialogOpen(true);
+                }
+              } catch (error) {}
             }}
           >
             Save&nbsp;&nbsp;Resume
@@ -232,53 +242,41 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
       >
         <CircularProgress color="secondary" />
       </Backdrop>
-      <Dialog open={dialogOpen}>
-        <DialogTitle>Save Resume</DialogTitle>
-        <DialogContent>
+      <Dialog
+        open={dialogOpen}
+        PaperProps={{
+          style: { borderRadius: 16 },
+        }}
+      >
+        {/* <DialogTitle>Save Resume</DialogTitle> */}
+        <div id="saveResumeNameDialog">
+          <div style={{ padding: "8px 0px 20px 0px" }}>Save Resume</div>
+          {/* <div style={{ padding: "0px 0px 16px 0px" }}>Enter Resume Name, Names should be unique</div> */}
           <TextField
             autoFocus
-            margin="dense"
             id="name"
             label="Resume Name"
             fullWidth
             variant="filled"
             onChange={(e) => setResumeName(e.target.value)}
           />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setDialogOpen(false)}>Cancel</Button>
+          &nbsp;
           <Button
+            style={{ marginBottom: "8px" }}
             variant="contained"
+            fullWidth
             disabled={resumeName.length === 0}
-            onClick={() => {
-              setTimeout(async () => {
-                setLoading(false);
-                try {
-                  props.makeItemsArray(props.layout);
-                  // logEvent(analytics, SAVE_RESUME);
-                  const db = getFirestore();
-                  const resumeNameRef = doc(db, "resumes", resumeName);
-                  const resumeNameSnap = await getDoc(resumeNameRef);
-                  if (resumeNameSnap.exists()) {
-                    // console.log("Document data:", resumeNameSnap.data());
-                  } else {
-                    const docRef = await setDoc(doc(db, "resumes", "name"), {
-                      formStyles: props.formStyles,
-                      layout: props.items,
-                    });
-                    console.log("Document written with ID: ", docRef);
-                  }
-                } catch (e) {
-                  console.error("Error adding document: ", e);
-                } finally {
-                  navigate("/" + resumeName);
-                }
-              }, Math.floor(Math.random() * (2000 - 1500)) + 1500);
+            onClick={async () => {
+              await saveResume(props.formStyles, props.items, resumeName);
+              await saveResumeName(resumeName);
             }}
           >
             Save
           </Button>
-        </DialogActions>
+          <Button fullWidth onClick={() => setDialogOpen(false)}>
+            Cancel
+          </Button>
+        </div>
       </Dialog>
     </>
   );
