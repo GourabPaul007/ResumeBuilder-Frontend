@@ -2,7 +2,7 @@ import "./AppBarHeader.css";
 
 import React, { useEffect, useState } from "react";
 
-import { Avatar, Button, Drawer, List } from "@mui/material";
+import { Avatar, Button, Divider, Drawer, IconButton, List, Menu, MenuItem } from "@mui/material";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +13,9 @@ import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
+import DescriptionIcon from "@mui/icons-material/Description";
 
 interface AppBarHeaderProps {}
 
@@ -57,6 +60,15 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
     if (user) setUserExists(true);
     else setUserExists(false);
   });
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <>
@@ -103,15 +115,61 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
             </a>
             {/* <p style={{ width: "24px" }}></p> */}
             {userExists ? (
-              <a
-                style={{ fontWeight: 500, marginLeft: "24px" }}
-                className="fill"
-                onClick={() => {
-                  signOut(auth);
-                }}
-              >
-                Sign Out
-              </a>
+              // <a
+              //   style={{ fontWeight: 500, marginLeft: "24px" }}
+              //   className="fill"
+              //   onClick={() => {
+              //     signOut(auth);
+              //   }}
+              // >
+              //   Sign Out
+              // </a>
+              <>
+                <IconButton
+                  aria-label="profile"
+                  style={{
+                    marginLeft: 36,
+                    padding: "0px",
+                    color: "#fff",
+                    border: open ? "1px solid #fff" : "1px solid transparent",
+                  }}
+                  size="small"
+                  disableRipple
+                  onClick={handleClick}
+                >
+                  <AccountCircleIcon fontSize="large" />
+                </IconButton>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                  PaperProps={{ sx: { width: "200px" } }}
+                >
+                  <p style={{ color: "#666", padding: "8px 0px 8px 16px" }}>Account</p>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/profile");
+                    }}
+                  >
+                    <AccountBoxOutlinedIcon /> &nbsp;&nbsp;Profile
+                  </MenuItem>
+                  <Divider />
+                  <MenuItem
+                    onClick={async () => {
+                      handleClose();
+                      await signOut(auth);
+                      navigate("/login");
+                    }}
+                  >
+                    <LogoutRoundedIcon />
+                    &nbsp;&nbsp;Logout
+                  </MenuItem>
+                </Menu>
+              </>
             ) : (
               <a
                 style={{ fontWeight: 500, marginLeft: "24px" }}
@@ -128,6 +186,9 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
             </div>
           </div>
 
+          {/* ============================================================= */}
+          {/* ============================================================= */}
+          {/* DRAWER FOR SMALLER SCREENS*/}
           <div className="toggle-menu scale-effect">
             <Button
               style={{
@@ -156,6 +217,7 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
             }}
           >
             <div style={{ width: 250, display: "grid", placeContent: "center" }}>
+              {/* HOMEPAGE */}
               <Button
                 className="drawerButtons"
                 variant="contained"
@@ -168,6 +230,7 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
                 &nbsp;&nbsp;Home&nbsp;
               </Button>
 
+              {/* CREATE */}
               <Button
                 className="drawerButtons"
                 variant="contained"
@@ -180,6 +243,23 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
                 &nbsp;&nbsp;Create&nbsp;
               </Button>
 
+              {/* YOUR RESUME */}
+              {userExists ? (
+                <Button
+                  className="drawerButtons"
+                  variant="contained"
+                  fullWidth
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    await getResumeName();
+                  }}
+                >
+                  <DescriptionIcon />
+                  &nbsp;&nbsp;Your Resume&nbsp;
+                </Button>
+              ) : null}
+
+              {/* CONTACT */}
               <Button
                 className="drawerButtons"
                 variant="contained"
@@ -192,6 +272,22 @@ const AppBarHeader: React.FC<AppBarHeaderProps> = () => {
                 &nbsp;&nbsp;Contact&nbsp;
               </Button>
 
+              {/* PROFILE */}
+              {userExists ? (
+                <Button
+                  className="drawerButtons"
+                  variant="contained"
+                  fullWidth
+                  onClick={() => {
+                    navigate("/profile");
+                  }}
+                >
+                  <AccountCircleIcon />
+                  &nbsp;&nbsp;Profile&nbsp;
+                </Button>
+              ) : null}
+
+              {/* LOGIN/LOGOUT */}
               {userExists ? (
                 <Button
                   className="drawerButtons"

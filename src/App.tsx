@@ -17,6 +17,7 @@ import ClientDownloadPage from "./pages/DownloadPage/ClientDownloadPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import { initializeAnalytics } from "firebase/analytics";
 import ResumePage from "./pages/ResumePage/ResumePage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
@@ -99,6 +100,14 @@ const App: React.FC = () => {
               <AuthRoute>
                 {/* <DownloadPage /> */}
                 <ClientDownloadPage />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <AuthRoute>
+                <ProfilePage />
               </AuthRoute>
             }
           />
