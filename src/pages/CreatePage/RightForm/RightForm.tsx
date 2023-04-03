@@ -221,18 +221,24 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
               e.preventDefault();
               setLoading(true);
               setTimeout(async () => {
+                setLoading(false);
                 try {
                   props.makeItemsArray(props.layout);
                   console.log(".");
                   // USER ID IS THE RESUME NAME FOR NOW
                   const user: User = await getCurrentUser();
-                  await saveResume(props.formStyles, props.items, user.uid);
-                  window.location.href = "/resumes/" + user.uid;
+                  const itemsArray = JSON.parse(localStorage.getItem("ItemsArray") as string);
+                  const formStyles = JSON.parse(localStorage.getItem("FormStyles") as string);
+                  if (formStyles && itemsArray) {
+                    await saveResume(formStyles, itemsArray, user.uid);
+                  }
+                  logEvent(analytics, MADE_RESUME);
+                  navigate("/resumes/" + user.uid);
                 } catch (error) {
                   console.error(error);
                 }
                 setSaveButtonLoading(true);
-              }, 1000);
+              }, 1500);
             }}
           >
             Save&nbsp;&nbsp;Resume
