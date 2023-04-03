@@ -22,7 +22,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import EditIcon from "@mui/icons-material/Edit";
-import SettingsIcon from "@mui/icons-material/Settings";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { isResumeOwner } from "../../services/ResumeService";
 
 interface ResumePageProps {}
@@ -50,6 +50,7 @@ const ResumePage: React.FC<ResumePageProps> = () => {
 
   useEffect(() => {
     (async () => {
+      setIsOwner(await isResumeOwner(resumeName || ""));
       try {
         const resumeData = await getResumeData();
         console.log(resumeData);
@@ -179,6 +180,21 @@ const ResumePage: React.FC<ResumePageProps> = () => {
             }}
           >
             <DownloadRoundedIcon fontSize="medium" htmlColor="#6b5be6" />
+          </IconButton>
+
+          {/* HOME BUTTON */}
+          <IconButton
+            size="large"
+            style={{
+              background: "#fff",
+              boxShadow: "3.6px 3.6px 7px #CDCDCD, -3.6px -3.6px 7px #FFFFFF",
+              margin: "0px 6px 12px 6px",
+            }}
+            onClick={() => {
+              window.location.href = "/";
+            }}
+          >
+            <HomeRoundedIcon fontSize="medium" htmlColor="#6b5be6" />
           </IconButton>
         </div>
       </div>

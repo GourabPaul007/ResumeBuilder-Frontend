@@ -87,6 +87,15 @@ interface MiddleGridProps {
 const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
   const classes = useStyles();
 
+  // GO TO THE RELATED FORM IN RIGHT-FORM ON CLICKING IN THE MIDDLE-GIRD BLOCKS
+  const handleNavigateToBlock = (itemBlock: GridItem) => {
+    try {
+      document.getElementById(itemBlock.name)!.scrollIntoView({ behavior: "smooth" });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   function getItemBlock(item: GridItem): React.ReactNode {
     switch (item.name) {
       case "aboutwithcontact1":
@@ -299,6 +308,9 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
                 key={item.name + index + uuidv1}
                 className={classes.blocks}
                 data-grid={{ x: item.x, y: item.y, w: item.w, h: item.h }}
+                onClick={() => {
+                  handleNavigateToBlock(item);
+                }}
               >
                 {getItemBlock(item)}
               </div>

@@ -3,7 +3,7 @@ import "./App.css";
 // import { jsPDF } from "jspdf";
 import { Button, createTheme, ThemeProvider } from "@mui/material";
 import { orange } from "@mui/material/colors";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import DownloadPage from "./pages/DownloadPage/DownloadPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import CreatePage from "./pages/CreatePage/CreatePage";
@@ -115,7 +115,8 @@ const App: React.FC = () => {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/:resumeName" element={<ResumePage />} />
+          <Route path="/resumes/:resumeName" element={<ResumePage />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

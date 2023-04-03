@@ -42,7 +42,9 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 import { MADE_RESUME } from "../../../constants";
 import { NameForm } from "./FormItems/NameForm";
 import { Name } from "../../../interfaces/Name";
-import { getResumeName, resumeExists, saveResume, saveResumeName } from "../../../services/ResumeService";
+import { getResumeName, saveResume, saveResumeName } from "../../../services/ResumeService";
+import { getCurrentUser } from "../../../services/userService";
+import { User } from "firebase/auth";
 
 interface RightFormProps {
   makeItemsArray: (layouts: GridItem[]) => void;
@@ -96,11 +98,7 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
 
   // Backdrop/Loading when clicking "GET RESUME"
   const [loading, setLoading] = React.useState(false);
-  const [dialogOpen, setDialogOpen] = React.useState(false);
-  const [resumeName, setResumeName] = React.useState("");
-  const handleClose = () => {
-    setLoading(false);
-  };
+  const [saveButtonLoading, setSaveButtonLoading] = React.useState(false);
 
   // Return the specific form from passed parameter
   const chooseFormToShow = (form: string): React.ReactNode => {
@@ -178,7 +176,7 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
             <div style={{ height: 10 }}>&nbsp;</div>
             {props.forms.map((eachForm) => {
               return (
-                <div key={eachForm} className="formWrapper">
+                <div key={eachForm} className="formWrapper" id={eachForm}>
                   {chooseFormToShow(eachForm)}
                 </div>
               );
@@ -217,18 +215,24 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
             variant="contained"
             size="large"
             fullWidth={true}
+            disabled={saveButtonLoading}
             style={{ marginBottom: 36, backgroundColor: "#00ccc9" }}
-            onClick={async (e: React.SyntheticEvent) => {
+            onClick={(e: React.SyntheticEvent) => {
               e.preventDefault();
-              try {
-                if (await resumeExists()) {
+              setLoading(true);
+              setTimeout(async () => {
+                try {
                   props.makeItemsArray(props.layout);
-                  const resumeName = await getResumeName();
-                  await saveResume(props.formStyles, props.items, resumeName);
-                } else {
-                  setDialogOpen(true);
+                  console.log(".");
+                  // USER ID IS THE RESUME NAME FOR NOW
+                  const user: User = await getCurrentUser();
+                  await saveResume(props.formStyles, props.items, user.uid);
+                  window.location.href = "/resumes/" + user.uid;
+                } catch (error) {
+                  console.error(error);
                 }
-              } catch (error) {}
+                setSaveButtonLoading(true);
+              }, 1000);
             }}
           >
             Save&nbsp;&nbsp;Resume
@@ -242,42 +246,6 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
       >
         <CircularProgress color="secondary" />
       </Backdrop>
-      <Dialog
-        open={dialogOpen}
-        PaperProps={{
-          style: { borderRadius: 16 },
-        }}
-      >
-        {/* <DialogTitle>Save Resume</DialogTitle> */}
-        <div id="saveResumeNameDialog">
-          <div style={{ padding: "8px 0px 20px 0px" }}>Save Resume</div>
-          {/* <div style={{ padding: "0px 0px 16px 0px" }}>Enter Resume Name, Names should be unique</div> */}
-          <TextField
-            autoFocus
-            id="name"
-            label="Resume Name"
-            fullWidth
-            variant="filled"
-            onChange={(e) => setResumeName(e.target.value)}
-          />
-          &nbsp;
-          <Button
-            style={{ marginBottom: "8px" }}
-            variant="contained"
-            fullWidth
-            disabled={resumeName.length === 0}
-            onClick={async () => {
-              await saveResume(props.formStyles, props.items, resumeName);
-              await saveResumeName(resumeName);
-            }}
-          >
-            Save
-          </Button>
-          <Button fullWidth onClick={() => setDialogOpen(false)}>
-            Cancel
-          </Button>
-        </div>
-      </Dialog>
     </>
   );
 };

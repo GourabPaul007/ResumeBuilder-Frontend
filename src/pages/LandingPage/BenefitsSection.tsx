@@ -41,7 +41,8 @@ const BenefitsSection: FC<BenefitsSectionProps> = () => {
               Privacy
             </h3>
             <p className="cardMainText">
-              Your privacy is important. No personal data is sent to our servers. Everything happens in your machine.
+              Your privacy is important. No resume data is sent to our servers without your permission. Everything
+              happens in your machine.
             </p>
             <p className="cardBottomLine">Your data is secure.</p>
           </Card>
