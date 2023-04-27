@@ -17,6 +17,7 @@ import { ProjectsBlueprint1, ProjectsBlueprint2 } from "./blueprints/ProjectBlue
 import { SkillsBlueprint1, SkillsBlueprint2 } from "./blueprints/SkillsBlueprints";
 import { WorksBlueprint1, WorksBlueprint2 } from "./blueprints/WorksBlueprints";
 import { RatingsBlueprint1, RatingsBlueprint2 } from "./blueprints/RatingsBlueprints";
+import { CertificationsBlueprint1 } from "./blueprints/CertificationsBlueprints";
 import { OthersBlueprint1 } from "./blueprints/OthersBlueprints";
 
 import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
@@ -115,10 +116,12 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
         return <RatingsBlueprint1 key={element.name} ratings={element} formStyles={formStyles} />;
       case "ratings2":
         return <RatingsBlueprint2 key={element.name} ratings={element} formStyles={formStyles} />;
+      case "certifications1":
+        return <CertificationsBlueprint1 key={element.name} certifications={element} formStyles={formStyles} />;
       case "others1":
         return <OthersBlueprint1 key={element.name} others={element} formStyles={formStyles} />;
       default:
-        return <>{element.name} case does not exist in DownloadPage.tsx switch case</>;
+        return <>{element.name} case does not exist in CDownloadPage.tsx switch case</>;
     }
   };
 

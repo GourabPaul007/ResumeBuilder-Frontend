@@ -19,6 +19,7 @@ import { RatingsBlueprint1, RatingsBlueprint2 } from "../pages/DownloadPage/blue
 import { SkillsBlueprint1, SkillsBlueprint2 } from "../pages/DownloadPage/blueprints/SkillsBlueprints";
 import { WorksBlueprint1, WorksBlueprint2 } from "../pages/DownloadPage/blueprints/WorksBlueprints";
 import { log } from "./logger";
+import { CertificationsBlueprint1 } from "../pages/DownloadPage/blueprints/CertificationsBlueprints";
 
 /**
  * Gets block name and returns section according to the name
@@ -63,9 +64,11 @@ export const getBlueprint = (element: any, formStyles: FormStyles) => {
       return <RatingsBlueprint1 key={element.name} ratings={element} formStyles={formStyles} />;
     case "ratings2":
       return <RatingsBlueprint2 key={element.name} ratings={element} formStyles={formStyles} />;
+    case "certifications1":
+      return <CertificationsBlueprint1 key={element.name} certifications={element} formStyles={formStyles} />;
     case "others1":
       return <OthersBlueprint1 key={element.name} others={element} formStyles={formStyles} />;
     default:
-      return <>{element.name} case does not exist in DownloadPage.tsx switch case</>;
+      return <>{element.name} case does not exist in ResumePage.tsx switch case ChooseBlueprint Helper</>;
   }
 };

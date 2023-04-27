@@ -13,6 +13,7 @@ import { ContactIcon1, ContactIcon2, ContactIcon3 } from "./LeftMenuIcons/Contac
 import { RatingsIcon1, RatingsIcon2 } from "./LeftMenuIcons/RatingsIcons";
 import { SpacersIcon1, SpacersIcon2, SpacersIcon3 } from "./LeftMenuIcons/SpacersIcons";
 import { NameIcon1 } from "./LeftMenuIcons/NameIcons";
+import { CertificateIcon1 } from "./LeftMenuIcons/CertificatesIcons";
 
 const useStyles = makeStyles((theme) => ({
   eachIcon: {
@@ -358,6 +359,16 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
           onClick={() => props.addBlock("ratings2", Infinity, Infinity, 4, 11, {}, true)}
         >
           <RatingsIcon2 />
+        </div>
+        {/* ======================================================================================================= */}
+        {/* Certificates */}
+        {/* ======================================================================================================= */}
+        <div className={styles.categoryTitle}>Certificates</div>
+        <div
+          className={inItemsArray("certifications1") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock("certifications1", Infinity, Infinity, 6, 10, {}, true)}
+        >
+          <CertificateIcon1 />
         </div>
         {/* ======================================================================================================= */}
         {/* Others */}

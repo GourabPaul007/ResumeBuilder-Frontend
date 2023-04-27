@@ -24,6 +24,7 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import EditIcon from "@mui/icons-material/Edit";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { isResumeOwner } from "../../services/ResumeService";
+import { FormStyles } from "../../interfaces/FormStyles";
 
 interface ResumePageProps {}
 
@@ -31,7 +32,7 @@ const ResumePage: React.FC<ResumePageProps> = () => {
   const { resumeName } = useParams();
 
   const [itemsArray, setItemsArray] = useState<any>();
-  const [formStyles, setFormStyles] = useState<any>();
+  const [formStyles, setFormStyles] = useState<FormStyles>();
 
   const componentRef = useRef(null);
 

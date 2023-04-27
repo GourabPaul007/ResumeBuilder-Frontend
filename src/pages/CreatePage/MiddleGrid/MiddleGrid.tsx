@@ -29,6 +29,8 @@ import { OthersBlock1 } from "./GridItems/OthersBlocks";
 import { SpacerBlock1, SpacerBlock2, SpacerBlock3 } from "./GridItems/SpacerBlocks";
 import { Name } from "../../../interfaces/Name";
 import { NameBlock1 } from "./GridItems/NameBlocks";
+import { Certifications } from "../../../interfaces/Certification";
+import { CertificationsBlock1 } from "./GridItems/CertificationBlocks";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 
 // const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -81,6 +83,7 @@ interface MiddleGridProps {
   ratings1: Ratings;
   ratings2: Ratings;
   others1: Others;
+  certifications1: Certifications;
   formStyles: FormStyles;
 }
 
@@ -265,6 +268,16 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             removeItem={props.removeItem}
             item={item}
             ratings={props.ratings2}
+            formStyles={props.formStyles}
+          />
+        );
+      case "certifications1":
+        return (
+          <CertificationsBlock1
+            blockTitle={"Certification #1"}
+            removeItem={props.removeItem}
+            item={item}
+            certifications={props.certifications1}
             formStyles={props.formStyles}
           />
         );

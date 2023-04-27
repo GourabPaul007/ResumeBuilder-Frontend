@@ -1,7 +1,6 @@
 import React from "react";
 import { Course, Educations } from "../../../interfaces/Educations";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
-import { GridItem } from "../../../interfaces/GridItem";
 import { FormStyles } from "../../../interfaces/FormStyles";
 import { useBlueprintStyles } from "./_BlueprintStyles";
 import { BlueprintTitle } from "./_BlueprintTitle";

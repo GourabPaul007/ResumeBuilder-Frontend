@@ -45,6 +45,8 @@ import { Name } from "../../../interfaces/Name";
 import { getResumeName, saveResume, saveResumeName } from "../../../services/ResumeService";
 import { getCurrentUser } from "../../../services/userService";
 import { User } from "firebase/auth";
+import { Certifications } from "../../../interfaces/Certification";
+import { CertificationsForm } from "./FormItems/CertificationsForm";
 
 interface RightFormProps {
   makeItemsArray: (layouts: GridItem[]) => void;
@@ -83,6 +85,8 @@ interface RightFormProps {
   setRatings1: Dispatch<React.SetStateAction<Ratings>>;
   ratings2: Ratings;
   setRatings2: Dispatch<React.SetStateAction<Ratings>>;
+  certifications1: Certifications;
+  setCertifications1: Dispatch<React.SetStateAction<Certifications>>;
   others1: Others;
   setOthers1: Dispatch<React.SetStateAction<Others>>;
   formStyles: FormStyles;
@@ -161,6 +165,14 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
         return <RatingsForm ratings={props.ratings1} setRatings={props.setRatings1} formTitle={"Ratings #1"} />;
       case "ratings2":
         return <RatingsForm ratings={props.ratings2} setRatings={props.setRatings2} formTitle={"Ratings #2"} />;
+      case "certifications1":
+        return (
+          <CertificationsForm
+            certifications={props.certifications1}
+            setCertifications={props.setCertifications1}
+            formTitle={"Certifications #1"}
+          />
+        );
       case "others1":
         return <OthersForm others={props.others1} setOthers={props.setOthers1} formTitle={"Others #1"} />;
       default:

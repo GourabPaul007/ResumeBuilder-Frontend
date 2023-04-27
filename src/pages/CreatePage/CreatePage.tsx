@@ -20,6 +20,7 @@ import { Ratings } from "../../interfaces/Ratings";
 import { LocalStorageItem } from "../../interfaces/LocalStorageItem";
 import { log } from "../../helpers/logger";
 import { Name } from "../../interfaces/Name";
+import { Certifications } from "../../interfaces/Certification";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -207,6 +208,22 @@ const CreatePage: React.FC = (props) => {
       textColor: "#000000",
     },
   });
+  const [certifications1, setCertifications1] = useState<Certifications>({
+    title: "",
+    data: [
+      {
+        id: `certificate${Date.now()}`,
+        certificateName: "",
+        organizationName: "",
+        certificateDate: "",
+        certificateLink: "",
+      },
+    ],
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
+  });
   const [ratings1, setRatings1] = useState<Ratings>({
     title: "",
     ratingType: "star",
@@ -301,6 +318,9 @@ const CreatePage: React.FC = (props) => {
             break;
           case "ratings2":
             setRatings2(item.data);
+            break;
+          case "certifications1":
+            setCertifications1(item.data);
             break;
           case "others1":
             setOthers1(item.data);
@@ -452,6 +472,8 @@ const CreatePage: React.FC = (props) => {
               return ratings1;
             case "ratings2":
               return ratings2;
+            case "certifications1":
+              return certifications1;
             case "others1":
               return others1;
             case "spacer1":
@@ -462,6 +484,7 @@ const CreatePage: React.FC = (props) => {
               return "spacer3";
 
             default:
+              console.log("elementName does not exist in (switch case) in saveToLS() in CreatePage.tsx");
               return "elementName does not exist in (switch case) in saveToLS() in CreatePage.tsx";
           }
         })(elementName),
@@ -502,6 +525,7 @@ const CreatePage: React.FC = (props) => {
             projects2={projects2}
             ratings1={ratings1}
             ratings2={ratings2}
+            certifications1={certifications1}
             others1={others1}
             formStyles={formStyles}
           />
@@ -548,6 +572,8 @@ const CreatePage: React.FC = (props) => {
             setRatings1={setRatings1}
             ratings2={ratings2}
             setRatings2={setRatings2}
+            certifications1={certifications1}
+            setCertifications1={setCertifications1}
             formStyles={formStyles}
             setFormStyles={setFormStyles}
             layout={layout}
