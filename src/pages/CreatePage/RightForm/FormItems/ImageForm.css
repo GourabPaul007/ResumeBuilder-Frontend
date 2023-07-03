@@ -1,0 +1,33 @@
+.imageFormBody {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 2rem;
+}
+.imageUploadButtonWrapper {
+  width: 50%;
+}
+
+.imageFormSliders {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  color: #666;
+}
+
+.imageFormUploadButtonLabel {
+  height: 40px;
+  width: 100px;
+  padding: 12px 48px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  box-shadow: 0px 1px 2px 1px #dadada;
+}
+.imageFormUploadButtonLabel:hover {
+  cursor: pointer;
+  background-color: #ddd;
+}

@@ -26,6 +26,7 @@ import { log } from "../../helpers/logger";
 import { useNavigate } from "react-router-dom";
 import { DOWNLOADED_RESUME, EDITED_RESUME } from "../../constants";
 import { NameBlueprint1 } from "./blueprints/NameBlueprints";
+import { ImageBlueprint1 } from "./blueprints/ImageBlueprints";
 
 interface ClientDownloadPageProps {}
 
@@ -120,6 +121,8 @@ const ClientDownloadPage: React.FC<ClientDownloadPageProps> = (props) => {
         return <CertificationsBlueprint1 key={element.name} certifications={element} formStyles={formStyles} />;
       case "others1":
         return <OthersBlueprint1 key={element.name} others={element} formStyles={formStyles} />;
+      case "image1":
+        return <ImageBlueprint1 key={element.name} image={element} formStyles={formStyles} />;
       default:
         return <>{element.name} case does not exist in CDownloadPage.tsx switch case</>;
     }

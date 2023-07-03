@@ -21,6 +21,7 @@ import { LocalStorageItem } from "../../interfaces/LocalStorageItem";
 import { log } from "../../helpers/logger";
 import { Name } from "../../interfaces/Name";
 import { Certifications } from "../../interfaces/Certification";
+import { Image } from "../../interfaces/Image";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -246,6 +247,18 @@ const CreatePage: React.FC = (props) => {
       textColor: "#000000",
     },
   });
+  const [image1, setImage1] = useState<Image>({
+    name: "",
+    hasImage: 0,
+    height: 200,
+    width: 160,
+    radius: 50,
+    border: "none",
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
+  });
   const [formStyles, setFormStyles] = useState<FormStyles>(
     JSON.parse(localStorage.getItem("FormStyles") as string) || {
       titleFilled: false,
@@ -325,8 +338,12 @@ const CreatePage: React.FC = (props) => {
           case "others1":
             setOthers1(item.data);
             break;
+          case "image1":
+            setImage1(item.data);
+            break;
 
           default:
+            log("key doesnt exist in useEffect in CreatePage");
             break;
         }
       });
@@ -476,6 +493,8 @@ const CreatePage: React.FC = (props) => {
               return certifications1;
             case "others1":
               return others1;
+            case "image1":
+              return image1;
             case "spacer1":
               return "spacer1";
             case "spacer2":
@@ -484,7 +503,7 @@ const CreatePage: React.FC = (props) => {
               return "spacer3";
 
             default:
-              console.log("elementName does not exist in (switch case) in saveToLS() in CreatePage.tsx");
+              log("elementName does not exist in (switch case) in saveToLS() in CreatePage.tsx");
               return "elementName does not exist in (switch case) in saveToLS() in CreatePage.tsx";
           }
         })(elementName),
@@ -527,6 +546,7 @@ const CreatePage: React.FC = (props) => {
             ratings2={ratings2}
             certifications1={certifications1}
             others1={others1}
+            image1={image1}
             formStyles={formStyles}
           />
         </div>
@@ -574,6 +594,8 @@ const CreatePage: React.FC = (props) => {
             setRatings2={setRatings2}
             certifications1={certifications1}
             setCertifications1={setCertifications1}
+            image1={image1}
+            setImage1={setImage1}
             formStyles={formStyles}
             setFormStyles={setFormStyles}
             layout={layout}

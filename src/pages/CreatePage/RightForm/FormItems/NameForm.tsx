@@ -107,7 +107,7 @@ export const NameForm: FC<NameFormProps> = React.memo((props) => {
               value={fontSizeSliderValue}
               onChange={handleFontSizeSlider}
             />
-            Chip Radius
+            Font Size
           </Grid>
           <Grid item xs={4} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
             <ButtonGroup variant="contained" size="small">

@@ -47,6 +47,8 @@ import { getCurrentUser } from "../../../services/userService";
 import { User } from "firebase/auth";
 import { Certifications } from "../../../interfaces/Certification";
 import { CertificationsForm } from "./FormItems/CertificationsForm";
+import { Image } from "../../../interfaces/Image";
+import { ImageForm } from "./FormItems/ImageForm";
 
 interface RightFormProps {
   makeItemsArray: (layouts: GridItem[]) => void;
@@ -89,6 +91,8 @@ interface RightFormProps {
   setCertifications1: Dispatch<React.SetStateAction<Certifications>>;
   others1: Others;
   setOthers1: Dispatch<React.SetStateAction<Others>>;
+  image1: Image;
+  setImage1: Dispatch<React.SetStateAction<Image>>;
   formStyles: FormStyles;
   setFormStyles: Dispatch<React.SetStateAction<FormStyles>>;
   forms: string[];
@@ -165,6 +169,8 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
         return <RatingsForm ratings={props.ratings1} setRatings={props.setRatings1} formTitle={"Ratings #1"} />;
       case "ratings2":
         return <RatingsForm ratings={props.ratings2} setRatings={props.setRatings2} formTitle={"Ratings #2"} />;
+      case "image1":
+        return <ImageForm image={props.image1} setImage={props.setImage1} formTitle={"Image #1"} />;
       case "certifications1":
         return (
           <CertificationsForm
@@ -219,7 +225,7 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
               }, Math.floor(Math.random() * (2000 - 1500)) + 1500);
             }}
           >
-            Get&nbsp;&nbsp;Resume
+            Download&nbsp;&nbsp;Resume
           </Button>
           {/* SAVE THE RESUME */}
           <Button
