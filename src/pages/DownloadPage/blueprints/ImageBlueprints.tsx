@@ -28,6 +28,7 @@ export const ImageBlueprint1: React.FC<AboutBlueprintProps> = (props) => {
   });
 
   const [toBeShownImage, setToBeShownImage] = useState<Blob>();
+  const [defaultAvatar, setDefaultAvatar] = useState("Avatars1");
 
   useEffect(() => {
     try {
@@ -39,6 +40,12 @@ export const ImageBlueprint1: React.FC<AboutBlueprintProps> = (props) => {
       console.error(error);
     }
   }, [props.image.data.hasImage]);
+
+  useEffect(() => {
+    const imageNo = Math.floor(Math.random() * 5) + 1;
+    const chosenDefaultAvatar = chooseDefaultAvatars(imageNo);
+    setDefaultAvatar(chosenDefaultAvatar);
+  }, []);
 
   return (
     <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
@@ -53,9 +60,9 @@ export const ImageBlueprint1: React.FC<AboutBlueprintProps> = (props) => {
       >
         {toBeShownImage && props.image.data.hasImage ? (
           <img
-            alt="not found"
             src={URL.createObjectURL(toBeShownImage)}
-            height={`${props.image.data.height}px`}
+            alt="not found"
+            // height={`${props.image.data.height}px`}
             width={`${props.image.data.width}px`}
             style={{
               border: `${props.image.data.border.borderWidth}px solid ${props.image.data.border.borderColor}`,
@@ -63,7 +70,16 @@ export const ImageBlueprint1: React.FC<AboutBlueprintProps> = (props) => {
             }}
           />
         ) : (
-          <img alt="not found" width={"250px"} src={chooseDefaultAvatars()} />
+          <img
+            src={defaultAvatar}
+            alt="not found"
+            // height={`${props.image.data.height}px`}
+            width={`${props.image.data.width}px`}
+            style={{
+              border: `${props.image.data.border.borderWidth}px solid ${props.image.data.border.borderColor}`,
+              borderRadius: `${props.image.data.radius}%`,
+            }}
+          />
         )}
       </div>
     </div>

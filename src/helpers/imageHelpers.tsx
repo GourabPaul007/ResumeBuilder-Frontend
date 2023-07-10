@@ -1,8 +1,8 @@
-import Avatars1 from "../static/images/avatars/Avatars1.png";
-import Avatars2 from "../static/images/avatars/Avatars2.png";
-import Avatars3 from "../static/images/avatars/Avatars3.png";
-import Avatars4 from "../static/images/avatars/Avatars4.png";
-import Avatars5 from "../static/images/avatars/Avatars5.png";
+import Avatars1 from "../static/images/avatars/Avatars1Cropped.png";
+import Avatars2 from "../static/images/avatars/Avatars2Cropped.png";
+import Avatars3 from "../static/images/avatars/Avatars3Cropped.png";
+import Avatars4 from "../static/images/avatars/Avatars4Cropped.png";
+import Avatars5 from "../static/images/avatars/Avatars5Cropped.png";
 
 // Returns a blob type from a base64 string
 export const b64toBlob = (b64Data: string, contentType = "", sliceSize = 8) => {
@@ -23,9 +23,8 @@ export const b64toBlob = (b64Data: string, contentType = "", sliceSize = 8) => {
 };
 
 /* Choose a default avatar in case the user doesn't have one stored in localStorage */
-export const chooseDefaultAvatars = () => {
-  const random = Math.floor(Math.random() * 5) + 1;
-  switch (random) {
+export const chooseDefaultAvatars = (imageNo: number) => {
+  switch (imageNo) {
     case 1:
       return Avatars1;
     case 2:
@@ -39,7 +38,7 @@ export const chooseDefaultAvatars = () => {
     default:
       return Avatars1;
   }
-  return `Avatars${random}`;
+  return `Avatars${imageNo}`;
 };
 
 // C:\Projects\resume_builder\assets\Avatars1.png

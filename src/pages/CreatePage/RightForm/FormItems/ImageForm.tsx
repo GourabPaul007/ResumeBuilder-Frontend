@@ -18,9 +18,6 @@ import React, { Dispatch, FC, useState, useEffect } from "react";
 import { ColorPicker } from "../../../../Components/ColorPicker";
 import { useStyles } from "./_FormsStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import FormatAlignLeftRoundedIcon from "@mui/icons-material/FormatAlignLeftRounded";
-import FormatAlignCenterRoundedIcon from "@mui/icons-material/FormatAlignCenterRounded";
-import FormatAlignRightRoundedIcon from "@mui/icons-material/FormatAlignRightRounded";
 import { Image } from "../../../../interfaces/Image";
 
 interface ImageFormProps {

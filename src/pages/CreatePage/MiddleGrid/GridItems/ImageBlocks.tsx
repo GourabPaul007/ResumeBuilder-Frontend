@@ -17,7 +17,7 @@ const ImageBlock1: React.FC<ImageProps> = (props) => {
   const blockClasses = useBlockStyles({ formStyles: props.formStyles });
 
   const [toBeShownImage, setToBeShownImage] = useState<Blob>();
-  const [hasImageChanged, setHasImageChanged] = useState(false);
+  const [defaultAvatar, setDefaultAvatar] = useState("Avatars1");
 
   useEffect(() => {
     try {
@@ -29,6 +29,12 @@ const ImageBlock1: React.FC<ImageProps> = (props) => {
       console.error(error);
     }
   }, [props.image.hasImage]);
+
+  useEffect(() => {
+    const imageNo = Math.floor(Math.random() * 5) + 1;
+    const chosenDefaultAvatar = chooseDefaultAvatars(imageNo);
+    setDefaultAvatar(chosenDefaultAvatar);
+  }, []);
 
   return (
     <div
@@ -52,22 +58,28 @@ const ImageBlock1: React.FC<ImageProps> = (props) => {
       >
         {toBeShownImage && props.image.hasImage ? (
           <img
+            src={URL.createObjectURL(toBeShownImage)}
             alt="not found"
-            // height={`${props.image.height}px`}
+            height={`${props.image.width}px`}
+            width={`${props.image.width}px`}
+            loading="lazy"
+            style={{
+              border: `${props.image.border.borderWidth}px solid ${props.image.border.borderColor}`,
+              borderRadius: `${props.image.radius}%`,
+              objectFit: "cover",
+            }}
+          />
+        ) : (
+          <img
+            src={defaultAvatar}
+            alt="not found"
+            height={`${props.image.width}px`}
             width={`${props.image.width}px`}
             loading="lazy"
             style={{
               border: `${props.image.border.borderWidth}px solid ${props.image.border.borderColor}`,
               borderRadius: `${props.image.radius}%`,
             }}
-            src={URL.createObjectURL(toBeShownImage)}
-          />
-        ) : (
-          <img
-            alt="not found"
-            height={`${props.image.height}px`}
-            width={`${props.image.width}px`}
-            src={chooseDefaultAvatars()}
           />
         )}
         <RemoveBlockButton item={props.item} removeItem={props.removeItem} blockTitle={props.blockTitle} />
