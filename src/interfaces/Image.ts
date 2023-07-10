@@ -1,5 +1,14 @@
 import { SingleBlockStyle } from "./_SingleBlockStyle";
 
+interface ImageBorder {
+  /** border width */
+  borderWidth: number;
+  /** border style */
+  borderStyle: string;
+  /** border color */
+  borderColor: string;
+}
+
 export interface Image {
   /** Image name */
   name: string;
@@ -14,6 +23,6 @@ export interface Image {
   /** the radius of the image, goes from 0-50 */
   radius: number;
   /** Image Border */
-  border: string;
+  border: ImageBorder;
   style: SingleBlockStyle;
 }

@@ -31,7 +31,7 @@ import { Name } from "../../../interfaces/Name";
 import { NameBlock1 } from "./GridItems/NameBlocks";
 import { Certifications } from "../../../interfaces/Certification";
 import { CertificationsBlock1 } from "./GridItems/CertificationBlocks";
-import { ImageBlock1 } from "./GridItems/ImageBlocks";
+import { ImageBlock1Memo } from "./GridItems/ImageBlocks";
 import { Image } from "../../../interfaces/Image";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 
@@ -296,7 +296,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
         );
       case "image1":
         return (
-          <ImageBlock1
+          <ImageBlock1Memo
             blockTitle={"Image #1"}
             removeItem={props.removeItem}
             item={item}
@@ -345,6 +345,7 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
           })}
         </ReactGridLayout>
       </div>
+      {/* <div style={{ paddingTop: "4rem" }}>&nbsp;</div> */}
     </>
   );
 };

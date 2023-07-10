@@ -44,6 +44,8 @@ export const ImageBlueprint1: React.FC<AboutBlueprintProps> = (props) => {
     <div className={blueprintClasses.blueprintWrapper} style={{ fontFamily: props.formStyles.fontFamily }}>
       <div
         style={{
+          height: "100%",
+          width: "100%",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -55,7 +57,10 @@ export const ImageBlueprint1: React.FC<AboutBlueprintProps> = (props) => {
             src={URL.createObjectURL(toBeShownImage)}
             height={`${props.image.data.height}px`}
             width={`${props.image.data.width}px`}
-            style={{ borderRadius: `${props.image.data.radius}%` }}
+            style={{
+              border: `${props.image.data.border.borderWidth}px solid ${props.image.data.border.borderColor}`,
+              borderRadius: `${props.image.data.radius}%`,
+            }}
           />
         ) : (
           <img alt="not found" width={"250px"} src={chooseDefaultAvatars()} />

@@ -18,13 +18,13 @@ import AlignHorizontalRightIcon from "@mui/icons-material/AlignHorizontalRight";
 import { ColorPicker } from "../../../../Components/ColorPicker";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-interface AboutWithContactFormProps {
+interface ContactFormProps {
   formTitle: string;
   contact: ContactBlock;
   setContact: Dispatch<React.SetStateAction<ContactBlock>>;
 }
 
-export const ContactForm: FC<AboutWithContactFormProps> = React.memo((props) => {
+export const ContactForm: FC<ContactFormProps> = React.memo((props) => {
   const classes = useStyles();
 
   const [expanded, setExpanded] = React.useState(false);

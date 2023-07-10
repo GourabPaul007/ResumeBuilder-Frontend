@@ -253,7 +253,11 @@ const CreatePage: React.FC = (props) => {
     height: 200,
     width: 160,
     radius: 50,
-    border: "none",
+    border: {
+      borderColor: "#ffffff",
+      borderStyle: "solid",
+      borderWidth: 3,
+    },
     style: {
       bgColor: "#ffffff",
       textColor: "#000000",

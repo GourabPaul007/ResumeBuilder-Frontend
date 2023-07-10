@@ -5,11 +5,12 @@
   align-items: center;
   margin: 2rem;
 }
-.imageUploadButtonWrapper {
+
+.imageFormLeft {
   width: 50%;
 }
 
-.imageFormSliders {
+.imageFormRight {
   display: flex;
   flex-direction: column;
   justify-content: center;

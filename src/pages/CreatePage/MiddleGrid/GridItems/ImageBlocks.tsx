@@ -13,7 +13,7 @@ interface ImageProps {
   image: Image;
   formStyles: FormStyles;
 }
-export const ImageBlock1: React.FC<ImageProps> = (props) => {
+const ImageBlock1: React.FC<ImageProps> = (props) => {
   const blockClasses = useBlockStyles({ formStyles: props.formStyles });
 
   const [toBeShownImage, setToBeShownImage] = useState<Blob>();
@@ -53,9 +53,13 @@ export const ImageBlock1: React.FC<ImageProps> = (props) => {
         {toBeShownImage && props.image.hasImage ? (
           <img
             alt="not found"
-            height={`${props.image.height}px`}
+            // height={`${props.image.height}px`}
             width={`${props.image.width}px`}
-            style={{ border: `3px solid ${props.formStyles.titleFillColor}`, borderRadius: `${props.image.radius}%` }}
+            loading="lazy"
+            style={{
+              border: `${props.image.border.borderWidth}px solid ${props.image.border.borderColor}`,
+              borderRadius: `${props.image.radius}%`,
+            }}
             src={URL.createObjectURL(toBeShownImage)}
           />
         ) : (
@@ -71,3 +75,19 @@ export const ImageBlock1: React.FC<ImageProps> = (props) => {
     </div>
   );
 };
+
+const areEqualImage = (a: ImageProps, b: ImageProps) => {
+  return (
+    a.image.name == b.image.name &&
+    a.image.hasImage == b.image.hasImage &&
+    a.image.height == b.image.height &&
+    a.image.width == b.image.width &&
+    a.image.radius == b.image.radius &&
+    a.image.border.borderColor == b.image.border.borderColor &&
+    a.image.border.borderStyle == b.image.border.borderStyle &&
+    a.image.border.borderWidth == b.image.border.borderWidth &&
+    a.image.style.bgColor == b.image.style.bgColor &&
+    a.image.style.textColor == b.image.style.textColor
+  );
+};
+export const ImageBlock1Memo = React.memo(ImageBlock1, areEqualImage);

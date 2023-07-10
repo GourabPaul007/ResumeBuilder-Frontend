@@ -14,6 +14,7 @@ import { RatingsIcon1, RatingsIcon2 } from "./LeftMenuIcons/RatingsIcons";
 import { SpacersIcon1, SpacersIcon2, SpacersIcon3 } from "./LeftMenuIcons/SpacersIcons";
 import { NameIcon1 } from "./LeftMenuIcons/NameIcons";
 import { CertificateIcon1 } from "./LeftMenuIcons/CertificatesIcons";
+import { AvatarIcon1 } from "./LeftMenuIcons/AvatarIcons";
 
 const useStyles = makeStyles((theme) => ({
   eachIcon: {
@@ -150,6 +151,18 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         >
           <AboutAndContactIcon2 />
         </div>
+
+        {/* ======================================================================================================= */}
+        {/* Images */}
+        {/* ======================================================================================================= */}
+        <div className={styles.categoryTitle}>Images</div>
+        <div
+          className={inItemsArray("image1") ? styles.eachSelectedIcon : styles.eachIcon}
+          onClick={() => props.addBlock("image1", Infinity, Infinity, 4, 10, {}, true)}
+        >
+          <AvatarIcon1 />
+        </div>
+
         {/* ======================================================================================================= */}
         {/* About */}
         {/* ======================================================================================================= */}
@@ -188,6 +201,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         >
           <NameIcon1 />
         </div>
+
         {/* ======================================================================================================= */}
         {/* Contact */}
         {/* ======================================================================================================= */}
@@ -210,6 +224,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         >
           <ContactIcon3 />
         </div>
+
         {/* ======================================================================================================= */}
         {/* Educations */}
         {/* ======================================================================================================= */}
@@ -226,6 +241,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         >
           <EducationIcon2 />
         </div>
+
         {/* ======================================================================================================= */}
         {/* Skills */}
         {/* ======================================================================================================= */}
@@ -312,6 +328,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         >
           <SkillsIcon2 />
         </div>
+
         {/* ======================================================================================================= */}
         {/* Works */}
         {/* ======================================================================================================= */}
@@ -328,6 +345,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         >
           <WorksIcon2 />
         </div>
+
         {/* ======================================================================================================= */}
         {/* Projects */}
         {/* ======================================================================================================= */}
@@ -344,6 +362,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         >
           <ProjectsIcon2 />
         </div>
+
         {/* ======================================================================================================= */}
         {/* Ratings */}
         {/* ======================================================================================================= */}
@@ -360,6 +379,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         >
           <RatingsIcon2 />
         </div>
+
         {/* ======================================================================================================= */}
         {/* Certificates */}
         {/* ======================================================================================================= */}
@@ -370,6 +390,7 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         >
           <CertificateIcon1 />
         </div>
+
         {/* ======================================================================================================= */}
         {/* Others */}
         {/* ======================================================================================================= */}
@@ -377,17 +398,6 @@ const LeftMenu: React.FC<LeftMenuProps> = (props) => {
         <div
           className={inItemsArray("others1") ? styles.eachSelectedIcon : styles.eachIcon}
           onClick={() => props.addBlock("others1", Infinity, Infinity, 6, 10, {}, true)}
-        >
-          <OthersIcon1 />
-        </div>
-
-        {/* ======================================================================================================= */}
-        {/* Images */}
-        {/* ======================================================================================================= */}
-        <div className={styles.categoryTitle}>Images</div>
-        <div
-          className={inItemsArray("image1") ? styles.eachSelectedIcon : styles.eachIcon}
-          onClick={() => props.addBlock("image1", Infinity, Infinity, 4, 10, {}, true)}
         >
           <OthersIcon1 />
         </div>

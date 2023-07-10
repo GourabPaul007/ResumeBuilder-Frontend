@@ -34,9 +34,11 @@ export const ImageForm: FC<ImageFormProps> = React.memo((props) => {
 
   const [expanded, setExpanded] = React.useState(false);
 
-  const [imageHeightSliderValue, setImageHeightSliderValue] = React.useState(props.image.height);
-  const [imageWidthSliderValue, setImageWidthSliderValue] = React.useState(props.image.width);
+  // const [imageHeightSliderValue, setImageHeightSliderValue] = React.useState(props.image.height);
+  // const [imageWidthSliderValue, setImageWidthSliderValue] = React.useState(props.image.width);
+  const [imageSizeSliderValue, setImageSizeSliderValue] = React.useState(props.image.width);
   const [imageRadiusSliderValue, setImageRadiusSliderValue] = React.useState(props.image.radius);
+  const [borderWidthSliderValue, setBorderWidthSliderValue] = React.useState(props.image.border.borderWidth);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -59,20 +61,30 @@ export const ImageForm: FC<ImageFormProps> = React.memo((props) => {
     props.setImage({ ...props.image, hasImage: props.image.hasImage + 1 });
   };
 
-  const handleImageHeightSlider = (event: Event, newImageHeight: number | number[]) => {
-    const sliderValue = Array.isArray(newImageHeight) ? newImageHeight[0] : newImageHeight;
-    setImageHeightSliderValue(sliderValue);
-    props.setImage({ ...props.image, height: sliderValue * 10 });
-  };
-  const handleImageWidthSlider = (event: Event, newImageWidth: number | number[]) => {
+  // const handleImageHeightSlider = (event: Event, newImageHeight: number | number[]) => {
+  //   const sliderValue = Array.isArray(newImageHeight) ? newImageHeight[0] : newImageHeight;
+  //   setImageHeightSliderValue(sliderValue);
+  //   props.setImage({ ...props.image, height: sliderValue * 10 });
+  // };
+  // const handleImageWidthSlider = (event: Event, newImageWidth: number | number[]) => {
+  //   const sliderValue = Array.isArray(newImageWidth) ? newImageWidth[0] : newImageWidth;
+  //   setImageWidthSliderValue(sliderValue);
+  //   props.setImage({ ...props.image, width: sliderValue * 10 });
+  // };
+  const handleImageSizeSlider = (event: Event, newImageWidth: number | number[]) => {
     const sliderValue = Array.isArray(newImageWidth) ? newImageWidth[0] : newImageWidth;
-    setImageWidthSliderValue(sliderValue);
-    props.setImage({ ...props.image, width: sliderValue * 10 });
+    setImageSizeSliderValue(sliderValue);
+    props.setImage({ ...props.image, width: sliderValue * 10, height: sliderValue * 10 });
   };
   const handleImageRadiusSlider = (event: Event, newImageWidth: number | number[]) => {
     const sliderValue = Array.isArray(newImageWidth) ? newImageWidth[0] : newImageWidth;
     setImageRadiusSliderValue(sliderValue);
     props.setImage({ ...props.image, radius: sliderValue });
+  };
+  const handleBorderWidthSlider = (event: Event, newImageWidth: number | number[]) => {
+    const sliderValue = Array.isArray(newImageWidth) ? newImageWidth[0] : newImageWidth;
+    setBorderWidthSliderValue(sliderValue);
+    props.setImage({ ...props.image, border: { ...props.image.border, borderWidth: sliderValue } });
   };
 
   return (
@@ -83,7 +95,7 @@ export const ImageForm: FC<ImageFormProps> = React.memo((props) => {
         </Typography>
         &nbsp;
         <div className="imageFormBody">
-          <div className="imageUploadButtonWrapper">
+          <div className="imageFormLeft">
             <label
               onChange={async (event: any) => {
                 try {
@@ -100,10 +112,24 @@ export const ImageForm: FC<ImageFormProps> = React.memo((props) => {
               Upload
               <input type="file" accept="image/png, image/jpg, image/jpeg" name="imageUpload" id="imageUpload" hidden />
             </label>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div style={{ paddingTop: "6px" }}>&nbsp;</div>
+            <div className={classes.colorPickerWrapper}>
+              Border Color &#9658;&nbsp;
+              <ColorPicker
+                color={props.image.border.borderColor ? props.image.border.borderColor : "#123456"}
+                height={36}
+                handleColor={(newColor: string) => {
+                  props.setImage({ ...props.image, border: { ...props.image.border, borderColor: newColor } });
+                }}
+              />
+            </div>
           </div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
           {/* Image Size & Border Sliders */}
-          <div className="imageFormSliders">
-            <Slider
+          <div className="imageFormRight">
+            {/* <Slider
               aria-label="Image Height"
               min={0}
               max={20}
@@ -113,8 +139,8 @@ export const ImageForm: FC<ImageFormProps> = React.memo((props) => {
               onChange={handleImageHeightSlider}
             />
             Height
-            <div>&nbsp;</div>
-            <Slider
+            <div>&nbsp;</div> */}
+            {/* <Slider
               aria-label="Image Width"
               min={0}
               max={20}
@@ -124,6 +150,17 @@ export const ImageForm: FC<ImageFormProps> = React.memo((props) => {
               onChange={handleImageWidthSlider}
             />
             Width
+            <div>&nbsp;</div> */}
+            <Slider
+              aria-label="Image Size"
+              min={0}
+              max={20}
+              step={1}
+              valueLabelDisplay="auto"
+              value={imageSizeSliderValue}
+              onChange={handleImageSizeSlider}
+            />
+            Size
             <div>&nbsp;</div>
             <Slider
               aria-label="Image Borde Radius"
@@ -134,7 +171,18 @@ export const ImageForm: FC<ImageFormProps> = React.memo((props) => {
               value={imageRadiusSliderValue}
               onChange={handleImageRadiusSlider}
             />
-            Radius
+            Border Radius
+            <div>&nbsp;</div>
+            <Slider
+              aria-label="Border Width"
+              min={0}
+              max={5}
+              step={1}
+              valueLabelDisplay="auto"
+              value={borderWidthSliderValue}
+              onChange={handleBorderWidthSlider}
+            />
+            Border Width
           </div>
         </div>
         <CardActions disableSpacing style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
