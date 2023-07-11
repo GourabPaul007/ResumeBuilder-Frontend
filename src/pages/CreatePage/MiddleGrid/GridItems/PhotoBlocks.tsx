@@ -109,7 +109,7 @@ const PhotoBlock1: React.FC<PhotoBlockProps> = (props) => {
 const areEqualPhoto = (a: PhotoBlockProps, b: PhotoBlockProps) => {
   return (
     a.photo.name == b.photo.name &&
-    // a.photo.hasPhoto == b.photo.hasPhoto &&
+    a.photo.hasPhoto == b.photo.hasPhoto &&
     a.photo.height == b.photo.height &&
     a.photo.width == b.photo.width &&
     a.photo.borderRadius == b.photo.borderRadius &&
