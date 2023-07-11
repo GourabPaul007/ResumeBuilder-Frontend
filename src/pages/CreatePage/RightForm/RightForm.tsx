@@ -2,18 +2,7 @@ import "./RightForm.css";
 
 import React, { Dispatch } from "react";
 
-import {
-  Backdrop,
-  Button,
-  CircularProgress,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Grid,
-  TextField,
-} from "@mui/material";
+import { Backdrop, Button, CircularProgress, Grid } from "@mui/material";
 import { AboutWithContact } from "../../../interfaces/AboutWithContact";
 import { Educations } from "../../../interfaces/Educations";
 import { FormStyles } from "../../../interfaces/FormStyles";
@@ -47,8 +36,8 @@ import { getCurrentUser } from "../../../services/userService";
 import { User } from "firebase/auth";
 import { Certifications } from "../../../interfaces/Certification";
 import { CertificationsForm } from "./FormItems/CertificationsForm";
-import { Image } from "../../../interfaces/Image";
-import { ImageForm } from "./FormItems/ImageForm";
+import { Photo } from "../../../interfaces/Photo";
+import { PhotoForm } from "./FormItems/PhotoForm";
 
 interface RightFormProps {
   makeItemsArray: (layouts: GridItem[]) => void;
@@ -91,8 +80,8 @@ interface RightFormProps {
   setCertifications1: Dispatch<React.SetStateAction<Certifications>>;
   others1: Others;
   setOthers1: Dispatch<React.SetStateAction<Others>>;
-  image1: Image;
-  setImage1: Dispatch<React.SetStateAction<Image>>;
+  photo1: Photo;
+  setPhoto1: Dispatch<React.SetStateAction<Photo>>;
   formStyles: FormStyles;
   setFormStyles: Dispatch<React.SetStateAction<FormStyles>>;
   forms: string[];
@@ -127,6 +116,8 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
             formTitle={"About & Contact #2"}
           />
         );
+      case "photo1":
+        return <PhotoForm photo={props.photo1} setPhoto={props.setPhoto1} formTitle={"Photo #1"} />;
       case "about1":
         return <AboutForm about={props.about1} setAbout={props.setAbout1} formTitle={"About #1"} />;
       case "name1":
@@ -169,8 +160,6 @@ export const RightForm: React.FC<RightFormProps> = (props) => {
         return <RatingsForm ratings={props.ratings1} setRatings={props.setRatings1} formTitle={"Ratings #1"} />;
       case "ratings2":
         return <RatingsForm ratings={props.ratings2} setRatings={props.setRatings2} formTitle={"Ratings #2"} />;
-      case "image1":
-        return <ImageForm image={props.image1} setImage={props.setImage1} formTitle={"Image #1"} />;
       case "certifications1":
         return (
           <CertificationsForm

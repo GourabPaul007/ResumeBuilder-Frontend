@@ -21,7 +21,7 @@ import { LocalStorageItem } from "../../interfaces/LocalStorageItem";
 import { log } from "../../helpers/logger";
 import { Name } from "../../interfaces/Name";
 import { Certifications } from "../../interfaces/Certification";
-import { Image } from "../../interfaces/Image";
+import { Photo } from "../../interfaces/Photo";
 // import "/node_modules/react-grid-layout/css/styles.css";
 // import "/node_modules/react-resizable/css/styles.css";
 
@@ -63,6 +63,20 @@ const CreatePage: React.FC = (props) => {
     profession: "",
     fontSize: 32,
     align: "flex-start",
+    style: {
+      bgColor: "#ffffff",
+      textColor: "#000000",
+    },
+  });
+  const [photo1, setPhoto1] = useState<Photo>({
+    name: "",
+    hasPhoto: 0,
+    height: 200,
+    width: 160,
+    borderRadius: 0,
+    borderColor: "#ffffff",
+    borderStyle: "solid",
+    borderWidth: 3,
     style: {
       bgColor: "#ffffff",
       textColor: "#000000",
@@ -247,22 +261,6 @@ const CreatePage: React.FC = (props) => {
       textColor: "#000000",
     },
   });
-  const [image1, setImage1] = useState<Image>({
-    name: "",
-    hasImage: 0,
-    height: 200,
-    width: 160,
-    radius: 50,
-    border: {
-      borderColor: "#ffffff",
-      borderStyle: "solid",
-      borderWidth: 3,
-    },
-    style: {
-      bgColor: "#ffffff",
-      textColor: "#000000",
-    },
-  });
   const [formStyles, setFormStyles] = useState<FormStyles>(
     JSON.parse(localStorage.getItem("FormStyles") as string) || {
       titleFilled: false,
@@ -275,6 +273,8 @@ const CreatePage: React.FC = (props) => {
     }
   );
 
+  // LOAD ALL RESUME DATA AT START TIME FROM LOCAL STORAGE AND SET IT TO LAYOUT
+  // SO THAT IT WILL SHOW DATA AT START IF USER CAME BACK AFTER A TIME.
   useEffect(() => {
     const oldLayout = JSON.parse(localStorage.getItem("ItemsArray") as string);
     setLayout(oldLayout);
@@ -342,8 +342,8 @@ const CreatePage: React.FC = (props) => {
           case "others1":
             setOthers1(item.data);
             break;
-          case "image1":
-            setImage1(item.data);
+          case "photo1":
+            setPhoto1(item.data);
             break;
 
           default:
@@ -463,6 +463,8 @@ const CreatePage: React.FC = (props) => {
               return aboutWithContact1;
             case "aboutwithcontact2":
               return aboutWithContact2;
+            case "photo1":
+              return photo1;
             case "about1":
               return about1;
             case "name1":
@@ -497,8 +499,6 @@ const CreatePage: React.FC = (props) => {
               return certifications1;
             case "others1":
               return others1;
-            case "image1":
-              return image1;
             case "spacer1":
               return "spacer1";
             case "spacer2":
@@ -550,7 +550,7 @@ const CreatePage: React.FC = (props) => {
             ratings2={ratings2}
             certifications1={certifications1}
             others1={others1}
-            image1={image1}
+            photo1={photo1}
             formStyles={formStyles}
           />
         </div>
@@ -598,8 +598,8 @@ const CreatePage: React.FC = (props) => {
             setRatings2={setRatings2}
             certifications1={certifications1}
             setCertifications1={setCertifications1}
-            image1={image1}
-            setImage1={setImage1}
+            photo1={photo1}
+            setPhoto1={setPhoto1}
             formStyles={formStyles}
             setFormStyles={setFormStyles}
             layout={layout}

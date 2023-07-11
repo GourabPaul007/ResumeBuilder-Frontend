@@ -1,41 +1,28 @@
-import "./ImageForm.css";
+import "./PhotoForm.css";
 
-import {
-  Button,
-  ButtonGroup,
-  Card,
-  CardActions,
-  CardContent,
-  Collapse,
-  Grid,
-  IconButton,
-  Slider,
-  styled,
-  TextField,
-  Typography,
-} from "@mui/material";
-import React, { Dispatch, FC, useState, useEffect } from "react";
+import { Card, CardActions, CardContent, Collapse, IconButton, Slider, Typography } from "@mui/material";
+import React, { Dispatch, FC } from "react";
 import { ColorPicker } from "../../../../Components/ColorPicker";
 import { useStyles } from "./_FormsStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Image } from "../../../../interfaces/Image";
+import { Photo } from "../../../../interfaces/Photo";
 
-interface ImageFormProps {
+interface PhotoFormProps {
   formTitle: string;
-  image: Image;
-  setImage: Dispatch<React.SetStateAction<Image>>;
+  photo: Photo;
+  setPhoto: Dispatch<React.SetStateAction<Photo>>;
 }
 
-export const ImageForm: FC<ImageFormProps> = React.memo((props) => {
+export const PhotoForm: FC<PhotoFormProps> = React.memo((props) => {
   const classes = useStyles();
 
   const [expanded, setExpanded] = React.useState(false);
 
-  // const [imageHeightSliderValue, setImageHeightSliderValue] = React.useState(props.image.height);
-  // const [imageWidthSliderValue, setImageWidthSliderValue] = React.useState(props.image.width);
-  const [imageSizeSliderValue, setImageSizeSliderValue] = React.useState(props.image.width);
-  const [imageRadiusSliderValue, setImageRadiusSliderValue] = React.useState(props.image.radius);
-  const [borderWidthSliderValue, setBorderWidthSliderValue] = React.useState(props.image.border.borderWidth);
+  // const [photoHeightSliderValue, setPhotoHeightSliderValue] = React.useState(props.photo.height);
+  // const [photoWidthSliderValue, setPhotoWidthSliderValue] = React.useState(props.photo.width);
+  const [photoSizeSliderValue, setPhotoSizeSliderValue] = React.useState(props.photo.width);
+  const [photoRadiusSliderValue, setPhotoRadiusSliderValue] = React.useState(props.photo.borderRadius);
+  const [borderWidthSliderValue, setBorderWidthSliderValue] = React.useState(props.photo.borderWidth);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -50,38 +37,38 @@ export const ImageForm: FC<ImageFormProps> = React.memo((props) => {
     });
   };
 
-  // On Selecting image from input field
-  const handleChangeImage = (imageB64String: string) => {
-    // Save Image as base64 to localstorage
-    localStorage.setItem("avatarBase64", imageB64String);
-    // props.setImage({ ...props.image, hasImage: false });
-    props.setImage({ ...props.image, hasImage: props.image.hasImage + 1 });
+  // On Selecting photo from input field
+  const handleChangePhoto = (photoB64String: string) => {
+    // Save Photo as base64 to localstorage
+    localStorage.setItem("avatarBase64", photoB64String);
+    // props.setPhoto({ ...props.photo, hasPhoto: false });
+    props.setPhoto({ ...props.photo, hasPhoto: props.photo.hasPhoto + 1 });
   };
 
-  // const handleImageHeightSlider = (event: Event, newImageHeight: number | number[]) => {
-  //   const sliderValue = Array.isArray(newImageHeight) ? newImageHeight[0] : newImageHeight;
-  //   setImageHeightSliderValue(sliderValue);
-  //   props.setImage({ ...props.image, height: sliderValue * 10 });
+  // const handlePhotoHeightSlider = (event: Event, newPhotoHeight: number | number[]) => {
+  //   const sliderValue = Array.isArray(newPhotoHeight) ? newPhotoHeight[0] : newPhotoHeight;
+  //   setPhotoHeightSliderValue(sliderValue);
+  //   props.setPhoto({ ...props.photo, height: sliderValue * 10 });
   // };
-  // const handleImageWidthSlider = (event: Event, newImageWidth: number | number[]) => {
-  //   const sliderValue = Array.isArray(newImageWidth) ? newImageWidth[0] : newImageWidth;
-  //   setImageWidthSliderValue(sliderValue);
-  //   props.setImage({ ...props.image, width: sliderValue * 10 });
+  // const handlePhotoWidthSlider = (event: Event, newPhotoWidth: number | number[]) => {
+  //   const sliderValue = Array.isArray(newPhotoWidth) ? newPhotoWidth[0] : newPhotoWidth;
+  //   setPhotoWidthSliderValue(sliderValue);
+  //   props.setPhoto({ ...props.photo, width: sliderValue * 10 });
   // };
-  const handleImageSizeSlider = (event: Event, newImageWidth: number | number[]) => {
-    const sliderValue = Array.isArray(newImageWidth) ? newImageWidth[0] : newImageWidth;
-    setImageSizeSliderValue(sliderValue);
-    props.setImage({ ...props.image, width: sliderValue * 10, height: sliderValue * 10 });
+  const handlePhotoSizeSlider = (event: Event, newPhotoWidth: number | number[]) => {
+    const sliderValue = Array.isArray(newPhotoWidth) ? newPhotoWidth[0] : newPhotoWidth;
+    setPhotoSizeSliderValue(sliderValue);
+    props.setPhoto({ ...props.photo, width: sliderValue * 10, height: sliderValue * 10 });
   };
-  const handleImageRadiusSlider = (event: Event, newImageWidth: number | number[]) => {
-    const sliderValue = Array.isArray(newImageWidth) ? newImageWidth[0] : newImageWidth;
-    setImageRadiusSliderValue(sliderValue);
-    props.setImage({ ...props.image, radius: sliderValue });
+  const handlePhotoRadiusSlider = (event: Event, newPhotoWidth: number | number[]) => {
+    const sliderValue = Array.isArray(newPhotoWidth) ? newPhotoWidth[0] : newPhotoWidth;
+    setPhotoRadiusSliderValue(sliderValue);
+    props.setPhoto({ ...props.photo, borderRadius: sliderValue });
   };
-  const handleBorderWidthSlider = (event: Event, newImageWidth: number | number[]) => {
-    const sliderValue = Array.isArray(newImageWidth) ? newImageWidth[0] : newImageWidth;
+  const handleBorderWidthSlider = (event: Event, newPhotoWidth: number | number[]) => {
+    const sliderValue = Array.isArray(newPhotoWidth) ? newPhotoWidth[0] : newPhotoWidth;
     setBorderWidthSliderValue(sliderValue);
-    props.setImage({ ...props.image, border: { ...props.image.border, borderWidth: sliderValue } });
+    props.setPhoto({ ...props.photo, borderWidth: sliderValue });
   };
 
   return (
@@ -91,23 +78,23 @@ export const ImageForm: FC<ImageFormProps> = React.memo((props) => {
           {props.formTitle}
         </Typography>
         &nbsp;
-        <div className="imageFormBody">
-          <div className="imageFormLeft">
+        <div className="photoFormBody">
+          <div className="photoFormLeft">
             <label
               onChange={async (event: any) => {
                 try {
-                  const selectedImage = event.target.files[0];
-                  const b64 = await getBase64(selectedImage);
-                  handleChangeImage(b64!.toString());
+                  const selectedPhoto = event.target.files[0];
+                  const b64 = await getBase64(selectedPhoto);
+                  handleChangePhoto(b64!.toString());
                 } catch (error) {
                   console.error(error);
                 }
               }}
-              htmlFor="imageUpload"
-              className="imageFormUploadButtonLabel"
+              htmlFor="photoUpload"
+              className="photoFormUploadButtonLabel"
             >
               Upload
-              <input type="file" accept="image/png, image/jpg, image/jpeg" name="imageUpload" id="imageUpload" hidden />
+              <input type="file" accept="photo/png, photo/jpg, photo/jpeg" name="photoUpload" id="photoUpload" hidden />
             </label>
             <div>&nbsp;</div>
             <div>&nbsp;</div>
@@ -115,58 +102,58 @@ export const ImageForm: FC<ImageFormProps> = React.memo((props) => {
             <div className={classes.colorPickerWrapper}>
               Border Color &#9658;&nbsp;
               <ColorPicker
-                color={props.image.border.borderColor ? props.image.border.borderColor : "#123456"}
+                color={props.photo.borderColor ? props.photo.borderColor : "#123456"}
                 height={36}
                 handleColor={(newColor: string) => {
-                  props.setImage({ ...props.image, border: { ...props.image.border, borderColor: newColor } });
+                  props.setPhoto({ ...props.photo, borderColor: newColor });
                 }}
               />
             </div>
           </div>
           <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-          {/* Image Size & Border Sliders */}
-          <div className="imageFormRight">
+          {/* Photo Size & Border Sliders */}
+          <div className="photoFormRight">
             {/* <Slider
-              aria-label="Image Height"
+              aria-label="Photo Height"
               min={0}
               max={20}
               step={1}
               valueLabelDisplay="auto"
-              value={imageHeightSliderValue}
-              onChange={handleImageHeightSlider}
+              value={photoHeightSliderValue}
+              onChange={handlePhotoHeightSlider}
             />
             Height
             <div>&nbsp;</div> */}
             {/* <Slider
-              aria-label="Image Width"
+              aria-label="Photo Width"
               min={0}
               max={20}
               step={1}
               valueLabelDisplay="auto"
-              value={imageWidthSliderValue}
-              onChange={handleImageWidthSlider}
+              value={photoWidthSliderValue}
+              onChange={handlePhotoWidthSlider}
             />
             Width
             <div>&nbsp;</div> */}
             <Slider
-              aria-label="Image Size"
+              aria-label="Photo Size"
               min={0}
               max={20}
               step={1}
               valueLabelDisplay="auto"
-              value={imageSizeSliderValue}
-              onChange={handleImageSizeSlider}
+              value={photoSizeSliderValue}
+              onChange={handlePhotoSizeSlider}
             />
             Size
             <div>&nbsp;</div>
             <Slider
-              aria-label="Image Borde Radius"
+              aria-label="Photo Borde Radius"
               min={0}
               max={50}
               step={2}
               valueLabelDisplay="auto"
-              value={imageRadiusSliderValue}
-              onChange={handleImageRadiusSlider}
+              value={photoRadiusSliderValue}
+              onChange={handlePhotoRadiusSlider}
             />
             Border Radius
             <div>&nbsp;</div>
@@ -219,10 +206,10 @@ export const ImageForm: FC<ImageFormProps> = React.memo((props) => {
               >
                 Background Color &#9658;&nbsp;
                 <ColorPicker
-                  color={props.image.style.bgColor ? props.image.style.bgColor : "#123456"}
+                  color={props.photo.style.bgColor ? props.photo.style.bgColor : "#123456"}
                   height={36}
                   handleColor={(newColor: string) => {
-                    props.setImage({ ...props.image, style: { ...props.image.style, bgColor: newColor } });
+                    props.setPhoto({ ...props.photo, style: { ...props.photo.style, bgColor: newColor } });
                   }}
                 />
               </div>
@@ -239,10 +226,10 @@ export const ImageForm: FC<ImageFormProps> = React.memo((props) => {
               >
                 Text Color &#9658;&nbsp;
                 <ColorPicker
-                  color={props.image.style.textColor ? props.image.style.textColor : "#000000"}
+                  color={props.photo.style.textColor ? props.photo.style.textColor : "#000000"}
                   height={36}
                   handleColor={(newColor: string) => {
-                    props.setImage({ ...props.image, style: { ...props.image.style, textColor: newColor } });
+                    props.setPhoto({ ...props.photo, style: { ...props.photo.style, textColor: newColor } });
                   }}
                 />
               </div>

@@ -31,8 +31,8 @@ import { Name } from "../../../interfaces/Name";
 import { NameBlock1 } from "./GridItems/NameBlocks";
 import { Certifications } from "../../../interfaces/Certification";
 import { CertificationsBlock1 } from "./GridItems/CertificationBlocks";
-import { ImageBlock1Memo } from "./GridItems/ImageBlocks";
-import { Image } from "../../../interfaces/Image";
+import { PhotoBlock1Memo } from "./GridItems/PhotoBlocks";
+import { Photo } from "../../../interfaces/Photo";
 // import ResponsiveReactGridLayout from "react-grid-layout";
 
 // const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -85,7 +85,7 @@ interface MiddleGridProps {
   ratings1: Ratings;
   ratings2: Ratings;
   others1: Others;
-  image1: Image;
+  photo1: Photo;
   certifications1: Certifications;
   formStyles: FormStyles;
 }
@@ -121,6 +121,17 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             removeItem={props.removeItem}
             item={item}
             aboutWithContact={props.aboutWithContact2}
+            formStyles={props.formStyles}
+          />
+        );
+      case "photo1":
+        return (
+          <PhotoBlock1Memo
+            blockTitle={"Photo #1"}
+            removeItem={props.removeItem}
+            item={item}
+            photo={props.photo1}
+            // image={{ imageString: "", hasImage: false, style: { bgColor: "#ffffff", textColor: "#000000" } }}
             formStyles={props.formStyles}
           />
         );
@@ -291,17 +302,6 @@ const MiddleGrid: React.FC<MiddleGridProps> = (props) => {
             removeItem={props.removeItem}
             item={item}
             others={props.others1}
-            formStyles={props.formStyles}
-          />
-        );
-      case "image1":
-        return (
-          <ImageBlock1Memo
-            blockTitle={"Image #1"}
-            removeItem={props.removeItem}
-            item={item}
-            image={props.image1}
-            // image={{ imageString: "", hasImage: false, style: { bgColor: "#ffffff", textColor: "#000000" } }}
             formStyles={props.formStyles}
           />
         );

@@ -1,4 +1,4 @@
-.imageFormBody {
+.photoFormBody {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -6,11 +6,11 @@
   margin: 2rem;
 }
 
-.imageFormLeft {
+.photoFormLeft {
   width: 50%;
 }
 
-.imageFormRight {
+.photoFormRight {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,7 +19,7 @@
   color: #666;
 }
 
-.imageFormUploadButtonLabel {
+.photoFormUploadButtonLabel {
   height: 40px;
   width: 100px;
   padding: 12px 48px;
@@ -28,7 +28,7 @@
   background-color: #f0f0f0;
   box-shadow: 0px 1px 2px 1px #dadada;
 }
-.imageFormUploadButtonLabel:hover {
+.photoFormUploadButtonLabel:hover {
   cursor: pointer;
   background-color: #ddd;
 }
