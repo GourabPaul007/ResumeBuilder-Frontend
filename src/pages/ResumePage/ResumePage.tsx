@@ -122,6 +122,7 @@ const ResumePage: React.FC<ResumePageProps> = () => {
         </div>
         &nbsp;&nbsp;
         <div id="resumeOptions">
+          {/* Share Button */}
           <IconButton
             size="large"
             style={{
@@ -153,6 +154,7 @@ const ResumePage: React.FC<ResumePageProps> = () => {
             <IosShareRoundedIcon fontSize="medium" htmlColor="#6b5be6" />
           </IconButton>
 
+          {/* Edit Button */}
           {isOwner && (
             <IconButton
               size="large"
@@ -162,6 +164,9 @@ const ResumePage: React.FC<ResumePageProps> = () => {
                 margin: "0px 6px 12px 6px",
               }}
               onClick={() => {
+                // Save to localstorage to show the data in CreatePage
+                itemsArray && localStorage.setItem("ItemsArray", JSON.stringify(itemsArray));
+                formStyles && localStorage.setItem("FormStyles", JSON.stringify(formStyles));
                 window.location.href = "/create";
               }}
             >
